@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="@components/layout/popup/popup.scss">
+<div data-lenis-prevent data-fls-popup="popup--contacts" aria-hidden="true" class="popup">
+	<div data-fls-popup-wrapper class="popup__wrapper">
+		<div data-fls-popup-body class="popup__body">
+			<button data-fls-popup-close type="button" class="popup__close">
+				<svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white" />
+					<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white" />
+					<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white" />
+				</svg>
+			</button>
+			<div data-fls-popup-content class="popup-content">
+				<div class="popup-content__title">
+					<p><b>Обговоримо</b> вашу<br> задачу прямо зараз?</p>
+				</div>
+				<div class="popup-content__subtitle">
+					<p>Ми швидко запропонуємо рішення!</p>
+				</div>
+				<ul class="popup-content__contacts">
+					<li class="popup-content__contact">
+						<a href="tel:+380988234343" class="popup-content__phone" aria-label="phone number">+38 098 823 43 43</a>
+					</li>
+					<li class="popup-content__contact">
+						<a href="mailto:brand@posh.pro" class="popup-content__mail" aria-label="mail">brand@posh.pro</a>
+					</li>
+				</ul>
+				<div class="popup-content__social">
+					<a href="#" class="popup-content__social-ic" aria-label="telegram">
+						<img src="@img/icons/tg.svg" width="50" height="50" alt="Image">
+					</a>
+					<a href="#" class="popup-content__social-ic" aria-label="telegram">
+						<img src="@img/icons/wts.svg" width="50" height="50" alt="Image">
+					</a>
+				</div>
+				<div class="popup-content__btns">
+					<a href="#" data-fls-btn class="popup-content__btn btn btn--3" aria-label="link">
+						<span class="btn-txt">Залишити заявку</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<a href="@files/show-file.pdf" target="_blank" data-fls-btn class="popup-content__btn btn btn--3" aria-label="download">
+						<span class="btn-txt">Завантажити PDF</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<a href="#" data-fls-btn class="popup-content__btn btn btn--3" aria-label="link">
+						<span class="btn-txt">Заповнити чек-лист</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<div class="popup-content__sm-t">
+						<p>Приблизно 7 хв. вашого часу</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

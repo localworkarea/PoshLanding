@@ -1,0 +1,26 @@
+@font-face { 
+	font-family: "iconfont"; 
+	font-display: swap;
+	src: url("D://IT/projects/PoshLanding/src/assets/svgicons/preview/iconfont.woff2?4fdff017cc4534b538956afd41ad2859") format("woff2"); 
+} 
+[class*="--icon-"]::before{
+	font-family: iconfont; 
+}
+	[class*="--icon-arrowrightd"]::before { 
+		content: "\f101"; 
+	} 
+	[class*="--icon-arrowrightc"]::before { 
+		content: "\f102"; 
+	} 
+	[class*="--icon-arrowrightb"]::before { 
+		content: "\f103"; 
+	} 
+	[class*="--icon-arrowrighta"]::before { 
+		content: "\f104"; 
+	} 
+	[class*="--icon-arrowdownb"]::before { 
+		content: "\f105"; 
+	} 
+	[class*="--icon-arrowdowna"]::before { 
+		content: "\f106"; 
+	} 
