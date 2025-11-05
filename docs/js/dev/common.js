@@ -7,6 +7,10 @@ let bodyUnlock = (delay = 500) => {
         lockPaddingElement.style.paddingRight = "";
       });
       document.body.style.paddingRight = "";
+      const header = document.querySelector(".header");
+      if (header) {
+        header.style.paddingRight = "";
+      }
       document.documentElement.removeAttribute("data-fls-scrolllock");
     }, delay);
     bodyLockStatus = false;
@@ -23,6 +27,10 @@ let bodyLock = (delay = 500) => {
       lockPaddingElement.style.paddingRight = lockPaddingValue;
     });
     document.body.style.paddingRight = lockPaddingValue;
+    const header = document.querySelector(".header");
+    if (header) {
+      header.style.paddingRight = lockPaddingValue;
+    }
     document.documentElement.setAttribute("data-fls-scrolllock", "");
     bodyLockStatus = false;
     setTimeout(function() {
