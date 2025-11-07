@@ -1,0 +1,140 @@
+.gallery {
+  position: relative;
+
+
+	// .gallery__line
+	&__line {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      @media (min-width:toEm($mobileSmall)){
+         margin-bottom: 24px; 
+      }
+    }
+	}
+	// .gallery__item
+	&__item {
+    margin-right: 10px;
+    @media (min-width:toEm($mobileSmall)){
+      margin-right: 18px;
+    }
+	}
+	// .gallery__thumb
+	&__thumb {
+    border-radius: 15px;
+    overflow: hidden;
+    @include adaptiveValue("width", 450, 305);
+    img {
+      border-radius: 15px;
+      @extend %ibg;
+      aspect-ratio: 450/314;
+    }
+	}
+
+  &__fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    background-color: rgba(0, 0, 0, 0.85);
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    /* ===== LOADER ===== */
+    .gallery__loader {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: gallerySpin 1s linear infinite;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+
+      &.is-visible {
+        opacity: 1;
+      }
+    }
+
+    @keyframes gallerySpin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .gallery__overlay {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+    }
+
+    .gallery__figure {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 15px;
+
+      img {
+        @extend %ibg;
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      img.is-loaded {
+        opacity: 1;
+      }
+    }
+
+    .gallery__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 4;
+      font-size: 2rem;
+      color: #fff;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}
+
+html.lock {
+  overflow: hidden;
+}

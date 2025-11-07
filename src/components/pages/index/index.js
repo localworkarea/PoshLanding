@@ -176,5 +176,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	observer2.observe(productVideoBlock);
 
 
+	const page = document.querySelector('.page--index');
+  if (!page) return;
+
+  const children = Array.from(page.children);
+  const maxZ = children.length;
+
+  children.forEach((child, i) => {
+    child.style.zIndex = maxZ - i;
+  });
+
+
+
 
 });
