@@ -2248,7 +2248,7 @@ section {
     justify-content: space-between;
   }
   .nav-footer__list {
-    gap: 2.375rem;
+    gap: 3.125rem;
     max-width: none;
   }
   .fill-form__body {
