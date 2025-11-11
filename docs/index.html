@@ -9,10 +9,10 @@
 		<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Головна</title>
-		<script type="module" crossorigin="" src="./js/common.min.js?v=1762788609301"></script>
-		<script type="module" crossorigin="" src="./js/index.min2.js?v=1762788609301"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1762788609301">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1762788609301">
+		<script type="module" crossorigin="" src="./js/common.min.js?v=1762876806983"></script>
+		<script type="module" crossorigin="" src="./js/index.min2.js?v=1762876806983"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1762876806983">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1762876806983">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -567,7 +567,6 @@
 							<div class="presentation-solutions__pdf">
 								<a href="files/show-file.pdf" target="_blank" data-fls-btn="" class="presentation-solutions__btn btn btn--2 --icon-arrowrightc" aria-label="download">
 									<span class="btn-txt">Завантажити PDF</span>
-									<span class="btn-arr"></span>
 								</a>
 							</div>
 						</div>
@@ -1124,6 +1123,7 @@
 							</details>
 						</div>
 						<div class="faq__reviews reviews">
+							<h2 class="faq__title t-3">Відгуки</h2>
 							<div data-fls-slider="" class="reviews__slider swiper">
 								<div class="reviews__wrapper swiper-wrapper">
 									<article class="reviews__slide slide-reviews swiper-slide">
@@ -1248,7 +1248,118 @@
 				</section>
 			</main>
 			<footer data-fls-footer="" class="footer">
-				<div class="footer__container"></div>
+				<div class="footer__bg-video">
+					<video class="ibg" data-fls-videoplay="" muted autoplay loop playsinline="">
+						<source src="./files/posh-showreel-2-optimize-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+						<source src="./files/posh-showreel-2-optimize-mb.mp4" type="video/mp4">
+					</video>
+					<picture>
+						<source media="(max-width: 600px)" srcset="./assets/img/poster-pc-600.webp" type="image/webp">
+						<source media="(max-width: 1200px)" srcset="./assets/img/poster-pc-1200.webp" type="image/webp">
+						<img class="footer__poster ibg" width="1440" height="800" alt="image" src="./assets/img/poster-pc.webp">
+					</picture>
+				</div>
+				<div class="footer__container">
+					<div class="footer__title title-hero">
+						<p>
+							<span>
+								Отже, ти догортав
+								<br>
+								до кінця сайту,
+							</span>
+							<br>
+							що далі?
+						</p>
+					</div>
+					<div class="footer__contacts contacts-footer">
+						<div class="contacts-footer__img">
+							<picture>
+								<img width="229" height="270" alt="Image" src="./assets/img/manager.webp">
+							</picture>
+						</div>
+						<address class="contacts-footer__info">
+							<div class="contacts-footer__name t-6">
+								<p>Вероніка</p>
+							</div>
+							<div class="contacts-footer__position t-15">
+								<p>ваш менеджер</p>
+							</div>
+							<ul class="contacts-footer__social">
+								<li class="contacts-footer__item">
+									<a href="#" class="contacts-footer__link" aria-label="social">
+										<img src="./assets/img/icons/tg.svg" width="46" height="46" alt="Image">
+									</a>
+								</li>
+								<li class="contacts-footer__item">
+									<a href="#" class="contacts-footer__link" aria-label="social">
+										<img src="./assets/img/icons/wts.svg" width="46" height="46" alt="Image">
+									</a>
+								</li>
+							</ul>
+							<ul class="contacts-footer__links">
+								<li class="contacts-footer__links-item">
+									<a href="tel:+380988234343" class="contacts-footer__phone t-11">+38 098 823 43 43</a>
+								</li>
+								<li class="contacts-footer__links-item">
+									<a href="mailto:brand@posh.pro" class="contacts-footer__email t-15">brand@posh.pro</a>
+								</li>
+							</ul>
+						</address>
+					</div>
+					<div class="footer__btns">
+						<a href="#" data-fls-btn="" class="footer__btn--1 btn btn--4" aria-label="link">
+							<span class="btn-txt">Отримати пропозицію</span>
+							<span class="btn-arr --icon-arrowrightb"></span>
+						</a>
+						<a href="files/show-file.pdf" target="_blank" data-fls-btn="" class="footer__btn--2 btn btn--2 --icon-arrowrightc" aria-label="download">
+							<span class="btn-txt">Завантажити презентацію</span>
+						</a>
+						<a href="#" data-fls-btn="" class="footer__btn--3 btn btn--2 --icon-arrowrightc" aria-label="link">
+							<span class="btn-txt">Заповнити чек-лист</span>
+						</a>
+						<a href="#" class="footer__btn--4 t-5 --icon-arrowrightc" aria-label="link">
+							<span>Всі роботи</span>
+						</a>
+						<a href="#" class="footer__btn--4 t-5 --icon-arrowrightc" aria-label="link">
+							<span>Наш підхід</span>
+						</a>
+					</div>
+					<div class="footer__avrg">
+						<nav class="footer__nav nav-footer">
+							<ul class="nav-footer__list t-2">
+								<li class="nav-footer__item">
+									<a href="#" class="nav-footer__link" aria-label="link">Кейси</a>
+								</li>
+								<li class="nav-footer__item">
+									<a href="#" class="nav-footer__link" aria-label="link">Терміни</a>
+								</li>
+								<li class="nav-footer__item">
+									<a href="#" class="nav-footer__link" aria-label="link">Ціни</a>
+								</li>
+								<li class="nav-footer__item">
+									<a href="#" class="nav-footer__link" aria-label="link">Контакти</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="footer__location t-2">
+							<a href="https://maps.app.goo.gl/R7gd33M41tmP8F176" target="_blank" aria-label="link to a google map">
+								Україна, Київ, вул. Євгена Сверстюка, 11
+								<br>
+								БЦ “Armaris”, ст. м. Лівобережна
+							</a>
+						</div>
+					</div>
+					<div class="footer__bottom bottom-footer">
+						<p class="bottom-footer__copy">Posh fmcg branding © 2026</p>
+						<div class="bottom-footer__links">
+							<a href="#" aria-label="link to privacy policy">Privacy Policy</a>
+							•
+							<a href="#" aria-label="link to Cookie Policy">Cookie Policy</a>
+							•
+							<a href="#" aria-label="link to privacy policy">Cookie Settings</a>
+						</div>
+					</div>
+				</div>
 			</footer>
 		</div>
 		<div data-lenis-prevent="" data-fls-popup="popup--contacts" aria-hidden="true" class="popup">

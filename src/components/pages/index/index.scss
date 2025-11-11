@@ -1,14 +1,3 @@
-%circle {
-  content: '';
-  pointer-events: none;
-  position: absolute;
-  aspect-ratio: 1;
-  background-image: url("@img/icons/fmcg-circle.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  animation: circle-hero 60s linear infinite;
-}
 
 section {
   position: relative;
@@ -421,11 +410,7 @@ section {
   }
 }
 
-.br-r {
-  overflow: hidden;
-  @include adaptiveValue("border-bottom-left-radius", 50, 30);
-  @include adaptiveValue("border-bottom-right-radius", 50, 30);
-}
+
 
 %top-pdd {
   @include adaptiveValue("padding-top", 116, 75);
@@ -1595,6 +1580,9 @@ section {
 .slide-reviews {
 		// .slide-reviews__body
 		&__body {
+      cursor: pointer;
+      user-select: none;
+
       background-color: var(--white);
       border-radius: 15px;
       padding: 36px 27px;

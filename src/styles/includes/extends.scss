@@ -123,3 +123,15 @@
 			}
 		}
 }
+
+%circle {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  aspect-ratio: 1;
+  background-image: url("@img/icons/fmcg-circle.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  animation: circle-hero 60s linear infinite;
+}
