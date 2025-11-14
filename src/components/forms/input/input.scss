@@ -8,19 +8,27 @@ textarea {
 	-moz-appearance: none;
 	appearance: none;
 }
-.input {
+.input-main {
 	border-radius: 0 !important;
 	width: 100%;
 	display: block;
-	padding: 10px;
-	border: 1px solid #eee;
+	padding: 0px;
+	border-bottom: 1px solid var(--gray);
 	caret-color: inherit;
+	outline: none;
+	min-height: 25px; 
+	@media (min-width:toEm($mobileSmall)){
+		 min-height: 29px; 
+	}
 	&.--form-focus {
 	}
 	&.--form-error {
+		color: var(--red);
+	}
+	&.--input-fill {
 	}
 }
-.input[placeholder]:not([data-fls-placeholder-nohiden]) {
+.input-main[placeholder]:not([data-fls-placeholder-nohiden]) {
 	&::placeholder {
 		transition: opacity 0.3s;
 	}
@@ -28,7 +36,9 @@ textarea {
 		opacity: 0;
 	}
 }
-textarea.input {
-	resize: vertical;
+textarea.input-main {
+	resize: none;
 	padding: 0px 0px;
 }
+
+

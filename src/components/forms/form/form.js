@@ -102,7 +102,48 @@ function formInit() {
 				targetElement.hasAttribute('data-fls-form-validatenow') ? formValidate.validateInput(targetElement) : null;
 			}
 		});
+			document.body.addEventListener("input", function (e) {
+			const target = e.target;
+				
+			if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+					if (target.value.trim() !== "") {
+						target.classList.add("--input-fill");
+						target.parentElement.classList.add("--input-fill");
+					} else {
+						target.classList.remove("--input-fill");
+						target.parentElement.classList.remove("--input-fill");
+					}
+				}
+			});
 	}
+	
+	const fileBlock = document.querySelector(".form-file");
+	
+	if (fileBlock) {
+		const input = fileBlock.querySelector(".form-file__input");
+		const btn = fileBlock.querySelector(".form-file__btn");
+		const textDefault = fileBlock.querySelector(".form-file__text");
+		const textFile = fileBlock.querySelector(".form-file__file-name");
+	
+		btn.addEventListener("click", () => {
+			input.click();
+		});
+	
+		input.addEventListener("change", () => {
+			if (input.files.length > 0) {
+				const fileName = input.files[0].name;
+			
+				fileBlock.classList.add("--file-added");
+				textFile.textContent = fileName;
+			} else {
+				fileBlock.classList.remove("--file-added");
+				textFile.textContent = "";
+			}
+		});
+	}
+	
+
+
 	formSubmit()
 	formFieldsInit()
 }

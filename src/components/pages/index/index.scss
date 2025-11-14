@@ -1,6 +1,10 @@
 
 section {
   position: relative;
+  &.trust {
+    position: sticky ;
+    bottom: 0;
+  }
 }
 
 .hero {

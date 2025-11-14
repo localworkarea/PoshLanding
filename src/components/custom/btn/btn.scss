@@ -91,7 +91,8 @@
   }
 
   &.btn--3,
-  &.btn--4 {
+  &.btn--4,
+  &.btn--5 {
     display: grid;
     grid-template-columns: 1fr auto;
     font-weight: 600;
@@ -136,7 +137,8 @@
     }
   }
 
-  &.btn--4 {
+  &.btn--4,
+  &.btn--5 {
     min-height: 40px;
     font-size: 13px;
 
@@ -149,6 +151,23 @@
       font-size: 11px;
       @media (min-width:toEm($mobileSmall)){
          width: 40px; 
+      }
+    }
+  }
+  &.btn--5 {
+     background-color: var(--primary);
+    color: var(--white);
+    .btn-arr {
+      background-color: var(--white);
+      color: var(--primary);
+    }
+
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--white);
+        color: var(--primary);
+        border-color: var(--primary); 
       }
     }
   }

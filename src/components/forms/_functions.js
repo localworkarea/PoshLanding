@@ -80,6 +80,11 @@ export let formValidate = {
 				formValidate.removeFocus(el)
 				formValidate.removeSuccess(el)
 				formValidate.removeError(el)
+
+				el.classList.remove('--input-fill');
+				if (el.parentElement) {
+					el.parentElement.classList.remove('--input-fill');
+				}
 			}
 			let checkboxes = form.querySelectorAll('input[type="checkbox"]')
 			if (checkboxes.length) {
@@ -95,6 +100,20 @@ export let formValidate = {
 					})
 				}
 			}
+			
+			let fileBlocks = form.querySelectorAll(".form-file");
+			if (fileBlocks.length) {
+				fileBlocks.forEach(block => {
+					let input = block.querySelector(".form-file__input");
+						let textFile = block.querySelector(".form-file__file-name");
+				
+					input.value = "";
+					block.classList.remove("--file-added");
+					textFile.textContent = "";
+				});
+			}
+
+
 		}, 0)
 	},
 	emailTest(formRequiredItem) {
