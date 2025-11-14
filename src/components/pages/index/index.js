@@ -1,29 +1,80 @@
 import Lenis from 'lenis'
+import { FLS } from "@js/common/functions.js";
+import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
 
+gsap.registerPlugin(ScrollTrigger);
 
-// // 3.Добавь СSS для lenis
-// const lenis = new Lenis()
-// lenis.on('scroll', (e) => {
-//   // console.log(e)
-// })
-// lenis.on('scroll', ScrollTrigger.update)
-// gsap.ticker.add((time)=>{
-//   lenis.raf(time * 1000)
-// })
-// gsap.ticker.lagSmoothing(0)
-
-// Initialize Lenis
 const lenis = new Lenis({
   autoRaf: true,
+  lerp: 0.07,
 });
 
-// // Listen for the scroll event and log the event data
-// lenis.on('scroll', (e) => {
-//   console.log(e);
-// });
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000); // GSAP даёт секунды, Lenis хочет миллисекунды
+});
+
+// Отключаем лаг-гашение, чтобы всё было отзывчиво
+gsap.ticker.lagSmoothing(0);
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+
+	ScrollTrigger.refresh();
+
+	function createGsapAnim() {
+
+		 // удаляем тригеры после срабатывания фунции (поворота экрана...)
+	  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+		document.querySelectorAll('[data-gsap]').forEach(section => {
+		
+		  const prevSection = section.previousElementSibling;
+		  if (!prevSection) return;
+		
+		  // читаем значение из data-gsap-end
+		  let endValue = section.dataset.gsapEnd || "35%";
+		
+		  gsap.to(section, {
+		    y: 0,
+		    ease: "none",
+		    scrollTrigger: {
+		      trigger: prevSection,
+		      start: "bottom bottom",
+		      end: `bottom ${endValue}`,
+		      scrub: true,
+		      // invalidateOnRefresh: true,
+		    }
+		  });
+		
+		});
+
+
+
+	}
+	createGsapAnim();
+
+
+  // === RESIZI OBSERVER ==========================================
+  let lastWidth2 = window.innerWidth;
+  
+  const resizeObserver2 = new ResizeObserver(entries => {
+    requestAnimationFrame(() => {
+      entries.forEach(entry => {
+        const currentWidth = entry.contentRect.width;
+        if (currentWidth !== lastWidth2) {
+          createGsapAnim();
+        }
+      });
+    });
+  });
+  resizeObserver2.observe(document.body);
+
+
+
 	const items = document.querySelectorAll(".list-hero__item");
 	if (!items.length) return;
 

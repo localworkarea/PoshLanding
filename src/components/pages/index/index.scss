@@ -1,10 +1,6 @@
 
 section {
   position: relative;
-  &.trust {
-    position: sticky ;
-    bottom: 0;
-  }
 }
 
 .hero {
@@ -1650,3 +1646,15 @@ section {
 }
 
 
+[data-gsap="trust"] {
+  transform: translate(0,-40%);
+}
+[data-gsap="process"] {
+  transform: translate(0,-30%);
+}
+[data-gsap="fill-form"] {
+  transform: translate(0,-30%);
+}
+[data-gsap="footer"] {
+  transform: translate(0,-40%);
+}
