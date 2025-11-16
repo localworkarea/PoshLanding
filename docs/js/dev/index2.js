@@ -12266,16 +12266,20 @@ var gsapWithCSS = gsap$2.registerPlugin(CSSPlugin) || gsap$2;
 gsapWithCSS.core.Tween;
 gsapWithCSS.registerPlugin(ScrollTrigger);
 const lenis = new Lenis({
-  autoRaf: true,
-  lerp: 0.07
+  autoRaf: false,
+  // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
+  lerp: 0.08,
+  // Оптимальное значение для гладкого скролла
+  wheelMultiplier: 1,
+  // Контроль скорости прокрутки
+  touchMultiplier: 2
 });
-lenis.on("scroll", ScrollTrigger.update);
 gsapWithCSS.ticker.add((time) => {
   lenis.raf(time * 1e3);
+  ScrollTrigger.update();
 });
 gsapWithCSS.ticker.lagSmoothing(0);
 document.addEventListener("DOMContentLoaded", () => {
-  ScrollTrigger.refresh();
   function createGsapAnim() {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     document.querySelectorAll("[data-gsap]").forEach((section) => {
@@ -12289,23 +12293,26 @@ document.addEventListener("DOMContentLoaded", () => {
           trigger: prevSection,
           start: "bottom bottom",
           end: `bottom ${endValue}`,
-          scrub: true
-          // invalidateOnRefresh: true,
+          scrub: 0.6,
+          // Добавляем scrub для более гладкой анимации вместо true
+          invalidateOnRefresh: true
         }
       });
     });
+    ScrollTrigger.refresh();
   }
   createGsapAnim();
   let lastWidth2 = window.innerWidth;
+  let resizeTimeout = null;
   const resizeObserver2 = new ResizeObserver((entries) => {
-    requestAnimationFrame(() => {
-      entries.forEach((entry) => {
-        const currentWidth = entry.contentRect.width;
-        if (currentWidth !== lastWidth2) {
-          createGsapAnim();
-        }
-      });
-    });
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== lastWidth2) {
+        lastWidth2 = currentWidth;
+        createGsapAnim();
+      }
+    }, 250);
   });
   resizeObserver2.observe(document.body);
   const items = document.querySelectorAll(".list-hero__item");

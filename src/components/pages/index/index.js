@@ -5,14 +5,15 @@ import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({
-  autoRaf: true,
-  lerp: 0.07,
+  autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
+  lerp: 0.08, // Оптимальное значение для гладкого скролла
+  wheelMultiplier: 1, // Контроль скорости прокрутки
+  touchMultiplier: 2,
 });
-
-lenis.on('scroll', ScrollTrigger.update);
 
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000); // GSAP даёт секунды, Lenis хочет миллисекунды
+  ScrollTrigger.update(); // Обновляем ScrollTrigger в одном месте
 });
 
 // Отключаем лаг-гашение, чтобы всё было отзывчиво
@@ -21,9 +22,6 @@ gsap.ticker.lagSmoothing(0);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
-
-	ScrollTrigger.refresh();
 
 	function createGsapAnim() {
 
@@ -45,31 +43,32 @@ document.addEventListener("DOMContentLoaded", () => {
 		      trigger: prevSection,
 		      start: "bottom bottom",
 		      end: `bottom ${endValue}`,
-		      scrub: true,
-		      // invalidateOnRefresh: true,
+		      scrub: 0.6, // Добавляем scrub для более гладкой анимации вместо true
+		      invalidateOnRefresh: true,
 		    }
 		  });
 		
 		});
 
-
+		ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
 
 	}
 	createGsapAnim();
 
 
-  // === RESIZI OBSERVER ==========================================
+  // === RESIZE OBSERVER WITH DEBOUNCE ==========================================
   let lastWidth2 = window.innerWidth;
+  let resizeTimeout = null;
   
   const resizeObserver2 = new ResizeObserver(entries => {
-    requestAnimationFrame(() => {
-      entries.forEach(entry => {
-        const currentWidth = entry.contentRect.width;
-        if (currentWidth !== lastWidth2) {
-          createGsapAnim();
-        }
-      });
-    });
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== lastWidth2) {
+        lastWidth2 = currentWidth;
+        createGsapAnim();
+      }
+    }, 250); // Debounce 250ms
   });
   resizeObserver2.observe(document.body);
 
