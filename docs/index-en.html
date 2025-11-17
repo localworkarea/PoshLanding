@@ -9,9 +9,9 @@
 		<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Головна</title>
-		<script type="module" crossorigin="" src="./js/common.min.js?v=1763285010841"></script>
-		<script type="module" crossorigin="" src="./js/index.min2.js?v=1763285010841"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1763285010841">
+		<script type="module" crossorigin="" src="./js/common.min.js?v=1763389056405"></script>
+		<script type="module" crossorigin="" src="./js/index.min2.js?v=1763389056405"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1763389056405">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -44,16 +44,16 @@
 							<nav class="main-header__nav">
 								<ul class="main-header__list">
 									<li class="main-header__item">
-										<a href="#" class="main-header__link" aria-label="link to the block">Кейси</a>
+										<a href="#" data-go-link="gallery" class="main-header__link" aria-label="link to the block">Кейси</a>
 									</li>
 									<li class="main-header__item">
-										<a href="#" class="main-header__link" aria-label="link to the block">Терміни</a>
+										<a href="#" data-go-link="cost" class="main-header__link" aria-label="link to the block">Терміни</a>
 									</li>
 									<li class="main-header__item">
-										<a href="#" class="main-header__link" aria-label="link to the block">Ціни</a>
+										<a href="#" data-go-link="cost" class="main-header__link" aria-label="link to the block">Ціни</a>
 									</li>
 									<li class="main-header__item">
-										<a href="#" class="main-header__link" aria-label="link to the block">Контакти</a>
+										<a href="#" data-go-link="footer" class="main-header__link" aria-label="link to the block">Контакти</a>
 									</li>
 								</ul>
 							</nav>
@@ -431,14 +431,14 @@
 										<img src="./assets/img/icons/wts.svg" width="46" height="46" alt="Image">
 									</a>
 								</div>
-								<a href="#" data-fls-btn="" class="banner__btn btn btn--4" aria-label="link">
+								<a href="#" data-fls-btn="" data-fls-popup-link="popup--form" class="banner__btn btn btn--4" aria-label="link">
 									<span class="btn-txt">Залишити заявку</span>
 									<span class="btn-arr --icon-arrowrightb"></span>
 								</a>
 							</div>
 						</div>
 					</div>
-					<div class="solutions__gallery gallery" data-fls-gallerys="">
+					<div data-go-id="gallery" class="solutions__gallery gallery" data-fls-gallerys="">
 						<div data-fls-marquee="" data-fls-marquee-pause="" data-fls-marquee-speed="500" class="gallery__line">
 							<div class="gallery__item">
 								<button type="button" class="gallery__thumb" data-gallery-item="" data-src="assets/img/cases/case-1-full.jpg" aria-label="open image">
@@ -797,7 +797,7 @@
 									</p>
 								</div>
 							</div>
-							<div data-fls-slider="" class="cost-guarantee__slider swiper">
+							<div data-go-id="cost" data-fls-slider="" class="cost-guarantee__slider swiper">
 								<ul class="cost-guarantee__wrapper swiper-wrapper">
 									<li class="cost-guarantee__slide swiper-slide">
 										<div class="cost-guarantee__body">
@@ -1246,7 +1246,7 @@
 					</div>
 				</section>
 			</main>
-			<footer data-fls-footer="" data-gsap="footer" data-gsap-end="0%" class="footer">
+			<footer data-fls-footer="" data-go-id="footer" data-gsap="footer" data-gsap-end="0%" class="footer">
 				<div class="footer__bg-video">
 					<video class="ibg" data-fls-videoplay="" muted autoplay loop playsinline="">
 						<source src="./files/posh-showreel-2-optimize-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
@@ -1327,16 +1327,16 @@
 						<nav class="footer__nav nav-footer">
 							<ul class="nav-footer__list t-2">
 								<li class="nav-footer__item">
-									<a href="#" class="nav-footer__link" aria-label="link">Кейси</a>
+									<a href="#" data-go-link="gallery" class="nav-footer__link" aria-label="link">Кейси</a>
 								</li>
 								<li class="nav-footer__item">
-									<a href="#" class="nav-footer__link" aria-label="link">Терміни</a>
+									<a href="#" data-go-link="cost" class="nav-footer__link" aria-label="link">Терміни</a>
 								</li>
 								<li class="nav-footer__item">
-									<a href="#" class="nav-footer__link" aria-label="link">Ціни</a>
+									<a href="#" data-go-link="cost" class="nav-footer__link" aria-label="link">Ціни</a>
 								</li>
 								<li class="nav-footer__item">
-									<a href="#" class="nav-footer__link" aria-label="link">Контакти</a>
+									<a href="#" data-go-link="footer" class="nav-footer__link" aria-label="link">Контакти</a>
 								</li>
 							</ul>
 						</nav>

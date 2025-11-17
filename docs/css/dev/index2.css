@@ -543,10 +543,13 @@ html.lenis, html.lenis body {
   margin-top: 1.5625rem;
   margin-bottom: 1.25rem;
 }
+.contacts-footer__item:last-child .contacts-footer__link img {
+  animation-delay: 0.3s;
+}
 .contacts-footer__link img {
   width: 2.5rem;
   height: auto;
-  transition: transform 0.3s ease;
+  animation: socialFloat 2.2s ease-in-out infinite;
 }
 .contacts-footer__links-item a {
   font-weight: 600;
@@ -1175,6 +1178,17 @@ section {
     filter: brightness(1.5);
   }
 }
+@keyframes socialFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.21875rem) scale(1.05);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .banner {
   display: flex;
   flex-direction: column;
@@ -1243,8 +1257,11 @@ section {
   aspect-ratio: 1;
   flex: 0 0 2.5rem;
 }
+.banner__link:last-child img {
+  animation-delay: 0.3s;
+}
 .banner__link img {
-  transition: transform 0.3s ease;
+  animation: socialFloat 2.2s ease-in-out infinite;
 }
 .banner__btn {
   min-width: 12.5rem;
@@ -1273,6 +1290,34 @@ section {
   margin-bottom: 1.125rem;
 }
 
+@keyframes btnPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(25, 32, 62, 0);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 1.375rem rgba(25, 32, 62, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(25, 32, 62, 0);
+  }
+}
+@keyframes btnPulseLight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 1.375rem rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
 .presentation-solutions__txt {
   text-align: center;
   margin-bottom: 1.75rem;
@@ -1283,6 +1328,7 @@ section {
 }
 .presentation-solutions__btn {
   background-color: var(--primary);
+  animation: btnPulse 2.5s ease-in-out infinite;
 }
 
 .process {
@@ -1359,7 +1405,8 @@ section {
 .guarantee__video {
   margin-bottom: 1.875rem;
 }
-.guarantee__video video, .guarantee__video img {
+.guarantee__video video,
+.guarantee__video img {
   width: 100%;
   height: auto;
   aspect-ratio: 1;
@@ -1506,6 +1553,7 @@ section {
 }
 .fill-form__btn {
   min-width: 14.1875rem;
+  animation: btnPulseLight 2.5s ease-in-out infinite;
 }
 .fill-form__cta-t {
   color: var(--white);
@@ -1576,23 +1624,6 @@ section {
 .slide-reviews__txt p:not(:last-child) {
   margin-bottom: 1.25rem;
 }
-
-[data-gsap=trust] {
-  transform: translate(0, -40%);
-}
-
-[data-gsap=process] {
-  transform: translate(0, -30%);
-}
-
-[data-gsap=fill-form] {
-  transform: translate(0, -30%);
-}
-
-[data-gsap=footer] {
-  transform: translate(0, -40%);
-}
-
 @media (max-width: 62.06125em) {
   .hero__top .hero__container::after {
     display: none;
@@ -1605,13 +1636,11 @@ section {
     opacity: 0.19;
   }
 }
-
 @media (max-width: 56.31125em) {
   .footer__btns .btn {
     max-width: 100%;
   }
 }
-
 @media (max-width: 48.06125em) and (min-width: 30.06125em) {
   .banner__img::after {
     width: 0.5625rem;
@@ -1624,25 +1653,21 @@ section {
     margin-inline: auto;
   }
 }
-
 @media (max-width: 48.06125em) {
   .list-hero__item {
     max-width: max-content;
   }
 }
-
 @media (max-width: 25.06125em) {
   .footer__title {
     font-size: 2.0625rem !important;
   }
 }
-
 @media (max-width: 22.56125em) {
   .contacts-footer__img {
     max-width: 7.5rem;
   }
 }
-
 @media (width <= 20em) {
   .title-hero {
     font-size: 2.0625rem;
@@ -1753,7 +1778,6 @@ section {
     width: 9.375rem;
   }
 }
-
 @media (width > 20em) and (width <= 75em) {
   .title-hero {
     font-size: clamp( 2.0625rem , 1.4488636363625rem  +  3.0681818182vw , 3.75rem );
@@ -1864,7 +1888,6 @@ section {
     width: clamp( 9.375rem , 7.2613636363625rem  +  10.5681818182vw , 15.1875rem );
   }
 }
-
 @media (min-width: 30.06125em) {
   .title-hero {
     line-height: 1.1;
@@ -2009,6 +2032,9 @@ section {
     font-weight: 300;
     margin-bottom: 2.9375rem;
   }
+  .trust__img img {
+    transform: translate(0, -45%);
+  }
   .counters-trust__item {
     font-size: 1rem;
   }
@@ -2063,6 +2089,9 @@ section {
   .fill-form__images::before {
     display: none;
   }
+  .fill-form__images img {
+    transform: translate(0, 100%);
+  }
   .faq__title {
     margin-bottom: 3.0625rem;
     padding-inline: 1.25rem;
@@ -2078,8 +2107,19 @@ section {
   .slide-reviews__ic {
     max-height: 2.875rem;
   }
+  [data-gsap=trust] {
+    transform: translate(0, -40%);
+  }
+  [data-gsap=process] {
+    transform: translate(0, -30%);
+  }
+  [data-gsap=fill-form] {
+    transform: translate(0, -30%);
+  }
+  [data-gsap=footer] {
+    transform: translate(0, -40%);
+  }
 }
-
 @media (min-width: 37.56125em) {
   .spollers-guarantee__summary::before, .spollers-process__summary::before {
     font-size: 1.3125rem;
@@ -2121,7 +2161,6 @@ section {
     margin-top: 1.875rem;
   }
 }
-
 @media (min-width: 48.06125em) {
   .main-header__right {
     gap: 3.75rem;
@@ -2276,7 +2315,6 @@ section {
     max-width: 48.81125rem;
   }
 }
-
 @media (min-width: 51.31125em) {
   .footer__avrg {
     margin-bottom: 1.875rem;
@@ -2295,7 +2333,6 @@ section {
     margin-inline: 0;
   }
 }
-
 @media (min-width: 56.31125em) {
   .footer__btns {
     gap: 0.625rem;
@@ -2305,7 +2342,6 @@ section {
     margin-bottom: 0;
   }
 }
-
 @media (min-width: 62.06125em) {
   .main-header__list {
     display: flex;
@@ -2339,7 +2375,6 @@ section {
     margin-left: 2.875rem;
   }
 }
-
 @media (min-width: 64.06125em) {
   .footer__btns {
     justify-content: space-between;
@@ -2349,7 +2384,6 @@ section {
     align-items: center;
   }
 }
-
 @media (width > 75em) {
   .title-hero {
     font-size: 3.75rem;
@@ -2460,13 +2494,11 @@ section {
     width: 15.1875rem;
   }
 }
-
 @media (min-width: 75.06125em) {
   .hero__top .hero__container::after {
     translate: 85% 0;
   }
 }
-
 @media (any-hover: hover) {
   .top-header__lang:hover::after, .main-header__link:hover::after {
     width: 100%;
@@ -2479,7 +2511,7 @@ section {
     color: var(--white);
   }
   .contacts-footer__link:hover img {
-    transform: translateY(-0.3125rem);
+    animation-play-state: paused;
   }
   .btn.btn--1:hover, .btn.btn--2:hover {
     background-color: var(--white);
@@ -2515,9 +2547,15 @@ section {
     box-shadow: 0 0 1.875rem 0 rgba(0, 0, 0, 0.2);
   }
   .banner__link:hover img {
-    transform: translateY(-0.3125rem);
+    animation-play-state: paused;
+  }
+  .presentation-solutions__btn:hover {
+    animation-play-state: paused;
   }
   .cost-guarantee__link:hover::before {
     transform: translateX(0.3125rem);
+  }
+  .fill-form__btn:hover {
+    animation-play-state: paused;
   }
 }

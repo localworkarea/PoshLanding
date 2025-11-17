@@ -23,10 +23,16 @@ gsap.ticker.lagSmoothing(0);
 
 document.addEventListener("DOMContentLoaded", () => {
 
-	function createGsapAnim() {
+		function createGsapAnim() {
 
-		 // удаляем тригеры после срабатывания фунции (поворота экрана...)
-	  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+				 // удаляем тригеры после срабатывания фунции (поворота экрана...)
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+				// GSAP animations only for viewport >= 30.061em
+				const GSAP_MQ = window.matchMedia('(min-width: 30.061em)');
+				if (!GSAP_MQ.matches) {
+						return;
+				}
 
 		document.querySelectorAll('[data-gsap]').forEach(section => {
 		
@@ -35,18 +41,54 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 		  // читаем значение из data-gsap-end
 		  let endValue = section.dataset.gsapEnd || "35%";
+
+		  // небольшой сдвиг старта анимации по скроллу (px) — даёт эффект задержки
+		  const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
 		
-		  gsap.to(section, {
-		    y: 0,
-		    ease: "none",
-		    scrollTrigger: {
-		      trigger: prevSection,
-		      start: "bottom bottom",
-		      end: `bottom ${endValue}`,
-		      scrub: 0.6, // Добавляем scrub для более гладкой анимации вместо true
-		      invalidateOnRefresh: true,
-		    }
-		  });
+					gsap.to(section, {
+						y: 0,
+						ease: "none",
+						scrollTrigger: {
+							trigger: prevSection,
+							start: `bottom bottom+=${startOffset}`,
+							end: `bottom ${endValue}`,
+							scrub: 0.6, // для более гладкой анимации вместо true
+							invalidateOnRefresh: true,
+						}
+					});
+
+
+					const trustImg = section.querySelector('.trust__img img');
+					if (trustImg) {
+					  gsap.to(trustImg, {
+					    y: 0,
+					    duration: 2,
+					    ease: 'none',
+					    scrollTrigger: {
+					      trigger: prevSection,
+					      start: `bottom bottom+=${startOffset}`,
+					      end: `bottom top`,
+					      scrub: 0.6,
+					      invalidateOnRefresh: true,
+					    }
+					  });
+					}
+					const fillFormImg = section.querySelector('.fill-form__images img');
+					if (fillFormImg) {
+					  gsap.to(fillFormImg, {
+					    y: 0,
+					    // duration: 2,
+					    ease: 'none',
+					    scrollTrigger: {
+					      trigger: prevSection,
+					      start: `bottom bottom`,
+					      end: `bottom top`,
+					      scrub: 0.6,
+					      invalidateOnRefresh: true,
+					    }
+					  });
+					}
+
 		
 		});
 
@@ -236,7 +278,61 @@ document.addEventListener("DOMContentLoaded", () => {
     child.style.zIndex = maxZ - i;
   });
 
+	
 
-
-
+	// Плавный скролл к блокам с учётом GSAP и Lenis
+	document.addEventListener("click", (e) => {
+	    const link = e.target.closest("[data-go-link]");
+	    if (!link) return;
+	
+	    e.preventDefault();
+	
+	    const targetId = link.dataset.goLink;
+	    const target = document.querySelector(`[data-go-id="${targetId}"]`);
+	
+	    if (!target) return;
+	
+	    const offset = 30;
+	
+	    const rect = target.getBoundingClientRect();
+	    let targetY = rect.top + window.scrollY - offset;
+	
+	    // 2. Если у блока есть transform → Учесть GSAP-смещение
+	    const style = window.getComputedStyle(target);
+	    const matrix = style.transform;
+	
+	    if (matrix && matrix !== "none") {
+	        const values = matrix.match(/matrix.*\((.+)\)/);
+	        if (values) {
+	            const parts = values[1].split(',');
+	            const translateY = parseFloat(parts[5]); // Y-смещение
+					
+	            if (!isNaN(translateY)) {
+	                // translateY например "-113px" → надо вычесть
+	                targetY -= translateY;
+	            }
+	        }
+	    }
+		
+	    // 3. Динамическая плавность
+	    const currentY = lenis.scroll;
+	    const distance = Math.abs(targetY - currentY);
+		
+	    let duration;
+	    if (distance < 300) {
+	        duration = 1.4;
+	    } else if (distance < 900) {
+	        duration = 1.8;
+	    } else {
+	        duration = 2;
+	    }
+		
+	    // 4. Плавный scroll с учетом GSAP transform
+	    lenis.scrollTo(targetY, {
+	        duration,
+	        easing: (t) => 1 - Math.pow(1 - t, 4),
+	    });
+	});
+	
+	
 });

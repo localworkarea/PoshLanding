@@ -1,5 +1,5 @@
 import { FLS, slideUp, slideDown, slideToggle, dataMediaQueries } from "@js/common/functions.js";
-
+import { ScrollTrigger } from "gsap/all";
 // Підключення базових стилів
 import "./spollers.scss";
 
@@ -87,6 +87,11 @@ export function spollers() {
 
 						spollerTitle.classList.toggle('--spoller-active');
 						slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
+
+						// Обновление ScrollTrigger после изменения высоты DOM
+						setTimeout(() => {
+							ScrollTrigger.refresh();
+						}, spollerSpeed + 50); 
 
 						if (scrollSpoller && spollerTitle.classList.contains('--spoller-active')) {
 							const scrollSpollerValue = spollerBlock.dataset.flsSpollersScroll;
