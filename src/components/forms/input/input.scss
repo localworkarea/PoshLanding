@@ -8,6 +8,9 @@ textarea {
 	-moz-appearance: none;
 	appearance: none;
 }
+
+
+
 .input-main {
 	border-radius: 0 !important;
 	width: 100%;
@@ -28,7 +31,9 @@ textarea {
 	&.--input-fill {
 	}
 }
-.input-main[placeholder]:not([data-fls-placeholder-nohiden]) {
+.input-main[placeholder],
+.input-brief[placeholder],
+.textarea-brief[placeholder] {
 	&::placeholder {
 		transition: opacity 0.3s;
 	}
@@ -39,6 +44,42 @@ textarea {
 textarea.input-main {
 	resize: none;
 	padding: 0px 0px;
+	outline: none;
+}
+textarea.textarea-brief {
+	resize: none;
+	padding: 10px 14px;
+	min-height: 140px;
+	font-style: italic;
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background-color: var(--white);
+	line-height: 1.42;
+	font-size: 14px;
+	@media (min-width:toEm($mobileSmall)){
+		 min-height: 100px; 
+	}
+	&::placeholder {
+		color: var(--gray-light-3);
+	}
 }
 
 
+.input-brief {
+	width: 100%;
+	display: block;
+
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	padding: 5px 14px;
+	caret-color: inherit;
+	background-color: var(--white);
+	outline: none;
+	min-height: 40px; 
+	font-size: 16px;
+	line-height: 1.5;
+	&::placeholder {
+		color: var(--gray-light-4);
+	}
+}

@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation,FreeMode } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -85,80 +85,118 @@ function initSliders() {
 			}
 		});
 	}
-	// if (document.querySelector('.swiper')) {
-	// 	new Swiper('.swiper', { 
-	// 		modules: [Navigation],
-	// 		observer: true,
-	// 		observeParents: true,
-	// 		slidesPerView: 1,
-	// 		spaceBetween: 0,
-	// 		//autoHeight: true,
-	// 		speed: 800,
+	if (document.querySelector('.brief-refs__slider')) {
+		new Swiper('.brief-refs__slider', { 
+			modules: [FreeMode],
+			observer: true,
+			observeParents: true,
+			spaceBetween: 0,
+			//autoHeight: true,
+			speed: 500,
+			freeMode: {
+  		  enabled: true,
+				momentumBounceRatio: 1,
+				momentumRatio: 0.5,
+				momentumVelocityRatio: 1.5,
+  		},
+			//touchRatio: 0,
+			//simulateTouch: false,
+			//loop: true,
+			//preloadImages: false,
+			//lazy: true,
 
-	// 		//touchRatio: 0,
-	// 		//simulateTouch: false,
-	// 		//loop: true,
-	// 		//preloadImages: false,
-	// 		//lazy: true,
+		
+			breakpoints: {
+				320: {
+					slidesPerView: 1.3,
+					spaceBetween: 8,
+				},
+				768: {
+					slidesPerView: 2.5,
+					spaceBetween: 10,
+				},
+				1024: {
+					slidesPerView: 3.3,
+					spaceBetween: 10,
+				},
+			},
+			// Події
+			on: {
 
-	// 		/*
-	// 		// Ефекти
-	// 		effect: 'fade',
-	// 		autoplay: {
-	// 			delay: 3000,
-	// 			disableOnInteraction: false,
-	// 		},
-	// 		*/
+			}
+		});
+	}
+	if (document.querySelector('.brief-type__slider')) {
+		new Swiper('.brief-type__slider', { 
+			modules: [FreeMode],
+			observer: true,
+			observeParents: true,
+			spaceBetween: 10,
+			freeMode: {
+  		  enabled: true,
+				momentumBounceRatio: 1,
+				momentumRatio: 0.5,
+				momentumVelocityRatio: 1.5,
+  		},
+			//touchRatio: 0,
+			//simulateTouch: false,
+			//loop: true,
+			//preloadImages: false,
+			//lazy: true,
 
-	// 		// Пагінація
-	// 		/*
-	// 		pagination: {
-	// 			el: '.swiper-pagination',
-	// 			clickable: true,
-	// 		},
-	// 		*/
+		
+			breakpoints: {
+				320: {
+					slidesPerView: 1.6,
+					spaceBetween: 8,
+				},
+				768: {
+					slidesPerView: 2.5,
+					spaceBetween: 10,
+				},
+				1024: {
+					slidesPerView: 3.3,
+					spaceBetween: 10,
+				},
+			},
+			// Події
+			on: {
 
-	// 		// Скроллбар
-	// 		/*
-	// 		scrollbar: {
-	// 			el: '.swiper-scrollbar',
-	// 			draggable: true,
-	// 		},
-	// 		*/
-
-	// 		// Кнопки "вліво/вправо"
-	// 		navigation: {
-	// 			prevEl: '.swiper-button-prev',
-	// 			nextEl: '.swiper-button-next',
-	// 		},
-	// 		/*
-	// 		// Брейкпоінти
-	// 		breakpoints: {
-	// 			640: {
-	// 				slidesPerView: 1,
-	// 				spaceBetween: 0,
-	// 				autoHeight: true,
-	// 			},
-	// 			768: {
-	// 				slidesPerView: 2,
-	// 				spaceBetween: 20,
-	// 			},
-	// 			992: {
-	// 				slidesPerView: 3,
-	// 				spaceBetween: 20,
-	// 			},
-	// 			1268: {
-	// 				slidesPerView: 4,
-	// 				spaceBetween: 30,
-	// 			},
-	// 		},
-	// 		*/
-	// 		// Події
-	// 		on: {
-
-	// 		}
-	// 	});
-	// }
+			}
+		});
+	}
 }
 document.querySelector('[data-fls-slider]') ?
-	window.addEventListener("load", initSliders) : null
+	// window.addEventListener("load", initSliders) : null 
+	window.addEventListener("load", () => {
+
+  initSliders(); 
+const filterContainer = document.querySelector('[data-brief-filters]');
+  const sliderEl = document.querySelector('.brief-type__slider');
+
+  if (!filterContainer || !sliderEl) return;
+
+  const swiper = sliderEl.swiper;
+  const slides = [...sliderEl.querySelectorAll('.swiper-slide')];
+
+  function applyFilters() {
+    const selectedFilters = [...filterContainer.querySelectorAll('input[data-filter]:checked')]
+      .map(i => i.value);
+
+    slides.forEach(slide => {
+      const tags = slide.dataset.refTags.split(',').map(t => t.trim());
+
+      const match =
+        selectedFilters.length === 0 ||
+        selectedFilters.some(f => tags.includes(f));
+
+      slide.style.display = match ? "" : "none";
+    });
+
+
+    swiper.updateSlides();
+    swiper.update();
+  }
+
+  filterContainer.addEventListener('change', applyFilters);
+}) : null 

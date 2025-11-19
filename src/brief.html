@@ -1,0 +1,20 @@
+<template src="@components/templates/main/main.html" locals='{
+		"title":"POSH Packaging Design - Бриф", 
+		"lang":"uk",
+		"preloader": {
+			"enable":"false",
+			"once":"false"
+		},
+		"keywords":"", 
+		"description":""
+	}'>
+
+	<block name="main">
+		<include src="@components/pages/brief/brief.html" locals='{}'></include>
+	</block>
+
+	<block name="popup">
+		<include src="@components/layout/popup/popup-brief.html" locals='{}'></include>
+		<include src="@components/layout/popup/popup-form.html" locals='{}'></include>
+	</block>
+</template>

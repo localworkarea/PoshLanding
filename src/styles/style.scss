@@ -180,6 +180,15 @@ html.lenis, html.lenis body {
 	@include adaptiveValue("font-size", 26, 12);
 	line-height: 1.2;
 }
+.t-16 {
+	@include adaptiveValue("font-size", 30, 26);
+	line-height: 1.1;
+	font-weight: 600;
+}
+.t-17 {
+	font-size: 24px;
+	line-height: 1.1;
+}
 
 .br-r {
   overflow: hidden;
@@ -187,3 +196,6 @@ html.lenis, html.lenis body {
   @include adaptiveValue("border-bottom-right-radius", 50, 30);
 }
 
+.mt-40 {
+	margin-top: 40px;
+}

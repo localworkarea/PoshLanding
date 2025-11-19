@@ -1,26 +1,68 @@
 @font-face { 
 	font-family: "iconfont"; 
 	font-display: swap;
-	src: url("D://IT/projects/PoshLanding/src/assets/svgicons/preview/iconfont.woff2?4fdff017cc4534b538956afd41ad2859") format("woff2"); 
+	src: url("D://IT/projects/PoshLanding/src/assets/svgicons/preview/iconfont.woff2?391291d0e80cb4412d2d6558c08dffaa") format("woff2"); 
 } 
 [class*="--icon-"]::before{
 	font-family: iconfont; 
 }
-	[class*="--icon-arrowrightd"]::before { 
+	[class*="--icon-tippy2"]::before { 
 		content: "\f101"; 
 	} 
-	[class*="--icon-arrowrightc"]::before { 
+	[class*="--icon-tippy"]::before { 
 		content: "\f102"; 
 	} 
-	[class*="--icon-arrowrightb"]::before { 
+	[class*="--icon-question"]::before { 
 		content: "\f103"; 
 	} 
-	[class*="--icon-arrowrighta"]::before { 
+	[class*="--icon-phone"]::before { 
 		content: "\f104"; 
 	} 
-	[class*="--icon-arrowdownb"]::before { 
+	[class*="--icon-paint"]::before { 
 		content: "\f105"; 
 	} 
-	[class*="--icon-arrowdowna"]::before { 
+	[class*="--icon-mark"]::before { 
 		content: "\f106"; 
+	} 
+	[class*="--icon-mail"]::before { 
+		content: "\f107"; 
+	} 
+	[class*="--icon-letters"]::before { 
+		content: "\f108"; 
+	} 
+	[class*="--icon-filenot"]::before { 
+		content: "\f109"; 
+	} 
+	[class*="--icon-click"]::before { 
+		content: "\f10a"; 
+	} 
+	[class*="--icon-check"]::before { 
+		content: "\f10b"; 
+	} 
+	[class*="--icon-box"]::before { 
+		content: "\f10c"; 
+	} 
+	[class*="--icon-bookmark"]::before { 
+		content: "\f10d"; 
+	} 
+	[class*="--icon-book"]::before { 
+		content: "\f10e"; 
+	} 
+	[class*="--icon-arrowrightd"]::before { 
+		content: "\f10f"; 
+	} 
+	[class*="--icon-arrowrightc"]::before { 
+		content: "\f110"; 
+	} 
+	[class*="--icon-arrowrightb"]::before { 
+		content: "\f111"; 
+	} 
+	[class*="--icon-arrowrighta"]::before { 
+		content: "\f112"; 
+	} 
+	[class*="--icon-arrowdownb"]::before { 
+		content: "\f113"; 
+	} 
+	[class*="--icon-arrowdowna"]::before { 
+		content: "\f114"; 
 	} 

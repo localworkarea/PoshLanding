@@ -1,5 +1,4 @@
-import "./index.min2.js";
-import { g as gotoBlock } from "./common.min.js";
+import { b as gotoBlock } from "./common.min.js";
 const autoHeight = () => {
   const textareas = document.querySelectorAll("textarea[data-fls-input-autoheight]");
   if (textareas.length) {
