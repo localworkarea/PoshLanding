@@ -1,99 +1,13 @@
-import { addTouchAttr, addLoadedAttr, isMobile, FLS } from "@js/common/functions.js"
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const form = document.querySelector('[data-form="brief"]');
-//   if (!form) return;
-
-//   const steps = [...form.querySelectorAll("[data-brief-step]")];
-//   const btnPrev = form.querySelector("[data-brief-prev]");
-//   const btnNext = form.querySelector("[data-brief-next]");
-//   const btnSubmit = form.querySelector("[data-brief-submit]");
-
-//   const progressFill = document.querySelector(".header-brief__progress-fill");
-//   const progressCurrent = document.querySelector("[data-brief-current]");
-//   const progressTotal = document.querySelector("[data-brief-total]");
-
-//   const TOTAL = steps.length;
-//   let current = 1; // текущий шаг
-
-//   progressTotal.textContent = TOTAL;
-
-//   // --- валидация текущего шага ---
-//   function validateCurrentStep() {
-//     const currentStep = steps.find(
-//       (step) => Number(step.dataset.briefStep) === current
-//     );
-//     if (!currentStep) return true;
-
-//     const requiredFields = currentStep.querySelectorAll("[required]");
-//     if (!requiredFields.length) return true;
-
-//     let firstInvalid = null;
-
-//     for (const field of requiredFields) {
-//       if (!field.checkValidity()) {
-//         firstInvalid = field;
-//         break;
-//       }
-//     }
-
-//     if (firstInvalid) {
-//       // фокус на первое невалидное поле
-//       firstInvalid.focus();
-//       // вывести нативное сообщение браузера, если поддерживается
-//       if (typeof firstInvalid.reportValidity === "function") {
-//         firstInvalid.reportValidity();
-//       }
-//       return false;
-//     }
-
-//     return true;
-//   }
-
-//   // --- показать нужный шаг ---
-//   function showStep(index) {
-//     current = index;
-
-//     steps.forEach((step) => {
-//       step.hidden = Number(step.dataset.briefStep) !== current;
-//     });
-
-//     // кнопки
-//     btnPrev.style.display = current === 1 ? "none" : "";
-//     btnNext.style.display = current === TOTAL ? "none" : "";
-//     btnSubmit.style.display = current === TOTAL ? "" : "none";
-
-//     // прогресс-бар
-//     const percent = (current / TOTAL) * 100;
-//     progressFill.style.width = percent + "%";
-//     progressCurrent.textContent = current;
-//   }
-
-//   // --- кнопки ---
-//   btnNext.addEventListener("click", () => {
-//     // не даём перейти дальше, пока текущий шаг не валиден
-//     if (current < TOTAL && validateCurrentStep()) {
-//       showStep(current + 1);
-//     }
-//   });
-
-//   btnPrev.addEventListener("click", () => {
-//     if (current > 1) showStep(current - 1);
-//   });
-
-//   // старт
-//   showStep(1);
-
-// });
+import { addTouchAttr, addLoadedAttr, isMobile,  bodyLockToggle, bodyUnlock, bodyLock, FLS } from "@js/common/functions.js"
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('[data-form="brief"]');
-  if (!form) return;
+  const formBrief = document.querySelector('[data-form="brief"]');
+  if (!formBrief) return;
 
-  const steps = [...form.querySelectorAll(".brief__section")];
-  const btnPrev = form.querySelector("[data-brief-prev]");
-  const btnNext = form.querySelector("[data-brief-next]");
-  const btnSubmit = form.querySelector("[data-brief-submit]");
+  const steps = [...formBrief.querySelectorAll(".brief__section")];
+  const btnPrev = formBrief.querySelector("[data-brief-prev]");
+  const btnNext = formBrief.querySelector("[data-brief-next]");
+  const btnSubmit = formBrief.querySelector("[data-brief-submit]");
 
   const progressFill = document.querySelector(".header-brief__progress-fill");
   const progressCurrent = document.querySelector("[data-brief-current]");
@@ -156,4 +70,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // старт
   showStep(0);
+
+
+  // Вернуть бриф на первый шаг после отправки (вызов через form.js)
+  document.addEventListener("briefResetSteps", () => {
+      current = 0;
+      showStep(0);
+  });
+
+  // дейсвтия после клика по кнопке внутри попапа brief-msg -- 
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-brief-start]");
+    if (!btn) return;
+
+    const popup = document.querySelector("[data-brief-msg]");
+    const html = document.documentElement;
+
+    if (popup) {
+        popup.classList.remove("--brief-sent");
+        html.classList.remove("--brief-sent");
+        popup.setAttribute("aria-hidden", "true");
+    }
+
+    bodyUnlock();
+
+    // Вернуть бриф в начало
+    // current = 0;
+    // showStep(0);
+  });
+
+
+
 });

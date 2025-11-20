@@ -1,4 +1,4 @@
-import { b as gotoBlock } from "./common.min.js";
+import { c as bodyLock, e as gotoBlock } from "./common.min.js";
 const autoHeight = () => {
   const textareas = document.querySelectorAll("textarea[data-fls-input-autoheight]");
   if (textareas.length) {
@@ -193,6 +193,20 @@ function formInit() {
         }
       }, 0);
       formValidate.formClean(form);
+      if (form.dataset.form === "brief") {
+        const popupBrief = document.querySelector("[data-brief-msg]");
+        const html = document.documentElement;
+        if (popupBrief) {
+          popupBrief.classList.add("--brief-sent");
+          popupBrief.setAttribute("aria-hidden", "false");
+          html.classList.add("--brief-sent");
+          bodyLock();
+          setTimeout(() => {
+            const event = new CustomEvent("briefResetSteps");
+            document.dispatchEvent(event);
+          }, 3e3);
+        }
+      }
     }
   }
   function formFieldsInit() {

@@ -1,4 +1,4 @@
-import { gotoBlock, FLS } from "@js/common/functions.js";
+import { gotoBlock, bodyLockToggle, bodyUnlock, bodyLock, FLS } from "@js/common/functions.js";
 // Підключення функціоналу модуля форм
 import { formValidate } from "../_functions.js";
 
@@ -75,6 +75,32 @@ function formInit() {
 			}, 0);
 			// Очищуємо форму
 			formValidate.formClean(form);
+
+
+			// === ЛОГИКА ДЛЯ БРИФА ===
+			if (form.dataset.form === "brief") {
+			
+			    const popupBrief = document.querySelector("[data-brief-msg]");
+			    const html = document.documentElement;
+			
+			    if (popupBrief) {
+			        // Показать окно
+			        popupBrief.classList.add("--brief-sent");
+							popupBrief.setAttribute("aria-hidden", "false");
+			        html.classList.add("--brief-sent");
+					
+			        // Заблокировать скролл
+			        bodyLock();
+					
+			        // Через 3 секунды вернуть бриф на 1 шаг
+			        setTimeout(() => {
+			            const event = new CustomEvent("briefResetSteps");
+			            document.dispatchEvent(event);
+			        }, 3000);
+			    }
+			}
+
+
 			// Повідомляємо до консолі
 			FLS(`_FLS_FORM_SEND`);
 		}

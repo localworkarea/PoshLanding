@@ -26,9 +26,9 @@
       </div>
     </div>
     <div class="brief__container">
-      <form class="brief__form" data-form="brief" data-fls-form="dev" data-fls-form-popup="popup--msg" method="POST" action="#">
+      <form class="brief__form" data-form="brief" data-fls-form="dev" method="POST" action="#">
         <div class="brief__sections">
-
+          
           <div class="brief__section" data-brief-step>
             <div class="brief__head">
               <h2 class="brief__title title-tippy t-16">Какая задача стоит перед вами?
@@ -631,32 +631,34 @@
               </div>
             </div>
 
-            <!-- FILTERS -->
-            <div class="brief-filters" data-brief-filters>
-              <label class="brief-filters__item">
-                <input type="checkbox" data-filter value="bottle">
-                <span class="brief-filters__box">Бутылка</span>
-              </label>
+            <div class="brief-filters">
+              <div class="brief-filters__name">Фільтр:</div>
+              <div class="brief-filters__list" data-brief-filters>
+                <label class="brief-filters__item">
+                  <input type="checkbox" data-filter value="bottle">
+                  <span class="brief-filters__box">Бутылка</span>
+                </label>
 
-              <label class="brief-filters__item">
-                <input type="checkbox" data-filter value="box">
-                <span class="brief-filters__box">Коробка</span>
-              </label>
+                <label class="brief-filters__item">
+                  <input type="checkbox" data-filter value="box">
+                  <span class="brief-filters__box">Коробка</span>
+                </label>
 
-              <label class="brief-filters__item">
-                <input type="checkbox" data-filter value="pack">
-                <span class="brief-filters__box">Пачка</span>
-              </label>
+                <label class="brief-filters__item">
+                  <input type="checkbox" data-filter value="pack">
+                  <span class="brief-filters__box">Пачка</span>
+                </label>
 
-              <label class="brief-filters__item">
-                <input type="checkbox" data-filter value="jar">
-                <span class="brief-filters__box">Банка</span>
-              </label>
+                <label class="brief-filters__item">
+                  <input type="checkbox" data-filter value="jar">
+                  <span class="brief-filters__box">Банка</span>
+                </label>
 
-              <label class="brief-filters__item">
-                <input type="checkbox" data-filter value="bag">
-                <span class="brief-filters__box">Пакет</span>
-              </label>
+                <label class="brief-filters__item">
+                  <input type="checkbox" data-filter value="bag">
+                  <span class="brief-filters__box">Пакет</span>
+                </label>
+              </div>
             </div>
 
             <div class="brief-type">
@@ -770,7 +772,7 @@
 
             <div class="brief__head mt-40">
               <h2 class="brief__title title-tippy t-16">
-                Информация на упаковке
+                <div>Информация на упаковке <span class="final-label --icon-goblet">Финальный вопрос</span></div>
                 <span data-fls-tooltip data-tippy-content="Что обязательно должно быть на упаковке?"></span>
               </h2>
               <div class="brief__subtitle">
@@ -784,11 +786,11 @@
               </label>
             </div>
 
-            <label class="brief-copy">
-              <input type="checkbox" name="send_copy" value="1">
+            <label class="brief-copy mt-30">
+              <input type="checkbox" checked name="send_copy" value="1">
               <span class="brief-copy__box">
                 <span class="brief-copy__icon --icon-check"></span>
-                Сохранить копию (бриф автоматически придёт вам на указанную почту)
+                <span class="brief-copy__txt">Сохранить копию <span>(бриф автоматически придёт вам на указанную почту)</span></span>
               </span>
             </label>
 
@@ -811,4 +813,27 @@
       </form>
     </div>
   </section>
+  <div data-brief-msg aria-hidden="true" class="brief-msg">
+    <div class="brief-msg__wrapper">
+      <div class="brief-msg__body">
+        <div class="brief-msg__img">
+          <img src="@img/brief/girl-yoga.svg" loading="lazy" width="296" height="317" alt="Image">
+        </div>
+        <div class="brief-msg__info">
+          <div class="brief-msg__title">
+            <p>Готово!</p>
+          </div>
+          <div class="brief-msg__subtitle">
+            <p>
+              Мы обработаем поступившую информацию и свяжемся с вами в течение 2 рабочих дней
+            </p>
+          </div>
+          <a href="#" data-fls-btn class="brief-msg__link btn btn--1" aria-label="link">
+            <span class="btn-txt">Наш основной сайт</span>
+          </a>
+          <a href="#" data-brief-start class="brief-msg__btn --icon-arrowrightb t-2"><span>Заполнить чек-лист еще раз</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

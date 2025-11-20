@@ -180,10 +180,10 @@ const gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) =>
 };
 export {
   slideUp as a,
-  gotoBlock as b,
+  bodyUnlock as b,
   bodyLock as c,
   dataMediaQueries as d,
-  bodyUnlock as e,
+  gotoBlock as e,
   bodyLockStatus as f,
   getDigFormat as g,
   isMobile as i,
