@@ -1,916 +1,911 @@
 <!doctype html>
 <html lang="uk">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preload" href="./assets/fonts/Mont-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-	<link rel="preload" href="./assets/fonts/Mont-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-	<link rel="preload" href="./assets/fonts/Mont-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-	<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-	<link rel="shortcut icon" href="./assets/img/favicon.ico">
-	<title>POSH Packaging Design - Бриф</title>
-	<script type="module" crossorigin="" src="./js/brief.min.js?v=1763639049257"></script>
-	<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763639049257">
-	<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763639049257">
-	<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1763639049257">
-	<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763639049257">
-	<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1763639049257">
-	<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1763639049257">
-</head>
-
-<body>
-	<div class="wrapper">
-		<main class="page page--brief">
-			<section class="brief">
-				<div class="brief__header header-brief">
-					<div class="header-brief__container">
-						<a href="index.html" class="header-brief__link">
-							<img src="./assets/img/icons/logo-dark.svg" width="180" height="40" alt="Image">
-						</a>
-						<div class="header-brief__progress">
-							<div class="header-brief__progress-line">
-								<span class="header-brief__progress-fill" style="width: 0%;"></span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preload" href="./assets/fonts/Mont-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		<link rel="preload" href="./assets/fonts/Mont-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		<link rel="preload" href="./assets/fonts/Mont-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		<link rel="shortcut icon" href="./assets/img/favicon.ico">
+		<title>POSH Packaging Design - Бриф</title>
+		<script type="module" crossorigin="" src="./js/brief.min.js?v=1763639786672"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763639786672">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763639786672">
+		<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1763639786672">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763639786672">
+		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1763639786672">
+		<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1763639786672">
+	</head>
+	<body>
+		<div class="wrapper">
+			<main class="page page--brief">
+				<section class="brief">
+					<div class="brief__header header-brief">
+						<div class="header-brief__container">
+							<a href="index.html" class="header-brief__link">
+								<img src="./assets/img/icons/logo-dark.svg" width="180" height="40" alt="Image">
+							</a>
+							<div class="header-brief__progress">
+								<div class="header-brief__progress-line">
+									<span class="header-brief__progress-fill" style="width: 0%;"></span>
+								</div>
+								<div class="header-brief__progress-count">
+									<span data-brief-current="">1</span>
+									/
+									<span data-brief-total="">7</span>
+								</div>
 							</div>
-							<div class="header-brief__progress-count">
-								<span data-brief-current="">1</span>
-								/
-								<span data-brief-total="">7</span>
-							</div>
+							<button type="button" data-fls-popup-link="popup--brief" class="header-brief__menu" aria-label="open popup menu">
+								<span class="header-brief__menu-text t-2">Меню</span>
+								<span class="header-brief__menu-icon">
+									<span></span>
+								</span>
+							</button>
 						</div>
-						<button type="button" data-fls-popup-link="popup--brief" class="header-brief__menu" aria-label="open popup menu">
-							<span class="header-brief__menu-text t-2">Меню</span>
-							<span class="header-brief__menu-icon">
-								<span></span>
-							</span>
-						</button>
 					</div>
-				</div>
-				<div class="brief__container">
-					<form class="brief__form" data-form="brief" data-fls-form="dev"  method="POST" action="#">
-						<div class="brief__sections">
-							<div class="brief__section" data-brief-step>
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">Какая задача стоит перед вами?
-										<span data-fls-tooltip data-tippy-content="Мы собираем контактные данные лишь для того, чтобы быстро отреагировать на любые ваши запросы. Мы не спамим и не передаем ваши данные третьим лицам."></span>
-									</h2>
-								</div>
-								<div class="brief-option">
-									<label class="brief-option__item">
-										<input type="radio" name="task_type" value="concept" required>
-										<div class="brief-option__box">
-											<div class="brief-option__title t-17">
-												Разработка новой концепции дизайна
+					<div class="brief__container">
+						<form class="brief__form" data-form="brief" data-fls-form="dev" method="POST" action="#">
+							<div class="brief__sections">
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Какая задача стоит перед вами?
+											<span data-fls-tooltip="" data-tippy-content="Мы собираем контактные данные лишь для того, чтобы быстро отреагировать на любые ваши запросы. Мы не спамим и не передаем ваши данные третьим лицам."></span>
+										</h2>
+									</div>
+									<div class="brief-option">
+										<label class="brief-option__item">
+											<input type="radio" name="task_type" value="concept" required>
+											<div class="brief-option__box">
+												<div class="brief-option__title t-17">Разработка новой концепции дизайна</div>
+												<div class="brief-option__text t-2">
+													Сюда входит разработка графических концепций бренда или упаковки с нуля.
+                    Чем больше первичных данных с вашей стороны, тем выгоднее будет стоимость.
+												</div>
 											</div>
-											<div class="brief-option__text t-2">
-												Сюда входит разработка графических концепций бренда или упаковки с нуля.
-												Чем больше первичных данных с вашей стороны, тем выгоднее будет стоимость.
+										</label>
+										<label class="brief-option__item">
+											<input type="radio" name="task_type" value="sku">
+											<div class="brief-option__box">
+												<div class="brief-option__title t-17">Разработка новой линейки SKU</div>
+												<div class="brief-option__text t-2">
+													Сюда входит разработка макета дизайна на основе существующей
+                    графической концепции бренда. Чем больше первичных данных
+                    с вашей стороны, тем быстрее мы выполним задание.
+												</div>
 											</div>
-										</div>
-									</label>
-									<label class="brief-option__item">
-										<input type="radio" name="task_type" value="sku">
-										<div class="brief-option__box">
-											<div class="brief-option__title t-17">
-												Разработка новой линейки SKU
-											</div>
-											<div class="brief-option__text t-2">
-												Сюда входит разработка макета дизайна на основе существующей
-												графической концепции бренда. Чем больше первичных данных
-												с вашей стороны, тем быстрее мы выполним задание.
-											</div>
-										</div>
-									</label>
-								</div>
-							</div>
-							<div class="brief__section" data-brief-step>
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">Контактные данные
-										<span data-fls-tooltip data-tippy-content="Мы собираем контактные данные лишь для того, чтобы быстро отреагировать на любые ваши запросы. Мы не спамим и не передаем ваши данные третьим лицам."></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Заполните свои контактные данные, чтобы мы смогли с вами связаться.</p>
+										</label>
 									</div>
 								</div>
-								<div class="brief-field">
-									<label class="brief-field__item">
-										<span class="brief-field__label">Название вашей компании/бренда</span>
-										<input autocomplete="off" type="text" name="company_name" placeholder="напр. SVK group" class="input-brief">
-									</label>
-									<label class="brief-field__item">
-										<span class="brief-field__label">Ваше имя</span>
-										<input autocomplete="off" type="text" name="client_name" placeholder="" class="input-brief">
-									</label>
-									<label class="brief-field__item">
-										<span class="brief-field__label">Ваш E-mail *</span>
-										<div class="brief-field__input-icon --icon-mail">
-											<input autocomplete="off" type="email" name="client_email" placeholder="client@gmail.com" required class="input-brief">
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Контактные данные
+											<span data-fls-tooltip="" data-tippy-content="Мы собираем контактные данные лишь для того, чтобы быстро отреагировать на любые ваши запросы. Мы не спамим и не передаем ваши данные третьим лицам."></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Заполните свои контактные данные, чтобы мы смогли с вами связаться.</p>
 										</div>
-										<div class="brief-field__desc ">
-											<p><span class="--icon-question"></span>
-												Вы сможете отправить себе копию чеклиста, а мы сможем связаться с вами по почте
+									</div>
+									<div class="brief-field">
+										<label class="brief-field__item">
+											<span class="brief-field__label">Название вашей компании/бренда</span>
+											<input autocomplete="off" type="text" name="company_name" placeholder="напр. SVK group" class="input-brief">
+										</label>
+										<label class="brief-field__item">
+											<span class="brief-field__label">Ваше имя</span>
+											<input autocomplete="off" type="text" name="client_name" placeholder="" class="input-brief">
+										</label>
+										<label class="brief-field__item">
+											<span class="brief-field__label">Ваш E-mail *</span>
+											<div class="brief-field__input-icon --icon-mail">
+												<input autocomplete="off" type="email" name="client_email" placeholder="client@gmail.com" required class="input-brief">
+											</div>
+											<div class="brief-field__desc">
+												<p>
+													<span class="--icon-question"></span>
+													Вы сможете отправить себе копию чеклиста, а мы сможем связаться с вами по почте
+												</p>
+											</div>
+										</label>
+										<label class="brief-field__item">
+											<span class="brief-field__label">Ваш телефон</span>
+											<div class="brief-field__input-icon --icon-phone">
+												<input type="tel" inputmode="numeric" name="client_phone" placeholder="" class="input-brief">
+											</div>
+										</label>
+									</div>
+								</div>
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Какие предпосылки мотивируют к данному проекту?
+											<span data-fls-tooltip="" data-tippy-content="Опишите, что послужило причиной создания проекта — изменения рынка, обновление дизайна, расширение линейки и т.п."></span>
+										</h2>
+									</div>
+									<div class="brief-textarea">
+										<label class="brief-textarea__item">
+											<textarea name="project_background" class="textarea-brief" placeholder="Например: Наш бренд долгое время находился в рамках устарелых консервативных взглядов в дизайне. Бренд и продукт требует омоложения, актуализации, релевантного предложения современному рынку."></textarea>
+										</label>
+									</div>
+									<div class="brief__head mt-40">
+										<h2 class="brief__title title-tippy t-16">
+											Особенности вашего продукта
+											<span data-fls-tooltip="" data-tippy-content="Расскажите о типе, особенностях, уникальности и ключевых характеристиках вашего продукта."></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Тип, особенности, уникальность, его основные характеристики</p>
+										</div>
+									</div>
+									<div class="brief-textarea">
+										<label class="brief-textarea__item">
+											<textarea name="product_features" class="textarea-brief" placeholder="Например: Печенье с различными кремовыми начинками (банан, карамель, кокос и т.д.) покрытые шоколадной глазурью. Печенье круглой формы, примерно 6 см в диаметре."></textarea>
+										</label>
+									</div>
+								</div>
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Какие составляющие бренда уже существуют?
+											<span data-fls-tooltip="" data-tippy-content="Выберите элементы, которые у вашего бренда уже есть."></span>
+										</h2>
+									</div>
+									<div class="brief-tags brief-tags--brand">
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="name">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-letters"></span>
+												Название
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="site">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-click"></span>
+												Сайт
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="brandbook">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-bookmark"></span>
+												Брендбук
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="catalog">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-book"></span>
+												Каталог
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="packaging">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-box"></span>
+												Упаковка
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="posm">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-paint"></span>
+												POS материалы
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_existing[]" value="none">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-filenot"></span>
+												Нет ничего
+											</span>
+										</label>
+									</div>
+									<div class="brief__head mt-40">
+										<h2 class="brief__title title-tippy t-16">
+											Как вы чувствуете бренд?
+											<span data-fls-tooltip="" data-tippy-content="Выберите чувства и эмоции, которые вызывает ваш бренд."></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Выберите чувства и эмоции, которые вызывают ваш бренд или продукт</p>
+										</div>
+									</div>
+									<div class="brief-tags brief-tags--emotions">
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="clean">
+											<span class="brief-tags__box">Чистый</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="safe">
+											<span class="brief-tags__box">Безопасный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="free">
+											<span class="brief-tags__box">Свободный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="progressive">
+											<span class="brief-tags__box">Прогрессивный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="smart">
+											<span class="brief-tags__box">Умный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="strong">
+											<span class="brief-tags__box">Сильный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="professional">
+											<span class="brief-tags__box">Профессиональный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="durable">
+											<span class="brief-tags__box">Прочный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="brutal">
+											<span class="brief-tags__box">Брутальный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="soft">
+											<span class="brief-tags__box">Мягкий</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="provocative">
+											<span class="brief-tags__box">Провокационный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="effective">
+											<span class="brief-tags__box">Эффектный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="revolutionary">
+											<span class="brief-tags__box">Революционный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="creative">
+											<span class="brief-tags__box">Творческий</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="unique">
+											<span class="brief-tags__box">Уникальный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="status">
+											<span class="brief-tags__box">Статусный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="organized">
+											<span class="brief-tags__box">Организованный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="caring">
+											<span class="brief-tags__box">Заботливый</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="simple">
+											<span class="brief-tags__box">Простой</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="home">
+											<span class="brief-tags__box">Домашний</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="fun">
+											<span class="brief-tags__box">Весёлый</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="playful">
+											<span class="brief-tags__box">Игривый</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="sensual">
+											<span class="brief-tags__box">Чувственный</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="brand_emotions[]" value="romantic">
+											<span class="brief-tags__box">Романтичный</span>
+										</label>
+									</div>
+								</div>
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Какие каналы продаж планируются?
+											<span data-fls-tooltip="" data-tippy-content="Выберите каналы, через которые планируется продавать продукт."></span>
+										</h2>
+									</div>
+									<div class="brief-tags brief-tags--channels">
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="retail">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-letters"></span>
+												Ритейл
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="traditional">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-click"></span>
+												Традиционная розница
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="market">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-mark"></span>
+												Рынок
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="horeca">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-box"></span>
+												HoReCa
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="special">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-book"></span>
+												Специализированные магазины
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="instagram">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-click"></span>
+												Instagram
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="gas_station">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-filenot"></span>
+												АЗС
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="vending">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-paint"></span>
+												Вендинговые автоматы
+											</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="sales_channels[]" value="own_network">
+											<span class="brief-tags__box">
+												<span class="brief-tags__icon --icon-box"></span>
+												Собственная сеть
+											</span>
+										</label>
+									</div>
+									<div class="brief__head mt-40">
+										<h2 class="brief__title title-tippy t-16">
+											Опишите поведение вашего покупателя
+											<span data-fls-tooltip="" data-tippy-content="Какие его предпосылки к покупке, что он ищет в категории?"></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Какие его предпосылки к покупке, что он ищет в категории?</p>
+										</div>
+									</div>
+									<div class="brief-textarea">
+										<label class="brief-textarea__item">
+											<textarea name="customer_behavior" class="textarea-brief" placeholder="Наш покупатель чаще женский пол, с средним уровнем достатка, они не ищут подешевле но обращают внимание на красные ценники. Им важна уверенность в эффективности средства. Они готовы переплачивать если увидят ценность в продукте."></textarea>
+										</label>
+									</div>
+								</div>
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Эмоции упаковки при первом взгляде
+											<span data-fls-tooltip="" data-tippy-content="Выберите эмоции, которые должна вызывать ваша упаковка при первом контакте."></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Какие эмоции должна вызвать новая упаковка при первом взгляде?</p>
+										</div>
+									</div>
+									<div class="brief-tags brief-tags--package">
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="dynamic">
+											<span class="brief-tags__box">Динамика</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="energy">
+											<span class="brief-tags__box">Энергия</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="kindness">
+											<span class="brief-tags__box">Доброта</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="care">
+											<span class="brief-tags__box">Забота</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="joy">
+											<span class="brief-tags__box">Радость</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="expert">
+											<span class="brief-tags__box">Экспертность</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="surprise">
+											<span class="brief-tags__box">Удивление</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="calm">
+											<span class="brief-tags__box">Спокойствие</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="status">
+											<span class="brief-tags__box">Статусность</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="premium">
+											<span class="brief-tags__box">Премиальность</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="nostalgia">
+											<span class="brief-tags__box">Ностальгия</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="playful">
+											<span class="brief-tags__box">Игривость</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="appetite">
+											<span class="brief-tags__box">Аппетит</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="charming">
+											<span class="brief-tags__box">Очарованность</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="confidence">
+											<span class="brief-tags__box">Уверенность</span>
+										</label>
+										<label class="brief-tags__item">
+											<input type="checkbox" name="pack_emotions[]" value="innovation">
+											<span class="brief-tags__box">Инновационность</span>
+										</label>
+									</div>
+									<div class="brief__head mt-40">
+										<h2 class="brief__title title-tippy t-16">
+											Стилистические референсы
+											<span data-fls-tooltip="" data-tippy-content="Выберите примеры, которые соответствуют выбранным эмоциям."></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>
+												Выберете несколько примеров, которые на ваш взгляд соответствуют выбранным эмоциям.
 											</p>
 										</div>
-									</label>
-									<label class="brief-field__item">
-										<span class="brief-field__label">Ваш телефон</span>
-										<div class="brief-field__input-icon --icon-phone">
-											<input type="tel" inputmode="numeric" name="client_phone" placeholder="" class="input-brief">
-										</div>
-									</label>
-								</div>
-							</div>
-							<div class="brief__section" data-brief-step>
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">
-										Какие предпосылки мотивируют к данному проекту?
-										<span data-fls-tooltip data-tippy-content="Опишите, что послужило причиной создания проекта — изменения рынка, обновление дизайна, расширение линейки и т.п."></span>
-									</h2>
-								</div>
-								<div class="brief-textarea">
-									<label class="brief-textarea__item">
-										<textarea name="project_background" class="textarea-brief"
-											placeholder="Например: Наш бренд долгое время находился в рамках устарелых консервативных взглядов в дизайне. Бренд и продукт требует омоложения, актуализации, релевантного предложения современному рынку."></textarea>
-									</label>
-								</div>
-								<div class="brief__head mt-40">
-									<h2 class="brief__title title-tippy t-16">
-										Особенности вашего продукта
-										<span data-fls-tooltip data-tippy-content="Расскажите о типе, особенностях, уникальности и ключевых характеристиках вашего продукта."></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Тип, особенности, уникальность, его основные характеристики</p>
 									</div>
-								</div>
-								<div class="brief-textarea">
-									<label class="brief-textarea__item">
-										<textarea name="product_features" class="textarea-brief"
-											placeholder="Например: Печенье с различными кремовыми начинками (банан, карамель, кокос и т.д.) покрытые шоколадной глазурью. Печенье круглой формы, примерно 6 см в диаметре."></textarea>
-									</label>
-								</div>
-							</div>
-							<div class="brief__section" data-brief-step>
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">Какие составляющие бренда уже существуют?
-										<span data-fls-tooltip data-tippy-content="Выберите элементы, которые у вашего бренда уже есть."></span>
-									</h2>
-								</div>
-								<div class="brief-tags brief-tags--brand">
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="name">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-letters"></span>
-											Название
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="site">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-click"></span>
-											Сайт
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="brandbook">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-bookmark"></span>
-											Брендбук
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="catalog">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-book"></span>
-											Каталог
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="packaging">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-box"></span>
-											Упаковка
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="posm">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-paint"></span>
-											POS материалы
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_existing[]" value="none">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-filenot"></span>
-											Нет ничего
-										</span>
-									</label>
-								</div>
-								<div class="brief__head mt-40">
-									<h2 class="brief__title title-tippy t-16">Как вы чувствуете бренд?
-										<span data-fls-tooltip data-tippy-content="Выберите чувства и эмоции, которые вызывает ваш бренд."></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Выберите чувства и эмоции, которые вызывают ваш бренд или продукт</p>
-									</div>
-								</div>
-								<div class="brief-tags brief-tags--emotions">
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="clean">
-										<span class="brief-tags__box">Чистый</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="safe">
-										<span class="brief-tags__box">Безопасный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="free">
-										<span class="brief-tags__box">Свободный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="progressive">
-										<span class="brief-tags__box">Прогрессивный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="smart">
-										<span class="brief-tags__box">Умный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="strong">
-										<span class="brief-tags__box">Сильный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="professional">
-										<span class="brief-tags__box">Профессиональный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="durable">
-										<span class="brief-tags__box">Прочный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="brutal">
-										<span class="brief-tags__box">Брутальный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="soft">
-										<span class="brief-tags__box">Мягкий</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="provocative">
-										<span class="brief-tags__box">Провокационный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="effective">
-										<span class="brief-tags__box">Эффектный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="revolutionary">
-										<span class="brief-tags__box">Революционный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="creative">
-										<span class="brief-tags__box">Творческий</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="unique">
-										<span class="brief-tags__box">Уникальный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="status">
-										<span class="brief-tags__box">Статусный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="organized">
-										<span class="brief-tags__box">Организованный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="caring">
-										<span class="brief-tags__box">Заботливый</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="simple">
-										<span class="brief-tags__box">Простой</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="home">
-										<span class="brief-tags__box">Домашний</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="fun">
-										<span class="brief-tags__box">Весёлый</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="playful">
-										<span class="brief-tags__box">Игривый</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="sensual">
-										<span class="brief-tags__box">Чувственный</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="brand_emotions[]" value="romantic">
-										<span class="brief-tags__box">Романтичный</span>
-									</label>
-								</div>
-							</div>
-							<div class="brief__section" data-brief-step>
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">
-										Какие каналы продаж планируются?
-										<span data-fls-tooltip data-tippy-content="Выберите каналы, через которые планируется продавать продукт."></span>
-									</h2>
-								</div>
-								<div class="brief-tags brief-tags--channels">
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="retail">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-letters"></span>
-											Ритейл
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="traditional">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-click"></span>
-											Традиционная розница
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="market">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-mark"></span>
-											Рынок
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="horeca">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-box"></span>
-											HoReCa
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="special">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-book"></span>
-											Специализированные магазины
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="instagram">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-click"></span>
-											Instagram
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="gas_station">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-filenot"></span>
-											АЗС
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="vending">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-paint"></span>
-											Вендинговые автоматы
-										</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="sales_channels[]" value="own_network">
-										<span class="brief-tags__box">
-											<span class="brief-tags__icon --icon-box"></span>
-											Собственная сеть
-										</span>
-									</label>
-								</div>
-								<div class="brief__head mt-40">
-									<h2 class="brief__title title-tippy t-16">
-										Опишите поведение вашего покупателя
-										<span data-fls-tooltip data-tippy-content="Какие его предпосылки к покупке, что он ищет в категории?"></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Какие его предпосылки к покупке, что он ищет в категории?</p>
-									</div>
-								</div>
-								<div class="brief-textarea">
-									<label class="brief-textarea__item">
-										<textarea name="customer_behavior" class="textarea-brief"
-											placeholder="Наш покупатель чаще женский пол, с средним уровнем достатка, они не ищут подешевле но обращают внимание на красные ценники. Им важна уверенность в эффективности средства. Они готовы переплачивать если увидят ценность в продукте."></textarea>
-									</label>
-								</div>
-							</div>
-							<div class="brief__section" data-brief-step="">
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">
-										Эмоции упаковки при первом взгляде
-										<span data-fls-tooltip="" data-tippy-content="Выберите эмоции, которые должна вызывать ваша упаковка при первом контакте."></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Какие эмоции должна вызвать новая упаковка при первом взгляде?</p>
-									</div>
-								</div>
-								<div class="brief-tags brief-tags--package">
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="dynamic">
-										<span class="brief-tags__box">Динамика</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="energy">
-										<span class="brief-tags__box">Энергия</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="kindness">
-										<span class="brief-tags__box">Доброта</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="care">
-										<span class="brief-tags__box">Забота</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="joy">
-										<span class="brief-tags__box">Радость</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="expert">
-										<span class="brief-tags__box">Экспертность</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="surprise">
-										<span class="brief-tags__box">Удивление</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="calm">
-										<span class="brief-tags__box">Спокойствие</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="status">
-										<span class="brief-tags__box">Статусность</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="premium">
-										<span class="brief-tags__box">Премиальность</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="nostalgia">
-										<span class="brief-tags__box">Ностальгия</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="playful">
-										<span class="brief-tags__box">Игривость</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="appetite">
-										<span class="brief-tags__box">Аппетит</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="charming">
-										<span class="brief-tags__box">Очарованность</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="confidence">
-										<span class="brief-tags__box">Уверенность</span>
-									</label>
-									<label class="brief-tags__item">
-										<input type="checkbox" name="pack_emotions[]" value="innovation">
-										<span class="brief-tags__box">Инновационность</span>
-									</label>
-								</div>
-								<div class="brief__head mt-40">
-									<h2 class="brief__title title-tippy t-16">
-										Стилистические референсы
-										<span data-fls-tooltip="" data-tippy-content="Выберите примеры, которые соответствуют выбранным эмоциям."></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>
-											Выберете несколько примеров, которые на ваш взгляд соответствуют выбранным эмоциям.
-										</p>
-									</div>
-								</div>
-								<div class="brief-refs">
-									<div data-fls-slider="" class="swiper brief-refs__slider">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-1.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-2.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-3.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-4.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-5.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide">
-												<label class="brief-ref">
-													<input type="checkbox" name="pack_refs[]" value="ref1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-6.webp" alt="Reference 1">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
+									<div class="brief-refs">
+										<div data-fls-slider="" class="swiper brief-refs__slider">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-1.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-2.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-3.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-4.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-5.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide">
+													<label class="brief-ref">
+														<input type="checkbox" name="pack_refs[]" value="ref1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" loading="lazy" src="./assets/img/cases/case-6.jpg" alt="Reference 1">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="brief__section" data-brief-step="">
-								<div class="brief__head">
-									<h2 class="brief__title title-tippy t-16">
-										Выберите тип упаковки
-										<span data-fls-tooltip="" data-tippy-content="Выберите один или несколько типов упаковки"></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Выберите один или несколько типов или опишите свой</p>
+								<div class="brief__section" data-brief-step="">
+									<div class="brief__head">
+										<h2 class="brief__title title-tippy t-16">
+											Выберите тип упаковки
+											<span data-fls-tooltip="" data-tippy-content="Выберите один или несколько типов упаковки"></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Выберите один или несколько типов или опишите свой</p>
+										</div>
 									</div>
-								</div>
-								<div class="brief-filters">
-									<div class="brief-filters__name">Фільтр:</div>
-									<div class="brief-filters__list" data-brief-filters="">
-										<label class="brief-filters__item">
-											<input type="checkbox" data-filter="" value="bottle">
-											<span class="brief-filters__box">Бутылка</span>
-										</label>
-										<label class="brief-filters__item">
-											<input type="checkbox" data-filter="" value="box">
-											<span class="brief-filters__box">Коробка</span>
-										</label>
-										<label class="brief-filters__item">
-											<input type="checkbox" data-filter="" value="pack">
-											<span class="brief-filters__box">Пачка</span>
-										</label>
-										<label class="brief-filters__item">
-											<input type="checkbox" data-filter="" value="jar">
-											<span class="brief-filters__box">Банка</span>
-										</label>
-										<label class="brief-filters__item">
-											<input type="checkbox" data-filter="" value="bag">
-											<span class="brief-filters__box">Пакет</span>
-										</label>
+									<div class="brief-filters">
+										<div class="brief-filters__name">Фільтр:</div>
+										<div class="brief-filters__list" data-brief-filters="">
+											<label class="brief-filters__item">
+												<input type="checkbox" data-filter="" value="bottle">
+												<span class="brief-filters__box">Бутылка</span>
+											</label>
+											<label class="brief-filters__item">
+												<input type="checkbox" data-filter="" value="box">
+												<span class="brief-filters__box">Коробка</span>
+											</label>
+											<label class="brief-filters__item">
+												<input type="checkbox" data-filter="" value="pack">
+												<span class="brief-filters__box">Пачка</span>
+											</label>
+											<label class="brief-filters__item">
+												<input type="checkbox" data-filter="" value="jar">
+												<span class="brief-filters__box">Банка</span>
+											</label>
+											<label class="brief-filters__item">
+												<input type="checkbox" data-filter="" value="bag">
+												<span class="brief-filters__box">Пакет</span>
+											</label>
+										</div>
 									</div>
-								</div>
-								<div class="brief-type">
-									<div data-fls-slider="" class="swiper brief-type__slider">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide" data-ref-tags="box,pack">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_box_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-1.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="bottle,jar">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_bottle_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-2.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="pack">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_pack_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-3.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="box">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_box_2">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-4.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="jar,pack">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_jar_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-5.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="bottle">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_bottle_2">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-6.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="pack,box">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_pack_2">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-7.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="pouch,pack">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_pouch_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-8.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="box,bag">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_bag_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-1.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
-											</div>
-											<div class="swiper-slide" data-ref-tags="jar,box,pack">
-												<label class="brief-ref">
-													<input type="checkbox" name="package_type[]" value="ref_mix_1">
-													<span class="brief-ref__box">
-														<img data-img-ignore="" src="./assets/img/cases/case-2.webp" alt="">
-														<span class="brief-ref__check --icon-check"></span>
-													</span>
-												</label>
+									<div class="brief-type">
+										<div data-fls-slider="" class="swiper brief-type__slider">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide" data-ref-tags="box,pack">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_box_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-1.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="bottle,jar">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_bottle_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-2.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="pack">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_pack_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-3.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="box">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_box_2">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-4.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="jar,pack">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_jar_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-5.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="bottle">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_bottle_2">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-6.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="pack,box">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_pack_2">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-7.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="pouch,pack">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_pouch_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-8.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="box,bag">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_bag_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-1.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
+												<div class="swiper-slide" data-ref-tags="jar,box,pack">
+													<label class="brief-ref">
+														<input type="checkbox" name="package_type[]" value="ref_mix_1">
+														<span class="brief-ref__box">
+															<img data-img-ignore="" src="./assets/img/cases/case-2.jpg" alt="">
+															<span class="brief-ref__check --icon-check"></span>
+														</span>
+													</label>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="brief__head mt-40">
-									<h2 class="brief__title title-tippy t-16">
-										<div>
-											Информация на упаковке
-											<span class="final-label --icon-goblet">Финальный вопрос</span>
+									<div class="brief__head mt-40">
+										<h2 class="brief__title title-tippy t-16">
+											<div>
+												Информация на упаковке
+												<span class="final-label --icon-goblet">Финальный вопрос</span>
+											</div>
+											<span data-fls-tooltip="" data-tippy-content="Что обязательно должно быть на упаковке?"></span>
+										</h2>
+										<div class="brief__subtitle">
+											<p>Какие элементы обязательно должны быть на упаковке?</p>
 										</div>
-										<span data-fls-tooltip="" data-tippy-content="Что обязательно должно быть на упаковке?"></span>
-									</h2>
-									<div class="brief__subtitle">
-										<p>Какие элементы обязательно должны быть на упаковке?</p>
 									</div>
-								</div>
-								<div class="brief-textarea">
-									<label class="brief-textarea__item">
-										<textarea name="package_info" class="textarea-brief" placeholder="Например: вес продукта, вкусовые характеристики, витамины и т.д."></textarea>
+									<div class="brief-textarea">
+										<label class="brief-textarea__item">
+											<textarea name="package_info" class="textarea-brief" placeholder="Например: вес продукта, вкусовые характеристики, витамины и т.д."></textarea>
+										</label>
+									</div>
+									<label class="brief-copy mt-30">
+										<input type="checkbox" checked name="send_copy" value="1">
+										<span class="brief-copy__box">
+											<span class="brief-copy__icon --icon-check"></span>
+											<span class="brief-copy__txt">
+												Сохранить копию
+												<span>(бриф автоматически придёт вам на указанную почту)</span>
+											</span>
+										</span>
 									</label>
 								</div>
-								<label class="brief-copy mt-30">
-									<input type="checkbox" checked name="send_copy" value="1">
-									<span class="brief-copy__box">
-										<span class="brief-copy__icon --icon-check"></span>
-										<span class="brief-copy__txt">
-											Сохранить копию
-											<span>(бриф автоматически придёт вам на указанную почту)</span>
-										</span>
-									</span>
-								</label>
+							</div>
+							<div class="brief__nav">
+								<button type="button" data-brief-prev="" data-fls-btn="" class="brief__btn-prev --icon-arrowrightb" aria-label="prev">
+									<span>Вернуться назад</span>
+								</button>
+								<button type="button" data-brief-next="" data-fls-btn="" class="brief__btn-next btn btn--5" aria-label="link">
+									<span class="btn-txt">Следующий шаг</span>
+									<span class="btn-arr --icon-arrowrightb"></span>
+								</button>
+								<button type="submit" data-fls-btn="" data-brief-submit="" class="brief__btn-submit btn btn--5" aria-label="link">
+									<span class="btn-txt">Отправить бриф</span>
+									<span class="btn-arr --icon-arrowrightb"></span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</section>
+				<div data-brief-msg="" aria-hidden="true" class="brief-msg">
+					<div class="brief-msg__wrapper">
+						<div class="brief-msg__body">
+							<div class="brief-msg__img">
+								<img src="./assets/img/brief/girl-yoga.svg" loading="lazy" width="296" height="317" alt="Image">
+							</div>
+							<div class="brief-msg__info">
+								<div class="brief-msg__title">
+									<p>Готово!</p>
+								</div>
+								<div class="brief-msg__subtitle">
+									<p>Мы обработаем поступившую информацию и свяжемся с вами в течение 2 рабочих дней</p>
+								</div>
+								<a href="#" data-fls-btn="" class="brief-msg__link btn btn--1" aria-label="link">
+									<span class="btn-txt">Наш основной сайт</span>
+								</a>
+								<a href="#" data-brief-start="" class="brief-msg__btn --icon-arrowrightb t-2">
+									<span>Заполнить чек-лист еще раз</span>
+								</a>
 							</div>
 						</div>
-						<div class="brief__nav">
-							<button type="button" data-brief-prev="" data-fls-btn="" class="brief__btn-prev --icon-arrowrightb" aria-label="prev">
-								<span>Вернуться назад</span>
-							</button>
-							<button type="button" data-brief-next="" data-fls-btn="" class="brief__btn-next btn btn--5" aria-label="link">
-								<span class="btn-txt">Следующий шаг</span>
-								<span class="btn-arr --icon-arrowrightb"></span>
-							</button>
-							<button type="submit" data-fls-btn="" data-brief-submit="" class="brief__btn-submit btn btn--5" aria-label="link">
-								<span class="btn-txt">Отправить бриф</span>
-								<span class="btn-arr --icon-arrowrightb"></span>
-							</button>
-						</div>
-					</form>
+					</div>
 				</div>
-			</section>
-			<div data-brief-msg="" aria-hidden="true" class="brief-msg">
-				<div class="brief-msg__wrapper">
-					<div class="brief-msg__body">
-						<div class="brief-msg__img">
-							<img src="./assets/img/brief/girl-yoga.svg" loading="lazy" width="296" height="317" alt="Image">
+			</main>
+		</div>
+		<div data-lenis-prevent="" data-fls-popup="popup--brief" aria-hidden="true" class="popup">
+			<div data-fls-popup-wrapper="" class="popup__wrapper">
+				<div data-fls-popup-body="" class="popup__body">
+					<div class="popup__head">
+						<a href="index.html" class="popup__back-link --icon-arrowrightb" aria-label="link to the home page">
+							<span>На основний сайт</span>
+						</a>
+						<button data-fls-popup-close="" type="button" class="popup__close">
+							<svg width="43" height="43" viewbox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white"></rect>
+								<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white"></path>
+								<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white"></path>
+							</svg>
+						</button>
+					</div>
+					<div data-fls-popup-content="" class="popup-content">
+						<div class="popup-content__title">
+							<p>
+								<b>Обговоримо</b>
+								вашу
+								<br>
+								задачу прямо зараз?
+							</p>
 						</div>
-						<div class="brief-msg__info">
-							<div class="brief-msg__title">
-								<p>Готово!</p>
-							</div>
-							<div class="brief-msg__subtitle">
-								<p>Мы обработаем поступившую информацию и свяжемся с вами в течение 2 рабочих дней</p>
-							</div>
-							<a href="#" data-fls-btn="" class="brief-msg__link btn btn--1" aria-label="link">
-								<span class="btn-txt">Наш основной сайт</span>
+						<div class="popup-content__subtitle">
+							<p>Ми швидко запропонуємо рішення!</p>
+						</div>
+						<ul class="popup-content__contacts">
+							<li class="popup-content__contact">
+								<a href="tel:+380988234343" class="popup-content__phone" aria-label="phone number">+38 098 823 43 43</a>
+							</li>
+							<li class="popup-content__contact">
+								<a href="mailto:brand@posh.pro" class="popup-content__mail" aria-label="mail">brand@posh.pro</a>
+							</li>
+						</ul>
+						<div class="popup-content__social">
+							<a href="#" class="popup-content__social-ic" aria-label="telegram">
+								<img src="./assets/img/icons/tg.svg" width="50" height="50" alt="Image">
 							</a>
-							<a href="#" data-brief-start="" class="brief-msg__btn --icon-arrowrightb t-2">
-								<span>Заполнить чек-лист еще раз</span>
+							<a href="#" class="popup-content__social-ic" aria-label="telegram">
+								<img src="./assets/img/icons/wts.svg" width="50" height="50" alt="Image">
 							</a>
 						</div>
+						<div class="popup-content__btns">
+							<a href="#" data-fls-btn="" data-fls-popup-link="popup--form" class="popup-content__btn btn btn--3" aria-label="link">
+								<span class="btn-txt">Залишити заявку</span>
+								<span class="btn-arr --icon-arrowrightc"></span>
+							</a>
+							<a href="files/show-file.pdf" target="_blank" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="download">
+								<span class="btn-txt">Завантажити PDF</span>
+								<span class="btn-arr --icon-arrowrightc"></span>
+							</a>
+							<a href="#" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="link">
+								<span class="btn-txt">Заповнити чек-лист</span>
+								<span class="btn-arr --icon-arrowrightc"></span>
+							</a>
+							<div class="popup-content__sm-t">
+								<p>Приблизно 7 хв. вашого часу</p>
+							</div>
+						</div>
+						<ul class="popup-content__lng lng-popup">
+							<li class="lng-popup__item">
+								<a href="#" class="lng-popup__link" aria-label="link to language">UKR</a>
+							</li>
+							<li class="lng-popup__item">
+								<a href="#" class="lng-popup__link" aria-label="link to language">ENG</a>
+							</li>
+							<li class="lng-popup__item">
+								<a href="#" class="lng-popup__link" aria-label="link to language">RU</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</main>
-	</div>
-	<div data-lenis-prevent="" data-fls-popup="popup--brief" aria-hidden="true" class="popup">
-		<div data-fls-popup-wrapper="" class="popup__wrapper">
-			<div data-fls-popup-body="" class="popup__body">
-				<div class="popup__head">
-					<a href="index.html" class="popup__back-link --icon-arrowrightb" aria-label="link to the home page">
-						<span>На основний сайт</span>
-					</a>
-					<button data-fls-popup-close="" type="button" class="popup__close">
+		</div>
+		<div data-lenis-prevent="" data-fls-popup="popup--form" aria-hidden="true" class="popup-form">
+			<div data-fls-popup-wrapper="" class="popup-form__wrapper">
+				<div data-fls-popup-body="" class="popup-form__body">
+					<button data-fls-popup-close="" type="button" class="popup-form__close">
 						<svg width="43" height="43" viewbox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white"></rect>
 							<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white"></path>
 							<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white"></path>
 						</svg>
 					</button>
-				</div>
-				<div data-fls-popup-content="" class="popup-content">
-					<div class="popup-content__title">
-						<p>
-							<b>Обговоримо</b>
-							вашу
-							<br>
-							задачу прямо зараз?
-						</p>
-					</div>
-					<div class="popup-content__subtitle">
-						<p>Ми швидко запропонуємо рішення!</p>
-					</div>
-					<ul class="popup-content__contacts">
-						<li class="popup-content__contact">
-							<a href="tel:+380988234343" class="popup-content__phone" aria-label="phone number">+38 098 823 43 43</a>
-						</li>
-						<li class="popup-content__contact">
-							<a href="mailto:brand@posh.pro" class="popup-content__mail" aria-label="mail">brand@posh.pro</a>
-						</li>
-					</ul>
-					<div class="popup-content__social">
-						<a href="#" class="popup-content__social-ic" aria-label="telegram">
-							<img src="./assets/img/icons/tg.svg" width="50" height="50" alt="Image">
-						</a>
-						<a href="#" class="popup-content__social-ic" aria-label="telegram">
-							<img src="./assets/img/icons/wts.svg" width="50" height="50" alt="Image">
-						</a>
-					</div>
-					<div class="popup-content__btns">
-						<a href="#" data-fls-btn="" data-fls-popup-link="popup--form" class="popup-content__btn btn btn--3" aria-label="link">
-							<span class="btn-txt">Залишити заявку</span>
-							<span class="btn-arr --icon-arrowrightc"></span>
-						</a>
-						<a href="files/show-file.pdf" target="_blank" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="download">
-							<span class="btn-txt">Завантажити PDF</span>
-							<span class="btn-arr --icon-arrowrightc"></span>
-						</a>
-						<a href="#" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="link">
-							<span class="btn-txt">Заповнити чек-лист</span>
-							<span class="btn-arr --icon-arrowrightc"></span>
-						</a>
-						<div class="popup-content__sm-t">
-							<p>Приблизно 7 хв. вашого часу</p>
+					<div data-fls-popup-content="" class="popup-form__content">
+						<div class="popup-form__title">
+							<p>НАПИШІТЬ НАМ</p>
 						</div>
-					</div>
-					<ul class="popup-content__lng lng-popup">
-						<li class="lng-popup__item">
-							<a href="#" class="lng-popup__link" aria-label="link to language">UKR</a>
-						</li>
-						<li class="lng-popup__item">
-							<a href="#" class="lng-popup__link" aria-label="link to language">ENG</a>
-						</li>
-						<li class="lng-popup__item">
-							<a href="#" class="lng-popup__link" aria-label="link to language">RU</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div data-lenis-prevent="" data-fls-popup="popup--form" aria-hidden="true" class="popup-form">
-		<div data-fls-popup-wrapper="" class="popup-form__wrapper">
-			<div data-fls-popup-body="" class="popup-form__body">
-				<button data-fls-popup-close="" type="button" class="popup-form__close">
-					<svg width="43" height="43" viewbox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white"></rect>
-						<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white"></path>
-						<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white"></path>
-					</svg>
-				</button>
-				<div data-fls-popup-content="" class="popup-form__content">
-					<div class="popup-form__title">
-						<p>НАПИШІТЬ НАМ</p>
-					</div>
-					<form class="popup-form__form form-popup" data-fls-form="dev" data-fls-form-popup="popup--msg" action="#" method="POST">
-						<div class="form-popup__items">
-							<div class="form-popup__item t-2">
-								<label for="f1">Ваше ім‘я:</label>
-								<input id="f1" data-fls-input="" data-fls-form-validatenow="" required type="text" name="form[name]" class="input-main">
-							</div>
-							<div class="form-popup__item t-2">
-								<label for="f2">Назва компанії:</label>
-								<input id="f2" data-fls-input="" type="text" name="form[company]" class="input-main">
-							</div>
-							<div class="form-popup__item t-2">
-								<label for="f3">E-mail:</label>
-								<input id="f3" data-fls-input="" data-fls-form-validatenow="" required type="email" name="form[email]" class="input-main">
-							</div>
-							<div class="form-popup__item t-2">
-								<label for="f4">Телефон:</label>
-								<input id="f4" data-fls-input="" type="tel" name="form[tel]" class="input-main">
-							</div>
-						</div>
-						<div class="form-popup__item t-2">
-							<label for="f5">Ваше повідомлення:</label>
-							<textarea id="f5" data-fls-input="" data-fls-input-autoheight="" autocomplete="off" name="form[message]" class="input-main"></textarea>
-						</div>
-						<div class="form-popup__checkbox">
-							<input type="checkbox" id="policy" name="policy" data-fls-form-validatenow="" required>
-							<label for="policy">
-								I have read and accept the
-								<a href="#" target="_blank">privacy policy</a>
-							</label>
-						</div>
-						<div class="form-popup__footer">
-							<button type="submit" class="form-popup__send btn btn--5" aria-label="send">
-								<span class="btn-txt">Надіслати</span>
-								<span class="btn-arr --icon-arrowrightb"></span>
-							</button>
-							<div class="form-popup__item form-file">
-								<div class="form-file__wrap">
-									<input type="file" id="fileUpload" name="form[file]" accept=".webp,.pdf,.doc,.docx" class="form-file__input">
-									<button type="button" class="form-file__btn">
-										<span class="form-file__text">Завантажити файл</span>
-										<span class="form-file__file-name"></span>
-									</button>
+						<form class="popup-form__form form-popup" data-fls-form="dev" data-fls-form-popup="popup--msg" action="#" method="POST">
+							<div class="form-popup__items">
+								<div class="form-popup__item t-2">
+									<label for="f1">Ваше ім‘я:</label>
+									<input id="f1" data-fls-input="" data-fls-form-validatenow="" required type="text" name="form[name]" class="input-main">
+								</div>
+								<div class="form-popup__item t-2">
+									<label for="f2">Назва компанії:</label>
+									<input id="f2" data-fls-input="" type="text" name="form[company]" class="input-main">
+								</div>
+								<div class="form-popup__item t-2">
+									<label for="f3">E-mail:</label>
+									<input id="f3" data-fls-input="" data-fls-form-validatenow="" required type="email" name="form[email]" class="input-main">
+								</div>
+								<div class="form-popup__item t-2">
+									<label for="f4">Телефон:</label>
+									<input id="f4" data-fls-input="" type="tel" name="form[tel]" class="input-main">
 								</div>
 							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div data-lenis-prevent="" data-fls-popup="popup--msg" aria-hidden="true" class="popup-form">
-		<div data-fls-popup-wrapper="" class="popup-form__wrapper">
-			<div data-fls-popup-body="" class="popup-form__body">
-				<button data-fls-popup-close="" type="button" class="popup-form__close">
-					<svg width="43" height="43" viewbox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white"></rect>
-						<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white"></path>
-						<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white"></path>
-					</svg>
-				</button>
-				<div data-fls-popup-content="" class="popup-form__content">
-					<div class="popup-form__title">
-						<p>
-							Дякуюємо!
-							<br>
-							Наш менеджер скоро зв'яжеться з вами.
-						</p>
+							<div class="form-popup__item t-2">
+								<label for="f5">Ваше повідомлення:</label>
+								<textarea id="f5" data-fls-input="" data-fls-input-autoheight="" autocomplete="off" name="form[message]" class="input-main"></textarea>
+							</div>
+							<div class="form-popup__checkbox">
+								<input type="checkbox" id="policy" name="policy" data-fls-form-validatenow="" required>
+								<label for="policy">
+									I have read and accept the
+									<a href="#" target="_blank">privacy policy</a>
+								</label>
+							</div>
+							<div class="form-popup__footer">
+								<button type="submit" class="form-popup__send btn btn--5" aria-label="send">
+									<span class="btn-txt">Надіслати</span>
+									<span class="btn-arr --icon-arrowrightb"></span>
+								</button>
+								<div class="form-popup__item form-file">
+									<div class="form-file__wrap">
+										<input type="file" id="fileUpload" name="form[file]" accept=".webp,.pdf,.doc,.docx" class="form-file__input">
+										<button type="button" class="form-file__btn">
+											<span class="form-file__text">Завантажити файл</span>
+											<span class="form-file__file-name"></span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
-
+		<div data-lenis-prevent="" data-fls-popup="popup--msg" aria-hidden="true" class="popup-form">
+			<div data-fls-popup-wrapper="" class="popup-form__wrapper">
+				<div data-fls-popup-body="" class="popup-form__body">
+					<button data-fls-popup-close="" type="button" class="popup-form__close">
+						<svg width="43" height="43" viewbox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white"></rect>
+							<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white"></path>
+							<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white"></path>
+						</svg>
+					</button>
+					<div data-fls-popup-content="" class="popup-form__content">
+						<div class="popup-form__title">
+							<p>
+								Дякуюємо!
+								<br>
+								Наш менеджер скоро зв'яжеться з вами.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

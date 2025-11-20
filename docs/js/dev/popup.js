@@ -195,8 +195,8 @@ function formInit() {
       formValidate.formClean(form);
       if (form.dataset.form === "brief") {
         const popupBrief = document.querySelector("[data-brief-msg]");
-        const html = document.documentElement;
         if (popupBrief) {
+          const html = document.documentElement;
           popupBrief.classList.add("--brief-sent");
           popupBrief.setAttribute("aria-hidden", "false");
           html.classList.add("--brief-sent");

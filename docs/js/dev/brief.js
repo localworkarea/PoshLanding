@@ -2576,5 +2576,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popup.setAttribute("aria-hidden", "true");
     }
     bodyUnlock();
+    current = 0;
+    showStep(0);
   });
 });

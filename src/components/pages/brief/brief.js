@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
     bodyUnlock();
 
     // Вернуть бриф в начало
-    // current = 0;
-    // showStep(0);
+    current = 0;
+    showStep(0);
   });
 
 
