@@ -2561,6 +2561,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (current > 0) showStep(current - 1);
   });
   showStep(0);
+  formBrief.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      const target = e.target;
+      if (target.tagName === "TEXTAREA") return;
+      if (target.hasAttribute("contenteditable")) return;
+      e.preventDefault();
+    }
+  });
   document.addEventListener("briefResetSteps", () => {
     current = 0;
     showStep(0);

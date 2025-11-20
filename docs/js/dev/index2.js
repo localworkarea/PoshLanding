@@ -6260,7 +6260,23 @@ gsapWithCSS.core.Tween;
 function spollers() {
   const spollersArray = document.querySelectorAll("[data-fls-spollers]");
   if (spollersArray.length > 0) {
-    let initSpollers = function(spollersArray2, matchMedia2 = false) {
+    let playSpollerVideo = function(spollerBlock) {
+      const video = spollerBlock.querySelector("video[data-spollers-video]");
+      if (!video) return;
+      try {
+        video.pause();
+        video.currentTime = 0;
+        video.loop = false;
+        video.play();
+      } catch (e) {
+        console.warn("Video playback error:", e);
+      }
+    }, resetSpollerVideo = function(spollerBlock) {
+      const video = spollerBlock.querySelector("video[data-spollers-video]");
+      if (!video) return;
+      video.pause();
+      video.currentTime = 0;
+    }, initSpollers = function(spollersArray2, matchMedia2 = false) {
       spollersArray2.forEach((spollersBlock) => {
         spollersBlock = matchMedia2 ? spollersBlock.item : spollersBlock;
         if (matchMedia2.matches || !matchMedia2) {
@@ -6305,6 +6321,7 @@ function spollers() {
           const scrollSpoller = spollerBlock.hasAttribute("data-fls-spollers-scroll");
           const spollerSpeed = spollersBlock.dataset.flsSpollersSpeed ? parseInt(spollersBlock.dataset.flsSpollersSpeed) : 500;
           if (!spollersBlock.querySelectorAll(".--slide").length) {
+            const isOpening = !spollerBlock.open;
             if (oneSpoller && !spollerBlock.open) {
               hideSpollersBody(spollersBlock);
             }
@@ -6313,6 +6330,15 @@ function spollers() {
             }, spollerSpeed);
             spollerTitle.classList.toggle("--spoller-active");
             slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
+            if (isOpening) {
+              setTimeout(() => {
+                playSpollerVideo(spollerBlock);
+              }, spollerSpeed);
+            } else {
+              setTimeout(() => {
+                resetSpollerVideo(spollerBlock);
+              }, spollerSpeed);
+            }
             setTimeout(() => {
               ScrollTrigger.refresh();
             }, spollerSpeed + 50);
@@ -6320,12 +6346,10 @@ function spollers() {
               const scrollSpollerValue = spollerBlock.dataset.flsSpollersScroll;
               const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
               const scrollSpollerNoHeader = spollerBlock.hasAttribute("data-fls-spollers-scroll-noheader") ? document.querySelector(".header").offsetHeight : 0;
-              window.scrollTo(
-                {
-                  top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
-                  behavior: "smooth"
-                }
-              );
+              window.scrollTo({
+                top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
+                behavior: "smooth"
+              });
             }
           }
         }
@@ -6342,6 +6366,7 @@ function spollers() {
               slideUp(spollerClose.nextElementSibling, spollerSpeed);
               setTimeout(() => {
                 spollerCloseBlock.open = false;
+                resetSpollerVideo(spollerCloseBlock);
               }, spollerSpeed);
             }
           });
@@ -6355,6 +6380,7 @@ function spollers() {
         spollerActiveTitle.classList.remove("--spoller-active");
         slideUp(spollerActiveTitle.nextElementSibling, spollerSpeed);
         setTimeout(() => {
+          resetSpollerVideo(spollerActiveBlock);
           spollerActiveBlock.open = false;
         }, spollerSpeed);
       }
@@ -7993,6 +8019,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   checkAnimation();
   MQ.addEventListener("change", checkAnimation);
+  const heroVideosList = document.querySelectorAll(".list-hero__item video");
+  if (heroVideosList.length) {
+    heroVideosList.forEach((video2) => {
+      let canReplayOnHover = true;
+      video2.addEventListener("mouseenter", () => {
+        if (canReplayOnHover) {
+          canReplayOnHover = false;
+          video2.currentTime = 0;
+          video2.play();
+        }
+      });
+      video2.addEventListener("ended", () => {
+        canReplayOnHover = true;
+      });
+    });
+  }
   const portfolio = document.querySelector(".portfolio");
   if (!portfolio) return;
   let mouseX = 0;

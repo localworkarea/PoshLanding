@@ -71,6 +71,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // старт
   showStep(0);
 
+  // запретить отправку по нажатию на enter
+    formBrief.addEventListener("keydown", function (e) {
+    // Если нажали Enter
+    if (e.key === "Enter") {
+      const target = e.target;
+
+      // --- Разрешаем Enter в textarea (для переносов строки)
+      if (target.tagName === "TEXTAREA") return;
+
+      // --- Разрешаем Enter внутри элементов с contenteditable
+      if (target.hasAttribute("contenteditable")) return;
+
+      // --- Блокируем Enter для всех остальных случаев
+      e.preventDefault();
+    }
+  });
+
+
 
   // Вернуть бриф на первый шаг после отправки (вызов через form.js)
   document.addEventListener("briefResetSteps", () => {
@@ -98,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     current = 0;
     showStep(0);
   });
+
+
 
 
 

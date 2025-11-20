@@ -51,7 +51,7 @@
   border-radius: 50%;
   aspect-ratio: 1;
   width: 0.5rem;
-  animation: pulseLight 2.6s ease-in-out infinite;
+  animation: pulseLight 2s ease-in-out infinite;
   background-color: var(--green);
 }
 .top-header__link span {
@@ -60,6 +60,7 @@
 .top-header__link .--icon-arrowrightc {
   display: grid;
   place-items: center;
+  animation: arrowWiggle 1.5s ease-in-out infinite;
 }
 .top-header__link .--icon-arrowrightc::before {
   transition: transform 0.3s ease;
@@ -85,13 +86,24 @@
 @keyframes pulseLight {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.2);
     filter: brightness(1);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(0.92);
+    opacity: 0.8;
+    transform: scale(0.8);
     filter: brightness(1.2);
+  }
+}
+@keyframes arrowWiggle {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0.1875rem);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 .main-header {
@@ -1019,7 +1031,8 @@ section {
   align-items: center;
   justify-content: center;
 }
-.spollers-process__media img {
+.spollers-process__media img,
+.spollers-process__media video {
   width: 100%;
   height: auto;
   max-width: 11.875rem;
@@ -1273,6 +1286,11 @@ section {
 @media (max-width: 56.31125em) {
   .footer__btns .btn {
     max-width: 100%;
+  }
+}
+@media (max-width: 51.31125em) and (min-width: 30.06125em) {
+  .list-hero {
+    min-height: 5rem;
   }
 }
 @media (max-width: 48.06125em) and (min-width: 30.06125em) {
@@ -1637,7 +1655,8 @@ section {
     padding-top: 1.125rem;
     margin-left: 7.125rem;
   }
-  .spollers-process__media img {
+  .spollers-process__media img,
+  .spollers-process__media video {
     max-width: 9.375rem;
   }
   .cost-guarantee__head {

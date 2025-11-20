@@ -44,7 +44,8 @@
 			aspect-ratio: 1;
 			width: 8px;
 
-			animation: pulseLight 2.6s ease-in-out infinite;
+			animation: pulseLight 2s ease-in-out infinite;
+				  // animation: pulseElastic 1.8s cubic-bezier(.25, .46, .45, .94) infinite;
 
 			background-color: var(--green);
 
@@ -64,19 +65,10 @@
 			gap: 12px;
 		}
 
-		// @media (any-hover: hover){
-		// 	&:hover{
-		// 		.--icon-arrowrightd {
-		// 			&::before {
-		// 				transform: translate(5px, 0);
-		// 			}
-		// 		}
-		// 	}
-		// }
-
 		.--icon-arrowrightc {
 			display: grid;
 			place-items: center;
+			animation: arrowWiggle 1.5s ease-in-out infinite;
 
 			&::before {
 				transition: transform .3s ease;
@@ -92,14 +84,9 @@
 		}
 	}
 
-
 	// .top-header__link-txt
 	&__link-txt {
 		padding-top: 2px; 
-			// @extend %underline;
-		// @media (min-width:toEm($mobileSmall)){
-			//  padding-top: 0; 
-		// }
 	}
 
 	// .top-header__list
@@ -132,16 +119,32 @@
 @keyframes pulseLight {
 	0%, 100% {
 		opacity: 1;
-		transform: scale(1);
+		transform: scale(1.2);
 		filter: brightness(1);
 	}
 	50% {
-		opacity: 0.6;
-		transform: scale(0.92);
+		opacity: 0.8;
+		transform: scale(0.8);
 		filter: brightness(1.2);
 	}
 }
 
+@keyframes arrowWiggle {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
+
+// @keyframes pulseElastic {
+//   0%   { transform: scale(1); }
+//   20%  { transform: scale(1.32); } // эластичный толчок
+//   40%  { transform: scale(1.18); }
+//   55%  { transform: scale(1.26); } // возврат наверх
+//   70%  { transform: scale(1.10); }
+//   85%  { transform: scale(1.15); } // легкий подъём
+//   100% { transform: scale(1); }
+// }
 
 
 .main-header {

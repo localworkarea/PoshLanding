@@ -173,6 +173,30 @@ document.addEventListener("DOMContentLoaded", () => {
 	checkAnimation();
 	MQ.addEventListener("change", checkAnimation);
 
+	// === HERO LIST VIDEO HOVER REPLAY ==================================
+	const heroVideosList = document.querySelectorAll(".list-hero__item video");
+	
+	if (heroVideosList.length) {
+		heroVideosList.forEach(video => {
+				let canReplayOnHover = true;
+	
+				video.addEventListener("mouseenter", () => {
+						if (canReplayOnHover) {
+								canReplayOnHover = false;   // блокируем повторный ховер
+								video.currentTime = 0;
+								video.play();
+						}
+				});
+	
+				//  разрешаем новый перезапуск после окончания видео
+				video.addEventListener("ended", () => {
+						canReplayOnHover = true;
+				});
+	
+		});
+	}
+
+
 
 
 
