@@ -276,7 +276,7 @@
 			</div>
 		</div>
 		<div data-go-id="gallery" class="solutions__gallery gallery" data-fls-gallerys>
-			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" class="gallery__line">
+			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="1000" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-1-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-1.jpg" alt="case 1" />
@@ -299,7 +299,7 @@
 				</div>
 			</div>
 
-			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" data-fls-marquee-direction="right" class="gallery__line">
+			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="1000" data-fls-marquee-direction="right" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-5-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-5.jpg" alt="case 5" />
@@ -326,12 +326,14 @@
 				<div class="gallery__overlay" data-gallery-overlay></div>
 				<figure class="gallery__figure">
 					<img src="" alt="" class="gallery__image" data-gallery-image />
-					<button type="button" class="gallery__close" data-gallery-close aria-label="close">
-						<svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<button type="button" class="gallery__close btn btn--3" data-fls-btn data-gallery-close aria-label="close">
+						<span class="btn-txt">Закрити</span>
+						<span class="btn-arr --icon-arrowrightb"></span>
+						<!-- <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white" />
 							<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white" />
 							<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white" />
-						</svg>
+						</svg> -->
 					</button>
 				</figure>
 			</div>

@@ -66,14 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Обработчик кликов по изображениям
   gallery.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-gallery-item]');
-    if (!btn) return;
+  // защита от клика после drag marquee
+  const marqueeParent = e.target.closest('[data-fls-marquee]');
+  if (marqueeParent && marqueeParent.dataset.marqueeJustDragged === "true") {
+    return; // игнорируем
+  }
 
-    const src = btn.dataset.src;
-    const img = btn.querySelector('img');
-    const alt = img ? img.alt : '';
-    openFullscreen(src, alt);
-  });
+  const btn = e.target.closest('[data-gallery-item]');
+  if (!btn) return;
+
+  const src = btn.dataset.src;
+  const img = btn.querySelector('img');
+  const alt = img ? img.alt : '';
+
+  openFullscreen(src, alt);
+});
+
 
   // Закрытие по клику на overlay или кнопку
   overlay.addEventListener('click', closeFullscreen);
