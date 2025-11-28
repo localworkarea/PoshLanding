@@ -37,10 +37,10 @@
 					<li class="list-hero__item">
 						<div class="list-hero__icon">
 							<!-- <img src="@img/icons/icon-3.png" width="44" height="44" alt="Image"> -->
-							<img data-img-ignore src="@video/1.gif" width="44" height="44" alt="Image">
-							<!-- <video muted autoplay playsinline>
+							<!-- <img data-img-ignore src="@video/1.gif" width="44" height="44" alt="Image"> -->
+							<video muted autoplay playsinline>
 								<source src="@video/sm-3d-3.mp4" type="video/mp4">
-							</video> -->
+							</video>
 						</div>
 						<div class="list-hero__txt">
 							<p>Ми з вами до полиці у магазині</p>
@@ -53,16 +53,20 @@
 			<div class="portfolio">
 				<div class="portfolio__list">
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-1.jpg" width="337" height="244" alt="Image">
+						<img src="@img/grid/grid-16.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-2.jpg" width="337" height="244" alt="Image">
+						<img src="@img/grid/grid-17.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
 						<img src="@img/grid/grid-3.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-4.jpg" width="337" height="244" alt="Image">
+						<!-- <img src="@img/grid/grid-4.jpg" width="337" height="244" alt="Image"> -->
+						<video data-fls-videoplay muted autoplay loop playsinline>
+							<source src="@video/portfolio-2-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+							<source src="@video/portfolio-2-mb.mp4" type="video/mp4">
+						</video>
 					</div>
 					<div class="portfolio__item">
 						<img src="@img/grid/grid-5.jpg" width="337" height="244" alt="Image">
@@ -74,13 +78,22 @@
 						<img src="@img/grid/grid-7.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-8.jpg" width="337" height="244" alt="Image">
+						<!-- <img src="@img/grid/grid-8.jpg" width="337" height="244" alt="Image">
+						  -->
+						<video data-fls-videoplay muted autoplay loop playsinline>
+							<source src="@video/portfolio-1-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+							<source src="@video/portfolio-1-mb.mp4" type="video/mp4">
+						</video>
 					</div>
 					<div class="portfolio__item">
 						<img src="@img/grid/grid-9.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-10.jpg" width="337" height="244" alt="Image">
+						<!-- <img src="@img/grid/grid-10.jpg" width="337" height="244" alt="Image"> -->
+						<video data-fls-videoplay muted autoplay loop playsinline>
+							<source src="@video/portfolio-3-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+							<source src="@video/portfolio-3-mb.mp4" type="video/mp4">
+						</video>
 					</div>
 					<div class="portfolio__item">
 						<img src="@img/grid/grid-11.jpg" width="337" height="244" alt="Image">
@@ -89,10 +102,10 @@
 						<img src="@img/grid/grid-12.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-13.jpg" width="337" height="244" alt="Image">
+						<img src="@img/grid/grid-18.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
-						<img src="@img/grid/grid-14.jpg" width="337" height="244" alt="Image">
+						<img src="@img/grid/grid-19.jpg" width="337" height="244" alt="Image">
 					</div>
 					<div class="portfolio__item">
 						<img src="@img/grid/grid-15.jpg" width="337" height="244" alt="Image">
@@ -102,7 +115,7 @@
 		</div>
 		<div class="hero__video video-hero">
 			<div class="video-hero__container">
-				<div class="video-hero__video">
+				<div data-video-hero class="video-hero__video">
 					<button type="button" class="video-hero__play" aria-label="play">
 						<svg class="playBut" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
 							<polygon class="triangle" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="39.65 65.38 39.65 34.62 64.32 50 39.65 65.38">
@@ -113,11 +126,18 @@
 							</circle>
 						</svg>
 					</button>
-					<video muted loop playsinline>
-						<source src="@files/posh-showreel-2-optimize-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
-						<source src="@files/posh-showreel-2-optimize-mb.mp4" type="video/mp4">
-					</video>
-					<img class="video-hero__poster ibg" src="@img/poster-pc.png" width="1440" height="800" alt="image">
+					<div class="video-hero__preview">
+						<video data-fls-videoplay muted loop autoplay playsinline>
+							<source src="@video/posh-showreel-2-optimize-cut-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+							<source src="@video/posh-showreel-2-optimize-cut-mb.mp4" type="video/mp4">
+						</video>
+					</div>
+					<div class="video-hero__main">
+						<video  muted loop playsinline>
+							<source src="@video/posh-showreel-2-optimize-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+							<source src="@video/posh-showreel-2-optimize-mb.mp4" type="video/mp4">
+						</video>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -140,21 +160,81 @@
 				</div>
 			</div>
 		</div>
-		<div data-fls-marquee data-fls-marquee-speed="300" class="products__clients">
+		<div data-fls-marquee data-fls-marquee-speed="400" class="products__clients">
 			<div class="products__img">
-				<img src="@img/clients/clients-1.svg" width="125" height="100" alt="Image">
+				<img src="@img/clients/clients-1.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-2.svg" width="125" height="100" alt="Image">
+				<img src="@img/clients/clients-2.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-3.svg" width="125" height="100" alt="Image">
+				<img src="@img/clients/clients-3.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-4.svg" width="125" height="100" alt="Image">
+				<img src="@img/clients/clients-4.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-5.svg" width="125" height="100" alt="Image">
+				<img src="@img/clients/clients-5.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-6.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-7.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-8.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-9.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-10.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-11.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-12.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-13.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-14.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-15.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-16.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-17.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-18.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-19.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-20.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-21.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-22.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-23.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-24.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="products__img">
+				<img src="@img/clients/clients-25.png" width="125" height="115" alt="Image">
 			</div>
 		</div>
 	</section>
@@ -169,19 +249,19 @@
 				<ul data-fls-watcher data-fls-watcher-once data-fls-watcher-threshold="1" class="trust__counters counters-trust">
 					<li class="counters-trust__item">
 						<div class="counters-trust__num">
-							<span data-fls-digcounter data-fls-digcounter-speed="1000">12</span>+
+							<span data-fls-digcounter data-fls-digcounter-speed="1500">12</span>+
 						</div>
 						<p>років В FMCG</p>
 					</li>
 					<li class="counters-trust__item">
 						<div class="counters-trust__num">
-							<span data-fls-digcounter data-fls-digcounter-speed="1300">500</span>+
+							<span data-fls-digcounter data-fls-digcounter-speed="1800">500</span>+
 						</div>
 						<p>реалізованих проєктів</p>
 					</li>
 					<li class="counters-trust__item">
 						<div class="counters-trust__num">
-							<span data-fls-digcounter data-fls-digcounter-speed="1600">100</span>+
+							<span data-fls-digcounter data-fls-digcounter-speed="2500">100</span>+
 						</div>
 						<p>постійних клієнтів</p>
 					</li>
@@ -278,22 +358,22 @@
 		<div data-go-id="gallery" class="solutions__gallery gallery" data-fls-gallerys>
 			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-1-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-1.jpg" data-src-desktop="@img/cases/case-1-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-1.jpg" alt="case 1" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-2-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-2.jpg" data-src-desktop="@img/cases/case-2-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-2.jpg" alt="case 2" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-3-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-3.jpg" data-src-desktop="@img/cases/case-3-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-3.jpg" alt="case 3" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-4-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-4.jpg" data-src-desktop="@img/cases/case-4-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-4.jpg" alt="case 4" />
 					</button>
 				</div>
@@ -301,22 +381,22 @@
 
 			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" data-fls-marquee-direction="right" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-5-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-5.jpg" data-src-desktop="@img/cases/case-5-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-5.jpg" alt="case 5" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-6-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-6.jpg" data-src-desktop="@img/cases/case-6-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-6.jpg" alt="case 6" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-7-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-7.jpg" data-src-desktop="@img/cases/case-7-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-7.jpg" alt="case 7" />
 					</button>
 				</div>
 				<div class="gallery__item">
-					<button type="button" class="gallery__thumb" data-gallery-item data-src="@img/cases/case-8-full.jpg" aria-label="open image">
+					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/case-8.jpg" data-src-desktop="@img/cases/case-8-full.jpg" aria-label="open image">
 						<img src="@img/cases/case-8.jpg" alt="case 8" />
 					</button>
 				</div>
@@ -329,11 +409,6 @@
 					<button type="button" class="gallery__close btn btn--3" data-fls-btn data-gallery-close aria-label="close">
 						<span class="btn-txt">Закрити</span>
 						<span class="btn-arr --icon-arrowrightb"></span>
-						<!-- <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white" />
-							<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white" />
-							<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white" />
-						</svg> -->
 					</button>
 				</figure>
 			</div>
@@ -389,11 +464,11 @@
 								</p>
 							</div>
 							<div class="spollers-process__media">
-								<img data-img-ignore src="@video/2.gif" width="150" height="150" alt="Image">
-								
-								<!-- <video data-spollers-video muted playsinline>
+								<!-- <img data-img-ignore src="@video/2.gif" width="150" height="150" alt="Image"> -->
+
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-1.mp4" type="video/mp4">
-								</video> -->
+								</video>
 							</div>
 						</div>
 					</div>
@@ -438,7 +513,7 @@
 							</div>
 							<div class="spollers-process__media">
 								<!-- <img src="@img/process/spoller-media.png" width="150" height="150" alt="Image"> -->
-								 <video data-spollers-video muted playsinline>
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-1.mp4" type="video/mp4">
 								</video>
 							</div>
@@ -461,7 +536,7 @@
 							</div>
 							<div class="spollers-process__media">
 								<!-- <img src="@img/process/spoller-media.png" width="150" height="150" alt="Image"> -->
-								 <video data-spollers-video muted playsinline>
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-2.mp4" type="video/mp4">
 								</video>
 							</div>
@@ -485,7 +560,7 @@
 							</div>
 							<div class="spollers-process__media">
 								<!-- <img src="@img/process/spoller-media.png" width="150" height="150" alt="Image"> -->
-								 <video data-spollers-video muted playsinline>
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-1.mp4" type="video/mp4">
 								</video>
 							</div>
@@ -511,7 +586,7 @@
 							</div>
 							<div class="spollers-process__media">
 								<!-- <img src="@img/process/spoller-media.png" width="150" height="150" alt="Image"> -->
-								 <video data-spollers-video muted playsinline>
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-2.mp4" type="video/mp4">
 								</video>
 							</div>
@@ -534,7 +609,7 @@
 							</div>
 							<div class="spollers-process__media">
 								<!-- <img src="@img/process/spoller-media.png" width="150" height="150" alt="Image"> -->
-								 <video data-spollers-video muted playsinline>
+								<video data-spollers-video muted playsinline>
 									<source src="@video/3d-anim-1.mp4" type="video/mp4">
 								</video>
 							</div>
@@ -614,328 +689,385 @@
 					</details>
 				</div>
 			</div>
-			<div class="guarantee__cost cost-guarantee">
-				<div class="cost-guarantee__head">
-					<h2 class="cost-guarantee__title t-3">Як ми формуємо
-						вартість?</h2>
-					<div class="cost-guarantee__subtitle t-5">
-						<p>
-							Ціна розраховується індивідуально, але завжди логічно та прозоро. На фінальну вартість проекту впливає: наявність чіткого технічного завдання, або існуюча концепція позиціювання бренду; кількість вхідних даних на початку; терміновість;
-							кількість SKU в ассортименті, і звичайно ж, перспективність подальшої співпраці.
-						</p>
+		</div>
+	</section>
+	<section data-gsap="retail" data-gsap-end="45%" class="retail br-r">
+		<div class="retail__container">
+			<div class="retail__body">
+				<div class="retail__bg">
+					<img src="@img/retail/retail-main.png" width="251" height="220" alt="Image">
+				</div>
+				<div class="retail__content">
+					<h2 class="retail__title t-9">
+						100+ кейсів, більш ніж
+						у 20 рітейл-мережах
+						по всьому світу
+					</h2>
+					<div class="retail__subtitle t-2">
+						<p>У тому числі через ВТМ-продукти, контракти
+							з дистриб'юторами чи пряму співпрацю</p>
 					</div>
 				</div>
-				<div data-go-id="cost" data-fls-slider class="cost-guarantee__slider swiper">
-					<ul class="cost-guarantee__wrapper swiper-wrapper">
-						<li class="cost-guarantee__slide swiper-slide">
-							<div class="cost-guarantee__body">
-								<div class="cost-guarantee__head-slide">
-									<div class="cost-guarantee__title-slide t-10">
-										<p>
-											Розробка<br>
-											концепції
-										</p>
-									</div>
-									<div class="cost-guarantee__subtitle-slide t-2">
-										<p>
-											відповідно до вашого<br>
-											технічного завдання:
-										</p>
-									</div>
-									<div class="cost-guarantee__price t-10">
-										<p>≈ €2000</p>
-										<p>≈ 15 р.д.</p>
-									</div>
-								</div>
-								<ul class="cost-guarantee__list t-5">
-									<li class="cost-guarantee__item">
-										<p>
-											Вивчаємо та обговорюємо завдання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Уточнюємо деталі й референси
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Пропонуємо додаткові ідеї
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Розробляємо концепції
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Презентуємо та обговорюємо
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Вносимо побажання й коригування
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Узгоджуємо концепцію
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Передаємо концепцію Вам
-										</p>
-									</li>
-								</ul>
-								<a href="#" class="cost-guarantee__link --icon-arrowrightd t-2" aria-label="link">
-									<span>Як скласти ідеальне технічне завдання?</span>
-								</a>
-							</div>
-						</li>
-						<li class="cost-guarantee__slide swiper-slide">
-							<div class="cost-guarantee__body">
-								<div class="cost-guarantee__head-slide">
-									<div class="cost-guarantee__title-slide t-10">
-										<p>
-											Розробка<br>
-											концепції
-										</p>
-									</div>
-									<div class="cost-guarantee__subtitle-slide t-2">
-										<p>
-											без технічного<br>
-											завдання:
-										</p>
-									</div>
-									<div class="cost-guarantee__price t-10">
-										<p>≈ €3000</p>
-										<p>≈ 22 р.д.</p>
-									</div>
-								</div>
-								<ul class="cost-guarantee__list t-5">
-									<li class="cost-guarantee__item">
-										<p>
-											Вивчаємо продукт і завдання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Проводимо дослідження ринку
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Формуємо гіпотези
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Пропонуємо позиціювання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Формулюємо стратегію
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Складаємо технічне завдання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Розробляємо концепції
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Презентуємо та обговорюємо
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Вносимо побажання й коригування
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Узгоджуємо концепцію
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Передаємо концепцію Вам
-										</p>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="cost-guarantee__slide swiper-slide">
-							<div class="cost-guarantee__body">
-								<div class="cost-guarantee__head-slide">
-									<div class="cost-guarantee__title-slide t-10">
-										<p>
-											Разробка<br>
-											SKU
-										</p>
-									</div>
-									<div class="cost-guarantee__subtitle-slide t-2">
-										<p>
-											Перший продукт у новій лінійці.<br> У межах затвердженої концепції.
-										</p>
-									</div>
-									<div class="cost-guarantee__price t-10">
-										<p>≈ €850</p>
-										<p>≈ 7 р.д.</p>
-									</div>
-								</div>
-								<ul class="cost-guarantee__list t-5">
-									<li class="cost-guarantee__item">
-										<p>
-											Збираємо дані
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Формуємо технічне завдання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Розробляємо 2–3 варіанти
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Візуалізуємо Mock-up
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Презентуємо та обговорюємо
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Розробляємо макет у крої
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Вносимо коригування
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Узгоджуємо макет
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Проводимо підготовку файлів
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Готуємо до друку
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Складаємо інструкцію до друку
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Передаємо робочі файли
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Передаємо 3D-візуалізацію
-										</p>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="cost-guarantee__slide swiper-slide">
-							<div class="cost-guarantee__body">
-								<div class="cost-guarantee__head-slide">
-									<div class="cost-guarantee__title-slide t-10">
-										<p>
-											Додаткові<br> послуги
-										</p>
-									</div>
-									<div class="cost-guarantee__subtitle-slide t-2">
-										<p>
-											Технічна і консультаційна<br>
-											підтримка бренду
-										</p>
-									</div>
-									<div class="cost-guarantee__price t-10">
-										<p></p>
-										<p></p>
-									</div>
-								</div>
-								<ul class="cost-guarantee__list t-5">
-									<li class="cost-guarantee__item">
-										<p>
-											Авторський нагляд
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Бренд-аудит
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Неймінг
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Фокус-групи
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											POS матеріали
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Expo матеріали
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Promo сайт
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Sales презентація
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											3D моделювання
-										</p>
-									</li>
-									<li class="cost-guarantee__item">
-										<p>
-											Разробка форм
-										</p>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
+			</div>
+		</div>
+		<div data-fls-marquee data-fls-marquee-speed="400" class="retail__items">
+			<div class="retail__img">
+				<img src="@img/retail/retail-1.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-2.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-3.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-4.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-5.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-6.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-7.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-8.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-9.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-10.png" width="125" height="115" alt="Image">
+			</div>
+			<div class="retail__img">
+				<img src="@img/retail/retail-11.png" width="125" height="115" alt="Image">
+			</div>
+		</div>
+	</section>
+	<section class="cost-guarantee br-r">
+		<div class="cost-guarantee__container">
+			<div class="cost-guarantee__head">
+				<h2 class="cost-guarantee__title t-3">Як ми формуємо
+					вартість?</h2>
+				<div class="cost-guarantee__subtitle t-5">
+					<p>
+						Ціна розраховується індивідуально, але завжди логічно та прозоро. На фінальну вартість проекту впливає: наявність чіткого технічного завдання, або існуюча концепція позиціювання бренду; кількість вхідних даних на початку; терміновість;
+						кількість SKU в ассортименті, і звичайно ж, перспективність подальшої співпраці.
+					</p>
 				</div>
+			</div>
+			<div data-go-id="cost" data-fls-slider class="cost-guarantee__slider swiper">
+				<ul class="cost-guarantee__wrapper swiper-wrapper">
+					<li class="cost-guarantee__slide swiper-slide">
+						<div class="cost-guarantee__body">
+							<div class="cost-guarantee__head-slide">
+								<div class="cost-guarantee__title-slide t-10">
+									<p>
+										Розробка<br>
+										концепції
+									</p>
+								</div>
+								<div class="cost-guarantee__subtitle-slide t-2">
+									<p>
+										відповідно до вашого<br>
+										технічного завдання:
+									</p>
+								</div>
+								<div class="cost-guarantee__price t-10">
+									<p>≈ €2000</p>
+									<p>≈ 15 р.д.</p>
+								</div>
+							</div>
+							<ul class="cost-guarantee__list t-5">
+								<li class="cost-guarantee__item">
+									<p>
+										Вивчаємо та обговорюємо завдання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Уточнюємо деталі й референси
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Пропонуємо додаткові ідеї
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Розробляємо концепції
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Презентуємо та обговорюємо
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Вносимо побажання й коригування
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Узгоджуємо концепцію
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Передаємо концепцію Вам
+									</p>
+								</li>
+							</ul>
+							<a href="#" class="cost-guarantee__link --icon-arrowrightd t-2" aria-label="link">
+								<span>Як скласти ідеальне технічне завдання?</span>
+							</a>
+						</div>
+					</li>
+					<li class="cost-guarantee__slide swiper-slide">
+						<div class="cost-guarantee__body">
+							<div class="cost-guarantee__head-slide">
+								<div class="cost-guarantee__title-slide t-10">
+									<p>
+										Розробка<br>
+										концепції
+									</p>
+								</div>
+								<div class="cost-guarantee__subtitle-slide t-2">
+									<p>
+										без технічного<br>
+										завдання:
+									</p>
+								</div>
+								<div class="cost-guarantee__price t-10">
+									<p>≈ €3000</p>
+									<p>≈ 22 р.д.</p>
+								</div>
+							</div>
+							<ul class="cost-guarantee__list t-5">
+								<li class="cost-guarantee__item">
+									<p>
+										Вивчаємо продукт і завдання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Проводимо дослідження ринку
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Формуємо гіпотези
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Пропонуємо позиціювання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Формулюємо стратегію
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Складаємо технічне завдання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Розробляємо концепції
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Презентуємо та обговорюємо
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Вносимо побажання й коригування
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Узгоджуємо концепцію
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Передаємо концепцію Вам
+									</p>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="cost-guarantee__slide swiper-slide">
+						<div class="cost-guarantee__body">
+							<div class="cost-guarantee__head-slide">
+								<div class="cost-guarantee__title-slide t-10">
+									<p>
+										Разробка<br>
+										SKU
+									</p>
+								</div>
+								<div class="cost-guarantee__subtitle-slide t-2">
+									<p>
+										Перший продукт у новій лінійці.<br> У межах затвердженої концепції.
+									</p>
+								</div>
+								<div class="cost-guarantee__price t-10">
+									<p>≈ €850</p>
+									<p>≈ 7 р.д.</p>
+								</div>
+							</div>
+							<ul class="cost-guarantee__list t-5">
+								<li class="cost-guarantee__item">
+									<p>
+										Збираємо дані
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Формуємо технічне завдання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Розробляємо 2–3 варіанти
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Візуалізуємо Mock-up
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Презентуємо та обговорюємо
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Розробляємо макет у крої
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Вносимо коригування
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Узгоджуємо макет
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Проводимо підготовку файлів
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Готуємо до друку
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Складаємо інструкцію до друку
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Передаємо робочі файли
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Передаємо 3D-візуалізацію
+									</p>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="cost-guarantee__slide swiper-slide">
+						<div class="cost-guarantee__body">
+							<div class="cost-guarantee__head-slide">
+								<div class="cost-guarantee__title-slide t-10">
+									<p>
+										Додаткові<br> послуги
+									</p>
+								</div>
+								<div class="cost-guarantee__subtitle-slide t-2">
+									<p>
+										Технічна і консультаційна<br>
+										підтримка бренду
+									</p>
+								</div>
+								<div class="cost-guarantee__price t-10">
+									<p></p>
+									<p></p>
+								</div>
+							</div>
+							<ul class="cost-guarantee__list t-5">
+								<li class="cost-guarantee__item">
+									<p>
+										Авторський нагляд
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Бренд-аудит
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Неймінг
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Фокус-групи
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										POS матеріали
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Expo матеріали
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Promo сайт
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Sales презентація
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										3D моделювання
+									</p>
+								</li>
+								<li class="cost-guarantee__item">
+									<p>
+										Разробка форм
+									</p>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</section>
@@ -969,7 +1101,7 @@
 	<section class="faq br-r">
 		<div class="faq__container">
 			<h2 class="faq__title t-3">Поширені запитання</h2>
-			<div data-fls-spollers data-fls-spollers-one  class="faq__spollers spollers-guarantee">
+			<div data-fls-spollers data-fls-spollers-one class="faq__spollers spollers-guarantee">
 				<details class="spollers-guarantee__item">
 					<summary class="spollers-guarantee__summary t-4 --icon-arrowdowna">
 						<span>
