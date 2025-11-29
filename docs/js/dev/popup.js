@@ -105,7 +105,9 @@ let formValidate = {
       let checkboxes = form.querySelectorAll('input[type="checkbox"]');
       if (checkboxes.length) {
         checkboxes.forEach((checkbox) => {
-          checkbox.checked = false;
+          if (!checkbox.hasAttribute("data-default-checked")) {
+            checkbox.checked = false;
+          }
         });
       }
       if (window["flsSelect"]) {

@@ -190,12 +190,22 @@ html.lenis, html.lenis body {
 	line-height: 1.1;
 }
 
+.t-balance {
+	text-wrap: balance;
+}
+
 .br-r {
   overflow: hidden;
   @include adaptiveValue("border-bottom-left-radius", 50, 30);
   @include adaptiveValue("border-bottom-right-radius", 50, 30);
 }
 
+.mt-60 {
+	margin-top: 40px;
+	@media (min-width:toEm($mobileSmall)){
+		margin-top: 60px;
+	}
+}
 .mt-40 {
 	margin-top: 40px;
 }

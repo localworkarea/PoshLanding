@@ -86,36 +86,6 @@ function initSliders() {
 		});
 	}
 
-
-	// function updateSliderEdges(swiper) {
-	// 	const wrapper = swiper.el.closest('.swiper'); // родитель (контейнер)
-	// 	if (!wrapper) return;
-
-	// 	const maxTranslate = swiper.maxTranslate(); // максимум влево (отриц.)
-	// 	const minTranslate = swiper.minTranslate(); // должно быть 0
-	// 	const current = swiper.translate;
-
-	// 	// сбрасываем классы
-	// 	wrapper.classList.remove('--left-side', '--right-side');
-
-	// 	// если контента недостаточно — ставим оба класса
-	// 	if (maxTranslate === minTranslate) {
-	// 		wrapper.classList.add('--left-side', '--right-side');
-	// 		return;
-	// 	}
-
-	// 	// левый край
-	// 	if (current >= minTranslate) {
-	// 		wrapper.classList.add('--left-side');
-	// 	}
-
-	// 	// правый край
-	// 	if (current <= maxTranslate) {
-	// 		wrapper.classList.add('--right-side');
-	// 	}
-	// }
-
-
 	if (document.querySelector('.brief-refs__slider')) {
 		const sliderRefs = new Swiper('.brief-refs__slider', { 
 			modules: [FreeMode, Navigation],
@@ -130,12 +100,7 @@ function initSliders() {
 				momentumRatio: 0.5,
 				momentumVelocityRatio: 1.5,
   		},
-			//touchRatio: 0,
-			//simulateTouch: false,
-			//loop: true,
-			//preloadImages: false,
-			//lazy: true,
-
+		
 				navigation: {
 					prevEl: '.brief-refs__slider .swiper-button-prev',
 					nextEl: '.brief-refs__slider .swiper-button-next',
@@ -166,21 +131,9 @@ function initSliders() {
 			},
 			// Події
 			on: {
-				// init(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// slideChange(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// transitionEnd(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// touchEnd(swiper) {
-				// 	setTimeout(() => updateSliderEdges(swiper), 50);
-				// },
+				
 			}
 		});
-			// window.addEventListener('resize', () => updateSliderEdges(sliderRefs));
 	}
 	if (document.querySelector('.brief-type__slider')) {
 		const sliderType =  new Swiper('.brief-type__slider', { 
@@ -195,11 +148,7 @@ function initSliders() {
 				momentumRatio: 0.5,
 				momentumVelocityRatio: 1.5,
   		},
-			//touchRatio: 0,
-			//simulateTouch: false,
-			//loop: true,
-			//preloadImages: false,
-			//lazy: true,
+	
 
 				navigation: {
 					prevEl: '.brief-type__slider .swiper-button-prev',
@@ -222,29 +171,98 @@ function initSliders() {
 			},
 			// Події
 			on: {
-				// init(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// slideChange(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// transitionEnd(swiper) {
-				// 	updateSliderEdges(swiper);
-				// },
-				// touchEnd(swiper) {
-				// 	setTimeout(() => updateSliderEdges(swiper), 50);
-				// },
+			
 			}
 		});
-			// window.addEventListener('resize', () => updateSliderEdges(sliderType));
 	}
 }
-document.querySelector('[data-fls-slider]') ?
-	// window.addEventListener("load", initSliders) : null 
-	window.addEventListener("load", () => {
+document.querySelector('[data-fls-slider]')
+  ? window.addEventListener("load", () => {
 
-  initSliders(); 
-// const filterContainer = document.querySelector('[data-brief-filters]');
+      initSliders();
+
+      const filterBlocks = document.querySelectorAll('[data-brief-filters]');
+
+      filterBlocks.forEach(filterBlock => {
+
+        // Ищем слайдер ТОЛЬКО внутри этого filterBlock
+        const sliderEl = filterBlock.querySelector('[data-fls-slider]');
+        if (!sliderEl) return;
+
+        const swiper = sliderEl.swiper;
+        const slides = [...sliderEl.querySelectorAll('.swiper-slide')];
+
+        // Ищем элементы фильтров внутри этого filterBlock
+        const filterAll = filterBlock.querySelector('input[value="all"]');
+        const filterInputs = [...filterBlock.querySelectorAll('input[data-filter]')]
+          .filter(i => i.value !== "all");
+
+        // --- Функция фильтрации ---
+        function applyFilters() {
+          const selectedFilters = [...filterBlock.querySelectorAll('input[data-filter]:checked')]
+            .map(i => i.value);
+
+          // Если выбран "Все"
+          if (selectedFilters.includes("all")) {
+            slides.forEach(slide => (slide.style.display = ""));
+            swiper.updateSlides();
+            swiper.update();
+            return;
+          }
+
+          // Обычные фильтры
+          slides.forEach(slide => {
+            const tags = slide.dataset.refTags.split(',').map(t => t.trim());
+            const match = selectedFilters.some(f => tags.includes(f));
+            slide.style.display = match ? "" : "none";
+          });
+
+          swiper.updateSlides();
+          swiper.update();
+        }
+
+        // --- ВЫБОРА ЧЕКБОКСОВ ---
+        filterBlock.addEventListener('change', (e) => {
+          const target = e.target;
+
+          // Если нажали "Все"
+          if (target.value === "all") {
+            filterInputs.forEach(i => (i.checked = false));
+            filterAll.checked = true;
+
+            applyFilters();
+            return;
+          }
+
+          // Если нажали НЕ "Все"
+          if (target.value !== "all") {
+
+            filterAll.checked = false;
+
+            // Если снят последний → включить "Все"
+            const anyChecked = filterInputs.some(i => i.checked);
+            if (!anyChecked) {
+              filterAll.checked = true;
+            }
+            
+            applyFilters();
+            return;
+          }
+        });
+
+      }); 
+
+    })
+  : null;
+
+
+
+// document.querySelector('[data-fls-slider]') ?
+// 	window.addEventListener("load", () => {
+
+//   initSliders(); 
+
+// 	const filterContainer = document.querySelector('[data-brief-filters]');
 //   const sliderEl = document.querySelector('.brief-type__slider');
 
 //   if (!filterContainer || !sliderEl) return;
@@ -252,96 +270,67 @@ document.querySelector('[data-fls-slider]') ?
 //   const swiper = sliderEl.swiper;
 //   const slides = [...sliderEl.querySelectorAll('.swiper-slide')];
 
+//   const filterAll = filterContainer.querySelector('input[value="all"]');
+//   const filterInputs = [...filterContainer.querySelectorAll('input[data-filter]')]
+//     .filter(i => i.value !== "all");
+
+//   // Применение фильтров
 //   function applyFilters() {
 //     const selectedFilters = [...filterContainer.querySelectorAll('input[data-filter]:checked')]
 //       .map(i => i.value);
 
+//     // Если выбран "Все"
+//     if (selectedFilters.includes("all")) {
+//       slides.forEach(slide => (slide.style.display = ""));
+//       swiper.updateSlides();
+//       swiper.update();
+//       return;
+//     }
+
 //     slides.forEach(slide => {
 //       const tags = slide.dataset.refTags.split(',').map(t => t.trim());
 
-//       const match =
-//         selectedFilters.length === 0 ||
-//         selectedFilters.some(f => tags.includes(f));
-
+//       const match = selectedFilters.some(f => tags.includes(f));
 //       slide.style.display = match ? "" : "none";
 //     });
-
 
 //     swiper.updateSlides();
 //     swiper.update();
 //   }
 
-  // filterContainer.addEventListener('change', applyFilters);
+//   // Логика переключения чекбоксов
+//   filterContainer.addEventListener('change', (e) => {
+//     const target = e.target;
 
-	const filterContainer = document.querySelector('[data-brief-filters]');
-  const sliderEl = document.querySelector('.brief-type__slider');
+//     // Если нажали "Все"
+//     if (target.value === "all") {
 
-  if (!filterContainer || !sliderEl) return;
+//       // Снимаем все остальные
+//       filterInputs.forEach(i => (i.checked = false));
 
-  const swiper = sliderEl.swiper;
-  const slides = [...sliderEl.querySelectorAll('.swiper-slide')];
+//       // "Все" всегда остаётся выбранным
+//       filterAll.checked = true;
 
-  const filterAll = filterContainer.querySelector('input[value="all"]');
-  const filterInputs = [...filterContainer.querySelectorAll('input[data-filter]')]
-    .filter(i => i.value !== "all");
+//       applyFilters();
+//       return;
+//     }
 
-  // 🔥 Применение фильтров
-  function applyFilters() {
-    const selectedFilters = [...filterContainer.querySelectorAll('input[data-filter]:checked')]
-      .map(i => i.value);
+//     // Если нажали не "Все":
+//     if (target.value !== "all") {
 
-    // Если выбран "Все"
-    if (selectedFilters.includes("all")) {
-      slides.forEach(slide => (slide.style.display = ""));
-      swiper.updateSlides();
-      swiper.update();
-      return;
-    }
+//       // Снимем "Все"
+//       filterAll.checked = false;
 
-    slides.forEach(slide => {
-      const tags = slide.dataset.refTags.split(',').map(t => t.trim());
+//       // Если сняли последний чекбокс → активируем "Все"
+//       const anyChecked = filterInputs.some(i => i.checked);
 
-      const match = selectedFilters.some(f => tags.includes(f));
-      slide.style.display = match ? "" : "none";
-    });
+//       if (!anyChecked) {
+//         filterAll.checked = true;
+//       }
 
-    swiper.updateSlides();
-    swiper.update();
-  }
+//       applyFilters();
+//       return;
+//     }
+// 	});
 
-  // 🔥 Логика переключения чекбоксов
-  filterContainer.addEventListener('change', (e) => {
-    const target = e.target;
-
-    // Если нажали "Все"
-    if (target.value === "all") {
-
-      // Снимаем все остальные
-      filterInputs.forEach(i => (i.checked = false));
-
-      // "Все" всегда остаётся выбранным
-      filterAll.checked = true;
-
-      applyFilters();
-      return;
-    }
-
-    // Если нажали не "Все":
-    if (target.value !== "all") {
-
-      // Снимем "Все"
-      filterAll.checked = false;
-
-      // Если сняли последний чекбокс → активируем "Все"
-      const anyChecked = filterInputs.some(i => i.checked);
-
-      if (!anyChecked) {
-        filterAll.checked = true;
-      }
-
-      applyFilters();
-      return;
-    }
-	});
-
-}) : null 
+// }) : null 

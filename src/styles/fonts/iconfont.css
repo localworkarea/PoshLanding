@@ -1,7 +1,7 @@
 @font-face { 
 	font-family: "iconfont"; 
 	font-display: swap;
-	src: url("D://IT/projects/PoshLanding/src/assets/svgicons/preview/iconfont.woff2?73c2ef6f6853948ff541c77d7f98938f") format("woff2"); 
+	src: url("D://IT/projects/PoshLanding/src/assets/svgicons/preview/iconfont.woff2?807a3ce2d4ea9893ce37043379246ef0") format("woff2"); 
 } 
 [class*="--icon-"]::before{
 	font-family: iconfont; 
@@ -54,51 +54,54 @@
 	[class*="--icon-eat"]::before { 
 		content: "\f110"; 
 	} 
-	[class*="--icon-click"]::before { 
+	[class*="--icon-copy"]::before { 
 		content: "\f111"; 
 	} 
-	[class*="--icon-check"]::before { 
+	[class*="--icon-click"]::before { 
 		content: "\f112"; 
 	} 
-	[class*="--icon-cart"]::before { 
+	[class*="--icon-check"]::before { 
 		content: "\f113"; 
 	} 
-	[class*="--icon-calculator"]::before { 
+	[class*="--icon-cart"]::before { 
 		content: "\f114"; 
 	} 
-	[class*="--icon-box"]::before { 
+	[class*="--icon-calculator"]::before { 
 		content: "\f115"; 
 	} 
-	[class*="--icon-bookmark"]::before { 
+	[class*="--icon-box"]::before { 
 		content: "\f116"; 
 	} 
-	[class*="--icon-book"]::before { 
+	[class*="--icon-bookmark"]::before { 
 		content: "\f117"; 
 	} 
-	[class*="--icon-bell"]::before { 
+	[class*="--icon-book"]::before { 
 		content: "\f118"; 
 	} 
-	[class*="--icon-bags"]::before { 
+	[class*="--icon-bell"]::before { 
 		content: "\f119"; 
 	} 
-	[class*="--icon-awardbadge"]::before { 
+	[class*="--icon-bags"]::before { 
 		content: "\f11a"; 
 	} 
-	[class*="--icon-arrowrightd"]::before { 
+	[class*="--icon-awardbadge"]::before { 
 		content: "\f11b"; 
 	} 
-	[class*="--icon-arrowrightc"]::before { 
+	[class*="--icon-arrowrightd"]::before { 
 		content: "\f11c"; 
 	} 
-	[class*="--icon-arrowrightb"]::before { 
+	[class*="--icon-arrowrightc"]::before { 
 		content: "\f11d"; 
 	} 
-	[class*="--icon-arrowrighta"]::before { 
+	[class*="--icon-arrowrightb"]::before { 
 		content: "\f11e"; 
 	} 
-	[class*="--icon-arrowdownb"]::before { 
+	[class*="--icon-arrowrighta"]::before { 
 		content: "\f11f"; 
 	} 
-	[class*="--icon-arrowdowna"]::before { 
+	[class*="--icon-arrowdownb"]::before { 
 		content: "\f120"; 
+	} 
+	[class*="--icon-arrowdowna"]::before { 
+		content: "\f121"; 
 	} 

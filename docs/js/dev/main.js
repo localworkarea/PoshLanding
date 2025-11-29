@@ -4593,11 +4593,6 @@ function initSliders() {
         momentumRatio: 0.5,
         momentumVelocityRatio: 1.5
       },
-      //touchRatio: 0,
-      //simulateTouch: false,
-      //loop: true,
-      //preloadImages: false,
-      //lazy: true,
       navigation: {
         prevEl: ".brief-refs__slider .swiper-button-prev",
         nextEl: ".brief-refs__slider .swiper-button-next"
@@ -4625,20 +4620,7 @@ function initSliders() {
         }
       },
       // Події
-      on: {
-        // init(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // slideChange(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // transitionEnd(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // touchEnd(swiper) {
-        // 	setTimeout(() => updateSliderEdges(swiper), 50);
-        // },
-      }
+      on: {}
     });
   }
   if (document.querySelector(".brief-type__slider")) {
@@ -4654,11 +4636,6 @@ function initSliders() {
         momentumRatio: 0.5,
         momentumVelocityRatio: 1.5
       },
-      //touchRatio: 0,
-      //simulateTouch: false,
-      //loop: true,
-      //preloadImages: false,
-      //lazy: true,
       navigation: {
         prevEl: ".brief-type__slider .swiper-button-prev",
         nextEl: ".brief-type__slider .swiper-button-next"
@@ -4678,36 +4655,22 @@ function initSliders() {
         // },
       },
       // Події
-      on: {
-        // init(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // slideChange(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // transitionEnd(swiper) {
-        // 	updateSliderEdges(swiper);
-        // },
-        // touchEnd(swiper) {
-        // 	setTimeout(() => updateSliderEdges(swiper), 50);
-        // },
-      }
+      on: {}
     });
   }
 }
-document.querySelector("[data-fls-slider]") ? (
-  // window.addEventListener("load", initSliders) : null 
-  window.addEventListener("load", () => {
-    initSliders();
-    const filterContainer = document.querySelector("[data-brief-filters]");
-    const sliderEl = document.querySelector(".brief-type__slider");
-    if (!filterContainer || !sliderEl) return;
+document.querySelector("[data-fls-slider]") ? window.addEventListener("load", () => {
+  initSliders();
+  const filterBlocks = document.querySelectorAll("[data-brief-filters]");
+  filterBlocks.forEach((filterBlock) => {
+    const sliderEl = filterBlock.querySelector("[data-fls-slider]");
+    if (!sliderEl) return;
     const swiper = sliderEl.swiper;
     const slides = [...sliderEl.querySelectorAll(".swiper-slide")];
-    const filterAll = filterContainer.querySelector('input[value="all"]');
-    const filterInputs = [...filterContainer.querySelectorAll("input[data-filter]")].filter((i) => i.value !== "all");
+    const filterAll = filterBlock.querySelector('input[value="all"]');
+    const filterInputs = [...filterBlock.querySelectorAll("input[data-filter]")].filter((i) => i.value !== "all");
     function applyFilters() {
-      const selectedFilters = [...filterContainer.querySelectorAll("input[data-filter]:checked")].map((i) => i.value);
+      const selectedFilters = [...filterBlock.querySelectorAll("input[data-filter]:checked")].map((i) => i.value);
       if (selectedFilters.includes("all")) {
         slides.forEach((slide2) => slide2.style.display = "");
         swiper.updateSlides();
@@ -4722,7 +4685,7 @@ document.querySelector("[data-fls-slider]") ? (
       swiper.updateSlides();
       swiper.update();
     }
-    filterContainer.addEventListener("change", (e) => {
+    filterBlock.addEventListener("change", (e) => {
       const target = e.target;
       if (target.value === "all") {
         filterInputs.forEach((i) => i.checked = false);
@@ -4740,8 +4703,8 @@ document.querySelector("[data-fls-slider]") ? (
         return;
       }
     });
-  })
-) : null;
+  });
+}) : null;
 class Popup {
   constructor(options) {
     let config = {

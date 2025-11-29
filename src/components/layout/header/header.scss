@@ -15,7 +15,7 @@
 
 .top-header {
 	background-color:var(--white-acc);
-	padding: 10px 0 10px;
+	padding: 13px 0 11px;
 	@media (min-width:toEm($mobileSmall)){
 		padding: 11px 0 9px;
 	}
@@ -23,8 +23,11 @@
 	&__container {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		gap: 20px;
+		justify-content: center;
+		@media (min-width:toEm($mobileSmall)){
+			gap: 20px;
+			justify-content: space-between;
+		}
 	}
 
 	// .top-header__link
@@ -33,7 +36,7 @@
 		align-items: center;
 		text-transform: uppercase;
 		font-weight: 400;
-		font-size: 8px;
+		font-size: 10px;
 		gap: 5px;
 		letter-spacing: 0.01em;
 		line-height: 1.2;
@@ -91,10 +94,10 @@
 
 	// .top-header__list
 	&__list {
-		display: flex;
-		align-items: center;
-		gap: 17px;
+		display: none;
 		@media (min-width:toEm($mobileSmall)){
+			display: flex;
+			align-items: center;
 			gap: 19px;
 		}
 	}
@@ -162,9 +165,14 @@
 	// .main-header__logo
 	&__logo {
 		img {
-			width: 134px; 
+			width: 100%;
+			height: auto;
+			max-width: 160px; 
 			@media (min-width:toEm($mobileSmall)){
-				 width: 200px; 
+				max-width: 200px; 
+			}
+			@media (max-width: toEm(393.98)){
+				// width: 140px; 
 			}
 		}
 	}
@@ -209,6 +217,15 @@
 	
 	// .main-header__btn
 	&__btn {
+		@media (max-width:toEm($mobileSmall)){
+			 outline: none; 
+			white-space: nowrap;
+		}
+		.btn-txt {
+			@media (max-width:toEm($mobileXS)){
+				  font-size: 12px;
+			}
+		}
 	}
 }
 

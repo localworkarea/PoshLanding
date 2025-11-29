@@ -9,13 +9,13 @@
 		<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>POSH Packaging Design - Бриф</title>
-		<script type="module" crossorigin="" src="./js/brief.min.js?v=1764417630509"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1764417630509">
-		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1764417630509">
-		<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1764417630509">
-		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1764417630509">
-		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1764417630509">
-		<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1764417630509">
+		<script type="module" crossorigin="" src="./js/brief.min.js?v=1764432994301"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1764432994301">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1764432994301">
+		<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1764432994301">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1764432994301">
+		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1764432994301">
+		<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1764432994301">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -57,7 +57,7 @@
 										</div>
 										<div class="brief-option">
 											<label class="brief-option__item">
-												<input type="radio" name="task_type" value="concept" required>
+												<input type="radio" name="brief_branch" value="concept" required>
 												<div class="brief-option__box">
 													<div class="brief-option__title t-17">Разработка новой концепции дизайна</div>
 													<div class="brief-option__text t-2">
@@ -66,7 +66,7 @@
 												</div>
 											</label>
 											<label class="brief-option__item">
-												<input type="radio" name="task_type" value="sku">
+												<input type="radio" name="brief_branch" value="sku">
 												<div class="brief-option__box">
 													<div class="brief-option__title t-17">Разработка новой линейки SKU</div>
 													<div class="brief-option__text t-2">
@@ -118,7 +118,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<div class="brief__section" data-brief-step="concept">
+								<div class="brief__section" data-brief-step="sku">
 									<fieldset>
 										<div class="brief__head mb-20">
 											<h2 class="brief__title title-tippy t-16">
@@ -176,6 +176,774 @@
 									<fieldset>
 										<div class="brief__head mb-15">
 											<h2 class="brief__title title-tippy t-16">
+												Выберите тип упаковки
+												<span data-fls-tooltip="" data-tippy-content="Мы всегда учитываем форму и материалы упаковки, чтобы заранее предусмотреть любые нюансы и избежать неожиданностей при производстве."></span>
+											</h2>
+										</div>
+										<div data-brief-filters="">
+											<div class="brief-filters">
+												<div class="brief-filters__name">Фильтр:</div>
+												<div class="brief-filters__list">
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="all" checked data-default-checked="">
+														<span class="brief-filters__box">Все</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="flexible">
+														<span class="brief-filters__box">Гибкая</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="cardboard">
+														<span class="brief-filters__box">Картонная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="paper">
+														<span class="brief-filters__box">Бумажная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="metal">
+														<span class="brief-filters__box">Металлическая</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="glass">
+														<span class="brief-filters__box">Стеклянная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="plastic">
+														<span class="brief-filters__box">Пластиковая</span>
+													</label>
+												</div>
+											</div>
+											<div class="brief-type">
+												<div data-fls-slider="" class="swiper brief-type__slider">
+													<div class="swiper-wrapper">
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Тетра Pak</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонная коробочка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Ящик-экран</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Шоубокс</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пульперкартон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Ящик гофрированный</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонное ведёрко</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонный тубус</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_9">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-9.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_cardboard_10">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-10.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картон другое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Трёхшовный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Гасcет пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пакет с плоским дном</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Дой-пак</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Саше-конверт</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пауч пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Плёнка для запайки</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Вакуумная упаковка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_9">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-9.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Полиамидная оболочка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_10">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-10.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Твист этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_11">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-11.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Шринк-слив</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_flexible_12">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-12.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Гибкое другое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_glass_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянный флакон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_glass_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянная бутылка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_glass_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянная банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_metal_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Алюминиевая банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_metal_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Жестяной балон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_metal_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Консервная банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_metal_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другое металлическое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажный саше</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажная этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажная обертка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_paper_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другое бумажное</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковый контейнер</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая бутылка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая трубка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковое стекло</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая бутылка (спрей)</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Корекс контейнер</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковый контейнер (стакан)</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[sku]" value="type_plastic_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другой пластик</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<button type="button" class="swiper-button-prev" aria-label="prev">
+														<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
+															<path d="M19.1211 12.673L14.2935 17.5005L19.1211 22.3281" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+														</svg>
+													</button>
+													<button type="button" class="swiper-button-next" aria-label="next">
+														<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
+															<path d="M16.293 22.327L21.1206 17.4995L16.293 12.6719" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+														</svg>
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="brief__head mt-60 mb-20">
+											<h2 class="brief__title title-tippy t-16">
+												<div>Крой или чертеж упаковки</div>
+												<span data-fls-tooltip="" data-tippy-content="Крой или чертёж упаковки отображает точные размеры, линии сгиба, реза, клеевые клапаны, линии запайки, фотометки, место по дату, технические отступы, безопасные зоны и т.д."></span>
+											</h2>
+											<div class="brief__subtitle t-balance">
+												<p>
+													Для работы нам потребуется векторный формат файла (.ai, .cdr, .eps, .pdf), но сейчас вы можете загрузить в любом удобном для вас виде
+												</p>
+											</div>
+										</div>
+										<div class="brief-upload mb-8" data-brief-upload="">
+											<input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx">
+											<button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn="">
+												<span class="--icon-file"></span>
+												Загрузить файлы
+											</button>
+											<div class="brief-upload__error" data-upload-error="">Файлы не должны суммарно превышать 10Мб!</div>
+											<div class="brief-upload__list" data-upload-list=""></div>
+										</div>
+										<div class="brief-field__desc t-balance">
+											<p>
+												<span class="--icon-question"></span>
+												На даном этапе это могут быть векторные изображения в формате .ai, .cdr, .eps, .pdf, архивы с материалами в формате .zip, .rar или любой другой удобный формат
+											</p>
+										</div>
+									</fieldset>
+								</div>
+								<div class="brief__section" data-brief-step="sku">
+									<fieldset>
+										<div class="brief__head mb-20">
+											<h2 class="brief__title title-tippy t-16">
+												Информация для лицевой стороны
+												<span data-fls-tooltip="" data-tippy-content="На лицевой стороне упаковки размещаются как маркетинговые акценты, влияющие на продажи, так и обязательные элементы, регулируемые законом о маркировке."></span>
+											</h2>
+											<div class="brief__subtitle">
+												<p>Укажите что необходимо разместить на лицевой части упаковки</p>
+											</div>
+										</div>
+										<div class="brief-textarea mb-20">
+											<label class="brief-textarea__item">
+												<textarea name="" class="textarea-brief" placeholder="Например: мы хотим изобразить сочную фуд-зону и обязательно разместить вес продукта на лице."></textarea>
+											</label>
+										</div>
+										<div class="brief-counter">
+											<div class="brief-counter__txt">
+												<p>
+													Укажите количество
+													<br>
+													языков на упаковке
+												</p>
+											</div>
+											<div data-fls-quantity="" class="quantity">
+												<button data-fls-quantity-minus="" type="button" class="quantity__button quantity__button--minus"></button>
+												<div class="quantity__input">
+													<input data-fls-quantity-value="" autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button data-fls-quantity-plus="" type="button" class="quantity__button quantity__button--plus"></button>
+											</div>
+										</div>
+										<div class="brief__head mt-40 mb-10">
+											<h2 class="brief__title t-16">Технические тексты</h2>
+											<div class="brief__subtitle t-balance">
+												<p>
+													Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете воспользоваться нашим шаблоном — это ускорит процесс и поможет избежать ошибок.
+												</p>
+											</div>
+										</div>
+										<div class="brief-download mb-20">
+											<ul class="brief-download__list">
+												<li class="brief-download__item">
+													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
+														<span>POSH_Technical text_SKU_ENG.docx</span>
+													</a>
+												</li>
+												<li class="brief-download__item">
+													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
+														<span>POSH_Маркировка_SKU_RU.docx</span>
+													</a>
+												</li>
+												<li class="brief-download__item">
+													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
+														<span>POSH_Маркування_SKU_UA.docx</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="brief-upload mb-8" data-brief-upload="">
+											<input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx">
+											<button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn="">
+												<span class="--icon-file"></span>
+												Загрузить файлы
+											</button>
+											<div class="brief-upload__error" data-upload-error="">Файлы не должны суммарно превышать 10Мб!</div>
+											<div class="brief-upload__list" data-upload-list=""></div>
+										</div>
+										<div class="brief-field__desc t-balance --color-primary">
+											<p>
+												<span class="--icon-question"></span>
+												Этот файл вы можете позже выслать менеджеру, но его наличие
+												<b>обязательно.</b>
+											</p>
+										</div>
+									</fieldset>
+								</div>
+								<div class="brief__section" data-brief-step="sku">
+									<fieldset>
+										<div class="brief__head mb-20">
+											<h2 class="brief__title title-tippy t-16">
+												Количество красок
+												<span data-fls-tooltip="" data-tippy-content="Макеты чаще всего включают от 4 до 6 красок. Больше — возможно, но это увеличивает стоимость и требует согласования с типографией. Также, всегда можно оптимизировать цвета до минимума."></span>
+											</h2>
+										</div>
+										<div class="brief-counter mb-20">
+											<div class="brief-counter__txt">
+												<p>
+													Укажите количество красок
+													<br>
+													допустимое в вашем тираже:
+												</p>
+											</div>
+											<div data-fls-quantity="" class="quantity">
+												<button data-fls-quantity-minus="" type="button" class="quantity__button quantity__button--minus"></button>
+												<div class="quantity__input">
+													<input data-fls-quantity-value="" autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button data-fls-quantity-plus="" type="button" class="quantity__button quantity__button--plus"></button>
+											</div>
+										</div>
+										<div class="brief-print__colors">
+											<label class="brief-check">
+												<input type="radio" name="colors_type" value="cmyk" checked data-default-checked="">
+												<span class="brief-check__box --icon-check"></span>
+												CMYK
+											</label>
+											<label class="brief-check">
+												<input type="radio" name="colors_type" value="pantone">
+												<span class="brief-check__box --icon-check"></span>
+												Pantone
+											</label>
+										</div>
+										<div class="brief__head mt-40 mb-20">
+											<h2 class="brief__title title-tippy t-16">
+												<div>
+													Печатные эффекты
+													<span class="final-label --icon-goblet">Финальный вопрос</span>
+												</div>
+												<span data-fls-tooltip="" data-tippy-content="Выбор зависит от типа упаковки, бюджета, технологии печати и цели: привлечь внимание, подчеркнуть премиальность, усилить узнаваемость."></span>
+											</h2>
+											<div class="brief__subtitle t-balance">
+												<p>
+													Укажите какие дополнения допустимы в вашем тираже, что бы Вы хотели видеть на упаковке.
+												</p>
+											</div>
+										</div>
+										<div class="brief-tags brief-tags--effects">
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="matte_surface">
+												<span class="brief-tags__box">Матовая поверхность</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="soft_touch">
+												<span class="brief-tags__box">Soft-touch поверхность</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="glossy">
+												<span class="brief-tags__box">Глянцевые элементы</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="metalized">
+												<span class="brief-tags__box">Металлизированные элементы</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="foil">
+												<span class="brief-tags__box">Тиснение фольгой</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="embossing">
+												<span class="brief-tags__box">Конгрев</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="3d_lacquer">
+												<span class="brief-tags__box">3D лак</span>
+											</label>
+											<label class="brief-tags__item">
+												<input type="checkbox" name="print_effects[]" value="other">
+												<span class="brief-tags__box">Другие</span>
+											</label>
+										</div>
+									</fieldset>
+								</div>
+								<div class="brief__section" data-brief-step="concept">
+									<fieldset>
+										<div class="brief__head mb-15">
+											<h2 class="brief__title title-tippy t-16">
 												Какие предпосылки мотивируют к данному проекту?
 												<span data-fls-tooltip="" data-tippy-content="Опишите, что послужило причиной создания проекта — изменения рынка, обновление дизайна, расширение линейки и т.п."></span>
 											</h2>
@@ -198,7 +966,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<div class="brief__section" data-brief-step="sku">
+								<div class="brief__section" data-brief-step="concept">
 									<fieldset>
 										<div class="brief__head mb-20">
 											<h2 class="brief__title title-tippy t-16">
@@ -363,7 +1131,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<div class="brief__section" data-brief-step="sku">
+								<div class="brief__section" data-brief-step="concept">
 									<fieldset>
 										<div class="brief__head mb-20">
 											<h2 class="brief__title title-tippy t-16">
@@ -449,7 +1217,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<div class="brief__section" data-brief-step="sku">
+								<div class="brief__section" data-brief-step="concept">
 									<fieldset>
 										<div class="brief__head mb-20">
 											<h2 class="brief__title title-tippy t-16">
@@ -643,7 +1411,7 @@
 										</div>
 									</fieldset>
 								</div>
-								<div class="brief__section" data-brief-step="sku">
+								<div class="brief__section" data-brief-step="concept">
 									<fieldset>
 										<div class="brief__head mb-15">
 											<h2 class="brief__title title-tippy t-16">
@@ -651,577 +1419,573 @@
 												<span data-fls-tooltip="" data-tippy-content="Выберите один или несколько типов и форм выпуска продукта — это поможет нам точнее понять вашу задумку и сопоставить её с задачами проекта."></span>
 											</h2>
 										</div>
-										<div class="brief-filters">
-											<div class="brief-filters__name">Фильтр:</div>
-											<div class="brief-filters__list" data-brief-filters="">
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="all" checked>
-													<span class="brief-filters__box">Все</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="flexible">
-													<span class="brief-filters__box">Гибкая</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="cardboard">
-													<span class="brief-filters__box">Картонная</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="paper">
-													<span class="brief-filters__box">Бумажная</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="metal">
-													<span class="brief-filters__box">Металлическая</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="glass">
-													<span class="brief-filters__box">Стеклянная</span>
-												</label>
-												<label class="brief-filters__item">
-													<input type="checkbox" data-filter="" value="plastic">
-													<span class="brief-filters__box">Пластиковая</span>
-												</label>
-											</div>
-										</div>
-										<div class="brief-type">
-											<div data-fls-slider="" class="swiper brief-type__slider">
-												<div class="swiper-wrapper">
-													<!-- КАРТОННАЯ (cardboard) -->
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_1">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-1.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Тетра Pak</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_2">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-2.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Картонная коробочка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_3">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-3.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Ящик-экран</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_4">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-4.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Шоубокс</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_5">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-5.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пульперкартон</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_6">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-6.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Ящик гофрированный</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_7">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-7.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Картонное ведёрко</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_8">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-8.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Картонный тубус</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_9">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-9.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Картонный пакет</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="cardboard">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_cardboard_10">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-10.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Картон другое</p>
-															</div>
-														</div>
-													</div>
-													<!-- ГИБКАЯ (flexible) -->
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_1">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-1.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Трёхшовный пакет</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_2">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-2.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Гасcет пакет</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_3">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-3.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пакет с плоским дном</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_4">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-4.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Дой-пак</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_5">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-5.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Саше-конверт</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_6">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-6.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пауч пакет</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_7">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-7.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Плёнка для запайки</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_8">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-8.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Вакуумная упаковка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_9">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-9.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Полиамидная оболочка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_10">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-10.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Твист этикетка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_11">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-11.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Шринк-слив</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="flexible">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_flexible_12">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-flex-12.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Гибкое другое</p>
-															</div>
-														</div>
-													</div>
-													<!-- СТЕКЛО (glass) -->
-													<div class="swiper-slide" data-ref-tags="glass">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_glass_5">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-glass-5.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Стеклянный флакон</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="glass">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_glass_6">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-glass-6.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Стеклянная бутылка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="glass">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_glass_7">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-glass-7.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Стеклянная банка</p>
-															</div>
-														</div>
-													</div>
-													<!-- МЕТАЛЛ (metal) -->
-													<div class="swiper-slide" data-ref-tags="metal">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_metal_1">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-metal-1.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Алюминиевая банка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="metal">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_metal_2">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-metal-2.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Жестяной балон</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="metal">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_metal_3">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-metal-3.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Консервная банка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="metal">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_metal_4">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-metal-4.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Другое металлическое</p>
-															</div>
-														</div>
-													</div>
-													<!-- БУМАЖНАЯ (paper) -->
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_1">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-1.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Бумажный саше</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_2">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-2.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Бумажная этикетка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_3">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-3.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Бумажная обертка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_4">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-4.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Этикетка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_5">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-5.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Бумажный пакет</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="paper">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_paper_6">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-paper-6.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Другое бумажное</p>
-															</div>
-														</div>
-													</div>
-													<!-- ПЛАСТИКОВАЯ (plastic) -->
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_1">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-1.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковый контейнер</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_2">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-2.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковая бутылка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_3">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-3.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковая трубка</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_4">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-4.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковое стекло</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_5">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-5.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковая бутылка (спрей)</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_6">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-6.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Корекс контейнер</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_7">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-7.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Пластиковый контейнер (стакан)</p>
-															</div>
-														</div>
-													</div>
-													<div class="swiper-slide" data-ref-tags="plastic">
-														<div class="brief-ref-type">
-															<label class="brief-ref-type__label">
-																<input type="checkbox" name="package_type[]" value="type_plastic_8">
-																<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-8.webp" alt="image">
-																<span class="brief-ref-type__check --icon-check"></span>
-															</label>
-															<div class="brief-ref-type__name">
-																<p>Другой пластик</p>
-															</div>
-														</div>
-													</div>
+										<div data-brief-filters="">
+											<div class="brief-filters">
+												<div class="brief-filters__name">Фильтр:</div>
+												<div class="brief-filters__list">
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="all" checked data-default-checked="">
+														<span class="brief-filters__box">Все</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="flexible">
+														<span class="brief-filters__box">Гибкая</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="cardboard">
+														<span class="brief-filters__box">Картонная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="paper">
+														<span class="brief-filters__box">Бумажная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="metal">
+														<span class="brief-filters__box">Металлическая</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="glass">
+														<span class="brief-filters__box">Стеклянная</span>
+													</label>
+													<label class="brief-filters__item">
+														<input type="checkbox" data-filter="" value="plastic">
+														<span class="brief-filters__box">Пластиковая</span>
+													</label>
 												</div>
-												<button type="button" class="swiper-button-prev" aria-label="prev">
-													<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
-														<path d="M19.1211 12.673L14.2935 17.5005L19.1211 22.3281" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-													</svg>
-												</button>
-												<button type="button" class="swiper-button-next" aria-label="next">
-													<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
-														<path d="M16.293 22.327L21.1206 17.4995L16.293 12.6719" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-													</svg>
-												</button>
+											</div>
+											<div class="brief-type">
+												<div data-fls-slider="" class="swiper brief-type__slider">
+													<div class="swiper-wrapper">
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Тетра Pak</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонная коробочка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Ящик-экран</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Шоубокс</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пульперкартон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Ящик гофрированный</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонное ведёрко</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонный тубус</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_9">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-9.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картонный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="cardboard">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_cardboard_10">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-cardboard-10.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Картон другое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Трёхшовный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Гасcет пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пакет с плоским дном</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Дой-пак</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Саше-конверт</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пауч пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Плёнка для запайки</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Вакуумная упаковка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_9">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-9.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Полиамидная оболочка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_10">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-10.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Твист этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_11">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-11.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Шринк-слив</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="flexible">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_flexible_12">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-flex-12.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Гибкое другое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_glass_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянный флакон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_glass_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянная бутылка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="glass">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_glass_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-glass-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Стеклянная банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_metal_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Алюминиевая банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_metal_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Жестяной балон</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_metal_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Консервная банка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="metal">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_metal_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-metal-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другое металлическое</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажный саше</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажная этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажная обертка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Этикетка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Бумажный пакет</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="paper">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_paper_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-paper-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другое бумажное</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_1">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-1.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковый контейнер</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_2">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-2.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая бутылка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_3">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-3.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая трубка</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_4">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-4.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковое стекло</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_5">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-5.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковая бутылка (спрей)</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_6">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-6.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Корекс контейнер</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_7">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-7.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Пластиковый контейнер (стакан)</p>
+																</div>
+															</div>
+														</div>
+														<div class="swiper-slide" data-ref-tags="plastic">
+															<div class="brief-ref-type">
+																<label class="brief-ref-type__label">
+																	<input type="checkbox" name="package_type[concept]" value="type_plastic_8">
+																	<img data-img-ignore="" src="./assets/img/brief/type/type-plastic-8.webp" alt="image">
+																	<span class="brief-ref-type__check --icon-check"></span>
+																</label>
+																<div class="brief-ref-type__name">
+																	<p>Другой пластик</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<button type="button" class="swiper-button-prev" aria-label="prev">
+														<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
+															<path d="M19.1211 12.673L14.2935 17.5005L19.1211 22.3281" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+														</svg>
+													</button>
+													<button type="button" class="swiper-button-next" aria-label="next">
+														<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<circle cx="17.5" cy="17.5" r="17.5" fill="#1A1F35"></circle>
+															<path d="M16.293 22.327L21.1206 17.4995L16.293 12.6719" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+														</svg>
+													</button>
+												</div>
 											</div>
 										</div>
 										<div class="brief__head mt-40 mb-20">
@@ -1239,7 +2003,7 @@
 											</label>
 										</div>
 										<label class="brief-copy mt-30">
-											<input type="checkbox" checked name="send_copy" value="1">
+											<input type="checkbox" checked data-default-checked="" name="send_copy" value="1">
 											<span class="brief-copy__box">
 												<span class="brief-copy__icon --icon-check"></span>
 												<span class="brief-copy__txt">
@@ -1252,8 +2016,9 @@
 								</div>
 							</div>
 							<div class="brief__nav">
-								<button type="button" data-brief-prev="" data-fls-btn="" class="brief__btn-prev --icon-arrowrightb" aria-label="prev">
-									<span>Вернуться назад</span>
+								<button type="button" data-brief-prev="" data-fls-btn="" class="brief__btn-prev" aria-label="prev">
+									<span class="icon --icon-arrowrightb"></span>
+									<span class="txt">Вернуться назад</span>
 								</button>
 								<button type="button" data-brief-next="" data-fls-btn="" class="brief__btn-next btn btn--5" aria-label="link">
 									<span class="btn-txt">Следующий шаг</span>
