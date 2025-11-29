@@ -7977,16 +7977,20 @@ const lenis = new Lenis({
   // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
   lerp: 0.08,
   // Оптимальное значение для гладкого скролла
+  // lerp: 0.06, // Оптимальное значение для гладкого скролла
   wheelMultiplier: 1,
   // Контроль скорости прокрутки
   touchMultiplier: 2
 });
+lenis.on("scroll", ScrollTrigger.update);
 gsapWithCSS.ticker.add((time) => {
   lenis.raf(time * 1e3);
-  ScrollTrigger.update();
 });
 gsapWithCSS.ticker.lagSmoothing(0);
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img").forEach((el) => {
+    el.style.willChange = "transform";
+  });
   const page = document.querySelector(".page--index");
   if (!page) return;
   const children = Array.from(page.children);
@@ -7994,6 +7998,14 @@ document.addEventListener("DOMContentLoaded", () => {
   children.forEach((child, i) => {
     child.style.zIndex = maxZ - i;
   });
+  let refreshTimeout;
+  function safeRefresh() {
+    clearTimeout(refreshTimeout);
+    refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+  }
+  safeRefresh();
   function createGsapAnim() {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     const GSAP_MQ = window.matchMedia("(min-width: 30.061em)");
@@ -8048,7 +8060,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     });
-    ScrollTrigger.refresh();
   }
   createGsapAnim();
   let lastWidth2 = window.innerWidth;
@@ -8065,49 +8076,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   resizeObserver2.observe(document.body);
   const items = document.querySelectorAll(".list-hero__item");
-  if (!items.length) return;
-  let animationInterval = null;
-  const MQ = window.matchMedia("(max-width: 48.061em)");
-  const DURATION = 700;
-  const DELAY = 1500;
-  function showSequentially() {
-    let index = 0;
-    function animateNext() {
-      items.forEach((item) => {
-        item.style.transition = "none";
-        item.style.opacity = "0";
-        item.style.transform = "translate(-50%, 100%)";
-      });
-      requestAnimationFrame(() => {
-        const item = items[index];
-        item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
-        item.style.opacity = "1";
-        item.style.transform = "translate(-50%, 0)";
-      });
-      index = (index + 1) % items.length;
+  if (items.length) {
+    let showSequentially = function() {
+      let index = 0;
+      function animateNext() {
+        items.forEach((item) => {
+          item.style.transition = "none";
+          item.style.opacity = "0";
+          item.style.transform = "translate(-50%, 100%)";
+        });
+        requestAnimationFrame(() => {
+          const item = items[index];
+          item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+          item.style.opacity = "1";
+          item.style.transform = "translate(-50%, 0)";
+        });
+        index = (index + 1) % items.length;
+        clearTimeout(animationInterval);
+        animationInterval = setTimeout(animateNext, DELAY + DURATION);
+      }
+      animateNext();
+    }, stopAnimation = function() {
       clearTimeout(animationInterval);
-      animationInterval = setTimeout(animateNext, DELAY + DURATION);
-    }
-    animateNext();
+      animationInterval = null;
+      items.forEach((item) => {
+        item.style.transition = "";
+        item.style.opacity = "";
+        item.style.transform = "";
+      });
+    }, checkAnimation = function() {
+      if (MQ.matches) {
+        if (!animationInterval) showSequentially();
+      } else {
+        stopAnimation();
+      }
+    };
+    let animationInterval = null;
+    const MQ = window.matchMedia("(max-width: 48.061em)");
+    const DURATION = 700;
+    const DELAY = 1500;
+    checkAnimation();
+    MQ.addEventListener("change", checkAnimation);
   }
-  function stopAnimation() {
-    clearTimeout(animationInterval);
-    animationInterval = null;
-    items.forEach((item) => {
-      item.style.transition = "";
-      item.style.opacity = "";
-      item.style.transform = "";
-    });
-  }
-  function checkAnimation() {
-    if (MQ.matches) {
-      if (!animationInterval) showSequentially();
-    } else {
-      stopAnimation();
-    }
-  }
-  checkAnimation();
-  MQ.addEventListener("change", checkAnimation);
   const heroVideosList = document.querySelectorAll(".list-hero__item video");
   if (heroVideosList.length) {
     heroVideosList.forEach((video) => {
@@ -8125,128 +8135,156 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   const portfolio = document.querySelector(".portfolio");
-  if (!portfolio) return;
-  let mouseX = 0;
-  let targetX = 0;
-  let isInView = false;
-  const strength = 40;
-  const easing = 0.03;
-  window.addEventListener("mousemove", (e) => {
-    portfolio.getBoundingClientRect();
-    const centerX = window.innerWidth / 2;
-    const offset = (e.clientX - centerX) / centerX;
-    targetX = offset * strength;
-  });
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        isInView = entry.isIntersecting;
-      });
-    },
-    {
-      threshold: 0.2
-    }
-  );
-  observer.observe(portfolio);
-  function animate() {
-    if (isInView) {
+  if (portfolio) {
+    let render3 = function() {
       mouseX += (targetX - mouseX) * easing;
-      portfolio.style.transform = `translateX(${mouseX}px)`;
+      portfolio.style.transform = `translate3d(${mouseX}px,0,0)`;
+    };
+    let mouseX = 0;
+    let targetX = 0;
+    const strength = 40;
+    const easing = 0.03;
+    let centerX = window.innerWidth / 2;
+    window.addEventListener("resize", () => {
+      centerX = window.innerWidth / 2;
+    });
+    window.addEventListener("mousemove", (e) => {
+      const offset = (e.clientX - centerX) / centerX;
+      targetX = offset * strength;
+    }, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsapWithCSS.ticker.add(render3);
+        } else {
+          gsapWithCSS.ticker.remove(render3);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(portfolio);
+    try {
+      portfolio.style.willChange = "transform";
+      portfolio.style.backfaceVisibility = "hidden";
+    } catch (e) {
     }
-    requestAnimationFrame(animate);
   }
-  animate();
   const heroBlock = document.querySelector("[data-video-hero]");
-  if (!heroBlock) return;
-  const playBtn = heroBlock.querySelector(".video-hero__play");
-  const previewWrapper = heroBlock.querySelector(".video-hero__preview");
-  const previewVideo = previewWrapper?.querySelector("video");
-  const mainWrapper = heroBlock.querySelector(".video-hero__main");
-  const mainVideo = mainWrapper?.querySelector("video");
-  if (!playBtn || !previewVideo || !mainVideo) return;
-  mainVideo.pause();
-  previewVideo.muted = true;
-  let mainWasPlayedOnce = false;
-  function playMainVideo() {
-    mainWasPlayedOnce = true;
-    playBtn.style.opacity = "0";
-    playBtn.style.pointerEvents = "none";
-    previewWrapper.classList.add("--not-active");
-    previewVideo.pause();
-    mainVideo.play();
-  }
-  function toggleMainPlayback() {
-    if (mainVideo.paused) {
-      mainVideo.play();
+  if (heroBlock) {
+    let playMainVideo = function() {
+      mainWasPlayedOnce = true;
       playBtn.style.opacity = "0";
       playBtn.style.pointerEvents = "none";
-    } else {
-      mainVideo.pause();
-      playBtn.style.opacity = "1";
-      playBtn.style.pointerEvents = "auto";
-    }
-  }
-  heroBlock.addEventListener("click", () => {
-    if (!mainWasPlayedOnce) {
-      playMainVideo();
-      return;
-    }
-    toggleMainPlayback();
-  });
-  const observer2 = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          if (!mainVideo.paused) {
-            mainVideo.pause();
-            if (mainWasPlayedOnce) {
-              playBtn.style.opacity = "1";
-              playBtn.style.pointerEvents = "auto";
+      previewWrapper.classList.add("--not-active");
+      previewVideo.pause();
+      mainVideo.play();
+    }, toggleMainPlayback = function() {
+      if (mainVideo.paused) {
+        mainVideo.play();
+        playBtn.style.opacity = "0";
+        playBtn.style.pointerEvents = "none";
+      } else {
+        mainVideo.pause();
+        playBtn.style.opacity = "1";
+        playBtn.style.pointerEvents = "auto";
+      }
+    };
+    const playBtn = heroBlock.querySelector(".video-hero__play");
+    const previewWrapper = heroBlock.querySelector(".video-hero__preview");
+    const previewVideo = previewWrapper?.querySelector("video");
+    const mainWrapper = heroBlock.querySelector(".video-hero__main");
+    const mainVideo = mainWrapper?.querySelector("video");
+    if (!playBtn || !previewVideo || !mainVideo) return;
+    mainVideo.pause();
+    previewVideo.muted = true;
+    let mainWasPlayedOnce = false;
+    heroBlock.addEventListener("click", () => {
+      if (!mainWasPlayedOnce) {
+        playMainVideo();
+        return;
+      }
+      toggleMainPlayback();
+    });
+    const observer2 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            if (!mainVideo.paused) {
+              mainVideo.pause();
+              if (mainWasPlayedOnce) {
+                playBtn.style.opacity = "1";
+                playBtn.style.pointerEvents = "auto";
+              }
             }
           }
-        }
-      });
-    },
-    {
-      threshold: 0.2
-    }
-  );
-  observer2.observe(heroBlock);
+        });
+      },
+      {
+        threshold: 0.2
+      }
+    );
+    observer2.observe(heroBlock);
+  }
   document.addEventListener("click", (e) => {
     const link = e.target.closest("[data-go-link]");
-    if (!link) return;
-    e.preventDefault();
-    const targetId = link.dataset.goLink;
-    const target = document.querySelector(`[data-go-id="${targetId}"]`);
-    if (!target) return;
-    const offset = 30;
-    const rect = target.getBoundingClientRect();
-    let targetY = rect.top + window.scrollY - offset;
-    const style = window.getComputedStyle(target);
-    const matrix = style.transform;
-    if (matrix && matrix !== "none") {
-      const values = matrix.match(/matrix.*\((.+)\)/);
-      if (values) {
-        const parts = values[1].split(",");
-        const translateY = parseFloat(parts[5]);
-        if (!isNaN(translateY)) {
-          targetY -= translateY;
+    if (link) {
+      e.preventDefault();
+      const targetId = link.dataset.goLink;
+      const target = document.querySelector(`[data-go-id="${targetId}"]`);
+      if (!target) return;
+      const offset = 30;
+      const rect = target.getBoundingClientRect();
+      let targetY = rect.top + window.scrollY - offset;
+      const style = window.getComputedStyle(target);
+      const matrix = style.transform;
+      if (matrix && matrix !== "none") {
+        const values = matrix.match(/matrix.*\((.+)\)/);
+        if (values) {
+          const parts = values[1].split(",");
+          const translateY = parseFloat(parts[5]);
+          if (!isNaN(translateY)) {
+            targetY -= translateY;
+          }
         }
       }
+      const currentY = lenis.scroll;
+      const distance = Math.abs(targetY - currentY);
+      let duration;
+      if (distance < 300) {
+        duration = 1.4;
+      } else if (distance < 900) {
+        duration = 1.8;
+      } else {
+        duration = 2;
+      }
+      lenis.scrollTo(targetY, {
+        duration,
+        easing: (t) => 1 - Math.pow(1 - t, 4)
+      });
     }
-    const currentY = lenis.scroll;
-    const distance = Math.abs(targetY - currentY);
-    let duration;
-    if (distance < 300) {
-      duration = 1.4;
-    } else if (distance < 900) {
-      duration = 1.8;
-    } else {
-      duration = 2;
-    }
-    lenis.scrollTo(targetY, {
-      duration,
-      easing: (t) => 1 - Math.pow(1 - t, 4)
-    });
   });
+  const mediaObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        try {
+          v.preload = v.preload || "metadata";
+        } catch (e) {
+        }
+        v.play && v.play().catch(() => {
+        });
+      } else {
+        if (v && !v.paused) v.pause && v.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  const smallVideos = document.querySelectorAll(".list-hero__item video, .portfolio video");
+  if (smallVideos.length) {
+    smallVideos.forEach((v) => {
+      try {
+        v.preload = v.preload || "metadata";
+      } catch (e) {
+      }
+      mediaObserver.observe(v);
+    });
+  }
 });

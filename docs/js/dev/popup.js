@@ -126,6 +126,18 @@ let formValidate = {
           textFile.textContent = "";
         });
       }
+      let briefUploads = form.querySelectorAll("[data-brief-upload]");
+      if (briefUploads.length) {
+        briefUploads.forEach((block) => {
+          const input = block.querySelector(".brief-upload__input");
+          const list = block.querySelector("[data-upload-list]");
+          const error = block.querySelector("[data-upload-error]");
+          input.value = "";
+          if (error) error.classList.remove("--show");
+          if (list) list.innerHTML = "";
+          block._filesArray = [];
+        });
+      }
     }, 0);
   },
   emailTest(formRequiredItem) {
@@ -261,6 +273,60 @@ function formInit() {
         fileBlock.classList.remove("--file-added");
         textFile.textContent = "";
       }
+    });
+  }
+  const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
+  if (uploadBlocks.length) {
+    const MAX_SIZE = 10 * 1024 * 1024;
+    uploadBlocks.forEach((block) => {
+      block._filesArray = [];
+      const input = block.querySelector(".brief-upload__input");
+      const btn = block.querySelector("[data-upload-btn]");
+      const list = block.querySelector("[data-upload-list]");
+      const error = block.querySelector("[data-upload-error]");
+      let filesArray = block._filesArray;
+      btn.addEventListener("click", () => input.click());
+      input.addEventListener("change", () => {
+        const chosenFiles = Array.from(input.files);
+        const currentSize = filesArray.reduce((t, f) => t + f.size, 0);
+        const chosenSize = chosenFiles.reduce((t, f) => t + f.size, 0);
+        if (currentSize + chosenSize > MAX_SIZE) {
+          error.classList.add("--show");
+          input.value = "";
+          return;
+        } else {
+          error.classList.remove("--show");
+        }
+        filesArray.push(...chosenFiles);
+        input.value = "";
+        renderList();
+      });
+      function renderList() {
+        list.innerHTML = "";
+        filesArray.forEach((file, index) => {
+          const item = document.createElement("div");
+          item.className = "brief-upload__file";
+          item.innerHTML = `
+						${file.name}
+						<button type="button" data-remove-index="${index}" aria-label="remove">
+							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#676767"/>
+								<path d="M5 5L8 8L5 11" stroke="#676767"/>
+								<path d="M11 11L8 8L11 5" stroke="#676767"/>
+							</svg>
+						</button>
+					`;
+          list.appendChild(item);
+        });
+      }
+      list.addEventListener("click", (e) => {
+        const btn2 = e.target.closest("[data-remove-index]");
+        if (!btn2) return;
+        const index = +btn2.dataset.removeIndex;
+        filesArray.splice(index, 1);
+        error.classList.remove("--show");
+        renderList();
+      });
     });
   }
   formSubmit();

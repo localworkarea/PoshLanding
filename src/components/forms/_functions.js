@@ -113,6 +113,23 @@ export let formValidate = {
 				});
 			}
 
+			// === Очистка кастомных upload-блоков брифа ===
+			let briefUploads = form.querySelectorAll("[data-brief-upload]");
+			if (briefUploads.length) {
+			    briefUploads.forEach(block => {
+			        const input = block.querySelector(".brief-upload__input");
+			        const list = block.querySelector("[data-upload-list]");
+			        const error = block.querySelector("[data-upload-error]");
+					
+			        input.value = "";
+			        if (error) error.classList.remove("--show");
+			        if (list) list.innerHTML = "";
+					
+			        block._filesArray = []; // ← сброс массива файлов
+			    });
+			}
+			
+
 
 		}, 0)
 	},

@@ -1,26 +1,28 @@
+import { FLS } from "@js/common/functions.js";
 import Lenis from 'lenis'
-import {
-	FLS
-} from "@js/common/functions.js";
-import {
-	gsap,
-	ScrollTrigger,
-	Draggable,
-	MotionPathPlugin
-} from "gsap/all";
+import { gsap, ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({
-	autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
-	lerp: 0.08, // Оптимальное значение для гладкого скролла
-	wheelMultiplier: 1, // Контроль скорости прокрутки
-	touchMultiplier: 2,
+  autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
+  lerp: 0.08, // Оптимальное значение для гладкого скролла
+  // lerp: 0.06, // Оптимальное значение для гладкого скролла
+  wheelMultiplier: 1, // Контроль скорости прокрутки
+  touchMultiplier: 2,
 });
 
+// gsap.ticker.add((time) => {
+//   lenis.raf(time * 1000); // GSAP даёт секунды, Lenis хочет миллисекунды
+//   ScrollTrigger.update(); // Обновляем ScrollTrigger в одном месте
+// });
+
+// один раз обновляем после lenis
+lenis.on('scroll', ScrollTrigger.update);
+
+// в тикере только lenis
 gsap.ticker.add((time) => {
-	lenis.raf(time * 1000); // GSAP даёт секунды, Lenis хочет миллисекунды
-	ScrollTrigger.update(); // Обновляем ScrollTrigger в одном месте
+  lenis.raf(time * 1000);
 });
 
 // Отключаем лаг-гашение, чтобы всё было отзывчиво
@@ -28,7 +30,16 @@ gsap.ticker.lagSmoothing(0);
 
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+	document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img")
+  .forEach(el => {
+    el.style.willChange = "transform";
+  });
+
 
 	// == index sections ===============
 	const page = document.querySelector('.page--index');
@@ -42,6 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// == GSAP animations
+
+	let refreshTimeout;
+	function safeRefresh() {
+	  clearTimeout(refreshTimeout);
+	  refreshTimeout = setTimeout(() => {
+	    ScrollTrigger.refresh();
+	  }, 150);
+	}
+	 safeRefresh();
+
 	function createGsapAnim() {
 
 		// удаляем тригеры после срабатывания фунции (поворота экрана...)
@@ -111,10 +132,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		});
 
-		ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
+		// ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
+		// let refreshTimeout;
+
+		// function safeRefresh() {
+		//   clearTimeout(refreshTimeout);
+		//   refreshTimeout = setTimeout(() => {
+		//     ScrollTrigger.refresh();
+		//   }, 150);
+		// }
+		// safeRefresh();
 
 	}
-	createGsapAnim();
+		createGsapAnim();
+
+
 
 
 	// === RESIZE OBSERVER WITH DEBOUNCE ==========================================
@@ -136,61 +168,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// == animations list-hero__item ===========
 	const items = document.querySelectorAll(".list-hero__item");
-	if (!items.length) return;
-
-	let animationInterval = null;
-	const MQ = window.matchMedia("(max-width: 48.061em)");
-	const DURATION = 700;
-	const DELAY = 1500;
-
-	function showSequentially() {
-		let index = 0;
-
-		function animateNext() {
-			// Сбрасываем все
-			items.forEach(item => {
-				item.style.transition = "none";
-				item.style.opacity = "0";
-				item.style.transform = "translate(-50%, 100%)";
-			});
-
-			requestAnimationFrame(() => {
-				const item = items[index];
-				item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
-				item.style.opacity = "1";
-				item.style.transform = "translate(-50%, 0)";
-			});
-
-			index = (index + 1) % items.length;
-
-			// Следующий элемент через 1 сек + время анимации
+	if (items.length) {
+		let animationInterval = null;
+		const MQ = window.matchMedia("(max-width: 48.061em)");
+		const DURATION = 700;
+		const DELAY = 1500;
+	
+		function showSequentially() {
+			let index = 0;
+	
+			function animateNext() {
+				// Сбрасываем все
+				items.forEach(item => {
+					item.style.transition = "none";
+					item.style.opacity = "0";
+					item.style.transform = "translate(-50%, 100%)";
+				});
+	
+				requestAnimationFrame(() => {
+					const item = items[index];
+					item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+					item.style.opacity = "1";
+					item.style.transform = "translate(-50%, 0)";
+				});
+	
+				index = (index + 1) % items.length;
+	
+				// Следующий элемент через 1 сек + время анимации
+				clearTimeout(animationInterval);
+				animationInterval = setTimeout(animateNext, DELAY + DURATION);
+			}
+	
+			animateNext();
+		}
+	
+		function stopAnimation() {
 			clearTimeout(animationInterval);
-			animationInterval = setTimeout(animateNext, DELAY + DURATION);
+			animationInterval = null;
+			items.forEach(item => {
+				item.style.transition = "";
+				item.style.opacity = "";
+				item.style.transform = "";
+			});
 		}
-
-		animateNext();
-	}
-
-	function stopAnimation() {
-		clearTimeout(animationInterval);
-		animationInterval = null;
-		items.forEach(item => {
-			item.style.transition = "";
-			item.style.opacity = "";
-			item.style.transform = "";
-		});
-	}
-
-	function checkAnimation() {
-		if (MQ.matches) {
-			if (!animationInterval) showSequentially();
-		} else {
-			stopAnimation();
+	
+		function checkAnimation() {
+			if (MQ.matches) {
+				if (!animationInterval) showSequentially();
+			} else {
+				stopAnimation();
+			}
 		}
+	
+		checkAnimation();
+		MQ.addEventListener("change", checkAnimation);
 	}
 
-	checkAnimation();
-	MQ.addEventListener("change", checkAnimation);
 
 
 	// === HERO LIST VIDEO HOVER REPLAY ==================================
@@ -218,179 +251,141 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 	// == animations parallax section .portfolio =================
 	const portfolio = document.querySelector('.portfolio');
-	if (!portfolio) return;
+	if (portfolio) {
 
-	let mouseX = 0;
-	let targetX = 0;
-	let isInView = false;
+		let mouseX = 0;
+		let targetX = 0;
 
-	const strength = 40; // максимальное смещение (px)
-	const easing = 0.03; // плавность движения
+		const strength = 40;  // максимальное смещение (px)
+		const easing = 0.03;  // плавность
 
-	// Отслеживаем движение мыши
-	window.addEventListener('mousemove', (e) => {
-		const rect = portfolio.getBoundingClientRect();
-		const centerX = window.innerWidth / 2;
-		// нормализуем положение от -1 до 1
-		const offset = (e.clientX - centerX) / centerX;
-		targetX = offset * strength;
-	});
+		// центр экрана
+		let centerX = window.innerWidth / 2;
+		window.addEventListener('resize', () => {
+			centerX = window.innerWidth / 2;
+		});
 
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach(entry => {
-				isInView = entry.isIntersecting;
-			});
-		}, {
-			threshold: 0.2
-		}
-	);
+		// Ловим мышь (лёгкая логика)
+		window.addEventListener('mousemove', (e) => {
+			const offset = (e.clientX - centerX) / centerX; // -1..1
+			targetX = offset * strength;
+		}, { passive: true });
 
-	observer.observe(portfolio);
-
-	// Анимационный цикл
-	function animate() {
-		if (isInView) {
+		// === Рендер функция (используется GSAP ticker'ом) ===
+		function render() {
 			mouseX += (targetX - mouseX) * easing;
-			portfolio.style.transform = `translateX(${mouseX}px)`;
+			portfolio.style.transform = `translate3d(${mouseX}px,0,0)`;
 		}
-		requestAnimationFrame(animate);
-	}
 
-	animate();
+		// === Observer включает и выключает GSAP ticker ===
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					// Элемент появился → запускаем рендер
+					gsap.ticker.add(render);
+				} else {
+					// Элемент ушёл → отключаем, чтобы не тратить ресурсы
+					gsap.ticker.remove(render);
+				}
+			});
+		}, { threshold: 0.2 });
+
+		observer.observe(portfolio);
+
+		// браузерные оптимизации
+		try {
+			portfolio.style.willChange = 'transform';
+			portfolio.style.backfaceVisibility = 'hidden';
+		} catch (e) {}
+	}
 
 
 
 	// == hero video =================================
-	// const productVideoBlock = document.querySelector(".video-hero__video");
-	// if (!productVideoBlock) return;
-
-	// const playBtn = productVideoBlock.querySelector(".video-hero__play");
-	// const video = productVideoBlock.querySelector("video");
-
-	// if (!playBtn || !video) return;
-
-	// // Изначально видео на паузе
-	// video.pause();
-
-	// // Клик по кнопке — запускаем видео
-	// playBtn.addEventListener("click", () => {
-	// 	video.play();
-	// 	playBtn.style.opacity = "0";
-	// 	playBtn.style.pointerEvents = "none";
-	// });
-
-	// // Клик по видео — ставим на паузу
-	// video.addEventListener("click", () => {
-	// 	if (video.paused) {
-	// 		video.play();
-	// 		playBtn.style.opacity = "0";
-	// 		playBtn.style.pointerEvents = "none";
-	// 	} else {
-	// 		video.pause();
-	// 		playBtn.style.opacity = "1";
-	// 		playBtn.style.pointerEvents = "auto";
-	// 	}
-	// });
-
-	// // Отслеживание вьюпорта
-	// const observer2 = new IntersectionObserver(
-	// 	(entries) => {
-	// 		entries.forEach((entry) => {
-	// 			if (!entry.isIntersecting) {
-	// 				video.pause();
-	// 				playBtn.style.opacity = "1";
-	// 				playBtn.style.pointerEvents = "auto";
-	// 			}
-	// 		});
-	// 	},
-	// 	{ threshold: 0.2 }
-	// );
-
-	// observer2.observe(productVideoBlock);
 
 	const heroBlock = document.querySelector("[data-video-hero]");
-	if (!heroBlock) return;
-
-	const playBtn = heroBlock.querySelector(".video-hero__play");
-	const previewWrapper = heroBlock.querySelector(".video-hero__preview");
-	const previewVideo = previewWrapper?.querySelector("video");
-	const mainWrapper = heroBlock.querySelector(".video-hero__main");
-	const mainVideo = mainWrapper?.querySelector("video");
-
-	if (!playBtn || !previewVideo || !mainVideo) return;
-
-	// --- Начальные состояния ---
-	mainVideo.pause(); 
-	previewVideo.muted = true; 
-	// previewVideo.play().catch(() => {});
-	let mainWasPlayedOnce = false;
-
-	// --- Функция запуска основного видео ---
-	function playMainVideo() {
-		mainWasPlayedOnce = true;
-
-		// 1. Скрываем кнопку
-		playBtn.style.opacity = "0";
-		playBtn.style.pointerEvents = "none";
-
-		// 2. Скрываем превью
-		previewWrapper.classList.add("--not-active");
-		previewVideo.pause();
-
-		// 3. Запускаем основное
-		mainVideo.play();
-	}
-
-	// --- Функция паузы/плея после первого запуска ---
-	function toggleMainPlayback() {
-		if (mainVideo.paused) {
-			mainVideo.play();
+	// if (!heroBlock) return;
+	if (heroBlock) {
+		const playBtn = heroBlock.querySelector(".video-hero__play");
+		const previewWrapper = heroBlock.querySelector(".video-hero__preview");
+		const previewVideo = previewWrapper?.querySelector("video");
+		const mainWrapper = heroBlock.querySelector(".video-hero__main");
+		const mainVideo = mainWrapper?.querySelector("video");
+	
+		if (!playBtn || !previewVideo || !mainVideo) return;
+	
+		// --- Начальные состояния ---
+		mainVideo.pause(); 
+		previewVideo.muted = true; 
+		// previewVideo.play().catch(() => {});
+		let mainWasPlayedOnce = false;
+	
+		// --- Функция запуска основного видео ---
+		function playMainVideo() {
+			mainWasPlayedOnce = true;
+	
+			// 1. Скрываем кнопку
 			playBtn.style.opacity = "0";
 			playBtn.style.pointerEvents = "none";
-		} else {
-			mainVideo.pause();
-			playBtn.style.opacity = "1";
-			playBtn.style.pointerEvents = "auto";
+	
+			// 2. Скрываем превью
+			previewWrapper.classList.add("--not-active");
+			previewVideo.pause();
+	
+			// 3. Запускаем основное
+			mainVideo.play();
 		}
-	}
-
-	// --- Обработчик клика по всему блоку ---
-	heroBlock.addEventListener("click", () => {
-		// Первый клик — запускаем основное
-		if (!mainWasPlayedOnce) {
-			playMainVideo();
-			return;
+	
+		// --- Функция паузы/плея после первого запуска ---
+		function toggleMainPlayback() {
+			if (mainVideo.paused) {
+				mainVideo.play();
+				playBtn.style.opacity = "0";
+				playBtn.style.pointerEvents = "none";
+			} else {
+				mainVideo.pause();
+				playBtn.style.opacity = "1";
+				playBtn.style.pointerEvents = "auto";
+			}
 		}
-
-		// Дальше — только управление основным
-		toggleMainPlayback();
-	});
-
-	// --- Поведение при выходе блока из вьюпорта ---
-	const observer2 = new IntersectionObserver(
-		(entries) => {
-			entries.forEach(entry => {
-				if (!entry.isIntersecting) {
-					// Останавливаем только основное видео
-					if (!mainVideo.paused) {
-						mainVideo.pause();
-						if (mainWasPlayedOnce) {
-							playBtn.style.opacity = "1";
-							playBtn.style.pointerEvents = "auto";
+	
+		// --- Обработчик клика по всему блоку ---
+		heroBlock.addEventListener("click", () => {
+			// Первый клик — запускаем основное
+			if (!mainWasPlayedOnce) {
+				playMainVideo();
+				return;
+			}
+	
+			// Дальше — только управление основным
+			toggleMainPlayback();
+		});
+	
+		// --- Поведение при выходе блока из вьюпорта ---
+		const observer2 = new IntersectionObserver(
+			(entries) => {
+				entries.forEach(entry => {
+					if (!entry.isIntersecting) {
+						// Останавливаем только основное видео
+						if (!mainVideo.paused) {
+							mainVideo.pause();
+							if (mainWasPlayedOnce) {
+								playBtn.style.opacity = "1";
+								playBtn.style.pointerEvents = "auto";
+							}
 						}
 					}
-				}
-			});
-		}, {
-			threshold: 0.2
-		}
-	);
+				});
+			}, {
+				threshold: 0.2
+			}
+		);
+	
+		observer2.observe(heroBlock);
+	};
 
-	observer2.observe(heroBlock);
 
 
 
@@ -399,56 +394,79 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Плавный скролл к блокам с учётом GSAP и Lenis
 	document.addEventListener("click", (e) => {
 		const link = e.target.closest("[data-go-link]");
-		if (!link) return;
+		if (link) {
+					e.preventDefault();
+			
+					const targetId = link.dataset.goLink;
+					const target = document.querySelector(`[data-go-id="${targetId}"]`);
+			
+					if (!target) return;
+			
+					const offset = 30;
+			
+					const rect = target.getBoundingClientRect();
+					let targetY = rect.top + window.scrollY - offset;
+			
+					// 2. Если у блока есть transform → Учесть GSAP-смещение
+					const style = window.getComputedStyle(target);
+					const matrix = style.transform;
+			
+					if (matrix && matrix !== "none") {
+						const values = matrix.match(/matrix.*\((.+)\)/);
+						if (values) {
+							const parts = values[1].split(',');
+							const translateY = parseFloat(parts[5]); // Y-смещение
+			
+							if (!isNaN(translateY)) {
+								// translateY например "-113px" → надо вычесть
+								targetY -= translateY;
+							}
+						}
+					}
+			
+					// 3. Динамическая плавность
+					const currentY = lenis.scroll;
+					const distance = Math.abs(targetY - currentY);
+			
+					let duration;
+					if (distance < 300) {
+						duration = 1.4;
+					} else if (distance < 900) {
+						duration = 1.8;
+					} else {
+						duration = 2;
+					}
+			
+					// 4. Плавный scroll с учетом GSAP transform
+					lenis.scrollTo(targetY, {
+						duration,
+						easing: (t) => 1 - Math.pow(1 - t, 4),
+					});
 
-		e.preventDefault();
-
-		const targetId = link.dataset.goLink;
-		const target = document.querySelector(`[data-go-id="${targetId}"]`);
-
-		if (!target) return;
-
-		const offset = 30;
-
-		const rect = target.getBoundingClientRect();
-		let targetY = rect.top + window.scrollY - offset;
-
-		// 2. Если у блока есть transform → Учесть GSAP-смещение
-		const style = window.getComputedStyle(target);
-		const matrix = style.transform;
-
-		if (matrix && matrix !== "none") {
-			const values = matrix.match(/matrix.*\((.+)\)/);
-			if (values) {
-				const parts = values[1].split(',');
-				const translateY = parseFloat(parts[5]); // Y-смещение
-
-				if (!isNaN(translateY)) {
-					// translateY например "-113px" → надо вычесть
-					targetY -= translateY;
-				}
-			}
 		}
-
-		// 3. Динамическая плавность
-		const currentY = lenis.scroll;
-		const distance = Math.abs(targetY - currentY);
-
-		let duration;
-		if (distance < 300) {
-			duration = 1.4;
-		} else if (distance < 900) {
-			duration = 1.8;
-		} else {
-			duration = 2;
-		}
-
-		// 4. Плавный scroll с учетом GSAP transform
-		lenis.scrollTo(targetY, {
-			duration,
-			easing: (t) => 1 - Math.pow(1 - t, 4),
-		});
 	});
+
+		// Optimize media: pause/play many small autoplay videos when they are offscreen
+	const mediaObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			const v = entry.target;
+			if (entry.isIntersecting) {
+				// prefer light preload and try to play when visible
+				try { v.preload = v.preload || 'metadata'; } catch (e) {}
+				v.play && v.play().catch(() => {});
+			} else {
+				if (v && !v.paused) v.pause && v.pause();
+			}
+		});
+	}, { threshold: 0.5 });
+
+	const smallVideos = document.querySelectorAll('.list-hero__item video, .portfolio video');
+	if (smallVideos.length) {
+		smallVideos.forEach(v => {
+			try { v.preload = v.preload || 'metadata'; } catch (e) {}
+			mediaObserver.observe(v);
+		});
+	}
 
 
 });

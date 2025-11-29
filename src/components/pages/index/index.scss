@@ -2,6 +2,19 @@ section {
   position: relative;
 }
 
+html, body {
+  -webkit-font-smoothing: antialiased;
+}
+[data-gsap],
+.portfolio,
+.list-hero__item,
+.trust__img img,
+.fill-form__images img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+
 .hero {
   position: relative;
   z-index: 1;
