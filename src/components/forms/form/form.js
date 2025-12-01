@@ -92,11 +92,11 @@ function formInit() {
 			        // Заблокировать скролл
 			        bodyLock();
 					
-			        // Через 3 секунды вернуть бриф на 1 шаг
-			        setTimeout(() => {
-			            const event = new CustomEvent("briefResetSteps");
-			            document.dispatchEvent(event);
-			        }, 3000);
+			        // // Через 3 секунды вернуть бриф на 1 шаг
+			        // setTimeout(() => {
+			        //     const event = new CustomEvent("briefResetSteps");
+			        //     document.dispatchEvent(event);
+			        // }, 3000);
 			    }
 			}
 

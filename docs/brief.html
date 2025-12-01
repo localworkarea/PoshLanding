@@ -9,13 +9,13 @@
 		<link rel="preload" href="./assets/fonts/Mont-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>POSH Packaging Design - Бриф</title>
-		<script type="module" crossorigin="" src="./js/brief.min.js?v=1764432994301"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1764432994301">
-		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1764432994301">
-		<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1764432994301">
-		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1764432994301">
-		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1764432994301">
-		<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1764432994301">
+		<script type="module" crossorigin="" src="./js/brief.min.js?v=1764606070501"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1764606070501">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1764606070501">
+		<link rel="modulepreload" crossorigin="" href="./js/popup.min.js?v=1764606070501">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1764606070501">
+		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1764606070501">
+		<link rel="stylesheet" crossorigin="" href="./css/brief.min.css?v=1764606070501">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -769,7 +769,7 @@
 											<div class="brief-upload__error" data-upload-error="">Файлы не должны суммарно превышать 10Мб!</div>
 											<div class="brief-upload__list" data-upload-list=""></div>
 										</div>
-										<div class="brief-field__desc t-balance">
+										<div class="brief-field__desc t-balance --color-light-gray">
 											<p>
 												<span class="--icon-question"></span>
 												На даном этапе это могут быть векторные изображения в формате .ai, .cdr, .eps, .pdf, архивы с материалами в формате .zip, .rar или любой другой удобный формат
@@ -809,33 +809,31 @@
 												<button data-fls-quantity-plus="" type="button" class="quantity__button quantity__button--plus"></button>
 											</div>
 										</div>
-										<div class="brief__head mt-40 mb-10">
+										<div class="brief__head mt-40 mb-20">
 											<h2 class="brief__title t-16">Технические тексты</h2>
 											<div class="brief__subtitle t-balance">
 												<p>
-													Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете воспользоваться нашим шаблоном — это ускорит процесс и поможет избежать ошибок.
+													Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете
+													<a href="files/show-file.pdf" target="_blank" class="brief-download__link" aria-label="download">скачать наш шаблон</a>
+													— это ускорит процесс и поможет избежать ошибок.
 												</p>
 											</div>
 										</div>
-										<div class="brief-download mb-20">
-											<ul class="brief-download__list">
-												<li class="brief-download__item">
-													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
-														<span>POSH_Technical text_SKU_ENG.docx</span>
-													</a>
-												</li>
-												<li class="brief-download__item">
-													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
-														<span>POSH_Маркировка_SKU_RU.docx</span>
-													</a>
-												</li>
-												<li class="brief-download__item">
-													<a href="files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download">
-														<span>POSH_Маркування_SKU_UA.docx</span>
-													</a>
-												</li>
-											</ul>
-										</div>
+										<!--
+<div class="brief-download mb-20">
+<ul class="brief-download__list">
+<li class="brief-download__item">
+<a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Technical text_SKU_ENG.docx</span></a>
+</li>
+<li class="brief-download__item">
+<a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Маркировка_SKU_RU.docx</span></a>
+</li>
+<li class="brief-download__item">
+<a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Маркування_SKU_UA.docx</span></a>
+</li>
+</ul>
+</div>
+-->
 										<div class="brief-upload mb-8" data-brief-upload="">
 											<input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx">
 											<button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn="">
@@ -880,12 +878,12 @@
 										</div>
 										<div class="brief-print__colors">
 											<label class="brief-check">
-												<input type="radio" name="colors_type" value="cmyk" checked data-default-checked="">
+												<input type="checkbox" name="colors_type" value="cmyk" checked data-default-checked="">
 												<span class="brief-check__box --icon-check"></span>
 												CMYK
 											</label>
 											<label class="brief-check">
-												<input type="radio" name="colors_type" value="pantone">
+												<input type="checkbox" name="colors_type" value="pantone">
 												<span class="brief-check__box --icon-check"></span>
 												Pantone
 											</label>

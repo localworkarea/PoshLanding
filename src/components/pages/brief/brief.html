@@ -838,7 +838,7 @@
 
                 <div class="brief-upload__list" data-upload-list></div>
               </div>
-              <div class="brief-field__desc t-balance">
+              <div class="brief-field__desc t-balance --color-light-gray">
                 <p><span class="--icon-question "></span>
                   На даном этапе это могут быть векторные изображения в формате .ai, .cdr, .eps, .pdf, архивы с материалами в формате .zip, .rar или любой другой удобный формат
                 </p>
@@ -878,16 +878,16 @@
                 </div>
               </div>
 
-              <div class="brief__head mt-40 mb-10">
+              <div class="brief__head mt-40 mb-20">
                 <h2 class="brief__title t-16">
                   Технические тексты
                 </h2>
                 <div class="brief__subtitle t-balance">
-                  <p>Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете воспользоваться нашим шаблоном — это ускорит процесс и поможет избежать ошибок.</p>
+                  <p>Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете <a href="@files/show-file.pdf" target="_blank" class="brief-download__link" aria-label="download">скачать наш шаблон</a> — это ускорит процесс и поможет избежать ошибок.</p>
                 </div>
               </div>
 
-              <div class="brief-download mb-20">
+              <!-- <div class="brief-download mb-20">
                 <ul class="brief-download__list">
                   <li class="brief-download__item">
                     <a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Technical text_SKU_ENG.docx</span></a>
@@ -899,7 +899,7 @@
                     <a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Маркування_SKU_UA.docx</span></a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
 
               <div class="brief-upload mb-8" data-brief-upload>
                 <input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx">
@@ -949,13 +949,13 @@
 
               <div class="brief-print__colors">
                 <label class="brief-check">
-                  <input type="radio" name="colors_type" value="cmyk" checked data-default-checked>
+                  <input type="checkbox" name="colors_type" value="cmyk" checked data-default-checked>
                   <span class="brief-check__box --icon-check"></span>
                   CMYK
                 </label>
 
                 <label class="brief-check">
-                  <input type="radio" name="colors_type" value="pantone">
+                  <input type="checkbox" name="colors_type" value="pantone">
                   <span class="brief-check__box --icon-check"></span>
                   Pantone
                 </label>

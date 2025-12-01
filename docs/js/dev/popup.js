@@ -215,10 +215,6 @@ function formInit() {
           popupBrief.setAttribute("aria-hidden", "false");
           html.classList.add("--brief-sent");
           bodyLock();
-          setTimeout(() => {
-            const event = new CustomEvent("briefResetSteps");
-            document.dispatchEvent(event);
-          }, 3e3);
         }
       }
     }

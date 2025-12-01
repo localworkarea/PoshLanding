@@ -182,9 +182,6 @@
   display: block;
   min-width: 0;
 }
-.brief__head {
-  padding-inline: 0.6875rem;
-}
 .brief__title:not(:last-child) {
   margin-bottom: 0.5rem;
 }
@@ -390,6 +387,9 @@
 }
 .brief-field__desc.--color-primary {
   color: var(--primary);
+}
+.brief-field__desc.--color-light-gray {
+  color: var(--gray-light-5);
 }
 .brief-field__desc span {
   display: inline-block;
@@ -659,9 +659,6 @@
 .brief-ref-type__label input:checked ~ .brief-ref-type__check::before {
   opacity: 1;
 }
-.brief-ref-type__label input:checked + img {
-  filter: sepia(31%) hue-rotate(113deg) saturate(129%) brightness(92%) contrast(96%);
-}
 .brief-ref-type__label img {
   height: 100%;
   width: auto;
@@ -915,22 +912,10 @@
   align-items: center;
   gap: 0.625rem 1.25rem;
 }
-.brief-download__item:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
 .brief-download__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-}
-.brief-download__link::before {
-  font-size: 1.0625rem;
-}
-.brief-download__link span {
+  color: var(--black);
   text-decoration: underline;
   text-underline-offset: 0.1875rem;
-  line-height: 1.4;
 }
 
 .brief-print__colors {
@@ -950,6 +935,7 @@
   position: absolute;
   opacity: 0;
   pointer-events: none;
+  width: 0;
 }
 .brief-check input:checked + .brief-check__box {
   background-color: var(--green-light-3);
@@ -1033,9 +1019,6 @@
   }
   .brief__form {
     gap: 3.125rem;
-  }
-  .brief__head {
-    padding-inline: 0rem;
   }
   .brief__btn-prev {
     display: flex;
@@ -1213,13 +1196,16 @@
   .brief-type__slider .swiper-button-next:hover svg path {
     stroke: var(--primary);
   }
-  .brief-ref-type:hover img {
-    filter: sepia(31%) hue-rotate(113deg) saturate(129%) brightness(92%) contrast(96%);
+  .brief-ref-type:hover .brief-ref-type__check {
+    background-color: var(--green-light-3);
+  }
+  .brief-ref-type:hover .brief-ref-type__check::before {
+    opacity: 1;
   }
   .brief-msg__btn:hover::before {
     transform: translateX(0.3125rem);
   }
-  .brief-download__link:hover span {
+  .brief-download__link:hover {
     text-decoration: none;
   }
 }

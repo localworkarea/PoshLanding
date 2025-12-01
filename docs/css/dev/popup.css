@@ -41,7 +41,7 @@ textarea.input-main {
 textarea.textarea-brief {
   resize: none;
   padding: 0.625rem 0.875rem;
-  min-height: 8.75rem;
+  min-height: 10.125rem;
   font-style: italic;
   outline: none;
   border: 0.0625rem solid rgba(0, 0, 0, 0.1);

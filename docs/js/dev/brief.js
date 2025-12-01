@@ -2563,6 +2563,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeSteps = [...allSteps];
   let current = 0;
   progress.style.display = "none";
+  function resetBranchingState() {
+    allSteps.forEach((s) => {
+      s.hidden = false;
+    });
+    activeSteps = [...allSteps];
+    current = 0;
+    progress.style.display = "none";
+  }
   function applyBranching() {
     const firstStep2 = allSteps[0];
     const branchInput = firstStep2.querySelector('input[name="brief_branch"]:checked');
@@ -2621,6 +2629,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstStep = allSteps[0];
   firstStep.addEventListener("change", (e) => {
     if (e.target.name !== "brief_branch") return;
+    resetBranchingState();
     applyBranching();
     showStep(0);
   });
@@ -2649,12 +2658,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
     }
   });
-  document.addEventListener("briefResetSteps", () => {
-    current = 0;
-    activeSteps = [...allSteps];
-    progress.style.display = "none";
-    showStep(0);
-  });
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-brief-start]");
     if (!btn) return;
@@ -2666,9 +2669,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popup.setAttribute("aria-hidden", "true");
     }
     bodyUnlock();
-    current = 0;
-    activeSteps = [...allSteps];
-    progress.style.display = "none";
+    resetBranchingState();
     showStep(0);
   });
   showStep(0);
