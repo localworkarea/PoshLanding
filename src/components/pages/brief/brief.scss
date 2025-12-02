@@ -962,6 +962,10 @@
     }
   }
 
+  &:has(input:checked) .brief-ref-type__name {
+    font-weight: 600;
+  }
+
 
   @media (min-width:toEm($mobileSmall)) {
     gap: 10px;
@@ -1225,6 +1229,7 @@
     min-height: 49px !important;
     min-width: 240px;
     font-size: 16px !important;
+    border-color: var(--primary) !important;
 
     @media (min-width:toEm($mobileSmall)) {
       min-width: 280px;

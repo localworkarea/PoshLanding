@@ -231,23 +231,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (heroVideosList.length) {
 		heroVideosList.forEach(video => {
-			let canReplayOnHover = true;
+			let firstPlayDone = false;
+			let canReplayOnHover = false;
 
-			video.addEventListener("mouseenter", () => {
-				if (canReplayOnHover) {
-					canReplayOnHover = false; // блокируем повторный ховер
-					video.currentTime = 0;
-					video.play();
+			video.addEventListener("ended", () => {
+				if (!firstPlayDone) {
+					firstPlayDone = true;
+					canReplayOnHover = true;
+				} else {
+					canReplayOnHover = true;
 				}
 			});
 
-			//  разрешаем новый перезапуск после окончания видео
-			video.addEventListener("ended", () => {
-				canReplayOnHover = true;
-			});
+			video.addEventListener("mouseenter", () => {
+				if (!firstPlayDone) return; 
+				if (!canReplayOnHover) return; 
 
+				canReplayOnHover = false; 
+				video.currentTime = 0;
+				video.play();
+			});
 		});
 	}
+
 
 
 

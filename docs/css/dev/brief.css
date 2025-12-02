@@ -642,6 +642,9 @@
   gap: 0.5rem;
   user-select: none;
 }
+.brief-ref-type:has(input:checked) .brief-ref-type__name {
+  font-weight: 600;
+}
 .brief-ref-type__label {
   display: block;
   position: relative;
@@ -818,6 +821,7 @@
   min-height: 3.0625rem !important;
   min-width: 15rem;
   font-size: 1rem !important;
+  border-color: var(--primary) !important;
 }
 .brief-msg__btn {
   display: inline-flex;

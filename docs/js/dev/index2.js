@@ -8121,16 +8121,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroVideosList = document.querySelectorAll(".list-hero__item video");
   if (heroVideosList.length) {
     heroVideosList.forEach((video) => {
-      let canReplayOnHover = true;
-      video.addEventListener("mouseenter", () => {
-        if (canReplayOnHover) {
-          canReplayOnHover = false;
-          video.currentTime = 0;
-          video.play();
+      let firstPlayDone = false;
+      let canReplayOnHover = false;
+      video.addEventListener("ended", () => {
+        if (!firstPlayDone) {
+          firstPlayDone = true;
+          canReplayOnHover = true;
+        } else {
+          canReplayOnHover = true;
         }
       });
-      video.addEventListener("ended", () => {
-        canReplayOnHover = true;
+      video.addEventListener("mouseenter", () => {
+        if (!firstPlayDone) return;
+        if (!canReplayOnHover) return;
+        canReplayOnHover = false;
+        video.currentTime = 0;
+        video.play();
       });
     });
   }
