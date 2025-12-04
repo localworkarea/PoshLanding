@@ -1078,6 +1078,7 @@ html, body {
       grid-column: 2/3;
       grid-row: 1/2;
       padding-inline: 0;
+      align-self: flex-end;
     }
   }
 
@@ -1106,8 +1107,11 @@ html, body {
 
   // .team-solutions__txt
   &__txt {
+    
     padding-inline: 11px;
-
+    @media (min-width:toEm($mobile)){
+       align-self: flex-start; 
+    }
     p {
       &:not(:last-child) {
         margin-bottom: 18px;
@@ -1490,6 +1494,7 @@ html, body {
   // .cost-guarantee__body
   &__body {
     cursor: pointer;
+    user-select: none;
     padding: 27px;
     background-color: var(--white);
     border-radius: 15px;

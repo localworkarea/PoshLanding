@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="@components/layout/popup/popup.scss">
+<div data-lenis-prevent data-fls-popup="popup--contacts" aria-hidden="true" class="popup">
+	<div data-fls-popup-wrapper class="popup__wrapper">
+		<div data-fls-popup-body class="popup__body">
+			<button data-fls-popup-close type="button" class="popup__close">
+				<svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="white" />
+					<path d="M17.5 17.5L21.5 21.5L17.5 25.5" stroke="white" />
+					<path d="M25.5 25.5L21.5 21.5L25.5 17.5" stroke="white" />
+				</svg>
+			</button>
+			<div data-fls-popup-content class="popup-content">
+				<div class="popup-content__title">
+					<p><b>Обсудим</b> вашу<br>
+						задачу прямо
+						сейчас?</p>
+				</div>
+				<div class="popup-content__subtitle">
+					<p>Мы быстро предложим решение!</p>
+				</div>
+				<ul class="popup-content__contacts">
+					<li class="popup-content__contact">
+						<a href="tel:+380988234343" class="popup-content__phone" aria-label="phone number">+38 098 823 43 43</a>
+					</li>
+					<li class="popup-content__contact">
+						<a href="mailto:brand@posh.pro" class="popup-content__mail" aria-label="mail">brand@posh.pro</a>
+					</li>
+				</ul>
+				<div class="popup-content__social">
+					<a href="https://t.me/posh_packaging_solutions" class="popup-content__social-ic" aria-label="telegram">
+						<img src="@img/icons/tg.svg" width="50" height="50" alt="Image">
+					</a>
+					<a href="https://wa.me/380988234343" class="popup-content__social-ic" aria-label="telegram">
+						<img src="@img/icons/wts.svg" width="50" height="50" alt="Image">
+					</a>
+				</div>
+				<div class="popup-content__btns">
+					<a href="#" data-fls-btn data-fls-popup-link="popup--form" class="popup-content__btn btn btn--3" aria-label="link">
+						<span class="btn-txt">Оставить заявку</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<a href="@files/Posh_FMCG_Design_presentation_ru.pdf" target="_blank" data-fls-btn class="popup-content__btn btn btn--3" aria-label="download">
+						<span class="btn-txt">Загрузить PDF</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<a href="brief-ru" data-fls-btn class="popup-content__btn btn btn--3" aria-label="link">
+						<span class="btn-txt">Заполнить чек-лист</span>
+						<span class="btn-arr --icon-arrowrightc"></span>
+					</a>
+					<div class="popup-content__sm-t">
+						<p>Примерно 7 мин. вашего времени</p>
+					</div>
+				</div>
+				<ul class="lng-popup">
+					<li class="lng-popup__item">
+						<a href="index-uk" class="lng-popup__link" aria-label="link to language">UKR</a>
+					</li>
+					<li class="lng-popup__item">
+						<a href="index" class="lng-popup__link" aria-label="link to language">ENG</a>
+					</li>
+					<li class="lng-popup__item">
+						<a href="index-ru" class="lng-popup__link" aria-label="link to language">RU</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

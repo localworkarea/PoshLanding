@@ -5,7 +5,7 @@
   <section class="brief">
     <div class="brief__header header-brief">
       <div class="header-brief__container">
-        <a href="index.html" class="header-brief__link">
+        <a href="index" class="header-brief__link">
           <img src="@img/icons/logo-dark.svg" width="180" height="40" alt="Image">
         </a>
 
@@ -19,7 +19,7 @@
         </div>
 
         <button type="button" data-fls-popup-link="popup--brief" class="header-brief__menu" aria-label="open popup menu">
-          <span class="header-brief__menu-text t-2">Меню</span>
+          <span class="header-brief__menu-text t-2">Menu</span>
           <span class="header-brief__menu-icon"><span></span></span>
         </button>
 
@@ -28,80 +28,79 @@
     <div class="brief__container">
       <form class="brief__form" data-form="brief" data-fls-form="dev" method="POST" action="#">
         <div class="brief__sections">
-          
+
           <div class="brief__section" data-brief-step>
             <fieldset>
               <div class="brief__head mb-30">
-                <h2 class="brief__title title-tippy t-16">Какая задача стоит перед вами?
-                  <span data-fls-tooltip data-tippy-content="От вашего ответа зависит построение логики последующих вопросов, а также сроки и стоимость работ."></span>
+                <h2 class="brief__title title-tippy t-16">What's your challenge?
+                  <span data-fls-tooltip data-tippy-content="This answer affects the next questions, timeline, and pricing."></span>
                 </h2>
               </div>
-  
+
               <div class="brief-option">
                 <label class="brief-option__item">
                   <input type="radio" name="brief_branch" value="concept" required>
                   <div class="brief-option__box">
                     <div class="brief-option__title t-17">
-                      Разработка новой концепции дизайна
+                      Development of a new design concept
                     </div>
                     <div class="brief-option__text t-2">
-                      Сюда входит разработка графических концепций бренда или упаковки с нуля. Чем больше первичных данных с вашей стороны, тем выгоднее будет стоимость.
+                      This includes developing graphic concepts for a brand or packaging from scratch. The more details you share with us upfront, the better we can estimate price and timing
                     </div>
                   </div>
                 </label>
-  
+
                 <label class="brief-option__item">
                   <input type="radio" name="brief_branch" value="sku">
                   <div class="brief-option__box">
                     <div class="brief-option__title t-17">
-                      Разработка новой линейки SKU
+                      Development of a new SKU line
                     </div>
                     <div class="brief-option__text t-2">
-                      Сюда входит разработка макета дизайна на основе существующей графической концепции бренда. Чем больше первичных данных с вашей стороны, тем быстрее мы выполним задание.
+                      This includes the development of a design layout based on the existing graphic concept of the brand. The more details you share with us upfront, the better we can estimate price and timing
                     </div>
                   </div>
                 </label>
               </div>
             </fieldset>
           </div>
-          
+
           <div class="brief__section" data-brief-step>
             <fieldset>
               <div class="brief__head mb-30">
-                <h2 class="brief__title title-tippy t-16">Контактные данные
-                  <span data-fls-tooltip data-tippy-content="Мы собираем контактные данные лишь для того, чтобы быстро отреагировать на любые ваши запросы. Мы не спамим и не передаем ваши данные третьим лицам."></span>
+                <h2 class="brief__title title-tippy t-16">Contact details
+                  <span data-fls-tooltip data-tippy-content="We collect your contact details only to quickly respond to your requests. We do not send spam and we do not share your data with third parties."></span>
                 </h2>
                 <div class="brief__subtitle">
-                  <p>Заполните свои контактные данные, чтобы мы смогли с вами связаться.</p>
+                  <p>Fill out your contact information so we can contact you.</p>
                 </div>
               </div>
-  
+
               <div class="brief-field">
-  
                 <label class="brief-field__item">
-                  <span class="brief-field__label">Название вашей компании/бренда</span>
-                  <input autocomplete="off" type="text" name="company_name" placeholder="напр. BREND group" class="input-brief">
+                  <span class="brief-field__label">Your company/brand name</span>
+                  <input autocomplete="off" type="text" name="company_name" placeholder="e.g. BREND Group" class="input-brief">
                 </label>
-  
+
                 <label class="brief-field__item">
-                  <span class="brief-field__label">Ваше имя</span>
+                  <span class="brief-field__label">Your name</span>
                   <input autocomplete="off" type="text" name="client_name" placeholder="" class="input-brief">
                 </label>
-  
+
                 <label class="brief-field__item">
-                  <span class="brief-field__label">Ваш E-mail *</span>
+                  <span class="brief-field__label">Your Email *</span>
                   <div class="brief-field__input-icon --icon-mail">
                     <input autocomplete="off" type="email" name="client_email" placeholder="client@gmail.com" required class="input-brief">
                   </div>
                   <div class="brief-field__desc ">
                     <p><span class="--icon-question"></span>
-                      Вы сможете отправить себе копию чеклиста, а мы сможем связаться с вами по почте
+                      You will get a copy of the checklist, and we will be able to contact you by mail
                     </p>
                   </div>
                 </label>
-  
+
                 <label class="brief-field__item">
-                  <span class="brief-field__label">Ваш телефон</span>
+                  <span class="brief-field__label">Your phone</span>
                   <div class="brief-field__input-icon --icon-phone">
                     <input type="tel" inputmode="numeric" name="client_phone" placeholder="" class="input-brief">
                   </div>
@@ -109,30 +108,30 @@
               </div>
             </fieldset>
           </div>
-          
+
           <div class="brief__section" data-brief-step="sku">
             <fieldset>
               <div class="brief__head mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Существующая концепция
-                  <span data-fls-tooltip data-tippy-content="Это необходимо для понимания стиля, структуры и эмоции существующей концепции продукта. Эти характеристики будут сохранены в новых SKU"></span>
+                  Existing concept
+                  <span data-fls-tooltip data-tippy-content="This helps us understand the style and feel of your current design. We'll carry these features over to the new SKUs."></span>
                 </h2>
                 <div class="brief__subtitle">
-                  <p>Приложите фото или визуализацию существующей визуальной концепции бренда</p>
+                  <p>Upload a photo or visualization of an existing brand concept</p>
                 </div>
               </div>
 
 
               <div class="brief-upload mb-15" data-brief-upload>
-                <input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
+                <input class="brief-upload__input" type="file" name="sku_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
 
                 <button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn>
                   <span class="--icon-file"></span>
-                  Загрузить файлы
+                  Upload files
                 </button>
 
                 <div class="brief-upload__error" data-upload-error>
-                  Файлы не должны суммарно превышать 10Мб!
+                  The files must not exceed 10 MB in total!
                 </div>
 
                 <div class="brief-upload__list" data-upload-list></div>
@@ -140,38 +139,38 @@
 
 
               <div class="brief__subtitle --color-dark mt-20 mb-8">
-                <p>Или вы можете прислать нам ссылку на материалы</p>
+                <p>Or send us a link:</p>
               </div>
 
               <div class="mt-10 mb-40">
-                <input autocomplete="off" type="url" name="concept_link" placeholder="Вставьте ссылку..." class="input-brief">
+                <input autocomplete="off" type="url" name="sku_link" placeholder="Paste link..." class="input-brief">
               </div>
 
               <div class="brief__head mb-15">
                 <h2 class="brief__title title-tippy t-16">
-                  Описание новых SKU
-                  <span data-fls-tooltip data-tippy-content="Нам важно понять суть продукта, какие преимущества или особые характеристики и функции отобразить в дизайне"></span>
+                  Description of new SKUs
+                  <span data-fls-tooltip data-tippy-content="Help us understand the product's key features, benefits and special functions for the packaging design"></span>
                 </h2>
                 <div class="brief__subtitle">
-                  <p>Дайте краткие характеристики для SKU</p>
+                  <p>Briefly describe the features of the new products</p>
                 </div>
               </div>
 
               <div class="brief-textarea">
                 <label class="brief-textarea__item">
                   <textarea name="sku_description" class="textarea-brief"
-                    placeholder="Например: Мы хотим расширить нашу линейку соусов новой SKU — Креветочный соус родом из Вьетнама, под названием Мам Том. Основная особенность — натуральные креветки в составе. Это продукт для любителей экзотики и азиатской темы."></textarea>
+                    placeholder="For example: We want to expand our product line of sauces with a new SKU — Shrimp Sauce originally from Vietnam, called Mam Tom. The main feature that it contains natural shrimps . This is a product for exotic lovers and Asian cuisine fans."></textarea>
                 </label>
               </div>
 
               <div class="brief-counter mt-23">
                 <div class="brief-counter__txt">
-                  <p>Укажите количество новых SKU</p>
+                  <p>Specify the number of new SKUs</p>
                 </div>
                 <div data-fls-quantity class="quantity">
                   <button data-fls-quantity-minus type="button" class="quantity__button quantity__button--minus"></button>
                   <div class="quantity__input">
-                    <input data-fls-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+                    <input data-fls-quantity-value autocomplete="off" type="text" name="sku_count_new[sku]" value="1">
                   </div>
                   <button data-fls-quantity-plus type="button" class="quantity__button quantity__button--plus"></button>
                 </div>
@@ -184,50 +183,50 @@
             <fieldset>
               <div class="brief__head mb-15">
                 <h2 class="brief__title title-tippy t-16">
-                  Выберите тип упаковки
-                  <span data-fls-tooltip data-tippy-content="Мы всегда учитываем форму и материалы упаковки, чтобы заранее предусмотреть любые нюансы и избежать неожиданностей при производстве."></span>
+                  Select the type of packaging
+                  <span data-fls-tooltip data-tippy-content="We factor in shape and materials to catch any production issues early and to avoid “surprises” during production"></span>
                 </h2>
               </div>
 
               <div data-brief-filters>
                 <div class="brief-filters">
-                  <div class="brief-filters__name">Фильтр:</div>
+                  <div class="brief-filters__name">Filter:</div>
 
                   <div class="brief-filters__list">
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="all" checked data-default-checked>
-                      <span class="brief-filters__box">Все</span>
+                      <span class="brief-filters__box">All</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="flexible">
-                      <span class="brief-filters__box">Гибкая</span>
+                      <span class="brief-filters__box">Flexible</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="cardboard">
-                      <span class="brief-filters__box">Картонная</span>
+                      <span class="brief-filters__box">Cardboard</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="paper">
-                      <span class="brief-filters__box">Бумажная</span>
+                      <span class="brief-filters__box">Paper</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="metal">
-                      <span class="brief-filters__box">Металлическая</span>
+                      <span class="brief-filters__box">Metal</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="glass">
-                      <span class="brief-filters__box">Стеклянная</span>
+                      <span class="brief-filters__box">Glass</span>
                     </label>
 
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="plastic">
-                      <span class="brief-filters__box">Пластиковая</span>
+                      <span class="brief-filters__box">Plastic</span>
                     </label>
 
                   </div>
@@ -245,7 +244,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Тетра Pak</p>
+                            <p>Tetra Pak</p>
                           </div>
                         </div>
                       </div>
@@ -258,7 +257,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонная<br> коробочка</p>
+                            <p>Folding<br> carton box</p>
                           </div>
                         </div>
                       </div>
@@ -271,7 +270,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Ящик-экран</p>
+                            <p>Window box</p>
                           </div>
                         </div>
                       </div>
@@ -284,7 +283,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Шоубокс</p>
+                            <p>Display box</p>
                           </div>
                         </div>
                       </div>
@@ -297,7 +296,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пульперкартон</p>
+                            <p>Molded pulp</p>
                           </div>
                         </div>
                       </div>
@@ -310,7 +309,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Ящик<br> гофрированный</p>
+                            <p>Corrugated box</p>
                           </div>
                         </div>
                       </div>
@@ -323,7 +322,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонное<br> ведёрко</p>
+                            <p>Paper tub</p>
                           </div>
                         </div>
                       </div>
@@ -336,7 +335,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонный<br> тубус</p>
+                            <p>Cardboard tube</p>
                           </div>
                         </div>
                       </div>
@@ -349,7 +348,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонный<br> пакет</p>
+                            <p>Paper<br> carrier bag</p>
                           </div>
                         </div>
                       </div>
@@ -362,7 +361,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картон<br> другое</p>
+                            <p>Other carton</p>
                           </div>
                         </div>
                       </div>
@@ -375,7 +374,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Трёхшовный<br> пакет</p>
+                            <p>Pillow three-seal<br> bag</p>
                           </div>
                         </div>
                       </div>
@@ -388,7 +387,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Гасcет<br> пакет</p>
+                            <p>Side-gusset bag</p>
                           </div>
                         </div>
                       </div>
@@ -401,7 +400,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пакет<br> с плоским дном</p>
+                            <p>Flat bottom pouch</p>
                           </div>
                         </div>
                       </div>
@@ -414,7 +413,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Дой-пак</p>
+                            <p>Doypack</p>
                           </div>
                         </div>
                       </div>
@@ -427,7 +426,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Саше-конверт</p>
+                            <p>Flat sachet</p>
                           </div>
                         </div>
                       </div>
@@ -440,7 +439,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пауч<br> пакет</p>
+                            <p>Spouted<br> pouch</p>
                           </div>
                         </div>
                       </div>
@@ -453,7 +452,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Плёнка<br> для запайки</p>
+                            <p>Lidding film</p>
                           </div>
                         </div>
                       </div>
@@ -466,7 +465,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Вакуумная<br> упаковка</p>
+                            <p>Vacuum<br>pack</p>
                           </div>
                         </div>
                       </div>
@@ -479,7 +478,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Полиамидная<br> оболочка</p>
+                            <p>Polyamide<br>casing</p>
                           </div>
                         </div>
                       </div>
@@ -492,7 +491,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Твист<br> этикетка</p>
+                            <p>Twist-wrap<br>label</p>
                           </div>
                         </div>
                       </div>
@@ -505,7 +504,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Шринк-слив</p>
+                            <p>Shrink-sleeve<br>label</p>
                           </div>
                         </div>
                       </div>
@@ -518,7 +517,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Гибкое<br> другое</p>
+                            <p>Flexible<br> Other</p>
                           </div>
                         </div>
                       </div>
@@ -531,7 +530,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянный<br> флакон</p>
+                            <p>Glass perfume<br> bottle (vial, flask)</p>
                           </div>
                         </div>
                       </div>
@@ -544,7 +543,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянная<br> бутылка</p>
+                            <p>Glass<br>bottle</p>
                           </div>
                         </div>
                       </div>
@@ -557,7 +556,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянная<br> банка</p>
+                            <p>Glass jar</p>
                           </div>
                         </div>
                       </div>
@@ -570,7 +569,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Алюминиевая<br> банка</p>
+                            <p>Aluminum<br> can</p>
                           </div>
                         </div>
                       </div>
@@ -583,7 +582,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Жестяной<br> балон</p>
+                            <p>Aerosol<br>can</p>
                           </div>
                         </div>
                       </div>
@@ -596,7 +595,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Консервная<br> банка</p>
+                            <p>Tin can</p>
                           </div>
                         </div>
                       </div>
@@ -609,7 +608,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другое<br> металлическое</p>
+                            <p>Other<br>metal</p>
                           </div>
                         </div>
                       </div>
@@ -622,7 +621,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажный<br> саше</p>
+                            <p>Paper<br> sachet</p>
                           </div>
                         </div>
                       </div>
@@ -635,7 +634,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажная<br> этикетка</p>
+                            <p>Paper label</p>
                           </div>
                         </div>
                       </div>
@@ -648,7 +647,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажная<br> обертка</p>
+                            <p>Paper<br>wrap</p>
                           </div>
                         </div>
                       </div>
@@ -661,7 +660,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Этикетка</p>
+                            <p>Paper<br>wrap</p>
                           </div>
                         </div>
                       </div>
@@ -674,7 +673,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажный<br> пакет</p>
+                            <p>Paper bag</p>
                           </div>
                         </div>
                       </div>
@@ -687,7 +686,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другое<br> бумажное</p>
+                            <p>Other<br>paper</p>
                           </div>
                         </div>
                       </div>
@@ -700,7 +699,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковый<br> контейнер</p>
+                            <p>Plastic<br>HDPE bottle</p>
                           </div>
                         </div>
                       </div>
@@ -713,7 +712,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> бутылка</p>
+                            <p>Plastic<br>HDPE bottle</p>
                           </div>
                         </div>
                       </div>
@@ -726,7 +725,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> трубка</p>
+                            <p>Plastic<br>tube</p>
                           </div>
                         </div>
                       </div>
@@ -739,7 +738,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковое<br> стекло</p>
+                            <p>Plastic <br>cup</p>
                           </div>
                         </div>
                       </div>
@@ -752,7 +751,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> бутылка (спрей)</p>
+                            <p>Plastic<br>spray bottle</p>
                           </div>
                         </div>
                       </div>
@@ -765,7 +764,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Корекс<br> контейнер</p>
+                            <p>PET clamshell<br>container</p>
                           </div>
                         </div>
                       </div>
@@ -778,7 +777,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковый<br> контейнер (стакан)</p>
+                            <p>PP deli container</p>
                           </div>
                         </div>
                       </div>
@@ -791,7 +790,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другой<br> пластик</p>
+                            <p>Other plastic</p>
                           </div>
                         </div>
                       </div>
@@ -816,63 +815,64 @@
 
               <div class="brief__head mt-60 mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  <div>Крой или чертеж упаковки</div>
-                  <span data-fls-tooltip data-tippy-content="Крой или чертёж упаковки отображает точные размеры, линии сгиба, реза, клеевые клапаны, линии запайки, фотометки, место по дату, технические отступы, безопасные зоны и т.д."></span>
+                  <div>Dieline or packaging layout</div>
+                  <span data-fls-tooltip
+                    data-tippy-content="The cut or drawing of the packaging displays the exact dimensions, fold lines, cuts, adhesive flaps, sealing lines, photo marks, place by date, technical indents, safe zones, etc.d."></span>
                 </h2>
                 <div class="brief__subtitle t-balance">
-                  <p>Для работы нам потребуется векторный формат файла (.ai, .cdr, .eps, .pdf), но сейчас вы можете загрузить в любом удобном для вас виде</p>
+                  <p>We need a vector file format (.ai, .cdr, .eps, .pdf) of layout, but for now you can upload it in any format</p>
                 </div>
               </div>
 
               <div class="brief-upload mb-8" data-brief-upload>
-                <input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
+                <input class="brief-upload__input" type="file" name="sku_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
 
                 <button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn>
                   <span class="--icon-file"></span>
-                  Загрузить файлы
+                  Upload file
                 </button>
 
                 <div class="brief-upload__error" data-upload-error>
-                  Файлы не должны суммарно превышать 10Мб!
+                  The files must not exceed 10 MB in total!
                 </div>
 
                 <div class="brief-upload__list" data-upload-list></div>
               </div>
               <div class="brief-field__desc t-balance --color-light-gray">
                 <p><span class="--icon-question "></span>
-                  На даном этапе это могут быть векторные изображения в формате .ai, .cdr, .eps, .pdf, архивы с материалами в формате .zip, .rar или любой другой удобный формат
+                  .ai, .cdr, .eps, .pdf vector images and .zip, .rar archives or any other format
                 </p>
               </div>
 
             </fieldset>
           </div>
-                    
+
           <div class="brief__section" data-brief-step="sku">
             <fieldset>
               <div class="brief__head mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Информация для лицевой стороны
-                  <span data-fls-tooltip data-tippy-content="На лицевой стороне упаковки размещаются как маркетинговые акценты, влияющие на продажи, так и обязательные элементы, регулируемые законом о маркировке."></span>
+                  Front side information
+                  <span data-fls-tooltip data-tippy-content="The front side of the package contains both marketing elements that drive sales and legally required information"></span>
                 </h2>
                 <div class="brief__subtitle">
-                  <p>Укажите что необходимо разместить на лицевой части упаковки</p>
+                  <p>Describe what we should place on the front of the package</p>
                 </div>
               </div>
 
               <div class="brief-textarea mb-20">
                 <label class="brief-textarea__item">
-                  <textarea name="" class="textarea-brief" placeholder="Например: мы хотим изобразить сочную фуд-зону и обязательно разместить вес продукта на лице."></textarea>
+                  <textarea name="sku_front" class="textarea-brief" placeholder="For example: we want a juicy food zone on the front, plus be sure to place the product weight"></textarea>
                 </label>
               </div>
 
               <div class="brief-counter">
                 <div class="brief-counter__txt">
-                  <p>Укажите количество<br> языков на упаковке</p>
+                  <p>The number of<br> languages ​​on the package</p>
                 </div>
                 <div data-fls-quantity class="quantity">
                   <button data-fls-quantity-minus type="button" class="quantity__button quantity__button--minus"></button>
                   <div class="quantity__input">
-                    <input data-fls-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+                    <input data-fls-quantity-value autocomplete="off" type="text" name="sku_languages[sku]" value="1">
                   </div>
                   <button data-fls-quantity-plus type="button" class="quantity__button quantity__button--plus"></button>
                 </div>
@@ -880,44 +880,32 @@
 
               <div class="brief__head mt-40 mb-20">
                 <h2 class="brief__title t-16">
-                  Технические тексты
+                  Technical texts
                 </h2>
                 <div class="brief__subtitle t-balance">
-                  <p>Приложите файл с полной маркировочной информацией, которую необходимо разместить на упаковке. Для удобства вы можете <a href="@files/show-file.pdf" target="_blank" class="brief-download__link" aria-label="download">скачать наш шаблон</a> — это ускорит процесс и поможет избежать ошибок.</p>
+                  <p>
+                    Attach a file with complete technical information that needs to be placed on the package. You can easily <a href="@files/Posh_FMCG_Design_presentation_eng.pdf" target="_blank" class="brief-download__link" aria-label="download">download our template</a> —
+                    we made it to avoid mistakes and to speed up the process</p>
                 </div>
               </div>
 
-              <!-- <div class="brief-download mb-20">
-                <ul class="brief-download__list">
-                  <li class="brief-download__item">
-                    <a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Technical text_SKU_ENG.docx</span></a>
-                  </li>
-                  <li class="brief-download__item">
-                    <a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Маркировка_SKU_RU.docx</span></a>
-                  </li>
-                  <li class="brief-download__item">
-                    <a href="@files/show-file.pdf" target="_blank" class="brief-download__link --icon-copy" aria-label="download"><span>POSH_Маркування_SKU_UA.docx</span></a>
-                  </li>
-                </ul>
-              </div> -->
-
               <div class="brief-upload mb-8" data-brief-upload>
-                <input class="brief-upload__input" type="file" name="concept_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
+                <input class="brief-upload__input" type="file" name="sku_files[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.svg,.mp4,.mov,.webm,.m4v,.pdf,.docx,.xlsx,.ai,.cdr,.eps">
 
                 <button type="button" class="brief-upload__btn" aria-label="загрузить файлы" data-upload-btn>
                   <span class="--icon-file"></span>
-                  Загрузить файлы
+                  Upload file
                 </button>
 
                 <div class="brief-upload__error" data-upload-error>
-                  Файлы не должны суммарно превышать 10Мб!
+                  The files must not exceed 10 MB in total!
                 </div>
 
                 <div class="brief-upload__list" data-upload-list></div>
               </div>
               <div class="brief-field__desc t-balance --color-primary">
                 <p><span class="--icon-question "></span>
-                  Этот файл вы можете позже выслать менеджеру, но его наличие <b>обязательно.</b>
+                  You can send this file to the manager later, but <b>this file is required.</b>
                 </p>
               </div>
 
@@ -928,20 +916,20 @@
             <fieldset>
               <div class="brief__head mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Количество красок
+                  Number of colors
                   <span data-fls-tooltip
-                    data-tippy-content="Макеты чаще всего включают от 4 до 6 красок. Больше — возможно, но это увеличивает стоимость и требует согласования с типографией. Также, всегда можно оптимизировать цвета до минимума."></span>
+                    data-tippy-content="Most layouts use 4–6 colours. More colors is possible, but it increases the printing cost and requires coordination with the printing house. Also, we can always reduce the colour count to a minimum."></span>
                 </h2>
               </div>
 
               <div class="brief-counter mb-20">
                 <div class="brief-counter__txt">
-                  <p>Укажите количество красок<br> допустимое в вашем тираже:</p>
+                  <p>Select the allowed<br> number of print colours</p>
                 </div>
                 <div data-fls-quantity class="quantity">
                   <button data-fls-quantity-minus type="button" class="quantity__button quantity__button--minus"></button>
                   <div class="quantity__input">
-                    <input data-fls-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+                    <input data-fls-quantity-value autocomplete="off" type="text" name="sku_form[]" value="1">
                   </div>
                   <button data-fls-quantity-plus type="button" class="quantity__button quantity__button--plus"></button>
                 </div>
@@ -949,13 +937,13 @@
 
               <div class="brief-print__colors">
                 <label class="brief-check">
-                  <input type="checkbox" name="colors_type" value="cmyk" checked data-default-checked>
+                  <input type="checkbox" name="sku_colors_type" value="cmyk" checked data-default-checked>
                   <span class="brief-check__box --icon-check"></span>
                   CMYK
                 </label>
 
                 <label class="brief-check">
-                  <input type="checkbox" name="colors_type" value="pantone">
+                  <input type="checkbox" name="sku_colors_type" value="pantone">
                   <span class="brief-check__box --icon-check"></span>
                   Pantone
                 </label>
@@ -963,59 +951,57 @@
 
               <div class="brief__head mt-40 mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  <div>Печатные эффекты <span class="final-label --icon-goblet">Финальный вопрос</span></div>
-                  <span data-fls-tooltip data-tippy-content="Выбор зависит от типа упаковки, бюджета, технологии печати и цели: привлечь внимание, подчеркнуть премиальность, усилить узнаваемость."></span>
+                  <div>Printing effects <span class="final-label --icon-goblet">Final question</span></div>
+                  <span data-fls-tooltip data-tippy-content="The choice depends on the type of the packaging, project budget, printing technology and product aim: to attract attention, emphasize the premium quality or enhance recognition."></span>
                 </h2>
                 <div class="brief__subtitle t-balance">
-                  <p>Укажите какие дополнения допустимы в вашем тираже, что бы Вы хотели видеть на упаковке.</p>
+                  <p>Select any finishing effects you'd like on the packaging</p>
                 </div>
               </div>
 
               <div class="brief-tags brief-tags--effects">
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="matte_surface">
-                  <span class="brief-tags__box">Матовая поверхность</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="matte_surface">
+                  <span class="brief-tags__box">Matte surface</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="soft_touch">
-                  <span class="brief-tags__box">Soft-touch поверхность</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="soft_touch">
+                  <span class="brief-tags__box">Soft-touch surface</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="glossy">
-                  <span class="brief-tags__box">Глянцевые элементы</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="glossy">
+                  <span class="brief-tags__box">Glossy elements</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="metalized">
-                  <span class="brief-tags__box">Металлизированные элементы</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="metalized">
+                  <span class="brief-tags__box">Metallized elements</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="foil">
-                  <span class="brief-tags__box">Тиснение фольгой</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="foil">
+                  <span class="brief-tags__box">Foil stamping</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="embossing">
-                  <span class="brief-tags__box">Конгрев</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="embossing">
+                  <span class="brief-tags__box">Embossing / Congreve</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="3d_lacquer">
-                  <span class="brief-tags__box">3D лак</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="3d_lacquer">
+                  <span class="brief-tags__box">3D varnish</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="print_effects[]" value="other">
-                  <span class="brief-tags__box">Другие</span>
+                  <input type="checkbox" name="sku_print_effects[]" value="other">
+                  <span class="brief-tags__box">Other</span>
                 </label>
 
               </div>
-
-
 
             </fieldset>
           </div>
@@ -1024,228 +1010,231 @@
             <fieldset>
               <div class="brief__head mb-15">
                 <h2 class="brief__title title-tippy t-16">
-                  Какие предпосылки мотивируют к данному проекту?
-                  <span data-fls-tooltip data-tippy-content="Опишите, что послужило причиной создания проекта — изменения рынка, обновление дизайна, расширение линейки и т.п."></span>
+                  What is the core motivation behind this project?
+                  <span data-fls-tooltip data-tippy-content="Describe what led to this project — market changes, a design refresh, product line expansion, etc."></span>
                 </h2>
               </div>
 
               <div class="brief-textarea">
                 <label class="brief-textarea__item">
-                  <textarea name="project_background" class="textarea-brief"
-                    placeholder="Например: Наш бренд долгое время находился в рамках устарелых консервативных взглядов в дизайне. Бренд и продукт требует омоложения, актуализации, релевантного предложения современному рынку."></textarea>
+                  <textarea name="concept_project_background" class="textarea-brief"
+                    placeholder="For example: Our brand feels outdated and conservative. The brand and product require a refresh and a more relevant offer to the modern market."></textarea>
                 </label>
               </div>
 
               <div class="brief__head mt-40 mb-15">
                 <h2 class="brief__title title-tippy t-16">
-                  Особенности вашего продукта
-                  <span data-fls-tooltip data-tippy-content="Расскажите нам о своем продукте, опишите его тип, форму, особенности и характеристики."></span>
+                  Features of your product
+                  <span data-fls-tooltip data-tippy-content="Tell us about your product, describe its type, shape, features and other characteristics."></span>
                 </h2>
               </div>
 
               <div class="brief-textarea">
                 <label class="brief-textarea__item">
-                  <textarea name="product_features" class="textarea-brief"
-                    placeholder="Например: Печенье с различными кремовыми начинками (банан, карамель, кокос и т.д.) покрытые шоколадной глазурью. Печенье круглой формы, примерно 6 см в диаметре."></textarea>
+                  <textarea name="concept_product_features" class="textarea-brief"
+                    placeholder="For example: Cookies with various cream fillings (banana, caramel, coconut, etc.) coated with chocolate glaze. Round cookies, approximately 6 cm in diameter."></textarea>
                 </label>
               </div>
             </fieldset>
-          </div> 
+
+          </div>
 
           <div class="brief__section" data-brief-step="concept">
             <fieldset>
               <div class="brief__head mb-20">
-                <h2 class="brief__title title-tippy t-16">Какие составляющие бренда уже существуют?
-                  <span data-fls-tooltip data-tippy-content="Любые материалы помогут нам быстрее погрузиться в контекст продукта и точнее понять вашу задачу"></span>
+                <h2 class="brief__title title-tippy t-16">
+                  What brand components already exist?
+                  <span data-fls-tooltip data-tippy-content="Any existing materials help us to dive into the context and understand your product faster"></span>
                 </h2>
               </div>
 
               <div class="brief-tags brief-tags--brand">
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="name">
+                  <input type="checkbox" name="concept_brand_existing[]" value="name">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-letters"></span>
-                    Название
+                    Name
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="site">
+                  <input type="checkbox" name="concept_brand_existing[]" value="site">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-click"></span>
-                    Сайт
+                    Website
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="brandbook">
+                  <input type="checkbox" name="concept_brand_existing[]" value="brandbook">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-mark"></span>
-                    Брендбук
+                    Brandbook
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="catalog">
+                  <input type="checkbox" name="concept_brand_existing[]" value="catalog">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-book"></span>
-                    Каталог
+                    Catalog
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="packaging">
+                  <input type="checkbox" name="concept_brand_existing[]" value="packaging">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-box"></span>
-                    Упаковка
+                    Package
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="posm">
+                  <input type="checkbox" name="concept_brand_existing[]" value="posm">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-paint"></span>
-                    POS материалы
+                    POS materials
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_existing[]" value="none">
+                  <input type="checkbox" name="concept_brand_existing[]" value="none">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-notfile"></span>
-                    Нет ничего
+                    None yet
                   </span>
                 </label>
 
               </div>
 
               <div class="brief__head mt-40 mb-20">
-                <h2 class="brief__title title-tippy t-16">Как вы чувствуете бренд?
-                  <span data-fls-tooltip data-tippy-content="С какими эмоциями вы бы хотели, чтобы ассоциировался ваш продукт или бренд? Это поможет нам задать правильный тон и визуальное направление в дизайне."></span>
+                <h2 class="brief__title title-tippy t-16">
+                  How do you feel about the brand?
+                  <span data-fls-tooltip data-tippy-content="What do you want people to feel about your brand? This will help us set the right tone and visual direction in the design."></span>
                 </h2>
               </div>
 
               <div class="brief-tags brief-tags--emotions">
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="clean">
-                  <span class="brief-tags__box">Чистый</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="clean">
+                  <span class="brief-tags__box">Clean</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="safe">
-                  <span class="brief-tags__box">Безопасный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="safe">
+                  <span class="brief-tags__box">Safe</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="free">
-                  <span class="brief-tags__box">Свободный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="free">
+                  <span class="brief-tags__box">Free</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="progressive">
-                  <span class="brief-tags__box">Прогрессивный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="progressive">
+                  <span class="brief-tags__box">Progressive</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="smart">
-                  <span class="brief-tags__box">Умный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="smart">
+                  <span class="brief-tags__box">Smart</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="strong">
-                  <span class="brief-tags__box">Сильный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="strong">
+                  <span class="brief-tags__box">Strong</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="professional">
-                  <span class="brief-tags__box">Профессиональный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="professional">
+                  <span class="brief-tags__box">Professional</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="durable">
-                  <span class="brief-tags__box">Прочный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="durable">
+                  <span class="brief-tags__box">Durable</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="brutal">
-                  <span class="brief-tags__box">Брутальный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="rebellious">
+                  <span class="brief-tags__box">Rebellious</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="soft">
-                  <span class="brief-tags__box">Мягкий</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="soft">
+                  <span class="brief-tags__box">Soft</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="provocative">
-                  <span class="brief-tags__box">Провокационный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="provocative">
+                  <span class="brief-tags__box">Provocative</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="effective">
-                  <span class="brief-tags__box">Эффектный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="spectacular">
+                  <span class="brief-tags__box">Spectacular</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="revolutionary">
-                  <span class="brief-tags__box">Революционный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="revolutionary">
+                  <span class="brief-tags__box">Revolutionary</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="creative">
-                  <span class="brief-tags__box">Творческий</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="creative">
+                  <span class="brief-tags__box">Creative</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="unique">
-                  <span class="brief-tags__box">Уникальный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="unique">
+                  <span class="brief-tags__box">Unique</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="status">
-                  <span class="brief-tags__box">Статусный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="prestigious">
+                  <span class="brief-tags__box">Prestigious</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="organized">
-                  <span class="brief-tags__box">Организованный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="organized">
+                  <span class="brief-tags__box">Organized</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="caring">
-                  <span class="brief-tags__box">Заботливый</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="caring">
+                  <span class="brief-tags__box">Caring</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="simple">
-                  <span class="brief-tags__box">Простой</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="simple">
+                  <span class="brief-tags__box">Simple</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="home">
-                  <span class="brief-tags__box">Домашний</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="homemade">
+                  <span class="brief-tags__box">Homemade</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="fun">
-                  <span class="brief-tags__box">Весёлый</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="funny">
+                  <span class="brief-tags__box">Funny</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="playful">
-                  <span class="brief-tags__box">Игривый</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="playful">
+                  <span class="brief-tags__box">Playful</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="sensual">
-                  <span class="brief-tags__box">Чувственный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="sensual">
+                  <span class="brief-tags__box">Sensual</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="brand_emotions[]" value="romantic">
-                  <span class="brief-tags__box">Романтичный</span>
+                  <input type="checkbox" name="concept_brand_emotions[]" value="romantic">
+                  <span class="brief-tags__box">Romantic</span>
                 </label>
 
               </div>
@@ -1256,39 +1245,39 @@
             <fieldset>
               <div class="brief__head mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Какие каналы продаж планируются?
-                  <span data-fls-tooltip data-tippy-content="Нам важно понять, где будет продаваться ваш продукт. Помогите представить будущую локацию и конкурентное окружение вашего бренда."></span>
+                  What sales channels are planned?
+                  <span data-fls-tooltip data-tippy-content="It is important for us to understand and imagine where your product will be sold and who it competes with."></span>
                 </h2>
               </div>
 
               <div class="brief-tags brief-tags--channels">
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="retail">
+                  <input type="checkbox" name="concept_sales_channels[]" value="retail">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-cart"></span>
-                    Ритейл
+                    Modern trade
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="traditional">
+                  <input type="checkbox" name="concept_sales_channels[]" value="traditional">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-bags"></span>
-                    Традиционная розница
+                    Traditional trade
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="market">
+                  <input type="checkbox" name="concept_sales_channels[]" value="market">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-eat"></span>
-                    Рынок
+                    Street market
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="horeca">
+                  <input type="checkbox" name="concept_sales_channels[]" value="horeca">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-bell"></span>
                     HoReCa
@@ -1296,15 +1285,15 @@
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="special">
+                  <input type="checkbox" name="concept_sales_channels[]" value="special">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-gear"></span>
-                    Специализированные магазины
+                    Specialty stores
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="instagram">
+                  <input type="checkbox" name="concept_sales_channels[]" value="instagram">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-social"></span>
                     Instagram
@@ -1312,43 +1301,42 @@
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="gas_station">
+                  <input type="checkbox" name="concept_sales_channels[]" value="gas_station">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-gasstation"></span>
-                    АЗС
+                    Gas station
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="vending">
+                  <input type="checkbox" name="concept_sales_channels[]" value="vending">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-calculator"></span>
-                    Вендинговые автоматы
+                    Vending machines
                   </span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="sales_channels[]" value="own_network">
+                  <input type="checkbox" name="concept_sales_channels[]" value="own_network">
                   <span class="brief-tags__box">
                     <span class="brief-tags__icon --icon-awardbadge"></span>
-                    Собственная сеть
+                    Own retail chain
                   </span>
                 </label>
 
               </div>
 
-
               <div class="brief__head mt-40 mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Опишите поведение вашего покупателя
-                  <span data-fls-tooltip data-tippy-content="Познакомьте нас с вашим основным покупателем. Кто он? Каков его уровень дохода? Что он ищет в категории и почему выбирает именно ваш продукт?"></span>
+                  Describe your customer behaviour
+                  <span data-fls-tooltip data-tippy-content="Describe your target customer: income level, what they look for in this category, and why they'd choose your product."></span>
                 </h2>
               </div>
 
               <div class="brief-textarea">
                 <label class="brief-textarea__item">
-                  <textarea name="customer_behavior" class="textarea-brief"
-                    placeholder="Наш покупатель чаще женский пол, с средним уровнем достатка, они не ищут подешевле но обращают внимание на красные ценники. Им важна уверенность в эффективности средства. Они готовы переплачивать если увидят ценность в продукте."></textarea>
+                  <textarea name="concept_customer_behavior" class="textarea-brief"
+                    placeholder="Our customers are more often female, with an average level of income, they are not looking for something cheaper, but they pay attention to the red price tags or sales. They need confidence in the product effectiveness. They are willing to overpay if they see value in the product."></textarea>
                 </label>
               </div>
             </fieldset>
@@ -1358,119 +1346,124 @@
             <fieldset>
               <div class="brief__head mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  Эмоции упаковки при первом взгляде
-                  <span data-fls-tooltip data-tippy-content="Tone of voice вашего продукта или бренда в целом, какие эмоции должна вызвать новая упаковка при первом взгляде?"></span>
+                  First-glance emotions from the packaging
+                  <span data-fls-tooltip data-tippy-content="Tone of voice of your product or brand. What should people feel when they first see the packaging?"></span>
                 </h2>
               </div>
 
               <div class="brief-tags brief-tags--package">
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="dynamic">
-                  <span class="brief-tags__box">Динамика</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="dynamic">
+                  <span class="brief-tags__box">Dynamics</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="energy">
-                  <span class="brief-tags__box">Энергия</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="energy">
+                  <span class="brief-tags__box">Energy</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="kindness">
-                  <span class="brief-tags__box">Доброта</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="kindness">
+                  <span class="brief-tags__box">Kindness</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="care">
-                  <span class="brief-tags__box">Забота</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="care">
+                  <span class="brief-tags__box">Care</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="joy">
-                  <span class="brief-tags__box">Радость</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="joy">
+                  <span class="brief-tags__box">Joy</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="expert">
-                  <span class="brief-tags__box">Экспертность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="expert">
+                  <span class="brief-tags__box">Expertise</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="surprise">
-                  <span class="brief-tags__box">Удивление</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="surprise">
+                  <span class="brief-tags__box">Astonishment</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="calm">
-                  <span class="brief-tags__box">Спокойствие</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="calm">
+                  <span class="brief-tags__box">Calmness</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="status">
-                  <span class="brief-tags__box">Статусность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="status">
+                  <span class="brief-tags__box">Prestige</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="premium">
-                  <span class="brief-tags__box">Премиальность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="premium">
+                  <span class="brief-tags__box">Premium</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="nostalgia">
-                  <span class="brief-tags__box">Ностальгия</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="nostalgia">
+                  <span class="brief-tags__box">Nostalgia</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="playful">
-                  <span class="brief-tags__box">Игривость</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="playful">
+                  <span class="brief-tags__box">Playfulness</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="appetite">
-                  <span class="brief-tags__box">Аппетит</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="appetite">
+                  <span class="brief-tags__box">Appetite</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="charming">
-                  <span class="brief-tags__box">Очарованность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="charming">
+                  <span class="brief-tags__box">Fascination</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="confidence">
-                  <span class="brief-tags__box">Уверенность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="confidence">
+                  <span class="brief-tags__box">Confidence</span>
                 </label>
 
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="innovation">
-                  <span class="brief-tags__box">Инновационность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="innovation">
+                  <span class="brief-tags__box">Innovation</span>
                 </label>
+
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="autent">
-                  <span class="brief-tags__box">Аутентичность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="autent">
+                  <span class="brief-tags__box">Authenticity</span>
                 </label>
+
                 <label class="brief-tags__item">
-                  <input type="checkbox" name="pack_emotions[]" value="natural">
-                  <span class="brief-tags__box">Натуральность</span>
+                  <input type="checkbox" name="concept_pack_emotions[]" value="natural">
+                  <span class="brief-tags__box">Naturalness</span>
                 </label>
 
               </div>
 
               <div class="brief__head mt-40 mb-30">
                 <h2 class="brief__title title-tippy t-16">
-                  Стилистические референсы
-                  <span data-fls-tooltip data-tippy-content="Визуальные примеры, которые помогают понять какое настроение, стиль, тональность или графическое направление клиент хочет видеть в будущем дизайне."></span>
+                  Style references
+                  <span data-fls-tooltip data-tippy-content="Visual examples that help us understand what mood, style, tone or graphic you want to see in the future design."></span>
                 </h2>
+
                 <div class="brief__subtitle">
-                  <p>Выберете несколько примеров, которые на ваш взгляд соответствуют выбранным эмоциям.</p>
+                  <p>Pick examples that you think match the selected emotions.</p>
                 </div>
               </div>
+
+
               <div class="brief-refs">
                 <div data-fls-slider class="swiper brief-refs__slider">
 
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref1">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref1">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-1.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1479,7 +1472,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref2">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref2">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-2.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1488,7 +1481,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref3">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref3">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-3.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1497,7 +1490,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref4">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref4">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-4.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1506,7 +1499,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref5">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref5">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-5.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1515,7 +1508,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref6">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref6">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-6.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1524,7 +1517,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-1.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1533,7 +1526,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref8">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref8">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-2.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1542,7 +1535,7 @@
                     </div>
                     <div class="swiper-slide">
                       <label class="brief-ref">
-                        <input type="checkbox" name="pack_refs[]" value="ref9">
+                        <input type="checkbox" name="concept_pack_refs[]" value="ref9">
                         <span class="brief-ref__box">
                           <img data-img-ignore loading="lazy" src="@img/cases/case-3.webp" alt="Reference 1">
                           <span class="brief-ref__check --icon-check"></span>
@@ -1568,48 +1561,56 @@
                 </div>
               </div>
             </fieldset>
-          </div> 
+          </div>
 
           <div class="brief__section" data-brief-step="concept">
             <fieldset>
               <div class="brief__head mb-15">
                 <h2 class="brief__title title-tippy t-16">
-                  Выберите тип упаковки
-                  <span data-fls-tooltip data-tippy-content="Выберите один или несколько типов и форм выпуска продукта — это поможет нам точнее понять вашу задумку и сопоставить её с задачами проекта."></span>
+                  Select packaging type
+                  <span data-fls-tooltip data-tippy-content="Select one or more formats. This helps us accurately understand your idea and match it to project goals."></span>
                 </h2>
               </div>
 
               <div data-brief-filters>
                 <div class="brief-filters">
-                  <div class="brief-filters__name">Фильтр:</div>
+                  <div class="brief-filters__name">Filter:</div>
+
                   <div class="brief-filters__list">
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="all" checked data-default-checked>
-                      <span class="brief-filters__box">Все</span>
+                      <span class="brief-filters__box">All</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="flexible">
-                      <span class="brief-filters__box">Гибкая</span>
+                      <span class="brief-filters__box">Flexible</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="cardboard">
-                      <span class="brief-filters__box">Картонная</span>
+                      <span class="brief-filters__box">Cardboard</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="paper">
-                      <span class="brief-filters__box">Бумажная</span>
+                      <span class="brief-filters__box">Paper</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="metal">
-                      <span class="brief-filters__box">Металлическая</span>
+                      <span class="brief-filters__box">Metal</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="glass">
-                      <span class="brief-filters__box">Стеклянная</span>
+                      <span class="brief-filters__box">Glass</span>
                     </label>
+
                     <label class="brief-filters__item">
                       <input type="checkbox" data-filter value="plastic">
-                      <span class="brief-filters__box">Пластиковая</span>
+                      <span class="brief-filters__box">Plastic</span>
                     </label>
                   </div>
                 </div>
@@ -1626,7 +1627,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Тетра Pak</p>
+                            <p>Tetra Pak</p>
                           </div>
                         </div>
                       </div>
@@ -1639,7 +1640,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонная<br> коробочка</p>
+                            <p>Folding<br> carton box</p>
                           </div>
                         </div>
                       </div>
@@ -1652,7 +1653,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Ящик-экран</p>
+                            <p>Window box</p>
                           </div>
                         </div>
                       </div>
@@ -1665,7 +1666,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Шоубокс</p>
+                            <p>Display box</p>
                           </div>
                         </div>
                       </div>
@@ -1678,7 +1679,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пульперкартон</p>
+                            <p>Molded pulp</p>
                           </div>
                         </div>
                       </div>
@@ -1691,7 +1692,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Ящик<br> гофрированный</p>
+                            <p>Corrugated box</p>
                           </div>
                         </div>
                       </div>
@@ -1704,7 +1705,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонное<br> ведёрко</p>
+                            <p>Paper tub</p>
                           </div>
                         </div>
                       </div>
@@ -1717,7 +1718,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонный<br> тубус</p>
+                            <p>Cardboard tube</p>
                           </div>
                         </div>
                       </div>
@@ -1730,7 +1731,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картонный<br> пакет</p>
+                            <p>Paper<br> carrier bag</p>
                           </div>
                         </div>
                       </div>
@@ -1743,7 +1744,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Картон<br> другое</p>
+                            <p>Other carton</p>
                           </div>
                         </div>
                       </div>
@@ -1756,7 +1757,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Трёхшовный<br> пакет</p>
+                            <p>Pillow three-seal<br> bag</p>
                           </div>
                         </div>
                       </div>
@@ -1769,7 +1770,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Гасcет<br> пакет</p>
+                            <p>Side-gusset bag</p>
                           </div>
                         </div>
                       </div>
@@ -1782,7 +1783,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пакет<br> с плоским дном</p>
+                            <p>Flat bottom pouch</p>
                           </div>
                         </div>
                       </div>
@@ -1795,7 +1796,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Дой-пак</p>
+                            <p>Doypack</p>
                           </div>
                         </div>
                       </div>
@@ -1808,7 +1809,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Саше-конверт</p>
+                            <p>Flat sachet</p>
                           </div>
                         </div>
                       </div>
@@ -1821,7 +1822,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пауч<br> пакет</p>
+                            <p>Spouted<br> pouch</p>
                           </div>
                         </div>
                       </div>
@@ -1834,7 +1835,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Плёнка<br> для запайки</p>
+                            <p>Lidding film</p>
                           </div>
                         </div>
                       </div>
@@ -1847,7 +1848,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Вакуумная<br> упаковка</p>
+                            <p>Vacuum<br>pack</p>
                           </div>
                         </div>
                       </div>
@@ -1860,7 +1861,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Полиамидная<br> оболочка</p>
+                            <p>Polyamide<br>casing</p>
                           </div>
                         </div>
                       </div>
@@ -1873,7 +1874,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Твист<br> этикетка</p>
+                            <p>Twist-wrap<br>label</p>
                           </div>
                         </div>
                       </div>
@@ -1886,7 +1887,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Шринк-слив</p>
+                            <p>Shrink-sleeve<br>label</p>
                           </div>
                         </div>
                       </div>
@@ -1899,7 +1900,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Гибкое<br> другое</p>
+                            <p>Flexible<br> Other</p>
                           </div>
                         </div>
                       </div>
@@ -1912,7 +1913,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянный<br> флакон</p>
+                            <p>Glass perfume<br> bottle (vial, flask)</p>
                           </div>
                         </div>
                       </div>
@@ -1925,7 +1926,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянная<br> бутылка</p>
+                            <p>Glass<br>bottle</p>
                           </div>
                         </div>
                       </div>
@@ -1938,7 +1939,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Стеклянная<br> банка</p>
+                            <p>Glass jar</p>
                           </div>
                         </div>
                       </div>
@@ -1951,7 +1952,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Алюминиевая<br> банка</p>
+                            <p>Aluminum<br> can</p>
                           </div>
                         </div>
                       </div>
@@ -1964,7 +1965,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Жестяной<br> балон</p>
+                            <p>Aerosol<br>can</p>
                           </div>
                         </div>
                       </div>
@@ -1977,7 +1978,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Консервная<br> банка</p>
+                            <p>Tin can</p>
                           </div>
                         </div>
                       </div>
@@ -1990,7 +1991,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другое<br> металлическое</p>
+                            <p>Other<br>metal</p>
                           </div>
                         </div>
                       </div>
@@ -2003,7 +2004,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажный<br> саше</p>
+                            <p>Paper<br> sachet</p>
                           </div>
                         </div>
                       </div>
@@ -2016,7 +2017,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажная<br> этикетка</p>
+                            <p>Paper label</p>
                           </div>
                         </div>
                       </div>
@@ -2029,7 +2030,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажная<br> обертка</p>
+                            <p>Paper<br>wrap</p>
                           </div>
                         </div>
                       </div>
@@ -2042,7 +2043,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Этикетка</p>
+                            <p>Paper<br>wrap</p>
                           </div>
                         </div>
                       </div>
@@ -2055,7 +2056,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Бумажный<br> пакет</p>
+                            <p>Paper bag</p>
                           </div>
                         </div>
                       </div>
@@ -2068,7 +2069,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другое<br> бумажное</p>
+                            <p>Other<br>paper</p>
                           </div>
                         </div>
                       </div>
@@ -2081,7 +2082,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковый<br> контейнер</p>
+                            <p>Plastic<br>HDPE bottle</p>
                           </div>
                         </div>
                       </div>
@@ -2094,7 +2095,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> бутылка</p>
+                            <p>Plastic<br>HDPE bottle</p>
                           </div>
                         </div>
                       </div>
@@ -2107,7 +2108,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> трубка</p>
+                            <p>Plastic<br>tube</p>
                           </div>
                         </div>
                       </div>
@@ -2120,7 +2121,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковое<br> стекло</p>
+                            <p>Plastic <br>cup</p>
                           </div>
                         </div>
                       </div>
@@ -2133,7 +2134,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковая<br> бутылка (спрей)</p>
+                            <p>Plastic<br>spray bottle</p>
                           </div>
                         </div>
                       </div>
@@ -2146,7 +2147,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Корекс<br> контейнер</p>
+                            <p>PET clamshell<br>container</p>
                           </div>
                         </div>
                       </div>
@@ -2159,7 +2160,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Пластиковый<br> контейнер (стакан)</p>
+                            <p>PP deli container</p>
                           </div>
                         </div>
                       </div>
@@ -2172,7 +2173,7 @@
                             <span class="brief-ref-type__check --icon-check"></span>
                           </label>
                           <div class="brief-ref-type__name">
-                            <p>Другой<br> пластик</p>
+                            <p>Other plastic</p>
                           </div>
                         </div>
                       </div>
@@ -2197,14 +2198,16 @@
 
               <div class="brief__head mt-40 mb-20">
                 <h2 class="brief__title title-tippy t-16">
-                  <div>Информация на упаковке <span class="final-label --icon-goblet">Финальный вопрос</span></div>
-                  <span data-fls-tooltip data-tippy-content="Что важно указать или отразить на упаковке? Пожалуйста, опишите это в порядке приоритетности. Не забудьте также включить обязательные элементы, регулируемые законом о маркировке."></span>
+                  <div>Information on the packaging
+                    <span class="final-label --icon-goblet">Final question</span>
+                  </div>
+                  <span data-fls-tooltip data-tippy-content="What must appear on the packaging? Please describe it in order of priority. Be sure to include the elements required by law."></span>
                 </h2>
               </div>
 
               <div class="brief-textarea">
                 <label class="brief-textarea__item">
-                  <textarea name="package_info" class="textarea-brief" placeholder="Например: вес продукта, вкусовые характеристики, витамины и т.д."></textarea>
+                  <textarea name="package_info" class="textarea-brief" placeholder="For example: weight of the product, flavour characteristics, vitamins, etc."></textarea>
                 </label>
               </div>
 
@@ -2212,9 +2215,13 @@
                 <input type="checkbox" checked data-default-checked name="send_copy" value="1">
                 <span class="brief-copy__box">
                   <span class="brief-copy__icon --icon-check"></span>
-                  <span class="brief-copy__txt">Сохранить копию <span>(бриф автоматически придёт вам на указанную почту)</span></span>
+                  <span class="brief-copy__txt">
+                    Send a copy
+                    <span>The brief will be sent automatically to your email.</span>
+                  </span>
                 </span>
               </label>
+
             </fieldset>
           </div>
 
@@ -2222,14 +2229,14 @@
         <div class="brief__nav">
           <button type="button" data-brief-prev data-fls-btn class="brief__btn-prev" aria-label="prev">
             <span class="icon --icon-arrowrightb"></span>
-            <span class="txt">Вернуться назад</span>
+            <span class="txt">Go back</span>
           </button>
           <button type="button" data-brief-next data-fls-btn class="brief__btn-next btn btn--5" aria-label="link">
-            <span class="btn-txt">Следующий шаг</span>
+            <span class="btn-txt">Next step</span>
             <span class="btn-arr --icon-arrowrightb"></span>
           </button>
           <button type="submit" data-fls-btn data-brief-submit class="brief__btn-submit btn btn--5" aria-label="link">
-            <span class="btn-txt">Отправить бриф</span>
+            <span class="btn-txt">Send a brief</span>
             <span class="btn-arr --icon-arrowrightb"></span>
           </button>
         </div>
@@ -2244,17 +2251,20 @@
         </div>
         <div class="brief-msg__info">
           <div class="brief-msg__title">
-            <p>Готово!</p>
+            <p>Done!</p>
           </div>
           <div class="brief-msg__subtitle">
             <p>
-              Мы обработаем поступившую информацию и вскоре свяжемся с вами
+              Thanks for your time! We are processing your answers and will contact you shortly.
+            </p><br>
+            <p>
+              While you wait, check out our portfolio:
             </p>
           </div>
-          <a href="index" data-fls-btn class="brief-msg__link btn btn--1" aria-label="link">
-            <span class="btn-txt">Наш основной сайт</span>
+          <a href="https://posh.pro" data-fls-btn class="brief-msg__link btn btn--1" aria-label="link">
+            <span class="btn-txt">Go to main site</span>
           </a>
-          <a href="#" data-brief-start class="brief-msg__btn --icon-arrowrightb t-2"><span>Заполнить чек-лист еще раз</span></a>
+          <a href="#" data-brief-start class="brief-msg__btn --icon-arrowrightb t-2"><span>Start a new brief</span></a>
         </div>
       </div>
     </div>

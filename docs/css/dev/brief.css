@@ -727,6 +727,7 @@
 .brief-copy {
   position: relative;
   display: block;
+  cursor: pointer;
 }
 .brief-copy input {
   position: absolute;
