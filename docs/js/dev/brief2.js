@@ -2564,6 +2564,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetBranchingState() {
     allSteps.forEach((s) => {
       s.hidden = false;
+      s.style.display = "";
     });
     activeSteps = [...allSteps];
     current = 0;
@@ -2584,9 +2585,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function showStep(index) {
     current = index;
-    allSteps.forEach((s) => s.hidden = true);
-    activeSteps.forEach((s) => s.hidden = true);
-    activeSteps[current].hidden = false;
+    allSteps.forEach((s) => {
+      s.hidden = true;
+    });
+    activeSteps.forEach((s) => {
+      s.hidden = true;
+    });
+    const step = activeSteps[current];
+    step.hidden = false;
+    step.style.display = "";
     if (current === 0) {
       btnPrev.style.display = "none";
       btnNext.style.display = "";
