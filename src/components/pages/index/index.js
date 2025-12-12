@@ -146,7 +146,47 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 		createGsapAnim();
 
-
+		const itemsSol = document.querySelectorAll('.item-solutions__txt');
+		// if (itemsSol.length) {
+			const mqDesktop = window.matchMedia('(min-width: 600px)');
+	
+			function resetMinHeight() {
+				itemsSol.forEach(el => {
+					el.style.minHeight = '';
+				});
+			}
+	
+			function setMaxMinHeight() {
+				if (!mqDesktop.matches) return;
+			
+				resetMinHeight();
+			
+				let maxHeight = 0;
+			
+				itemsSol.forEach(el => {
+					const height = el.offsetHeight;
+					if (height > maxHeight) {
+						maxHeight = height;
+					}
+				});
+			
+				itemsSol.forEach(el => {
+					el.style.minHeight = `${maxHeight}px`;
+				});
+			}
+	
+			if (mqDesktop.matches) {
+				setMaxMinHeight();
+			}
+	
+			mqDesktop.addEventListener('change', e => {
+				if (e.matches) {
+					setMaxMinHeight();
+				} else {
+					resetMinHeight();
+				}
+			});
+		// }
 
 
 	// === RESIZE OBSERVER WITH DEBOUNCE ==========================================
@@ -160,6 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (currentWidth !== lastWidth2) {
 				lastWidth2 = currentWidth;
 				createGsapAnim();
+				
+				if (mqDesktop.matches) {
+      	  setMaxMinHeight();
+      	} 
+
 			}
 		}, 250); // Debounce 250ms
 	});

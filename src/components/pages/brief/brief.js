@@ -1,138 +1,5 @@
 import { addTouchAttr, addLoadedAttr, isMobile,  bodyLockToggle, bodyUnlock, bodyLock, FLS } from "@js/common/functions.js"
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const formBrief = document.querySelector('[data-form="brief"]');
-//   if (!formBrief) return;
-
-//   const steps = [...formBrief.querySelectorAll(".brief__section")];
-//   const btnPrev = formBrief.querySelector("[data-brief-prev]");
-//   const btnNext = formBrief.querySelector("[data-brief-next]");
-//   const btnSubmit = formBrief.querySelector("[data-brief-submit]");
-
-//   const progressFill = document.querySelector(".header-brief__progress-fill");
-//   const progressCurrent = document.querySelector("[data-brief-current]");
-//   const progressTotal = document.querySelector("[data-brief-total]");
-
-//   const TOTAL = steps.length;
-//   let current = 0; // теперь это индекс массива
-
-//   progressTotal.textContent = TOTAL;
-
-//   // --- валидация ---
-//   function validateCurrentStep() {
-//     const currentStep = steps[current];
-//     if (!currentStep) return true;
-
-//     const requiredFields = currentStep.querySelectorAll("[required]");
-//     if (!requiredFields.length) return true;
-
-//     for (const field of requiredFields) {
-//       if (!field.checkValidity()) {
-//         field.focus();
-//         if (field.reportValidity) field.reportValidity();
-//         return false;
-//       }
-//     }
-
-//     return true;
-//   }
-
-//   // --- показать шаг ---
-//   function showStep(index) {
-//     current = index;
-
-//     steps.forEach((step, i) => {
-//       step.hidden = i !== current;
-//     });
-
-//     // кнопки
-//     btnPrev.style.display = current === 0 ? "none" : "";
-//     btnNext.style.display = current === TOTAL - 1 ? "none" : "";
-//     btnSubmit.style.display = current === TOTAL - 1 ? "" : "none";
-
-//     // прогресс бар
-//     const percent = ((current + 1) / TOTAL) * 100;
-//     progressFill.style.width = percent + "%";
-//     progressCurrent.textContent = current + 1;
-//   }
-
-//   // --- ПРОКРУТКА НАВЕРХ ПЕРЕД СЛЕДУЮЩИМ ШАГОМ ---
-//   function scrollPage() {
-//       const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-//       if (scrollY > 0) {
-//         window.scrollTo({
-//           top: 0,
-//         });
-//       }
-//   }
-
-//   // кнопка NEXT
-//   btnNext.addEventListener("click", () => {
-//     if (current < TOTAL - 1 && validateCurrentStep()) {
-//       scrollPage();
-//       showStep(current + 1);
-//     }
-//   });
-  
-//   // кнопка PREV
-//   btnPrev.addEventListener("click", () => {
-//     scrollPage();
-//     if (current > 0) showStep(current - 1);
-//   });
-
-//   // старт
-//   showStep(0);
-
-//   // запретить отправку по нажатию на enter
-//     formBrief.addEventListener("keydown", function (e) {
-//     // Если нажали Enter
-//     if (e.key === "Enter") {
-//       const target = e.target;
-
-//       // --- Разрешаем Enter в textarea (для переносов строки)
-//       if (target.tagName === "TEXTAREA") return;
-
-//       // --- Разрешаем Enter внутри элементов с contenteditable
-//       if (target.hasAttribute("contenteditable")) return;
-
-//       // --- Блокируем Enter для всех остальных случаев
-//       e.preventDefault();
-//     }
-//   });
-
-
-
-//   // Вернуть бриф на первый шаг после отправки (вызов через form.js)
-//   document.addEventListener("briefResetSteps", () => {
-//       current = 0;
-//       showStep(0);
-//   });
-
-//   // дейсвтия после клика по кнопке внутри попапа brief-msg -- 
-//   document.addEventListener("click", (e) => {
-//     const btn = e.target.closest("[data-brief-start]");
-//     if (!btn) return;
-
-//     const popup = document.querySelector("[data-brief-msg]");
-//     const html = document.documentElement;
-
-//     if (popup) {
-//         popup.classList.remove("--brief-sent");
-//         html.classList.remove("--brief-sent");
-//         popup.setAttribute("aria-hidden", "true");
-//     }
-
-//     bodyUnlock();
-
-//     // Вернуть бриф в начало
-//     current = 0;
-//     showStep(0);
-//   });
-
-
-// });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const formBrief = document.querySelector('[data-form="brief"]');
@@ -149,6 +16,92 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressCurrent = document.querySelector("[data-brief-current]");
   const progressTotal = document.querySelector("[data-brief-total]");
 
+
+  // ===============================
+  // STORAGE + HISTORY
+  // ===============================
+  const STORAGE_KEY = "briefFormState";
+  let isHistoryNavigation = false;
+
+  function saveState() {
+   
+    const data = {
+      current,
+      values: {},
+      timestamp: Date.now(),
+    };
+
+
+    allSteps.forEach(step => {
+      const fields = step.querySelectorAll("input, textarea, select");
+      fields.forEach(f => {
+        if (!f.name) return;
+
+        if (f.type === "checkbox") {
+          if (!Array.isArray(data.values[f.name])) {
+            data.values[f.name] = [];
+          }
+          if (f.checked) {
+            data.values[f.name].push(f.value);
+          }
+        }
+        else if (f.type === "radio") {
+          if (f.checked) {
+            data.values[f.name] = f.value;
+          }
+        }
+        else {
+          data.values[f.name] = f.value;
+        }
+
+      });
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function restoreState() {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (!saved) return;
+
+      // ===== TTL (24 часа) =====
+      const TTL = 24 * 60 * 60 * 1000;
+      if (!saved.timestamp || Date.now() - saved.timestamp > TTL) {
+        localStorage.removeItem(STORAGE_KEY);
+        return;
+      }
+
+    // восстановление значений
+    allSteps.forEach(step => {
+      const fields = step.querySelectorAll("input, textarea, select");
+      fields.forEach(f => {
+        if (!f.name || !(f.name in saved.values)) return;
+
+      if (f.type === "checkbox") {
+        f.checked =
+          Array.isArray(saved.values[f.name]) &&
+          saved.values[f.name].includes(f.value);
+      }
+      else if (f.type === "radio") {
+        f.checked = saved.values[f.name] === f.value;
+      }
+      else {
+        f.value = saved.values[f.name];
+      }
+
+      });
+    });
+
+    // восстановление ветки
+    applyBranching();
+
+    if (Number.isInteger(saved.current)) {
+      current = Math.min(saved.current, activeSteps.length - 1);
+    }
+  }
+  // ======
+
+
   // --- состояние ---
   let activeSteps = [...allSteps];
   let current = 0;
@@ -156,9 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Скрываем прогрессбар полностью
   progress.style.display = "none";
 
-  // ============================================
   // ФУНКЦИЯ ПОЛНОГО СБРОСА ВЕТВЛЕНИЯ
-  // ============================================
   function resetBranchingState() {
     allSteps.forEach(s => {
       s.hidden = false;
@@ -232,6 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
       progressFill.style.width = percent + "%";
       progressCurrent.textContent = currentNumber;
     }
+
+
+      // сохраняем состояние
+      saveState();
+
+      // добавляем шаг в history (если это не popstate)
+      if (!isHistoryNavigation) {
+        history.pushState({ step: current }, "", "#step-" + current);
+      }
+
   }
 
   // ============= ВАЛИДАЦИЯ =============
@@ -301,11 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ============= ресет после отправки =============
-  // document.addEventListener("briefResetSteps", () => {
-  //   resetBranchingState(); // 👈 ДОБАВЛЕНО
-  //   showStep(0);
-  // });
 
   // ============= закрытие popup brief-msg =============
   document.addEventListener("click", e => {
@@ -323,11 +279,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bodyUnlock();
 
-    // 👇 ДОБАВЛЕНО
     resetBranchingState();
     showStep(0);
   });
 
   // Старт
-  showStep(0);
+  // showStep(0);
+
+  restoreState();
+  history.replaceState({ step: current }, "", "#step-" + current);
+  showStep(current);
+
+
+  formBrief.addEventListener("input", saveState);
+  formBrief.addEventListener("change", saveState);
+
+
+  window.addEventListener("popstate", e => {
+    if (!e.state || typeof e.state.step !== "number") return;
+
+    isHistoryNavigation = true;
+    showStep(e.state.step);
+    isHistoryNavigation = false;
+  });
+
+
 });

@@ -4,6 +4,120 @@ import { formValidate } from "../_functions.js";
 
 import './form.scss'
 
+
+// ======================================================
+//  BRIEF UPLOADS — IndexedDB HELPERS
+// ======================================================
+
+const BRIEF_DB_NAME = "briefUploadsDB";
+const BRIEF_DB_VERSION = 1;
+const BRIEF_STORE_NAME = "files";
+
+// ---------- open DB ----------
+function openBriefDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(BRIEF_DB_NAME, BRIEF_DB_VERSION);
+
+    request.onupgradeneeded = () => {
+      const db = request.result;
+      if (!db.objectStoreNames.contains(BRIEF_STORE_NAME)) {
+        db.createObjectStore(BRIEF_STORE_NAME);
+      }
+    };
+
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+}
+
+// ---------- save files ----------
+function saveBriefFiles(key, files) {
+  return openBriefDB().then(db => {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(BRIEF_STORE_NAME, "readwrite");
+      const store = tx.objectStore(BRIEF_STORE_NAME);
+
+      store.put(files, key);
+
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+
+      tx.onerror = () => {
+        db.close();
+        reject(tx.error);
+      };
+    });
+  });
+}
+
+// ---------- load files ----------
+function loadBriefFiles(key) {
+  return openBriefDB().then(db => {
+    return new Promise(resolve => {
+      const tx = db.transaction(BRIEF_STORE_NAME, "readonly");
+      const store = tx.objectStore(BRIEF_STORE_NAME);
+      const request = store.get(key);
+
+      request.onsuccess = () => {
+        resolve(request.result || []);
+      };
+
+      request.onerror = () => {
+        resolve([]);
+      };
+
+      tx.oncomplete = () => {
+        db.close();
+      };
+    });
+  });
+}
+
+// ---------- clear files ----------
+function clearBriefFiles(key) {
+  return openBriefDB().then(db => {
+    return new Promise(resolve => {
+      const tx = db.transaction(BRIEF_STORE_NAME, "readwrite");
+      const store = tx.objectStore(BRIEF_STORE_NAME);
+
+      store.delete(key);
+
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+
+      tx.onerror = () => {
+        db.close();
+        resolve();
+      };
+    });
+  });
+}
+
+// ---------- clear ALL files (optional) ----------
+function clearAllBriefFiles() {
+  return openBriefDB().then(db => {
+    return new Promise(resolve => {
+      const tx = db.transaction(BRIEF_STORE_NAME, "readwrite");
+      tx.objectStore(BRIEF_STORE_NAME).clear();
+
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+    });
+  });
+}
+
+
 function formInit() {
 	// Відправлення форм
 	function formSubmit() {
@@ -32,6 +146,19 @@ function formInit() {
 					const formAction = form.getAttribute('action') ? form.getAttribute('action').trim() : '#';
 					const formMethod = form.getAttribute('method') ? form.getAttribute('method').trim() : 'GET';
 					const formData = new FormData(form);
+
+					const uploadBlocksAjax = document.querySelectorAll("[data-brief-upload]");
+					uploadBlocksAjax.forEach(block => {
+						const files = block._filesArray || [];
+						const input = block.querySelector(".brief-upload__input");
+						if (!files.length || !input?.name) return;
+
+						files.forEach(file => {
+							formData.append(input.name, file);
+						});
+					});
+
+
 					form.classList.add('--sending');
 					const response = await fetch(formAction, {
 						method: formMethod,
@@ -47,6 +174,7 @@ function formInit() {
 					}
 				} else if (form.dataset.flsForm === 'dev') {	// Якщо режим розробки
 					e.preventDefault()
+
 					formSent(form)
 				}
 			} else {
@@ -73,6 +201,20 @@ function formInit() {
 					popup ? window.flsPopup.open(popup) : null;
 				}
 			}, 0);
+
+			//  ОЧИСТКА LOCAL + INDEXED DB ПОСЛЕ SUBMIT
+			if (form.dataset.form === "brief") {
+				localStorage.removeItem("briefFormState");
+
+				const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
+				uploadBlocks.forEach(block => {
+					const input = block.querySelector(".brief-upload__input");
+					if (input?.name) {
+						clearBriefFiles(input.name);
+					}
+				});
+			}
+
 			// Очищуємо форму
 			formValidate.formClean(form);
 
@@ -84,19 +226,11 @@ function formInit() {
 					
 			    if (popupBrief) {
 							const html = document.documentElement;
-			        // Показать окно
 			        popupBrief.classList.add("--brief-sent");
 							popupBrief.setAttribute("aria-hidden", "false");
 			        html.classList.add("--brief-sent");
 					
-			        // Заблокировать скролл
 			        bodyLock();
-					
-			        // // Через 3 секунды вернуть бриф на 1 шаг
-			        // setTimeout(() => {
-			        //     const event = new CustomEvent("briefResetSteps");
-			        //     document.dispatchEvent(event);
-			        // }, 3000);
 			    }
 			}
 
@@ -168,77 +302,158 @@ function formInit() {
 		});
 	}
 
- 	const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
+
+
+
+ 	// const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
+	// if (uploadBlocks.length) {
+	// 	const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+	
+	// 	uploadBlocks.forEach(block => {
+	//     block._filesArray = [];
+	//     const input = block.querySelector(".brief-upload__input");
+	//     const btn = block.querySelector("[data-upload-btn]");
+	//     const list = block.querySelector("[data-upload-list]");
+	//     const error = block.querySelector("[data-upload-error]");
+
+	//     let filesArray = block._filesArray; // ← ВАЖНО!
+
+	
+	// 		// открыть input
+	// 		btn.addEventListener("click", () => input.click());
+	
+	// 		// выбор файлов
+	// 		input.addEventListener("change", () => {
+	// 			const chosenFiles = Array.from(input.files);
+	
+	// 			const currentSize = filesArray.reduce((t, f) => t + f.size, 0);
+	// 			const chosenSize = chosenFiles.reduce((t, f) => t + f.size, 0);
+	
+	// 			if (currentSize + chosenSize > MAX_SIZE) {
+	// 				error.classList.add("--show");
+	// 				input.value = "";
+	// 				return;
+	// 			} else {
+	// 				error.classList.remove("--show");
+	// 			}
+	
+	// 			filesArray.push(...chosenFiles);
+	// 			input.value = ""; // очистка
+	
+	// 			renderList();
+	// 		});
+	
+	// 		// render
+	// 		function renderList() {
+	// 			list.innerHTML = "";
+	
+	// 			filesArray.forEach((file, index) => {
+	// 				const item = document.createElement("div");
+	// 				item.className = "brief-upload__file";
+	// 				item.innerHTML = `
+	// 					${file.name}
+	// 					<button type="button" data-remove-index="${index}" aria-label="remove">
+	// 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+	// 							<rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#676767"/>
+	// 							<path d="M5 5L8 8L5 11" stroke="#676767"/>
+	// 							<path d="M11 11L8 8L11 5" stroke="#676767"/>
+	// 						</svg>
+	// 					</button>
+	// 				`;
+	// 				list.appendChild(item);
+	// 			});
+	// 		}
+	
+	// 		// удаление
+	// 		list.addEventListener("click", e => {
+	// 			const btn = e.target.closest("[data-remove-index]");
+	// 			if (!btn) return;
+	
+	// 			const index = +btn.dataset.removeIndex;
+	// 			filesArray.splice(index, 1);
+	
+	// 			error.classList.remove("--show");
+	// 			renderList();
+	// 		});
+	
+	// 	});
+	// }
+
+	// ==================== UPLOAD BLOCKS ====================
+	const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
 	if (uploadBlocks.length) {
-		const MAX_SIZE = 10 * 1024 * 1024; // 10MB
-	
+		const MAX_SIZE = 10 * 1024 * 1024;
+
 		uploadBlocks.forEach(block => {
-	    block._filesArray = [];
-	    const input = block.querySelector(".brief-upload__input");
-	    const btn = block.querySelector("[data-upload-btn]");
-	    const list = block.querySelector("[data-upload-list]");
-	    const error = block.querySelector("[data-upload-error]");
+			block._filesArray = [];
 
-	    let filesArray = block._filesArray; // ← ВАЖНО!
+			const input = block.querySelector(".brief-upload__input");
+			const btn = block.querySelector("[data-upload-btn]");
+			const list = block.querySelector("[data-upload-list]");
+			const error = block.querySelector("[data-upload-error]");
 
-	
-			// открыть input
+			let filesArray = block._filesArray;
+
+			/* ==========================================
+			   ВОССТАНОВЛЕНИЕ ФАЙЛОВ ИЗ IndexedDB
+			   ========================================== */
+			if (input?.name) {
+				loadBriefFiles(input.name).then(savedFiles => {
+					if (!savedFiles || !savedFiles.length) return;
+					block._filesArray = savedFiles;
+					filesArray = block._filesArray;
+					renderList();
+				});
+			}
+			/* ========================================== */
+
 			btn.addEventListener("click", () => input.click());
-	
-			// выбор файлов
-			input.addEventListener("change", () => {
+
+			input.addEventListener("change", async () => {
 				const chosenFiles = Array.from(input.files);
-	
+
 				const currentSize = filesArray.reduce((t, f) => t + f.size, 0);
 				const chosenSize = chosenFiles.reduce((t, f) => t + f.size, 0);
-	
+
 				if (currentSize + chosenSize > MAX_SIZE) {
 					error.classList.add("--show");
 					input.value = "";
 					return;
-				} else {
-					error.classList.remove("--show");
 				}
-	
+
+				error.classList.remove("--show");
 				filesArray.push(...chosenFiles);
-				input.value = ""; // очистка
-	
+				input.value = "";
+
+				await saveBriefFiles(input.name, filesArray);
 				renderList();
 			});
-	
-			// render
+
 			function renderList() {
 				list.innerHTML = "";
-	
+
 				filesArray.forEach((file, index) => {
 					const item = document.createElement("div");
 					item.className = "brief-upload__file";
 					item.innerHTML = `
 						${file.name}
-						<button type="button" data-remove-index="${index}" aria-label="remove">
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#676767"/>
-								<path d="M5 5L8 8L5 11" stroke="#676767"/>
-								<path d="M11 11L8 8L11 5" stroke="#676767"/>
-							</svg>
-						</button>
+						<button type="button" data-remove-index="${index}" aria-label="remove">×</button>
 					`;
 					list.appendChild(item);
 				});
 			}
-	
-			// удаление
-			list.addEventListener("click", e => {
+
+			list.addEventListener("click", async e => {
 				const btn = e.target.closest("[data-remove-index]");
 				if (!btn) return;
-	
+
 				const index = +btn.dataset.removeIndex;
 				filesArray.splice(index, 1);
-	
+
+				await saveBriefFiles(input.name, filesArray);
 				error.classList.remove("--show");
 				renderList();
 			});
-	
 		});
 	}
 

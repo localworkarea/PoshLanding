@@ -6833,6 +6833,12 @@ const marquee = () => {
   });
 };
 document.addEventListener("DOMContentLoaded", () => {
+  const year = (/* @__PURE__ */ new Date()).getFullYear();
+  document.querySelectorAll(".set-year").forEach((el) => {
+    el.textContent = year;
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector("[data-fls-gallerys]");
   if (!gallery) return;
   const fullscreen = gallery.querySelector("[data-gallery-fullscreen]");
@@ -8062,6 +8068,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   createGsapAnim();
+  const itemsSol = document.querySelectorAll(".item-solutions__txt");
+  const mqDesktop = window.matchMedia("(min-width: 600px)");
+  function resetMinHeight() {
+    itemsSol.forEach((el) => {
+      el.style.minHeight = "";
+    });
+  }
+  function setMaxMinHeight() {
+    if (!mqDesktop.matches) return;
+    resetMinHeight();
+    let maxHeight = 0;
+    itemsSol.forEach((el) => {
+      const height = el.offsetHeight;
+      if (height > maxHeight) {
+        maxHeight = height;
+      }
+    });
+    itemsSol.forEach((el) => {
+      el.style.minHeight = `${maxHeight}px`;
+    });
+  }
+  if (mqDesktop.matches) {
+    setMaxMinHeight();
+  }
+  mqDesktop.addEventListener("change", (e) => {
+    if (e.matches) {
+      setMaxMinHeight();
+    } else {
+      resetMinHeight();
+    }
+  });
   let lastWidth2 = window.innerWidth;
   let resizeTimeout = null;
   const resizeObserver2 = new ResizeObserver((entries) => {
@@ -8071,6 +8108,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentWidth !== lastWidth2) {
         lastWidth2 = currentWidth;
         createGsapAnim();
+        if (mqDesktop.matches) {
+          setMaxMinHeight();
+        }
       }
     }, 250);
   });

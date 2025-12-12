@@ -2558,6 +2558,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressFill = document.querySelector(".header-brief__progress-fill");
   const progressCurrent = document.querySelector("[data-brief-current]");
   const progressTotal = document.querySelector("[data-brief-total]");
+  const STORAGE_KEY = "briefFormState";
+  let isHistoryNavigation = false;
+  function saveState() {
+    const data = {
+      current,
+      values: {},
+      timestamp: Date.now()
+    };
+    allSteps.forEach((step) => {
+      const fields = step.querySelectorAll("input, textarea, select");
+      fields.forEach((f) => {
+        if (!f.name) return;
+        if (f.type === "checkbox") {
+          if (!Array.isArray(data.values[f.name])) {
+            data.values[f.name] = [];
+          }
+          if (f.checked) {
+            data.values[f.name].push(f.value);
+          }
+        } else if (f.type === "radio") {
+          if (f.checked) {
+            data.values[f.name] = f.value;
+          }
+        } else {
+          data.values[f.name] = f.value;
+        }
+      });
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+  function restoreState() {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (!saved) return;
+    const TTL = 24 * 60 * 60 * 1e3;
+    if (!saved.timestamp || Date.now() - saved.timestamp > TTL) {
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    allSteps.forEach((step) => {
+      const fields = step.querySelectorAll("input, textarea, select");
+      fields.forEach((f) => {
+        if (!f.name || !(f.name in saved.values)) return;
+        if (f.type === "checkbox") {
+          f.checked = Array.isArray(saved.values[f.name]) && saved.values[f.name].includes(f.value);
+        } else if (f.type === "radio") {
+          f.checked = saved.values[f.name] === f.value;
+        } else {
+          f.value = saved.values[f.name];
+        }
+      });
+    });
+    applyBranching();
+    if (Number.isInteger(saved.current)) {
+      current = Math.min(saved.current, activeSteps.length - 1);
+    }
+  }
   let activeSteps = [...allSteps];
   let current = 0;
   progress.style.display = "none";
@@ -2614,6 +2670,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const percent = currentNumber / (activeSteps.length - 1) * 100;
       progressFill.style.width = percent + "%";
       progressCurrent.textContent = currentNumber;
+    }
+    saveState();
+    if (!isHistoryNavigation) {
+      history.pushState({ step: current }, "", "#step-" + current);
     }
   }
   function validateCurrentStep() {
@@ -2677,5 +2737,15 @@ document.addEventListener("DOMContentLoaded", () => {
     resetBranchingState();
     showStep(0);
   });
-  showStep(0);
+  restoreState();
+  history.replaceState({ step: current }, "", "#step-" + current);
+  showStep(current);
+  formBrief.addEventListener("input", saveState);
+  formBrief.addEventListener("change", saveState);
+  window.addEventListener("popstate", (e) => {
+    if (!e.state || typeof e.state.step !== "number") return;
+    isHistoryNavigation = true;
+    showStep(e.state.step);
+    isHistoryNavigation = false;
+  });
 });

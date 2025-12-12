@@ -43,25 +43,26 @@ textarea {
 }
 textarea.input-main {
 	resize: none;
-	padding: 0px 0px;
+	padding: 6px 0px 0;
 	outline: none;
 }
 textarea.textarea-brief {
 	resize: none;
 	padding: 10px 14px;
 	min-height: 162px;
-	font-style: italic;
 	outline: none;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	background-color: var(--white);
 	line-height: 1.42;
-	font-size: 14px;
+	font-size: 16px;
 	@media (min-width:toEm($mobileSmall)){
-		 min-height: 100px; 
+		font-size: 14px;
+		min-height: 100px; 
 	}
 	&::placeholder {
 		color: var(--gray-light-3);
+		font-style: italic;
 	}
 }
 
