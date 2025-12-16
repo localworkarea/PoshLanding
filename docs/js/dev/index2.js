@@ -8216,23 +8216,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const heroBlock = document.querySelector("[data-video-hero]");
   if (heroBlock) {
-    let playMainVideo = function() {
-      mainWasPlayedOnce = true;
+    let hidePlayBtn = function() {
       playBtn.style.opacity = "0";
       playBtn.style.pointerEvents = "none";
+    }, showPlayBtn = function() {
+      playBtn.style.opacity = "1";
+      playBtn.style.pointerEvents = "auto";
+    }, updatePlayButtonDesktop = function() {
+      if (mainVideo.paused) {
+        showPlayBtn();
+      } else {
+        hidePlayBtn();
+      }
+    }, playMainVideo = function() {
+      mainWasPlayedOnce = true;
       previewWrapper.classList.add("--not-active");
       previewVideo.pause();
+      mainVideo.muted = false;
+      mainVideo.volume = 0.3;
+      mainVideo.controls = true;
       mainVideo.play();
+      hidePlayBtn();
+      if (isTouch) {
+        mobileInteractionDone = true;
+        openFullscreenOnceOnMobile();
+      }
     }, toggleMainPlayback = function() {
       if (mainVideo.paused) {
         mainVideo.play();
-        playBtn.style.opacity = "0";
-        playBtn.style.pointerEvents = "none";
       } else {
         mainVideo.pause();
-        playBtn.style.opacity = "1";
-        playBtn.style.pointerEvents = "auto";
       }
+      updatePlayButtonDesktop();
     };
     const playBtn = heroBlock.querySelector(".video-hero__play");
     const previewWrapper = heroBlock.querySelector(".video-hero__preview");
@@ -8240,33 +8255,70 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainWrapper = heroBlock.querySelector(".video-hero__main");
     const mainVideo = mainWrapper?.querySelector("video");
     if (!playBtn || !previewVideo || !mainVideo) return;
-    mainVideo.pause();
-    previewVideo.muted = true;
+    const isTouch = isMobile.any();
     let mainWasPlayedOnce = false;
-    heroBlock.addEventListener("click", () => {
+    let mobileInteractionDone = false;
+    let mobileAutoFullscreenDone = false;
+    mainVideo.pause();
+    mainVideo.muted = true;
+    mainVideo.controls = false;
+    mainVideo.volume = 0.3;
+    previewVideo.muted = true;
+    async function openFullscreenOnceOnMobile() {
+      if (!isTouch || mobileAutoFullscreenDone) return;
+      mobileAutoFullscreenDone = true;
+      try {
+        if (typeof mainVideo.webkitEnterFullscreen === "function") {
+          mainVideo.webkitEnterFullscreen();
+          return;
+        }
+        if (mainVideo.requestFullscreen) {
+          await mainVideo.requestFullscreen();
+        }
+      } catch (e) {
+      }
+    }
+    heroBlock.addEventListener("click", (e) => {
+      if (e.target.closest("video")) return;
+      if (isTouch) {
+        if (!mobileInteractionDone) {
+          playMainVideo();
+        }
+        return;
+      }
       if (!mainWasPlayedOnce) {
         playMainVideo();
         return;
       }
       toggleMainPlayback();
     });
+    mainVideo.addEventListener("click", (e) => {
+      if (isTouch) {
+        if (!mobileInteractionDone) {
+          e.preventDefault();
+          playMainVideo();
+        }
+        return;
+      }
+      e.preventDefault();
+      toggleMainPlayback();
+    });
+    if (!isTouch) {
+      mainVideo.addEventListener("play", updatePlayButtonDesktop);
+      mainVideo.addEventListener("pause", updatePlayButtonDesktop);
+    }
     const observer2 = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            if (!mainVideo.paused) {
-              mainVideo.pause();
-              if (mainWasPlayedOnce) {
-                playBtn.style.opacity = "1";
-                playBtn.style.pointerEvents = "auto";
-              }
+          if (!entry.isIntersecting && !mainVideo.paused) {
+            mainVideo.pause();
+            if (!isTouch) {
+              showPlayBtn();
             }
           }
         });
       },
-      {
-        threshold: 0.2
-      }
+      { threshold: 0.2 }
     );
     observer2.observe(heroBlock);
   }

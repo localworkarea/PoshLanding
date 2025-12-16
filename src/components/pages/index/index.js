@@ -1,4 +1,4 @@
-import { FLS } from "@js/common/functions.js";
+import { FLS, isMobile } from "@js/common/functions.js";
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from "gsap/all";
 
@@ -355,89 +355,241 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// == hero video =================================
+	// const heroBlock = document.querySelector("[data-video-hero]");
+	// if (heroBlock) {
+	// 	const playBtn = heroBlock.querySelector(".video-hero__play");
+	// 	const previewWrapper = heroBlock.querySelector(".video-hero__preview");
+	// 	const previewVideo = previewWrapper?.querySelector("video");
+	// 	const mainWrapper = heroBlock.querySelector(".video-hero__main");
+	// 	const mainVideo = mainWrapper?.querySelector("video");
+	
+	// 	if (!playBtn || !previewVideo || !mainVideo) return;
+	
+	// 	// --- Начальные состояния ---
+	// 	mainVideo.pause(); 
+	// 	previewVideo.muted = true; 
+	// 	// previewVideo.play().catch(() => {});
+	// 	let mainWasPlayedOnce = false;
+	
+	// 	// --- Функция запуска основного видео ---
+	// 	function playMainVideo() {
+	// 		mainWasPlayedOnce = true;
+	
+	// 		// 1. Скрываем кнопку
+	// 		playBtn.style.opacity = "0";
+	// 		playBtn.style.pointerEvents = "none";
+	
+	// 		// 2. Скрываем превью
+	// 		previewWrapper.classList.add("--not-active");
+	// 		previewVideo.pause();
+	
+	// 		// 3. Запускаем основное
+	// 		mainVideo.play();
+	// 	}
+	
+	// 	// --- Функция паузы/плея после первого запуска ---
+	// 	function toggleMainPlayback() {
+	// 		if (mainVideo.paused) {
+	// 			mainVideo.play();
+	// 			playBtn.style.opacity = "0";
+	// 			playBtn.style.pointerEvents = "none";
+	// 		} else {
+	// 			mainVideo.pause();
+	// 			playBtn.style.opacity = "1";
+	// 			playBtn.style.pointerEvents = "auto";
+	// 		}
+	// 	}
+	
+	// 	// --- Обработчик клика по всему блоку ---
+	// 	heroBlock.addEventListener("click", () => {
+	// 		// Первый клик — запускаем основное
+	// 		if (!mainWasPlayedOnce) {
+	// 			playMainVideo();
+	// 			return;
+	// 		}
+	
+	// 		// Дальше — только управление основным
+	// 		toggleMainPlayback();
+	// 	});
+	
+	// 	// --- Поведение при выходе блока из вьюпорта ---
+	// 	const observer2 = new IntersectionObserver(
+	// 		(entries) => {
+	// 			entries.forEach(entry => {
+	// 				if (!entry.isIntersecting) {
+	// 					// Останавливаем только основное видео
+	// 					if (!mainVideo.paused) {
+	// 						mainVideo.pause();
+	// 						if (mainWasPlayedOnce) {
+	// 							playBtn.style.opacity = "1";
+	// 							playBtn.style.pointerEvents = "auto";
+	// 						}
+	// 					}
+	// 				}
+	// 			});
+	// 		}, {
+	// 			threshold: 0.2
+	// 		}
+	// 	);
+	
+	// 	observer2.observe(heroBlock);
+	// };
 
-	const heroBlock = document.querySelector("[data-video-hero]");
-	// if (!heroBlock) return;
-	if (heroBlock) {
-		const playBtn = heroBlock.querySelector(".video-hero__play");
-		const previewWrapper = heroBlock.querySelector(".video-hero__preview");
-		const previewVideo = previewWrapper?.querySelector("video");
-		const mainWrapper = heroBlock.querySelector(".video-hero__main");
-		const mainVideo = mainWrapper?.querySelector("video");
-	
-		if (!playBtn || !previewVideo || !mainVideo) return;
-	
-		// --- Начальные состояния ---
-		mainVideo.pause(); 
-		previewVideo.muted = true; 
-		// previewVideo.play().catch(() => {});
-		let mainWasPlayedOnce = false;
-	
-		// --- Функция запуска основного видео ---
-		function playMainVideo() {
-			mainWasPlayedOnce = true;
-	
-			// 1. Скрываем кнопку
-			playBtn.style.opacity = "0";
-			playBtn.style.pointerEvents = "none";
-	
-			// 2. Скрываем превью
-			previewWrapper.classList.add("--not-active");
-			previewVideo.pause();
-	
-			// 3. Запускаем основное
-			mainVideo.play();
+
+const heroBlock = document.querySelector("[data-video-hero]");
+if (heroBlock) {
+	const playBtn = heroBlock.querySelector(".video-hero__play");
+	const previewWrapper = heroBlock.querySelector(".video-hero__preview");
+	const previewVideo = previewWrapper?.querySelector("video");
+	const mainWrapper = heroBlock.querySelector(".video-hero__main");
+	const mainVideo = mainWrapper?.querySelector("video");
+
+	if (!playBtn || !previewVideo || !mainVideo) return;
+
+	const isTouch = isMobile.any();
+
+	let mainWasPlayedOnce = false;
+	let mobileInteractionDone = false;
+	let mobileAutoFullscreenDone = false;
+
+	mainVideo.pause();
+	mainVideo.muted = true;
+	mainVideo.controls = false;
+	mainVideo.volume = 0.3;
+
+	previewVideo.muted = true;
+
+	function hidePlayBtn() {
+		playBtn.style.opacity = "0";
+		playBtn.style.pointerEvents = "none";
+	}
+
+	function showPlayBtn() {
+		playBtn.style.opacity = "1";
+		playBtn.style.pointerEvents = "auto";
+	}
+
+	// desktop — синхронизация с play/pause
+	function updatePlayButtonDesktop() {
+		if (mainVideo.paused) {
+			showPlayBtn();
+		} else {
+			hidePlayBtn();
 		}
-	
-		// --- Функция паузы/плея после первого запуска ---
-		function toggleMainPlayback() {
-			if (mainVideo.paused) {
-				mainVideo.play();
-				playBtn.style.opacity = "0";
-				playBtn.style.pointerEvents = "none";
-			} else {
-				mainVideo.pause();
-				playBtn.style.opacity = "1";
-				playBtn.style.pointerEvents = "auto";
-			}
-		}
-	
-		// --- Обработчик клика по всему блоку ---
-		heroBlock.addEventListener("click", () => {
-			// Первый клик — запускаем основное
-			if (!mainWasPlayedOnce) {
-				playMainVideo();
+	}
+
+	// MOBILE FULLSCREEN (ONCE)
+	async function openFullscreenOnceOnMobile() {
+		if (!isTouch || mobileAutoFullscreenDone) return;
+
+		mobileAutoFullscreenDone = true;
+
+		try {
+			// iOS Safari
+			if (typeof mainVideo.webkitEnterFullscreen === "function") {
+				mainVideo.webkitEnterFullscreen();
 				return;
 			}
-	
-			// Дальше — только управление основным
-			toggleMainPlayback();
-		});
-	
-		// --- Поведение при выходе блока из вьюпорта ---
-		const observer2 = new IntersectionObserver(
-			(entries) => {
-				entries.forEach(entry => {
-					if (!entry.isIntersecting) {
-						// Останавливаем только основное видео
-						if (!mainVideo.paused) {
-							mainVideo.pause();
-							if (mainWasPlayedOnce) {
-								playBtn.style.opacity = "1";
-								playBtn.style.pointerEvents = "auto";
-							}
-						}
-					}
-				});
-			}, {
-				threshold: 0.2
+
+			// Android / Chrome / others
+			if (mainVideo.requestFullscreen) {
+				await mainVideo.requestFullscreen();
 			}
-		);
-	
-		observer2.observe(heroBlock);
-	};
+		} catch (e) {
+			// fullscreen может быть запрещён — игнорируем
+		}
+	}
 
+	// START MAIN VIDEO
+	function playMainVideo() {
+		mainWasPlayedOnce = true;
 
+		previewWrapper.classList.add("--not-active");
+		previewVideo.pause();
+
+		mainVideo.muted = false;
+		mainVideo.volume = 0.3;
+		mainVideo.controls = true;
+
+		mainVideo.play();
+		hidePlayBtn();
+
+		if (isTouch) {
+			mobileInteractionDone = true;
+			openFullscreenOnceOnMobile(); // авто-fullscreen один раз
+		}
+	}
+
+	// TOGGLE (DESKTOP ONLY)
+	function toggleMainPlayback() {
+		if (mainVideo.paused) {
+			mainVideo.play();
+		} else {
+			mainVideo.pause();
+		}
+		updatePlayButtonDesktop();
+	}
+
+	// HERO CLICK
+	heroBlock.addEventListener("click", (e) => {
+		if (e.target.closest("video")) return;
+
+		// TOUCH — только первый запуск
+		if (isTouch) {
+			if (!mobileInteractionDone) {
+				playMainVideo();
+			}
+			return;
+		}
+
+		// DESKTOP
+		if (!mainWasPlayedOnce) {
+			playMainVideo();
+			return;
+		}
+
+		toggleMainPlayback();
+	});
+
+	// VIDEO CLICK
+	mainVideo.addEventListener("click", (e) => {
+		if (isTouch) {
+			// на тач — только первый клик
+			if (!mobileInteractionDone) {
+				e.preventDefault();
+				playMainVideo();
+			}
+			return;
+		}
+
+		// desktop
+		e.preventDefault();
+		toggleMainPlayback();
+	});
+
+	// DESKTOP: sync with native controls
+	if (!isTouch) {
+		mainVideo.addEventListener("play", updatePlayButtonDesktop);
+		mainVideo.addEventListener("pause", updatePlayButtonDesktop);
+	}
+
+	const observer2 = new IntersectionObserver(
+		(entries) => {
+			entries.forEach(entry => {
+				if (!entry.isIntersecting && !mainVideo.paused) {
+					mainVideo.pause();
+
+					if (!isTouch) {
+						showPlayBtn();
+					}
+				}
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	observer2.observe(heroBlock);
+}
 
 
 
