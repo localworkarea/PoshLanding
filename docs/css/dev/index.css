@@ -543,8 +543,16 @@ html, body {
   height: 1.5625rem;
   aspect-ratio: 44/44;
 }
+.list-hero__icon.is-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: opacity 0.1s, visibility 0.1s;
+}
 .list-hero__icon img,
-.list-hero__icon video {
+.list-hero__icon video,
+.list-hero__icon canvas {
+  position: relative;
+  display: block;
   height: 100%;
   width: auto;
   aspect-ratio: 44/44;
@@ -1075,7 +1083,10 @@ html, body {
   justify-content: center;
 }
 .spollers-process__media img,
-.spollers-process__media video {
+.spollers-process__media video,
+.spollers-process__media canvas {
+  position: relative;
+  display: block;
   width: 100%;
   height: auto;
   max-width: 11.875rem;
@@ -1783,7 +1794,8 @@ html, body {
     margin-left: 7.125rem;
   }
   .spollers-process__media img,
-  .spollers-process__media video {
+  .spollers-process__media video,
+  .spollers-process__media canvas {
     max-width: 9.375rem;
   }
   .cost-guarantee__head {

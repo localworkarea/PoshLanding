@@ -1,26 +1,24 @@
 import { FLS, isMobile } from "@js/common/functions.js";
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from "gsap/all";
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { Box3, Vector3 } from 'three';
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({
   autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
-  lerp: 0.08, // Оптимальное значение для гладкого скролла
-  // lerp: 0.06, // Оптимальное значение для гладкого скролла
+  lerp: 0.08, // значение для гладкого скролла
   wheelMultiplier: 1, // Контроль скорости прокрутки
   touchMultiplier: 2,
 });
 
-// gsap.ticker.add((time) => {
-//   lenis.raf(time * 1000); // GSAP даёт секунды, Lenis хочет миллисекунды
-//   ScrollTrigger.update(); // Обновляем ScrollTrigger в одном месте
-// });
 
-// один раз обновляем после lenis
 lenis.on('scroll', ScrollTrigger.update);
 
-// в тикере только lenis
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
 });
@@ -29,6 +27,249 @@ gsap.ticker.add((time) => {
 gsap.ticker.lagSmoothing(0);
 
 
+
+
+
+const ROTATION_ANGLE = -Math.PI * 2;
+const ROTATION_DURATION = 5000;
+
+const HERO_3D_PRESETS = {
+  hero: {
+    targetSize: 1.2,
+    cameraZ: 3,
+    light: {
+      key: {
+        position: [-1, 1, 5],
+        intensity: 2,
+      },
+      side: {
+        position: [3, 0, 2],
+        intensity: 0.6,
+      },
+    },
+  },
+
+  process: {
+    targetSize: 1.4,
+    cameraZ: 3.2,
+    light: {
+      key: {
+        position: [-1, 0, 4],
+        intensity: 2.5,
+      },
+      side: {
+        position: [2, 0, 1],
+        intensity: 0.8,
+      },
+    },
+  },
+};
+
+
+function initHeroIcon(canvas, modelSrc, preset) {
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    30,
+    canvas.clientWidth / canvas.clientHeight,
+    0.1,
+    100
+  );
+  camera.position.z = preset.cameraZ;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true,
+  });
+	renderer.setClearColor(0x000000, 0);
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // ================= LIGHT =================
+  const keyLight = new THREE.DirectionalLight(
+    0xffffff,
+    preset.light.key.intensity
+  );
+  keyLight.position.set(...preset.light.key.position);
+  scene.add(keyLight);
+
+  if (preset.light.side) {
+    const sideLight = new THREE.DirectionalLight(
+      0xffffff,
+      preset.light.side.intensity
+    );
+    sideLight.position.set(...preset.light.side.position);
+    scene.add(sideLight);
+  }
+
+	// ================= STATE =================
+	let isAnimating = false;
+	let rotationStart = 0;
+	let rotationFrom = 0;
+	let rotationTo = 0;
+
+	let rafId = null;
+	let isRendering = false;
+
+  // ================= MODEL =================
+  let model;
+
+  const loader = new GLTFLoader();
+  loader.load(modelSrc, (gltf) => {
+    model = gltf.scene;
+
+    const box = new THREE.Box3().setFromObject(model);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+
+    const maxSide = Math.max(size.x, size.y, size.z);
+    const scale = preset.targetSize / maxSide;
+
+    model.scale.setScalar(scale);
+
+    box.setFromObject(model);
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    model.position.sub(center);
+
+  scene.add(model);
+
+	if (preset === HERO_3D_PRESETS.hero) {
+	  isRendering = true;
+
+	  requestAnimationFrame((t1) => {
+	    render(t1);
+
+	    requestAnimationFrame((t2) => {
+	      render(t2);
+	      rotateOnce(true);
+
+	      const icon = canvas.closest('.list-hero__icon');
+				if (icon) {
+				  icon.classList.add('is-visible');
+				}
+
+	    });
+	  });
+	}
+
+
+  });
+
+
+ 	function rotateOnce(force = false) {
+	  if (!model) return;
+
+	  // ❗ для hero — запрещаем перезапуск во время анимации
+	  if (preset === HERO_3D_PRESETS.hero && isAnimating) return;
+
+	  // для process можно форсить
+	  if (isAnimating && !force) return;
+
+	  isAnimating = true;
+	  rotationStart = performance.now();
+	  rotationFrom = model.rotation.y;
+	  rotationTo = rotationFrom + ROTATION_ANGLE;
+	}
+
+
+  if (preset === HERO_3D_PRESETS.hero) {
+    canvas.addEventListener('mouseenter', rotateOnce);
+  }
+
+  // ================= RENDER LOOP =================
+  function render(time) {
+    if (!isRendering) return;
+
+    if (isAnimating && model) {
+      const progress = Math.min(
+        (time - rotationStart) / ROTATION_DURATION,
+        1
+      );
+
+      model.rotation.y =
+        rotationFrom + (rotationTo - rotationFrom) * progress;
+
+      if (progress === 1) {
+        model.rotation.y = rotationTo;
+        isAnimating = false;
+      }
+    }
+
+    renderer.render(scene, camera);
+    rafId = requestAnimationFrame(render);
+  }
+
+  // ================= CONTROLLER =================
+  return {
+    play() {
+      if (!model) return;
+
+      if (!isRendering) {
+        isRendering = true;
+        render(performance.now());
+      }
+
+      rotateOnce(true);
+    },
+
+    reset() {
+      if (!model) return;
+
+      isRendering = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
+      model.rotation.y = 0;
+      isAnimating = false;
+
+      renderer.render(scene, camera);
+    },
+  };
+}
+
+function lazyInit3D(canvas, preset) {
+  let initialized = false;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !initialized) {
+          initialized = true;
+
+          const modelSrc = canvas.dataset['3dSrc'];
+          if (!modelSrc) return;
+
+          const controller = initHeroIcon(canvas, modelSrc, preset);
+          canvas._threeController = controller;
+
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '200px', // подгружаем заранее
+      threshold: 0.1,
+    }
+  );
+
+  observer.observe(canvas);
+}
+
+document.querySelectorAll('.hero-3d').forEach((canvas) => {
+  const modelSrc = canvas.dataset['3dSrc'];
+  if (modelSrc) {
+    initHeroIcon(canvas, modelSrc, HERO_3D_PRESETS.hero);
+  }
+});
+
+document.querySelectorAll('.hero-3d-process').forEach((canvas) => {
+  lazyInit3D(canvas, HERO_3D_PRESETS.process);
+});
 
 
 
@@ -271,33 +512,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-	// === HERO LIST VIDEO HOVER REPLAY ==================================
-	const heroVideosList = document.querySelectorAll(".list-hero__item video");
+	// // === HERO LIST VIDEO HOVER REPLAY ==================================
+	// const heroVideosList = document.querySelectorAll(".list-hero__item video");
 
-	if (heroVideosList.length) {
-		heroVideosList.forEach(video => {
-			let firstPlayDone = false;
-			let canReplayOnHover = false;
+	// if (heroVideosList.length) {
+	// 	heroVideosList.forEach(video => {
+	// 		let firstPlayDone = false;
+	// 		let canReplayOnHover = false;
 
-			video.addEventListener("ended", () => {
-				if (!firstPlayDone) {
-					firstPlayDone = true;
-					canReplayOnHover = true;
-				} else {
-					canReplayOnHover = true;
-				}
-			});
+	// 		video.addEventListener("ended", () => {
+	// 			if (!firstPlayDone) {
+	// 				firstPlayDone = true;
+	// 				canReplayOnHover = true;
+	// 			} else {
+	// 				canReplayOnHover = true;
+	// 			}
+	// 		});
 
-			video.addEventListener("mouseenter", () => {
-				if (!firstPlayDone) return; 
-				if (!canReplayOnHover) return; 
+	// 		video.addEventListener("mouseenter", () => {
+	// 			if (!firstPlayDone) return; 
+	// 			if (!canReplayOnHover) return; 
 
-				canReplayOnHover = false; 
-				video.currentTime = 0;
-				video.play();
-			});
-		});
-	}
+	// 			canReplayOnHover = false; 
+	// 			video.currentTime = 0;
+	// 			video.play();
+	// 		});
+	// 	});
+	// }
 
 
 

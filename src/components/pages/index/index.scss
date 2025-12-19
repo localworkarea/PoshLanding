@@ -114,6 +114,15 @@ html, body {
   }
 }
 
+.hero-3d {
+  // &.is-visible {
+  //   visibility: visible !important;
+  //   opacity: 1 !important;
+  //     transition: opacity 0.1s, visibility .1s;
+  // }
+}
+
+
 .list-hero {
   position: relative;
   display: flex;
@@ -219,12 +228,20 @@ html, body {
     aspect-ratio: 44/44;
   //  border: 1px solid #fff;
   //  max-width: max-content;
+    &.is-visible {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transition: opacity 0.1s, visibility .1s;
+    }
    @media (min-width:toEm($mobileSmall)) {
      height: 44px;
     }
     
     img,
-    video {
+    video,
+    canvas {
+      position: relative;
+      display: block;
       height: 100%;
       width: auto;
       aspect-ratio: 44/44;
@@ -1336,7 +1353,10 @@ html, body {
     justify-content: center;
 
     img,
-    video {
+    video,
+    canvas {
+      position: relative;
+      display: block;
       width: 100%;
       height: auto;
       max-width: 190px;
