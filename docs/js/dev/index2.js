@@ -40185,13 +40185,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, playMainVideo = function() {
       mainWasPlayedOnce = true;
-      const sources = mainVideo.querySelectorAll("source");
-      sources.forEach((source) => {
-        if (!source.src) {
-          source.src = source.dataset.src;
-        }
-      });
-      mainVideo.load();
       previewWrapper.classList.add("--not-active");
       previewVideo.pause();
       mainVideo.muted = false;

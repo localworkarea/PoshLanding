@@ -1092,14 +1092,14 @@ if (heroBlock) {
 	function playMainVideo() {
 	  mainWasPlayedOnce = true;
 
-	  // подгружаем видео 
-	  const sources = mainVideo.querySelectorAll('source');
-	  sources.forEach(source => {
-	    if (!source.src) {
-	      source.src = source.dataset.src;
-	    }
-	  });
-	  mainVideo.load();
+	  // // подгружаем видео 
+	  // const sources = mainVideo.querySelectorAll('source');
+	  // sources.forEach(source => {
+	  //   if (!source.src) {
+	  //     source.src = source.dataset.src;
+	  //   }
+	  // });
+	  // mainVideo.load();
 
 	  previewWrapper.classList.add("--not-active");
 	  previewVideo.pause();
@@ -1116,6 +1116,21 @@ if (heroBlock) {
 	    openFullscreenOnceOnMobile();
 	  }
 	}
+
+	// function playMainVideo() { 
+	// 	mainWasPlayedOnce = true; 
+	// 	previewWrapper.classList.add("--not-active"); 
+	// 	previewVideo.pause(); 
+	// 	mainVideo.muted = false; 
+	// 	mainVideo.volume = 0.3; 
+	// 	mainVideo.controls = true; 
+	// 	mainVideo.play(); 
+	// 	hidePlayBtn(); 
+	// 	if (isTouch) { 
+	// 		mobileInteractionDone = true; 
+	// 		openFullscreenOnceOnMobile(); // авто-fullscreen один раз 
+	// 		} 
+	// 	}
 
 
 	// TOGGLE (DESKTOP ONLY)

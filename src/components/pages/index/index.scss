@@ -286,6 +286,19 @@ html, body {
     break-inside: avoid;
     overflow: hidden;
     border-radius: 15px;
+    position: relative;
+    &.item-video {
+      video {
+        position: relative;
+        z-index: 1;
+      }
+      img {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        @extend %ibg;
+      }
+    }
 
     img,video {
       @extend %ibg;
