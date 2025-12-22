@@ -32645,7 +32645,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     useOffscreenCanvas = typeof OffscreenCanvas !== "undefined" && new OffscreenCanvas(1, 1).getContext("2d") !== null;
   } catch (err) {
   }
-  function createCanvas(width, height) {
+  function createCanvas2(width, height) {
     return useOffscreenCanvas ? new OffscreenCanvas(width, height) : createElementNS("canvas");
   }
   function resizeImage(image, needsNewCanvas, maxSize) {
@@ -32658,8 +32658,8 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       if (typeof HTMLImageElement !== "undefined" && image instanceof HTMLImageElement || typeof HTMLCanvasElement !== "undefined" && image instanceof HTMLCanvasElement || typeof ImageBitmap !== "undefined" && image instanceof ImageBitmap || typeof VideoFrame !== "undefined" && image instanceof VideoFrame) {
         const width = Math.floor(scale * dimensions.width);
         const height = Math.floor(scale * dimensions.height);
-        if (_canvas2 === void 0) _canvas2 = createCanvas(width, height);
-        const canvas = needsNewCanvas ? createCanvas(width, height) : _canvas2;
+        if (_canvas2 === void 0) _canvas2 = createCanvas2(width, height);
+        const canvas = needsNewCanvas ? createCanvas2(width, height) : _canvas2;
         canvas.width = width;
         canvas.height = height;
         const context3 = canvas.getContext("2d");
@@ -39825,111 +39825,46 @@ const HERO_3D_PRESETS = {
   hero: {
     targetSize: 1.2,
     cameraZ: 3,
-    environment: {
-      color: 4210752,
-      intensity: 0
-    },
-    material: {
-      color: 15198183,
-      metalness: 1,
-      roughness: 0.159
-    },
+    environment: { color: 4210752, intensity: 1 },
+    material: { color: 15198183, metalness: 1, roughness: 0.159 },
     lights: [
-      {
-        position: [0, 5, 2],
-        intensity: 10
-      },
-      {
-        position: [2, 0, -2],
-        intensity: 25
-      },
-      {
-        position: [-2, 0, -2],
-        intensity: 12
-      },
-      {
-        position: [-1.5, 0, 4],
-        intensity: 5
-      }
+      { position: [0, 5, 2], intensity: 10 },
+      { position: [2, 0, -2], intensity: 25 },
+      { position: [-2, 0, -2], intensity: 12 },
+      { position: [-1.5, 0, 4], intensity: 5 }
     ]
   },
   process: {
-    targetSize: 1.6,
+    targetSize: 1.4,
     cameraZ: 3.2,
-    environment: {
-      color: 4210752,
-      intensity: 1
-    },
-    material: {
-      color: 15198183,
-      metalness: 1,
-      roughness: 0.159
-    },
+    environment: { color: 4210752, intensity: 1 },
+    material: { color: 15198183, metalness: 1, roughness: 0.159 },
     lights: [
-      {
-        position: [0, 5, 2],
-        intensity: 10
-      },
-      {
-        position: [2, 0, -2],
-        intensity: 25
-      },
-      {
-        position: [-2, 0, -2],
-        intensity: 12
-      },
-      {
-        position: [-1.5, 0, 4],
-        intensity: 5
-      }
+      { position: [0, 5, 2], intensity: 10 },
+      { position: [2, 0, -2], intensity: 25 },
+      { position: [-2, 0, -2], intensity: 12 },
+      { position: [-1.5, 0, 4], intensity: 5 }
     ]
   }
 };
-const gltfCache = /* @__PURE__ */ new Map();
-const gltfLoader = new GLTFLoader();
-function loadModelWithCache(src) {
-  return new Promise((resolve, reject) => {
-    if (gltfCache.has(src)) {
-      resolve(gltfCache.get(src).clone(true));
-      return;
-    }
-    gltfLoader.load(
-      src,
-      (gltf) => {
-        gltfCache.set(src, gltf.scene);
-        resolve(gltf.scene.clone(true));
-      },
-      void 0,
-      reject
-    );
-  });
-}
-const envCache = /* @__PURE__ */ new Map();
-function getEnvironmentMap(renderer, preset) {
-  if (!preset.environment) return null;
-  const key = JSON.stringify(preset.environment);
-  if (envCache.has(key)) return envCache.get(key);
-  const pmrem = new PMREMGenerator(renderer);
-  const envScene = new Scene();
-  envScene.background = new Color(preset.environment.color);
-  const envRT = pmrem.fromScene(envScene, 0.04);
-  envCache.set(key, envRT.texture);
-  pmrem.dispose();
-  return envRT.texture;
+function createCanvas(container) {
+  const canvas = document.createElement("canvas");
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+  canvas.style.display = "block";
+  container.appendChild(canvas);
+  return canvas;
 }
 function initHeroIcon(container, modelSrc, preset) {
-  const canvas = document.createElement("canvas");
-  container.appendChild(canvas);
+  const canvas = createCanvas(container);
   const scene = new Scene();
   const camera = new PerspectiveCamera(
-    35,
-    // FOV — можно варьировать
+    30,
     container.clientWidth / container.clientHeight,
     0.1,
     100
   );
-  camera.position.set(0, 0, preset.cameraZ);
-  camera.lookAt(0, 0, 0);
+  camera.position.z = preset.cameraZ;
   const renderer = new WebGLRenderer({
     canvas,
     alpha: true,
@@ -39938,10 +39873,6 @@ function initHeroIcon(container, modelSrc, preset) {
   renderer.setClearColor(0, 0);
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.outputColorSpace = SRGBColorSpace;
-  renderer.toneMapping = ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1;
-  renderer.physicallyCorrectLights = true;
   let resizeTimeout = null;
   const resizeObserver = new ResizeObserver(() => {
     clearTimeout(resizeTimeout);
@@ -39957,65 +39888,55 @@ function initHeroIcon(container, modelSrc, preset) {
     }, 100);
   });
   resizeObserver.observe(container);
-  if (preset.lights) {
-    preset.lights.forEach(({ position, intensity }) => {
-      const light = new DirectionalLight(16777215, intensity);
-      light.position.set(...position);
-      scene.add(light);
-    });
-  }
-  const envMap = getEnvironmentMap(renderer, preset);
-  if (envMap) {
-    scene.environment = envMap;
-    scene.environmentIntensity = preset.environment?.intensity ?? 1;
-  }
-  let model = null;
+  preset.lights.forEach(({ position, intensity }) => {
+    const light = new DirectionalLight(16777215, intensity);
+    light.position.set(...position);
+    scene.add(light);
+  });
+  const pmrem = new PMREMGenerator(renderer);
+  const envScene = new Scene();
+  envScene.background = new Color(preset.environment.color);
+  scene.environment = pmrem.fromScene(envScene).texture;
+  pmrem.dispose();
+  let model;
   let isAnimating = false;
+  let isRendering = false;
   let rotationStart = 0;
   let rotationFrom = 0;
   let rotationTo = 0;
   let rafId = null;
-  let isRendering = false;
-  loadModelWithCache(modelSrc).then((loadedModel) => {
-    model = loadedModel;
+  const loader = new GLTFLoader();
+  loader.load(modelSrc, (gltf) => {
+    model = gltf.scene;
     const box = new Box3().setFromObject(model);
     const size = new Vector3();
     box.getSize(size);
-    const maxSide = Math.max(size.x, size.y, size.z);
-    const scale = preset.targetSize / maxSide;
+    const scale = preset.targetSize / Math.max(size.x, size.y, size.z);
     model.scale.setScalar(scale);
     box.setFromObject(model);
     const center = new Vector3();
     box.getCenter(center);
     model.position.sub(center);
-    if (preset.material) {
-      model.traverse((child) => {
-        if (child.isMesh) {
-          child.material = new MeshStandardMaterial({
-            color: preset.material.color,
-            metalness: preset.material.metalness,
-            roughness: preset.material.roughness,
-            side: DoubleSide
-          });
-        }
-      });
-    }
-    scene.add(model);
-    if (preset === HERO_3D_PRESETS.hero) {
-      isRendering = true;
-      requestAnimationFrame((t1) => {
-        render3(t1);
-        requestAnimationFrame((t2) => {
-          render3(t2);
-          rotateOnce(true);
-          container.classList.add("is-visible");
+    model.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new MeshStandardMaterial({
+          color: preset.material.color,
+          metalness: preset.material.metalness,
+          roughness: preset.material.roughness,
+          side: DoubleSide
         });
-      });
+      }
+    });
+    scene.add(model);
+    isRendering = true;
+    render3(performance.now());
+    if (preset === HERO_3D_PRESETS.hero) {
+      rotateOnce(true);
+      container.classList.add("is-visible");
     }
   });
   function rotateOnce(force = false) {
     if (!model) return;
-    if (preset === HERO_3D_PRESETS.hero && isAnimating) return;
     if (isAnimating && !force) return;
     isAnimating = true;
     rotationStart = performance.now();
@@ -40023,40 +39944,36 @@ function initHeroIcon(container, modelSrc, preset) {
     rotationTo = rotationFrom + ROTATION_ANGLE;
   }
   if (preset === HERO_3D_PRESETS.hero) {
-    canvas.addEventListener("mouseenter", rotateOnce);
+    container.addEventListener("mouseenter", rotateOnce);
   }
   function render3(time) {
     if (!isRendering) return;
-    if (isAnimating && model) {
-      const progress = Math.min(
-        (time - rotationStart) / ROTATION_DURATION,
-        1
-      );
-      model.rotation.y = rotationFrom + (rotationTo - rotationFrom) * progress;
-      if (progress === 1) {
-        isAnimating = false;
-      }
+    if (isAnimating) {
+      const p = Math.min((time - rotationStart) / ROTATION_DURATION, 1);
+      model.rotation.y = rotationFrom + (rotationTo - rotationFrom) * p;
+      if (p === 1) isAnimating = false;
     }
     renderer.render(scene, camera);
     rafId = requestAnimationFrame(render3);
   }
   return {
     play() {
-      if (!model) return;
-      if (!isRendering) {
-        isRendering = true;
-        render3(performance.now());
-      }
+      isRendering = true;
       rotateOnce(true);
+      render3(performance.now());
     },
     reset() {
-      if (!model) return;
       isRendering = false;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = null;
-      model.rotation.y = 0;
-      isAnimating = false;
+      cancelAnimationFrame(rafId);
+      if (model) model.rotation.y = 0;
       renderer.render(scene, camera);
+    },
+    destroy() {
+      isRendering = false;
+      cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
+      renderer.dispose();
+      if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
     }
   };
 }
@@ -40064,36 +39981,23 @@ function lazyInit3D(container, preset) {
   let initialized = false;
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !initialized) {
-          initialized = true;
-          const modelSrc = container.dataset["3dSrc"];
-          if (!modelSrc) return;
-          const controller = initHeroIcon(container, modelSrc, preset);
-          container._threeController = controller;
-          observer.disconnect();
-        }
-      });
+      if (entries[0].isIntersecting && !initialized) {
+        initialized = true;
+        observer.disconnect();
+        const src = container.dataset["3dSrc"];
+        container._threeController = initHeroIcon(container, src, preset);
+      }
     },
-    {
-      rootMargin: "1500px",
-      threshold: 0.1
-    }
+    { rootMargin: "1500px", threshold: 0.1 }
   );
   observer.observe(container);
 }
-document.querySelectorAll("[data-3d-src]").forEach((el) => {
+document.querySelectorAll(".hero-3d").forEach((el) => {
   const src = el.dataset["3dSrc"];
-  if (src) loadModelWithCache(src);
+  if (src) initHeroIcon(el, src, HERO_3D_PRESETS.hero);
 });
-document.querySelectorAll(".hero-3d").forEach((container) => {
-  const modelSrc = container.dataset["3dSrc"];
-  if (modelSrc) {
-    initHeroIcon(container, modelSrc, HERO_3D_PRESETS.hero);
-  }
-});
-document.querySelectorAll(".hero-3d-process").forEach((container) => {
-  lazyInit3D(container, HERO_3D_PRESETS.process);
+document.querySelectorAll(".hero-3d-process").forEach((el) => {
+  lazyInit3D(el, HERO_3D_PRESETS.process);
 });
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img").forEach((el) => {
