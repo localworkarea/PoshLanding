@@ -39837,6 +39837,11 @@ const HERO_3D_PRESETS = {
         intensity: 25
       },
       {
+        // сзади левее
+        position: [-3, 0, -2],
+        intensity: 5
+      },
+      {
         // спереди левее
         position: [-1.5, 0, 4],
         intensity: 5
@@ -39856,6 +39861,11 @@ const HERO_3D_PRESETS = {
         // сзади правее
         position: [2, 0, -2],
         intensity: 25
+      },
+      {
+        // сзади левее
+        position: [-3, 0, -2],
+        intensity: 5
       },
       {
         // спереди левее
@@ -39979,6 +39989,30 @@ function initHeroIcon(canvas, modelSrc, preset) {
     }
   };
 }
+function lazyInit3D(canvas, preset) {
+  let initialized = false;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !initialized) {
+          initialized = true;
+          const modelSrc = canvas.dataset["3dSrc"];
+          if (!modelSrc) return;
+          const controller = initHeroIcon(canvas, modelSrc, preset);
+          canvas._threeController = controller;
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "1500px",
+      // подгружаем заранее
+      threshold: 0.1
+    }
+  );
+  observer.observe(canvas);
+}
 document.querySelectorAll(".hero-3d").forEach((canvas) => {
   const modelSrc = canvas.dataset["3dSrc"];
   if (modelSrc) {
@@ -39986,15 +40020,7 @@ document.querySelectorAll(".hero-3d").forEach((canvas) => {
   }
 });
 document.querySelectorAll(".hero-3d-process").forEach((canvas) => {
-  const modelSrc = canvas.dataset["3dSrc"];
-  if (modelSrc) {
-    const controller = initHeroIcon(
-      canvas,
-      modelSrc,
-      HERO_3D_PRESETS.process
-    );
-    canvas._threeController = controller;
-  }
+  lazyInit3D(canvas, HERO_3D_PRESETS.process);
 });
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img").forEach((el) => {
