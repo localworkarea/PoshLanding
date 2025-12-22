@@ -39825,94 +39825,159 @@ const HERO_3D_PRESETS = {
   hero: {
     targetSize: 1.2,
     cameraZ: 3,
+    environment: {
+      color: 4210752,
+      intensity: 0
+    },
+    material: {
+      color: 15198183,
+      metalness: 1,
+      roughness: 0.159
+    },
     lights: [
       {
-        // сверху
         position: [0, 5, 2],
         intensity: 10
       },
       {
-        // сзади правее
         position: [2, 0, -2],
         intensity: 25
       },
       {
-        // сзади левее
-        position: [-3, 0, -2],
-        intensity: 5
+        position: [-2, 0, -2],
+        intensity: 12
       },
       {
-        // спереди левее
         position: [-1.5, 0, 4],
         intensity: 5
       }
     ]
   },
   process: {
-    targetSize: 1.4,
+    targetSize: 1.6,
     cameraZ: 3.2,
+    environment: {
+      color: 4210752,
+      intensity: 1
+    },
+    material: {
+      color: 15198183,
+      metalness: 1,
+      roughness: 0.159
+    },
     lights: [
       {
-        // сверху
         position: [0, 5, 2],
         intensity: 10
       },
       {
-        // сзади правее
         position: [2, 0, -2],
         intensity: 25
       },
       {
-        // сзади левее
-        position: [-3, 0, -2],
-        intensity: 5
+        position: [-2, 0, -2],
+        intensity: 12
       },
       {
-        // спереди левее
         position: [-1.5, 0, 4],
         intensity: 5
       }
     ]
   }
 };
-function initHeroIcon(canvas, modelSrc, preset) {
+const gltfCache = /* @__PURE__ */ new Map();
+const gltfLoader = new GLTFLoader();
+function loadModelWithCache(src) {
+  return new Promise((resolve, reject) => {
+    if (gltfCache.has(src)) {
+      resolve(gltfCache.get(src).clone(true));
+      return;
+    }
+    gltfLoader.load(
+      src,
+      (gltf) => {
+        gltfCache.set(src, gltf.scene);
+        resolve(gltf.scene.clone(true));
+      },
+      void 0,
+      reject
+    );
+  });
+}
+const envCache = /* @__PURE__ */ new Map();
+function getEnvironmentMap(renderer, preset) {
+  if (!preset.environment) return null;
+  const key = JSON.stringify(preset.environment);
+  if (envCache.has(key)) return envCache.get(key);
+  const pmrem = new PMREMGenerator(renderer);
+  const envScene = new Scene();
+  envScene.background = new Color(preset.environment.color);
+  const envRT = pmrem.fromScene(envScene, 0.04);
+  envCache.set(key, envRT.texture);
+  pmrem.dispose();
+  return envRT.texture;
+}
+function initHeroIcon(container, modelSrc, preset) {
+  const canvas = document.createElement("canvas");
+  container.appendChild(canvas);
   const scene = new Scene();
   const camera = new PerspectiveCamera(
-    30,
-    canvas.clientWidth / canvas.clientHeight,
+    35,
+    // FOV — можно варьировать
+    container.clientWidth / container.clientHeight,
     0.1,
     100
   );
-  camera.position.z = preset.cameraZ;
+  camera.position.set(0, 0, preset.cameraZ);
+  camera.lookAt(0, 0, 0);
   const renderer = new WebGLRenderer({
     canvas,
     alpha: true,
     antialias: true
   });
   renderer.setClearColor(0, 0);
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  if (preset.lights && Array.isArray(preset.lights)) {
+  renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMapping = ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.physicallyCorrectLights = true;
+  let resizeTimeout = null;
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (!width || !height) return;
+      renderer.setSize(width, height, true);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    }, 100);
+  });
+  resizeObserver.observe(container);
+  if (preset.lights) {
     preset.lights.forEach(({ position, intensity }) => {
       const light = new DirectionalLight(16777215, intensity);
       light.position.set(...position);
-      light.target.position.set(0, 0, 0);
       scene.add(light);
-      scene.add(light.target);
     });
   }
+  const envMap = getEnvironmentMap(renderer, preset);
+  if (envMap) {
+    scene.environment = envMap;
+    scene.environmentIntensity = preset.environment?.intensity ?? 1;
+  }
+  let model = null;
   let isAnimating = false;
   let rotationStart = 0;
   let rotationFrom = 0;
   let rotationTo = 0;
   let rafId = null;
   let isRendering = false;
-  let model;
-  const loader = new GLTFLoader();
-  loader.load(modelSrc, (gltf) => {
-    console.log("GLB cameras:", gltf.cameras);
-    console.log("GLB scene children:", gltf.scene.children);
-    model = gltf.scene;
+  loadModelWithCache(modelSrc).then((loadedModel) => {
+    model = loadedModel;
     const box = new Box3().setFromObject(model);
     const size = new Vector3();
     box.getSize(size);
@@ -39923,6 +39988,18 @@ function initHeroIcon(canvas, modelSrc, preset) {
     const center = new Vector3();
     box.getCenter(center);
     model.position.sub(center);
+    if (preset.material) {
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.material = new MeshStandardMaterial({
+            color: preset.material.color,
+            metalness: preset.material.metalness,
+            roughness: preset.material.roughness,
+            side: DoubleSide
+          });
+        }
+      });
+    }
     scene.add(model);
     if (preset === HERO_3D_PRESETS.hero) {
       isRendering = true;
@@ -39931,10 +40008,7 @@ function initHeroIcon(canvas, modelSrc, preset) {
         requestAnimationFrame((t2) => {
           render3(t2);
           rotateOnce(true);
-          const icon = canvas.closest(".list-hero__icon");
-          if (icon) {
-            icon.classList.add("is-visible");
-          }
+          container.classList.add("is-visible");
         });
       });
     }
@@ -39960,7 +40034,6 @@ function initHeroIcon(canvas, modelSrc, preset) {
       );
       model.rotation.y = rotationFrom + (rotationTo - rotationFrom) * progress;
       if (progress === 1) {
-        model.rotation.y = rotationTo;
         isAnimating = false;
       }
     }
@@ -39979,48 +40052,48 @@ function initHeroIcon(canvas, modelSrc, preset) {
     reset() {
       if (!model) return;
       isRendering = false;
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
       model.rotation.y = 0;
       isAnimating = false;
       renderer.render(scene, camera);
     }
   };
 }
-function lazyInit3D(canvas, preset) {
+function lazyInit3D(container, preset) {
   let initialized = false;
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !initialized) {
           initialized = true;
-          const modelSrc = canvas.dataset["3dSrc"];
+          const modelSrc = container.dataset["3dSrc"];
           if (!modelSrc) return;
-          const controller = initHeroIcon(canvas, modelSrc, preset);
-          canvas._threeController = controller;
+          const controller = initHeroIcon(container, modelSrc, preset);
+          container._threeController = controller;
           observer.disconnect();
         }
       });
     },
     {
-      root: null,
       rootMargin: "1500px",
-      // подгружаем заранее
       threshold: 0.1
     }
   );
-  observer.observe(canvas);
+  observer.observe(container);
 }
-document.querySelectorAll(".hero-3d").forEach((canvas) => {
-  const modelSrc = canvas.dataset["3dSrc"];
+document.querySelectorAll("[data-3d-src]").forEach((el) => {
+  const src = el.dataset["3dSrc"];
+  if (src) loadModelWithCache(src);
+});
+document.querySelectorAll(".hero-3d").forEach((container) => {
+  const modelSrc = container.dataset["3dSrc"];
   if (modelSrc) {
-    initHeroIcon(canvas, modelSrc, HERO_3D_PRESETS.hero);
+    initHeroIcon(container, modelSrc, HERO_3D_PRESETS.hero);
   }
 });
-document.querySelectorAll(".hero-3d-process").forEach((canvas) => {
-  lazyInit3D(canvas, HERO_3D_PRESETS.process);
+document.querySelectorAll(".hero-3d-process").forEach((container) => {
+  lazyInit3D(container, HERO_3D_PRESETS.process);
 });
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img").forEach((el) => {

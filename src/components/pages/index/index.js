@@ -3,7 +3,7 @@ import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from "gsap/all";
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { Box3, Vector3 } from 'three';
+// import { Box3, Vector3 } from 'three';
 
 
 
@@ -30,173 +30,276 @@ gsap.ticker.lagSmoothing(0);
 
 
 
+
+
+
+
+
+
 const ROTATION_ANGLE = -Math.PI * 2;
 const ROTATION_DURATION = 5000;
 
+// PRESETS
 const HERO_3D_PRESETS = {
   hero: {
     targetSize: 1.2,
     cameraZ: 3,
+
+    environment: {
+      color: 0x404040,
+      intensity: 0,
+    },
+
+    material: {
+      color: 0xE7E7E7,
+      metalness: 1,
+      roughness: 0.159,
+    },
+
     lights: [
-     {
-				// сверху
-        position: [0, 5, 2],
-        intensity: 10,
-      },
-      {
-				// сзади правее
-        position: [2, 0, -2],
-        intensity: 25,
-      },
-				{
-        // сзади левее
-        position: [-3, 0, -2],
-        intensity: 5,
-      },
-      {
-				// спереди левее
-        position: [-1.5, 0, 4],
-        intensity: 5,
-      },
+      { 
+				position: [0, 5, 2], 
+				intensity: 10 
+			},
+      { 
+				position: [2, 0, -2], 
+				intensity: 25 
+			},
+      { 
+				position: [-2, 0, -2], 
+				intensity: 12 
+			},
+      { 
+				position: [-1.5, 0, 4], 
+				intensity: 5 
+			},
     ],
   },
 
   process: {
-    targetSize: 1.4,
+    targetSize: 1.6,
     cameraZ: 3.2,
+
+ 		environment: {
+      color: 0x404040,
+      intensity: 1,
+    },
+
+    material: {
+      color: 0xE7E7E7,
+      metalness: 1,
+      roughness: 0.159,
+    },
+
     lights: [
-      {
-				// сверху
-        position: [0, 5, 2],
-        intensity: 10,
-      },
-      {
-				// сзади правее
-        position: [2, 0, -2],
-        intensity: 25,
-      },
-			{
-        // сзади левее
-        position: [-3, 0, -2],
-        intensity: 5,
-      },
-      {
-				// спереди левее
-        position: [-1.5,0, 4],
-        intensity: 5,
-      },
+      { 
+				position: [0, 5, 2], 
+				intensity: 10 
+			},
+      { 
+				position: [2, 0, -2], 
+				intensity: 25 
+			},
+      { 
+				position: [-2, 0, -2], 
+				intensity: 12 
+			},
+      { 
+				position: [-1.5, 0, 4], 
+				intensity: 5 
+			},
     ],
   },
 };
 
 
+// 1️ GLTF CACHE
+const gltfCache = new Map();
+const gltfLoader = new GLTFLoader();
 
-function initHeroIcon(canvas, modelSrc, preset) {
+function loadModelWithCache(src) {
+  return new Promise((resolve, reject) => {
+    if (gltfCache.has(src)) {
+      resolve(gltfCache.get(src).clone(true));
+      return;
+    }
+
+    gltfLoader.load(
+      src,
+      (gltf) => {
+        gltfCache.set(src, gltf.scene);
+        resolve(gltf.scene.clone(true));
+      },
+      undefined,
+      reject
+    );
+  });
+}
+
+// 3️ ENVIRONMENT MAP CACHE (PMREM)
+const envCache = new Map();
+
+function getEnvironmentMap(renderer, preset) {
+  if (!preset.environment) return null;
+
+  const key = JSON.stringify(preset.environment);
+  if (envCache.has(key)) return envCache.get(key);
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envScene = new THREE.Scene();
+  envScene.background = new THREE.Color(preset.environment.color);
+
+  const envRT = pmrem.fromScene(envScene, 0.04);
+  envCache.set(key, envRT.texture);
+
+  pmrem.dispose();
+  return envRT.texture;
+}
+
+// INIT 
+function initHeroIcon(container, modelSrc, preset) {
+  // ================= CANVAS =================
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+
   const scene = new THREE.Scene();
 
+  // ================= CAMERA (PERSPECTIVE) =================
   const camera = new THREE.PerspectiveCamera(
-    30,
-    canvas.clientWidth / canvas.clientHeight,
+    35, // FOV — можно варьировать
+    container.clientWidth / container.clientHeight,
     0.1,
     100
   );
-  camera.position.z = preset.cameraZ;
 
+  camera.position.set(0, 0, preset.cameraZ);
+  camera.lookAt(0, 0, 0);
+
+  // ================= RENDERER =================
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
     antialias: true,
   });
-	renderer.setClearColor(0x000000, 0);
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+  renderer.setClearColor(0x000000, 0);
+  renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-	// ================= LIGHT (from presets) =================
-	if (preset.lights && Array.isArray(preset.lights)) {
-	  preset.lights.forEach(({ position, intensity }) => {
-	    const light = new THREE.DirectionalLight(0xffffff, intensity);
-	    light.position.set(...position);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.physicallyCorrectLights = true;
 
-	    light.target.position.set(0, 0, 0);
-	    scene.add(light);
-	    scene.add(light.target);
-	  });
-	}
+  // ================= RESIZE =================
+  let resizeTimeout = null;
 
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimeout);
 
-	// ================= STATE =================
-	let isAnimating = false;
-	let rotationStart = 0;
-	let rotationFrom = 0;
-	let rotationTo = 0;
+    resizeTimeout = setTimeout(() => {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (!width || !height) return;
 
-	let rafId = null;
-	let isRendering = false;
+      renderer.setSize(width, height, true);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.render(scene, camera);
+    }, 100);
+  });
+
+  resizeObserver.observe(container);
+
+  // ================= LIGHTS =================
+  if (preset.lights) {
+    preset.lights.forEach(({ position, intensity }) => {
+      const light = new THREE.DirectionalLight(0xffffff, intensity);
+      light.position.set(...position);
+      scene.add(light);
+    });
+  }
+
+  // ================= ENVIRONMENT =================
+  const envMap = getEnvironmentMap(renderer, preset);
+  if (envMap) {
+    scene.environment = envMap;
+    scene.environmentIntensity = preset.environment?.intensity ?? 1;
+  }
+
+  // ================= STATE =================
+  let model = null;
+  let isAnimating = false;
+  let rotationStart = 0;
+  let rotationFrom = 0;
+  let rotationTo = 0;
+
+  let rafId = null;
+  let isRendering = false;
 
   // ================= MODEL =================
-  let model;
+  loadModelWithCache(modelSrc).then((loadedModel) => {
+    model = loadedModel;
 
-  const loader = new GLTFLoader();
-  loader.load(modelSrc, (gltf) => {
-		 console.log('GLB cameras:', gltf.cameras);
-  console.log('GLB scene children:', gltf.scene.children);
-
-    model = gltf.scene;
-
+    // === SCALE TO TARGET SIZE ===
     const box = new THREE.Box3().setFromObject(model);
     const size = new THREE.Vector3();
     box.getSize(size);
 
     const maxSide = Math.max(size.x, size.y, size.z);
     const scale = preset.targetSize / maxSide;
-
     model.scale.setScalar(scale);
 
+    // === CENTER MODEL ===
     box.setFromObject(model);
     const center = new THREE.Vector3();
     box.getCenter(center);
     model.position.sub(center);
 
-  scene.add(model);
+    // === MATERIAL (БЕЗ CACHE) ===
+    if (preset.material) {
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: preset.material.color,
+            metalness: preset.material.metalness,
+            roughness: preset.material.roughness,
+            side: THREE.DoubleSide,
+          });
+        }
+      });
+    }
 
-	if (preset === HERO_3D_PRESETS.hero) {
-	  isRendering = true;
+    scene.add(model);
 
-	  requestAnimationFrame((t1) => {
-	    render(t1);
+    if (preset === HERO_3D_PRESETS.hero) {
+      isRendering = true;
 
-	    requestAnimationFrame((t2) => {
-	      render(t2);
-	      rotateOnce(true);
-
-	      const icon = canvas.closest('.list-hero__icon');
-				if (icon) {
-				  icon.classList.add('is-visible');
-				}
-
-	    });
-	  });
-	}
-
-
+      requestAnimationFrame((t1) => {
+        render(t1);
+        requestAnimationFrame((t2) => {
+          render(t2);
+          rotateOnce(true);
+          container.classList.add('is-visible');
+        });
+      });
+    }
   });
 
+  // ================= ROTATION =================
+  function rotateOnce(force = false) {
+    if (!model) return;
+    if (preset === HERO_3D_PRESETS.hero && isAnimating) return;
+    if (isAnimating && !force) return;
 
- 	function rotateOnce(force = false) {
-	  if (!model) return;
-
-	  // для hero — запрещаем перезапуск во время анимации
-	  if (preset === HERO_3D_PRESETS.hero && isAnimating) return;
-
-	  // для process можно форсить
-	  if (isAnimating && !force) return;
-
-	  isAnimating = true;
-	  rotationStart = performance.now();
-	  rotationFrom = model.rotation.y;
-	  rotationTo = rotationFrom + ROTATION_ANGLE;
-	}
-
+    isAnimating = true;
+    rotationStart = performance.now();
+    rotationFrom = model.rotation.y;
+    rotationTo = rotationFrom + ROTATION_ANGLE;
+  }
 
   if (preset === HERO_3D_PRESETS.hero) {
     canvas.addEventListener('mouseenter', rotateOnce);
@@ -216,7 +319,6 @@ function initHeroIcon(canvas, modelSrc, preset) {
         rotationFrom + (rotationTo - rotationFrom) * progress;
 
       if (progress === 1) {
-        model.rotation.y = rotationTo;
         isAnimating = false;
       }
     }
@@ -229,12 +331,10 @@ function initHeroIcon(canvas, modelSrc, preset) {
   return {
     play() {
       if (!model) return;
-
       if (!isRendering) {
         isRendering = true;
         render(performance.now());
       }
-
       rotateOnce(true);
     },
 
@@ -242,20 +342,19 @@ function initHeroIcon(canvas, modelSrc, preset) {
       if (!model) return;
 
       isRendering = false;
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
 
       model.rotation.y = 0;
       isAnimating = false;
-
       renderer.render(scene, camera);
     },
   };
 }
 
-function lazyInit3D(canvas, preset) {
+
+// LAZY INIT + PREWARM 
+function lazyInit3D(container, preset) {
   let initialized = false;
 
   const observer = new IntersectionObserver(
@@ -264,36 +363,341 @@ function lazyInit3D(canvas, preset) {
         if (entry.isIntersecting && !initialized) {
           initialized = true;
 
-          const modelSrc = canvas.dataset['3dSrc'];
+          const modelSrc = container.dataset['3dSrc'];
           if (!modelSrc) return;
 
-          const controller = initHeroIcon(canvas, modelSrc, preset);
-          canvas._threeController = controller;
+          const controller = initHeroIcon(container, modelSrc, preset);
+          container._threeController = controller;
 
           observer.disconnect();
         }
       });
     },
     {
-      root: null,
-      rootMargin: '1500px', // подгружаем заранее
+      rootMargin: '1500px',
       threshold: 0.1,
     }
   );
 
-  observer.observe(canvas);
+  observer.observe(container);
 }
 
-document.querySelectorAll('.hero-3d').forEach((canvas) => {
-  const modelSrc = canvas.dataset['3dSrc'];
+
+// PRELOAD MODELS
+document.querySelectorAll('[data-3d-src]').forEach((el) => {
+  const src = el.dataset['3dSrc'];
+  if (src) loadModelWithCache(src);
+});
+
+// BOOTSTRAP
+document.querySelectorAll('.hero-3d').forEach((container) => {
+  const modelSrc = container.dataset['3dSrc'];
   if (modelSrc) {
-    initHeroIcon(canvas, modelSrc, HERO_3D_PRESETS.hero);
+    initHeroIcon(container, modelSrc, HERO_3D_PRESETS.hero);
   }
 });
 
-document.querySelectorAll('.hero-3d-process').forEach((canvas) => {
-  lazyInit3D(canvas, HERO_3D_PRESETS.process);
+document.querySelectorAll('.hero-3d-process').forEach((container) => {
+  lazyInit3D(container, HERO_3D_PRESETS.process);
 });
+
+
+
+
+
+
+
+
+// const ROTATION_ANGLE = -Math.PI * 2;
+// const ROTATION_DURATION = 5000;
+
+// const HERO_3D_PRESETS = {
+//   hero: {
+//     targetSize: 1.2,
+//     cameraZ: 3,
+
+//     environment: {
+//       color: 0x404040,
+//       intensity: 1,
+//     },
+
+//     material: {
+//       color: 0xE7E7E7,
+//       metalness: 1,
+//       roughness: 0.159,
+//     },
+
+//     lights: [
+//       { position: [0, 5, 2], intensity: 10 },
+//       { position: [2, 0, -2], intensity: 25 },
+//       { position: [-2, 0, -2], intensity: 12 },
+//       { position: [-1.5, 0, 4], intensity: 5 },
+//     ],
+//   },
+
+//   process: {
+//     targetSize: 1.4,
+//     cameraZ: 3.2,
+
+//     environment: {
+//       color: 0x404040,
+//       intensity: 1,
+//     },
+
+//     material: {
+//       color: 0xE7E7E7,
+//       metalness: 1,
+//       roughness: 0.159,
+//     },
+
+//     lights: [
+//       { position: [0, 5, 2], intensity: 10 },
+//       { position: [2, 0, -2], intensity: 25 },
+//       { position: [-2, 0, -2], intensity: 12 },
+//       { position: [-1.5, 0, 4], intensity: 5 },
+//     ],
+//   },
+// };
+
+
+
+// function initHeroIcon(canvas, modelSrc, preset) {
+//   const scene = new THREE.Scene();
+
+//   const camera = new THREE.PerspectiveCamera(
+//     30,
+//     canvas.clientWidth / canvas.clientHeight,
+//     0.1,
+//     100
+//   );
+//   camera.position.z = preset.cameraZ;
+
+//   const renderer = new THREE.WebGLRenderer({
+//     canvas,
+//     alpha: true,
+//     antialias: true,
+//   });
+// 	renderer.setClearColor(0x000000, 0);
+//   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// 	// ================= LIGHT (from presets) =================
+// 	if (preset.lights && Array.isArray(preset.lights)) {
+// 	  preset.lights.forEach(({ position, intensity }) => {
+// 	    const light = new THREE.DirectionalLight(0xffffff, intensity);
+// 	    light.position.set(...position);
+
+// 	    light.target.position.set(0, 0, 0);
+// 	    scene.add(light);
+// 	    scene.add(light.target);
+// 	  });
+// 	}
+
+// 	// ===== ENVIRONMENT COLOR =====
+// 	if (preset.environment) {
+// 	  const envColor = new THREE.Color(preset.environment.color);
+// 	  const envIntensity = preset.environment.intensity ?? 1;
+
+// 	  const pmrem = new THREE.PMREMGenerator(renderer);
+// 	  const envScene = new THREE.Scene();
+// 	  envScene.background = envColor;
+
+// 	  const envRT = pmrem.fromScene(envScene, 0.04);
+// 	  scene.environment = envRT.texture;
+
+// 	  pmrem.dispose();
+// 	}
+
+
+
+// 	// ================= STATE =================
+// 	let isAnimating = false;
+// 	let rotationStart = 0;
+// 	let rotationFrom = 0;
+// 	let rotationTo = 0;
+
+// 	let rafId = null;
+// 	let isRendering = false;
+
+//   // ================= MODEL =================
+//   let model;
+
+//   const loader = new GLTFLoader();
+//   loader.load(modelSrc, (gltf) => {
+		
+
+//     model = gltf.scene;
+
+//     const box = new THREE.Box3().setFromObject(model);
+//     const size = new THREE.Vector3();
+//     box.getSize(size);
+
+//     const maxSide = Math.max(size.x, size.y, size.z);
+//     const scale = preset.targetSize / maxSide;
+
+//     model.scale.setScalar(scale);
+
+//     box.setFromObject(model);
+//     const center = new THREE.Vector3();
+//     box.getCenter(center);
+//     model.position.sub(center);
+
+
+// 		if (preset.material) {
+// 		  model.traverse((child) => {
+// 		    if (child.isMesh) {
+		     
+// 					child.material = new THREE.MeshStandardMaterial({
+// 					  color: preset.material.color,
+// 					  metalness: preset.material.metalness,
+// 					  roughness: preset.material.roughness,
+// 					  side: THREE.DoubleSide,
+// 					});
+
+				
+// 		      child.material.needsUpdate = true;
+// 		    }
+// 		  });
+// 		}
+
+
+//   scene.add(model);
+
+// 	if (preset === HERO_3D_PRESETS.hero) {
+// 	  isRendering = true;
+
+// 	  requestAnimationFrame((t1) => {
+// 	    render(t1);
+
+// 	    requestAnimationFrame((t2) => {
+// 	      render(t2);
+// 	      rotateOnce(true);
+
+// 	      const icon = canvas.closest('.list-hero__icon');
+// 				if (icon) {
+// 				  icon.classList.add('is-visible');
+// 				}
+
+// 	    });
+// 	  });
+// 	}
+
+
+//   });
+
+
+//  	function rotateOnce(force = false) {
+// 	  if (!model) return;
+
+// 	  // для hero — запрещаем перезапуск во время анимации
+// 	  if (preset === HERO_3D_PRESETS.hero && isAnimating) return;
+
+// 	  // для process можно форсить
+// 	  if (isAnimating && !force) return;
+
+// 	  isAnimating = true;
+// 	  rotationStart = performance.now();
+// 	  rotationFrom = model.rotation.y;
+// 	  rotationTo = rotationFrom + ROTATION_ANGLE;
+// 	}
+
+
+//   if (preset === HERO_3D_PRESETS.hero) {
+//     canvas.addEventListener('mouseenter', rotateOnce);
+//   }
+
+//   // ================= RENDER LOOP =================
+//   function render(time) {
+//     if (!isRendering) return;
+
+//     if (isAnimating && model) {
+//       const progress = Math.min(
+//         (time - rotationStart) / ROTATION_DURATION,
+//         1
+//       );
+
+//       model.rotation.y =
+//         rotationFrom + (rotationTo - rotationFrom) * progress;
+
+//       if (progress === 1) {
+//         model.rotation.y = rotationTo;
+//         isAnimating = false;
+//       }
+//     }
+
+//     renderer.render(scene, camera);
+//     rafId = requestAnimationFrame(render);
+//   }
+
+//   // ================= CONTROLLER =================
+//   return {
+//     play() {
+//       if (!model) return;
+
+//       if (!isRendering) {
+//         isRendering = true;
+//         render(performance.now());
+//       }
+
+//       rotateOnce(true);
+//     },
+
+//     reset() {
+//       if (!model) return;
+
+//       isRendering = false;
+//       if (rafId) {
+//         cancelAnimationFrame(rafId);
+//         rafId = null;
+//       }
+
+//       model.rotation.y = 0;
+//       isAnimating = false;
+
+//       renderer.render(scene, camera);
+//     },
+//   };
+// }
+
+// function lazyInit3D(canvas, preset) {
+//   let initialized = false;
+
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach((entry) => {
+//         if (entry.isIntersecting && !initialized) {
+//           initialized = true;
+
+//           const modelSrc = canvas.dataset['3dSrc'];
+//           if (!modelSrc) return;
+
+//           const controller = initHeroIcon(canvas, modelSrc, preset);
+//           canvas._threeController = controller;
+
+//           observer.disconnect();
+//         }
+//       });
+//     },
+//     {
+//       root: null,
+//       rootMargin: '1500px', // подгружаем заранее
+//       threshold: 0.1,
+//     }
+//   );
+
+//   observer.observe(canvas);
+// }
+
+// document.querySelectorAll('.hero-3d').forEach((canvas) => {
+//   const modelSrc = canvas.dataset['3dSrc'];
+//   if (modelSrc) {
+//     initHeroIcon(canvas, modelSrc, HERO_3D_PRESETS.hero);
+//   }
+// });
+
+// document.querySelectorAll('.hero-3d-process').forEach((canvas) => {
+//   lazyInit3D(canvas, HERO_3D_PRESETS.process);
+// });
 
 // document.querySelectorAll('.hero-3d-process').forEach((canvas) => {
 //   const modelSrc = canvas.dataset['3dSrc'];
