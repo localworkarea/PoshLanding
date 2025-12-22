@@ -37,33 +37,48 @@ const HERO_3D_PRESETS = {
   hero: {
     targetSize: 1.2,
     cameraZ: 3,
-    light: {
-      key: {
-        position: [-1, 1, 5],
-        intensity: 2,
+    lights: [
+     {
+				// сверху
+        position: [0, 5, 2],
+        intensity: 10,
       },
-      side: {
-        position: [3, 0, 2],
-        intensity: 0.6,
+      {
+				// сзади правее
+        position: [2, 0, -2],
+        intensity: 25,
       },
-    },
+      {
+				// спереди левее
+        position: [-1.5, 0, 4],
+        intensity: 5,
+      },
+    ],
   },
 
   process: {
     targetSize: 1.4,
     cameraZ: 3.2,
-    light: {
-      key: {
-        position: [-1, 0, 4],
-        intensity: 2.5,
+    lights: [
+      {
+				// сверху
+        position: [0, 5, 2],
+        intensity: 10,
       },
-      side: {
-        position: [2, 0, 1],
-        intensity: 0.8,
+      {
+				// сзади правее
+        position: [2, 0, -2],
+        intensity: 25,
       },
-    },
+      {
+				// спереди левее
+        position: [-1.5, 0, 4],
+        intensity: 5,
+      },
+    ],
   },
 };
+
 
 
 function initHeroIcon(canvas, modelSrc, preset) {
@@ -86,22 +101,18 @@ function initHeroIcon(canvas, modelSrc, preset) {
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // ================= LIGHT =================
-  const keyLight = new THREE.DirectionalLight(
-    0xffffff,
-    preset.light.key.intensity
-  );
-  keyLight.position.set(...preset.light.key.position);
-  scene.add(keyLight);
+	// ================= LIGHT (from presets) =================
+	if (preset.lights && Array.isArray(preset.lights)) {
+	  preset.lights.forEach(({ position, intensity }) => {
+	    const light = new THREE.DirectionalLight(0xffffff, intensity);
+	    light.position.set(...position);
 
-  if (preset.light.side) {
-    const sideLight = new THREE.DirectionalLight(
-      0xffffff,
-      preset.light.side.intensity
-    );
-    sideLight.position.set(...preset.light.side.position);
-    scene.add(sideLight);
-  }
+	    light.target.position.set(0, 0, 0);
+	    scene.add(light);
+	    scene.add(light.target);
+	  });
+	}
+
 
 	// ================= STATE =================
 	let isAnimating = false;
@@ -117,6 +128,9 @@ function initHeroIcon(canvas, modelSrc, preset) {
 
   const loader = new GLTFLoader();
   loader.load(modelSrc, (gltf) => {
+		 console.log('GLB cameras:', gltf.cameras);
+  console.log('GLB scene children:', gltf.scene.children);
+
     model = gltf.scene;
 
     const box = new THREE.Box3().setFromObject(model);
