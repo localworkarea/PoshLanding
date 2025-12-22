@@ -38,26 +38,26 @@
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-9-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-9.webp">
+							<img data-img-ignore fetchpriority="high" width="337" height="244" alt="Image" src="@img/grid/grid-9.webp">
 						</picture>
 					</div>
 
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-17-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-17.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-17.webp">
 						</picture>
 					</div>
 
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-3-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-3.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-3.webp">
 						</picture>
 					</div>
 
 					<div class="portfolio__item">
-						<video data-fls-videoplay muted autoplay loop playsinline preload="auto">
+						<video muted autoplay loop playsinline  fetchpriority="high">
 							<source src="@video/portfolio-2-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
 							<source src="@video/portfolio-2-mb.mp4" type="video/mp4">
 						</video>
@@ -73,7 +73,7 @@
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-6-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-6.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-6.webp">
 						</picture>
 					</div>
 
@@ -85,7 +85,7 @@
 					</div>
 
 					<div class="portfolio__item">
-						<video data-fls-videoplay muted autoplay loop playsinline preload="auto">
+						<video muted autoplay loop playsinline fetchpriority="high">
 							<source src="@video/portfolio-1-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
 							<source src="@video/portfolio-1-mb.mp4" type="video/mp4">
 						</video>
@@ -94,12 +94,12 @@
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-9-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-9.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-9.webp">
 						</picture>
 					</div>
 
 					<div class="portfolio__item">
-						<video data-fls-videoplay muted autoplay loop playsinline preload="auto">
+						<video data-fls-videoplay muted autoplay loop playsinline fetchpriority="high">
 							<source src="@video/portfolio-3-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
 							<source src="@video/portfolio-3-mb.mp4" type="video/mp4">
 						</video>
@@ -115,7 +115,7 @@
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-12-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-12.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-12.webp">
 						</picture>
 					</div>
 
@@ -129,14 +129,14 @@
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-19-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-19.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-19.webp">
 						</picture>
 					</div>
 
 					<div class="portfolio__item">
 						<picture>
 							<source media="(max-width: 600px)" srcset="@img/grid/grid-15-mb.webp" type="image/webp">
-							<img data-img-ignore width="337" height="244" alt="Image" src="@img/grid/grid-15.webp">
+							<img data-img-ignore loading="lazy" width="337" height="244" alt="Image" src="@img/grid/grid-15.webp">
 						</picture>
 					</div>
 				</div>
@@ -157,16 +157,20 @@
 					</button>
 					<div class="video-hero__preview">
 						<!-- preview short video -->
-						<video data-fls-videoplay muted loop autoplay playsinline preload="auto">
-							<source src="@video/posh-showreel-short-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
-							<source src="@video/posh-showreel-short-mb.mp4" type="video/mp4">
+						<video muted loop playsinline preload="none" data-lazy-video>
+						  <source data-src="@video/posh-showreel-short-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+  						<source data-src="@video/posh-showreel-short-mb.mp4" type="video/mp4">
 						</video>
 					</div>
 					<div class="video-hero__main">
 						<!-- main long video -->
-						<video muted loop playsinline>
+						<!-- <video muted loop playsinline>
 							<source src="@video/posh-showreel-long-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
 							<source src="@video/posh-showreel-long-mb.mp4" type="video/mp4">
+						</video> -->
+						<video muted loop playsinline preload="none">
+						  <source data-src="@video/posh-showreel-long-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+						  <source data-src="@video/posh-showreel-long-mb.mp4" type="video/mp4">
 						</video>
 					</div>
 				</div>
@@ -191,79 +195,79 @@
 		</div>
 		<div data-fls-marquee data-fls-marquee-speed="400" class="products__clients">
 			<div class="products__img">
-				<img src="@img/clients/clients-1.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-1.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-2.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-2.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-3.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-3.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-4.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-4.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-5.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-5.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-6.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-6.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-7.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-7.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-8.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-8.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-9.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-9.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-10.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-10.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-11.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-11.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-12.png" width="125" height="115" alt="Image">
+				<img loading="lazy"src="@img/clients/clients-12.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-13.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-13.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-14.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-14.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-15.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-15.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-16.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-16.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-17.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-17.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-18.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-18.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-19.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-19.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-20.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-20.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-21.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-21.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-22.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-22.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-23.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-23.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-24.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-24.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="products__img">
-				<img src="@img/clients/clients-25.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/clients/clients-25.png" width="125" height="115" alt="Image">
 			</div>
 		</div>
 	</section>
@@ -297,7 +301,7 @@
 				</ul>
 			</div>
 			<div class="trust__img">
-				<img src="@img/trust-hand.png" width="793" height="901" alt="Image">
+				<img loading="lazy" src="@img/trust-hand.png" width="793" height="901" alt="Image">
 			</div>
 		</div>
 	</section>
@@ -405,79 +409,79 @@
 			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-1-mob.webp" data-src-desktop="@img/cases/fullscreen/case-1-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-1.webp" alt="case 1" />
+						<img loading="lazy" src="@img/cases/case-1.webp" alt="case 1" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-2-mob.webp" data-src-desktop="@img/cases/fullscreen/case-2-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-2.webp" alt="case 2" />
+						<img loading="lazy" src="@img/cases/case-2.webp" alt="case 2" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-3-mob.webp" data-src-desktop="@img/cases/fullscreen/case-3-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-3.webp" alt="case 3" />
+						<img loading="lazy" src="@img/cases/case-3.webp" alt="case 3" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-4-mob.webp" data-src-desktop="@img/cases/fullscreen/case-4-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-4.webp" alt="case 4" />
+						<img loading="lazy" src="@img/cases/case-4.webp" alt="case 4" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-5-mob.webp" data-src-desktop="@img/cases/fullscreen/case-5-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-5.webp" alt="case 5" />
+						<img loading="lazy" src="@img/cases/case-5.webp" alt="case 5" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-6-mob.webp" data-src-desktop="@img/cases/fullscreen/case-6-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-6.webp" alt="case 6" />
+						<img loading="lazy" src="@img/cases/case-6.webp" alt="case 6" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-7-mob.webp" data-src-desktop="@img/cases/fullscreen/case-7-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-7.webp" alt="case 7" />
+						<img loading="lazy" src="@img/cases/case-7.webp" alt="case 7" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-8-mob.webp" data-src-desktop="@img/cases/fullscreen/case-8-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-8.webp" alt="case 8" />
+						<img loading="lazy" src="@img/cases/case-8.webp" alt="case 8" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-9-mob.webp" data-src-desktop="@img/cases/fullscreen/case-9-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-9.webp" alt="case 9" />
+						<img loading="lazy" src="@img/cases/case-9.webp" alt="case 9" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-10-mob.webp" data-src-desktop="@img/cases/fullscreen/case-10-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-10.webp" alt="case 10" />
+						<img loading="lazy" src="@img/cases/case-10.webp" alt="case 10" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-11-mob.webp" data-src-desktop="@img/cases/fullscreen/case-11-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-11.webp" alt="case 11" />
+						<img loading="lazy" src="@img/cases/case-11.webp" alt="case 11" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-12-mob.webp" data-src-desktop="@img/cases/fullscreen/case-12-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-12.webp" alt="case 12" />
+						<img loading="lazy" src="@img/cases/case-12.webp" alt="case 12" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-13-mob.webp" data-src-desktop="@img/cases/fullscreen/case-13-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-13.webp" alt="case 13" />
+						<img loading="lazy" src="@img/cases/case-13.webp" alt="case 13" />
 					</button>
 				</div>
 
@@ -487,73 +491,73 @@
 			<div data-fls-marquee data-fls-marquee-pause data-fls-marquee-speed="500" data-fls-marquee-direction="right" data-fls-marquee-drag class="gallery__line">
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-14-mob.webp" data-src-desktop="@img/cases/fullscreen/case-14-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-14.webp" alt="case 14" />
+						<img loading="lazy" src="@img/cases/case-14.webp" alt="case 14" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-15-mob.webp" data-src-desktop="@img/cases/fullscreen/case-15-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-15.webp" alt="case 15" />
+						<img loading="lazy" src="@img/cases/case-15.webp" alt="case 15" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-16-mob.webp" data-src-desktop="@img/cases/fullscreen/case-16-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-16.webp" alt="case 16" />
+						<img loading="lazy" src="@img/cases/case-16.webp" alt="case 16" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-17-mob.webp" data-src-desktop="@img/cases/fullscreen/case-17-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-17.webp" alt="case 17" />
+						<img loading="lazy" src="@img/cases/case-17.webp" alt="case 17" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-18-mob.webp" data-src-desktop="@img/cases/fullscreen/case-18-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-18.webp" alt="case 18" />
+						<img loading="lazy" src="@img/cases/case-18.webp" alt="case 18" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-19-mob.webp" data-src-desktop="@img/cases/fullscreen/case-19-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-19.webp" alt="case 19" />
+						<img loading="lazy" src="@img/cases/case-19.webp" alt="case 19" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-20-mob.webp" data-src-desktop="@img/cases/fullscreen/case-20-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-20.webp" alt="case 20" />
+						<img loading="lazy" src="@img/cases/case-20.webp" alt="case 20" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-21-mob.webp" data-src-desktop="@img/cases/fullscreen/case-21-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-21.webp" alt="case 21" />
+						<img loading="lazy" src="@img/cases/case-21.webp" alt="case 21" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-22-mob.webp" data-src-desktop="@img/cases/fullscreen/case-22-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-22.webp" alt="case 22" />
+						<img loading="lazy" src="@img/cases/case-22.webp" alt="case 22" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-23-mob.webp" data-src-desktop="@img/cases/fullscreen/case-23-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-23.webp" alt="case 23" />
+						<img loading="lazy" src="@img/cases/case-23.webp" alt="case 23" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-24-mob.webp" data-src-desktop="@img/cases/fullscreen/case-24-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-24.webp" alt="case 24" />
+						<img loading="lazy" src="@img/cases/case-24.webp" alt="case 24" />
 					</button>
 				</div>
 
 				<div class="gallery__item">
 					<button type="button" class="gallery__thumb" data-gallery-item data-src-mobile="@img/cases/fullscreen/case-25-mob.webp" data-src-desktop="@img/cases/fullscreen/case-25-pc.webp" aria-label="open image">
-						<img src="@img/cases/case-25.webp" alt="case 25" />
+						<img loading="lazy" src="@img/cases/case-25.webp" alt="case 25" />
 					</button>
 				</div>
 
@@ -577,8 +581,8 @@
 					<span class="team-solutions__img"><img src="@img/team.png" width="95" height="38" alt="Image"></span> <span data-fls-digcounter data-fls-digcounter-speed="2000">100</span>%
 				</h3>
 				<div class="team-solutions__video">
-					<video data-fls-videoplay muted autoplay loop playsinline>
-						<source src="@video/team.mp4" type="video/mp4">
+					<video data-fls-videoplay muted loop playsinline preload="none" data-lazy-video>
+						<source data-src="@video/team.mp4" type="video/mp4">
 					</video>
 				</div>
 				<div class="team-solutions__txt t-5">
@@ -636,7 +640,7 @@
 									We dive into market research, competitors, trends, and consumer triggers. Then we develop 2–3 positioning concepts, suggest style references, and build out your brand communication strategy
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/bottle.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/navigation.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -656,7 +660,7 @@
 									and timelines, and kick off the project
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/box.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/check_list.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -674,7 +678,7 @@
 									We develop at least 3 concepts applied to 2–3 product formats. Every concept is production-ready and built for easy scalability
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/check_list.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/bottle.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -693,7 +697,7 @@
 									the product in context — like on a supermarket shelf. We discuss everything together, collect feedback, and refine the concept based on your notes and requests
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/navigation.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/speech.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -712,7 +716,7 @@
 									to the dielines, then incorporate all your edits and feedback
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/speech.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/unfolding.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -731,7 +735,7 @@
 									with them
 								</p>
 							</div>
-							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/unfolding.glb"></div>
+							<div class="spollers-process__media hero-3d-process" data-3d-src="@files/glb/box.glb"></div>
 						</div>
 					</div>
 				</details>
@@ -744,8 +748,8 @@
 			<div class="guarantee__body">
 				<div class="guarantee__video">
 					<!-- <img loading="lazy" src="@files/anim.gif" width="578" height="578" alt="Image"> -->
-					<video data-fls-videoplay muted autoplay loop playsinline>
-						<source src="@video/guarantee.mp4" type="video/mp4">
+					<video data-fls-videoplay muted loop playsinline preload="none" data-lazy-video>
+						<source data-src="@video/guarantee.mp4" type="video/mp4">
 					</video>
 				</div>
 				<div data-fls-spollers data-fls-spollers-one class="guarantee__spollers spollers-guarantee">
@@ -818,7 +822,7 @@
 		<div class="retail__container">
 			<div class="retail__body">
 				<div class="retail__bg">
-					<img src="@img/retail/retail-main.png" width="251" height="220" alt="Image">
+					<img loading="lazy" src="@img/retail/retail-main.png" width="251" height="220" alt="Image">
 				</div>
 				<div class="retail__content">
 					<h2 class="retail__title t-9">
@@ -834,37 +838,37 @@
 		</div>
 		<div data-fls-marquee data-fls-marquee-speed="400" class="retail__items">
 			<div class="retail__img">
-				<img src="@img/retail/retail-1.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-1.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-2.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-2.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-3.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-3.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-4.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-4.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-5.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-5.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-6.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-6.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-7.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-7.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-8.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-8.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-9.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-9.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-10.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-10.png" width="125" height="115" alt="Image">
 			</div>
 			<div class="retail__img">
-				<img src="@img/retail/retail-11.png" width="125" height="115" alt="Image">
+				<img loading="lazy" src="@img/retail/retail-11.png" width="125" height="115" alt="Image">
 			</div>
 		</div>
 	</section>
@@ -1222,7 +1226,7 @@
 					</div>
 				</div>
 				<div class="fill-form__images">
-					<img src="@img/fill-form.png" width="243" height="362" alt="Image">
+					<img loading="lazy" src="@img/fill-form.png" width="243" height="362" alt="Image">
 				</div>
 			</div>
 		</div>

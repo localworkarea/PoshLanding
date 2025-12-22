@@ -1,33 +1,4 @@
-import { i as isMobile, d as dataMediaQueries, s as slideToggle, a as slideUp, g as getDigFormat, u as uniqArray } from "./common.min.js";
-document.addEventListener("DOMContentLoaded", () => {
-  if (isMobile.iOS()) {
-    const videoElements = document.querySelectorAll("[data-fls-videoplay]");
-    if (videoElements.length > 0) {
-      Object.defineProperty(HTMLMediaElement.prototype, "playing", {
-        get: function() {
-          return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
-        }
-      });
-      videoElements.forEach((video) => {
-        if (!video.hasAttribute("playsinline")) {
-          video.setAttribute("playsinline", "");
-        }
-      });
-      const attemptPlay = (video) => {
-        if (!video.playing) {
-          video.play().catch(
-            (err) => console.error("Failed to play video:", err)
-          );
-        }
-      };
-      const handleInteraction = () => {
-        videoElements.forEach((video) => attemptPlay(video));
-      };
-      document.body.addEventListener("click", handleInteraction, { passive: true });
-      document.body.addEventListener("touchstart", handleInteraction, { passive: true });
-    }
-  }
-});
+import { d as dataMediaQueries, s as slideToggle, a as slideUp, g as getDigFormat, u as uniqArray, i as isMobile } from "./common.min.js";
 function _assertThisInitialized(self2) {
   if (self2 === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -40214,6 +40185,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, playMainVideo = function() {
       mainWasPlayedOnce = true;
+      const sources = mainVideo.querySelectorAll("source");
+      sources.forEach((source) => {
+        if (!source.src) {
+          source.src = source.dataset.src;
+        }
+      });
+      mainVideo.load();
       previewWrapper.classList.add("--not-active");
       previewVideo.pause();
       mainVideo.muted = false;
@@ -40344,29 +40322,22 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
-  const mediaObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const v = entry.target;
-      if (entry.isIntersecting) {
-        try {
-          v.preload = v.preload || "metadata";
-        } catch (e) {
-        }
-        v.play && v.play().catch(() => {
-        });
-      } else {
-        if (v && !v.paused) v.pause && v.pause();
-      }
-    });
-  }, { threshold: 0.5 });
-  const smallVideos = document.querySelectorAll(".list-hero__item video, .portfolio video");
-  if (smallVideos.length) {
-    smallVideos.forEach((v) => {
-      try {
-        v.preload = v.preload || "metadata";
-      } catch (e) {
-      }
-      mediaObserver.observe(v);
-    });
-  }
 });
+const videosLazy = document.querySelectorAll("[data-lazy-video]");
+const io = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const video = entry.target;
+    const sources = video.querySelectorAll("source");
+    sources.forEach((source) => {
+      source.src = source.dataset.src;
+    });
+    video.load();
+    video.play().catch(() => {
+    });
+    observer.unobserve(video);
+  });
+}, {
+  rootMargin: "300px"
+});
+videosLazy.forEach((video) => io.observe(video));

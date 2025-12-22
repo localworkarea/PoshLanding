@@ -1,8 +1,8 @@
 <footer data-fls-footer data-go-id="footer" data-gsap="footer" data-gsap-end="0%" class="footer">
 	<div class="footer__bg-video">
-		<video class="ibg" data-fls-videoplay muted autoplay loop playsinline>
-			<source src="@video/posh-showreel-long-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
-			<source src="@video/posh-showreel-long-mb.mp4" type="video/mp4">
+		<video class="ibg" data-fls-videoplay muted loop playsinline preload="none" data-lazy-video>
+			<source data-src="@video/posh-showreel-short-pc.mp4" type="video/mp4" media="(min-width: 30.061em)">
+			<source data-src="@video/posh-showreel-short-mb.mp4" type="video/mp4">
 		</video>
 		<img class="footer__poster ibg" src="@img/poster-pc.png" width="1440" height="800" alt="image">
 	</div>
@@ -16,7 +16,7 @@
 		</div>
 		<div class="footer__contacts contacts-footer">
 			<div class="contacts-footer__img">
-				<img src="@img/manager.jpg" width="229" height="270" alt="Image">
+				<img loading="lazy" src="@img/manager.jpg" width="229" height="270" alt="Image">
 			</div>
 			<address class="contacts-footer__info">
 				<div class="contacts-footer__name t-6">
