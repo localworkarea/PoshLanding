@@ -1,5 +1,5 @@
 import { FLS, slideUp, slideDown, slideToggle, dataMediaQueries } from "@js/common/functions.js";
-import { ScrollTrigger } from "gsap/all";
+// import { ScrollTrigger } from "gsap/all";
 // Підключення базових стилів
 import "./spollers.scss";
 
