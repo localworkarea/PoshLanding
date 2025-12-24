@@ -166,23 +166,313 @@ import Lenis from 'lenis'
 
 
 
-/* ===================== LENIS (GLOBAL) ===================== */
-const lenis = new Lenis({
-  autoRaf: true,  
-  lerp: 0.08,
-  wheelMultiplier: 1,
-  touchMultiplier: 2,
-});
+// /* ===================== LENIS (GLOBAL) ===================== */
+// const lenis = new Lenis({
+//   autoRaf: true,  
+//   lerp: 0.08,
+//   wheelMultiplier: 1,
+//   touchMultiplier: 2,
+// });
 
 
+// let gsapEnabled = false;
+// let gsapTicker = null;
+// let ScrollTriggerRef = null;
+// let gsapTweens = [];
+// let onLenisScroll = null;
+
+
+
+// function hardResetLenis() {
+//   lenis.stop();
+
+//   const currentScroll = window.scrollY;
+
+//   lenis.scrollTo(currentScroll, { immediate: true });
+
+//   lenis.start();
+// }
+
+
+
+// /* ===================== HELPERS ===================== */
+// function loadScript(src) {
+//   return new Promise((resolve, reject) => {
+//     if (document.querySelector(`script[src="${src}"]`)) {
+//       resolve();
+//       return;
+//     }
+
+//     const s = document.createElement("script");
+//     s.src = src;
+//     s.async = true;
+//     s.onload = resolve;
+//     s.onerror = reject;
+//     document.head.appendChild(s);
+//   });
+// }
+
+// async function enableGsap() {
+//   if (gsapEnabled) return;
+
+//   await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js");
+//   await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js");
+
+//   const { gsap, ScrollTrigger } = window;
+//   gsap.registerPlugin(ScrollTrigger);
+
+//   ScrollTriggerRef = ScrollTrigger;
+
+//   lenis.options.autoRaf = false;
+//   lenis.start();
+
+//   onLenisScroll = () => ScrollTrigger.update();
+// 	lenis.on("scroll", onLenisScroll);
+
+
+//   gsapTicker = (time) => {
+//     lenis.raf(time * 1000);
+//   };
+//   gsap.ticker.add(gsapTicker);
+//   gsap.ticker.lagSmoothing(0);
+
+//   initGsapAnimations(gsap, ScrollTrigger);
+
+//   gsapEnabled = true;
+// }
+
+// function disableGsap() {
+//   if (!gsapEnabled) return;
+
+//   gsapTweens.forEach(t => t.kill());
+//   gsapTweens = [];
+
+//   ScrollTriggerRef?.getAll().forEach(t => t.kill());
+//   ScrollTriggerRef?.clearScrollMemory?.();
+
+//   if (gsapTicker && window.gsap) {
+//     window.gsap.ticker.remove(gsapTicker);
+//     gsapTicker = null;
+//   }
+
+//   if (onLenisScroll) {
+//     lenis.off?.("scroll", onLenisScroll);
+//     onLenisScroll = null;
+//   }
+
+//   // 🔥 ВАЖНО: очистка inline-стилей GSAP
+//   clearGsapSectionStyles();
+
+//   lenis.options.autoRaf = true;
+//   lenis.start();
+
+//   gsapEnabled = false;
+// }
+
+
+// function clearGsapSectionStyles() {
+//   const sections = document.querySelectorAll("[data-gsap]");
+//   const trustImgs = document.querySelectorAll(".trust__img img");
+//   const fillFormImgs = document.querySelectorAll(".fill-form__images img");
+
+//   if (!window.gsap) {
+//     [...sections, ...trustImgs, ...fillFormImgs].forEach(el => {
+//       el.style.transform = "";
+//       el.style.willChange = "";
+//     });
+//     return;
+//   }
+
+//   gsap.set(
+//     [...sections, ...trustImgs, ...fillFormImgs],
+//     { clearProps: "all" }
+//   );
+// }
+
+// function initGsapAnimations(gsap, ScrollTrigger) {
+
+//   let refreshTimeout;
+//   function safeRefresh() {
+//     clearTimeout(refreshTimeout);
+//     refreshTimeout = setTimeout(() => {
+//       ScrollTrigger.refresh();
+//     }, 150);
+//   }
+
+//   // kill old tweens
+//   gsapTweens.forEach(t => t.kill());
+//   gsapTweens = [];
+
+//   ScrollTrigger.getAll().forEach(t => t.kill());
+
+//   document.querySelectorAll("[data-gsap]").forEach(section => {
+//     const prevSection = section.previousElementSibling;
+//     if (!prevSection) return;
+
+//     const endValue = section.dataset.gsapEnd || "35%";
+//     const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
+
+//     const twSection = gsap.to(section, {
+//       y: 0,
+//       ease: "none",
+//       scrollTrigger: {
+//         trigger: prevSection,
+//         start: `bottom bottom+=${startOffset}`,
+//         end: `bottom ${endValue}`,
+//         scrub: 0.6,
+//         invalidateOnRefresh: true,
+//       }
+//     });
+//     gsapTweens.push(twSection);
+
+//     const trustImg = section.querySelector(".trust__img img");
+//     if (trustImg) {
+//       const twTrust = gsap.to(trustImg, {
+//         y: 0,
+//         ease: "none",
+//         scrollTrigger: {
+//           trigger: prevSection,
+//           start: `bottom bottom+=${startOffset}`,
+//           end: "bottom top",
+//           scrub: 0.6,
+//           invalidateOnRefresh: true,
+//         }
+//       });
+//       gsapTweens.push(twTrust);
+//     }
+
+//     const fillFormImg = section.querySelector(".fill-form__images img");
+//     if (fillFormImg) {
+//       const twFill = gsap.to(fillFormImg, {
+//         y: 0,
+//         ease: "none",
+//         scrollTrigger: {
+//           trigger: prevSection,
+//           start: "bottom bottom",
+//           end: "bottom top",
+//           scrub: 0.6,
+//           invalidateOnRefresh: true,
+//         }
+//       });
+//       gsapTweens.push(twFill);
+//     }
+//   });
+
+//   safeRefresh();
+// }
+
+// const mq = window.matchMedia("(min-width: 30.061em)");
+
+// function handleBreakpoint(e) {
+//   if (e.matches) {
+//     enableGsap();
+//   } else {
+//     disableGsap();
+//   }
+// 	hardResetLenis();
+// }
+
+// let resizeTimeout;
+
+// window.addEventListener("resize", () => {
+//   clearTimeout(resizeTimeout);
+//   resizeTimeout = setTimeout(() => {
+//     hardResetLenis();
+//   }, 250);
+// });
+
+
+// mq.addEventListener("change", handleBreakpoint);
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   handleBreakpoint(mq);
+// });
+
+
+// document.addEventListener("click", (e) => {
+//   const link = e.target.closest("[data-go-link]");
+//   if (!link) return;
+
+//   e.preventDefault();
+
+//   const targetId = link.dataset.goLink;
+//   const target = document.querySelector(`[data-go-id="${targetId}"]`);
+//   if (!target) return;
+
+//   const offset = 30;
+
+//   const rect = target.getBoundingClientRect();
+//   // let targetY = rect.top + lenis.scroll - offset;
+// 	const currentScroll =
+//   typeof lenis.scroll === "number"
+//     ? lenis.scroll
+//     : window.scrollY;
+
+// 	let targetY = rect.top + currentScroll - offset;
+
+
+//   if (gsapEnabled && window.gsap) {
+//     const style = window.getComputedStyle(target);
+//     const matrix = style.transform;
+
+//     if (matrix && matrix !== "none") {
+//       const values = matrix.match(/matrix.*\((.+)\)/);
+//       if (values) {
+//         const parts = values[1].split(",");
+//         const translateY = parseFloat(parts[5]);
+//         if (!isNaN(translateY)) {
+//           targetY -= translateY;
+//         }
+//       }
+//     }
+//   }
+
+//   const distance = Math.abs(targetY - lenis.scroll);
+
+//   const duration =
+//     distance < 300 ? 1.4 :
+//     distance < 900 ? 1.8 :
+//     2;
+
+//   lenis.scrollTo(targetY, {
+//     duration,
+//     easing: (t) => 1 - Math.pow(1 - t, 4),
+//   });
+// });
+
+
+
+
+
+
+/* ===================== LENIS (MANAGED) ===================== */
+let lenis = null;
+
+function createLenis({ autoRaf }) {
+  // если был старый Lenis — уничтожаем
+  if (lenis) {
+    try { lenis.destroy(); } catch (e) {}
+    lenis = null;
+  }
+
+  lenis = new Lenis({
+    autoRaf,
+    lerp: 0.08,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  lenis.start();
+  return lenis;
+}
+
+
+/* ===================== GSAP STATE ===================== */
 let gsapEnabled = false;
 let gsapTicker = null;
 let ScrollTriggerRef = null;
 let gsapTweens = [];
 let onLenisScroll = null;
-
-
-
 
 
 /* ===================== HELPERS ===================== */
@@ -192,7 +482,6 @@ function loadScript(src) {
       resolve();
       return;
     }
-
     const s = document.createElement("script");
     s.src = src;
     s.async = true;
@@ -201,64 +490,6 @@ function loadScript(src) {
     document.head.appendChild(s);
   });
 }
-
-async function enableGsap() {
-  if (gsapEnabled) return;
-
-  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js");
-  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js");
-
-  const { gsap, ScrollTrigger } = window;
-  gsap.registerPlugin(ScrollTrigger);
-
-  ScrollTriggerRef = ScrollTrigger;
-
-  lenis.options.autoRaf = false;
-  lenis.start();
-
-  onLenisScroll = () => ScrollTrigger.update();
-	lenis.on("scroll", onLenisScroll);
-
-
-  gsapTicker = (time) => {
-    lenis.raf(time * 1000);
-  };
-  gsap.ticker.add(gsapTicker);
-  gsap.ticker.lagSmoothing(0);
-
-  initGsapAnimations(gsap, ScrollTrigger);
-
-  gsapEnabled = true;
-}
-
-function disableGsap() {
-  if (!gsapEnabled) return;
-
-  gsapTweens.forEach(t => t.kill());
-  gsapTweens = [];
-
-  ScrollTriggerRef?.getAll().forEach(t => t.kill());
-  ScrollTriggerRef?.clearScrollMemory?.();
-
-  if (gsapTicker && window.gsap) {
-    window.gsap.ticker.remove(gsapTicker);
-    gsapTicker = null;
-  }
-
-  if (onLenisScroll) {
-    lenis.off?.("scroll", onLenisScroll);
-    onLenisScroll = null;
-  }
-
-  // 🔥 ВАЖНО: очистка inline-стилей GSAP
-  clearGsapSectionStyles();
-
-  lenis.options.autoRaf = true;
-  lenis.start();
-
-  gsapEnabled = false;
-}
-
 
 function clearGsapSectionStyles() {
   const sections = document.querySelectorAll("[data-gsap]");
@@ -273,26 +504,16 @@ function clearGsapSectionStyles() {
     return;
   }
 
-  gsap.set(
-    [...sections, ...trustImgs, ...fillFormImgs],
-    { clearProps: "all" }
-  );
+  // очистить стили при рисайзе
+  window.gsap.set([...sections, ...trustImgs, ...fillFormImgs], {
+    clearProps: "transform,willChange"
+  });
 }
 
 function initGsapAnimations(gsap, ScrollTrigger) {
-
-  let refreshTimeout;
-  function safeRefresh() {
-    clearTimeout(refreshTimeout);
-    refreshTimeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 150);
-  }
-
   // kill old tweens
   gsapTweens.forEach(t => t.kill());
   gsapTweens = [];
-
   ScrollTrigger.getAll().forEach(t => t.kill());
 
   document.querySelectorAll("[data-gsap]").forEach(section => {
@@ -348,9 +569,83 @@ function initGsapAnimations(gsap, ScrollTrigger) {
     }
   });
 
-  safeRefresh();
+  // refresh после того как DOM стабилизировался
+  setTimeout(() => ScrollTrigger.refresh(), 150);
 }
 
+
+/* ===================== ENABLE / DISABLE GSAP ===================== */
+async function enableGsap() {
+  if (gsapEnabled) return;
+
+  // 1) Lenis должен быть в режиме без autoRaf, потому что RAF идёт через gsap.ticker
+  createLenis({ autoRaf: false });
+
+  // 2) Load GSAP
+  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js");
+  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js");
+
+  const { gsap, ScrollTrigger } = window;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTriggerRef = ScrollTrigger;
+
+  // 3) Sync Lenis -> ScrollTrigger
+  onLenisScroll = () => ScrollTrigger.update();
+  lenis.on("scroll", onLenisScroll);
+
+  // 4) Drive Lenis via GSAP ticker
+  gsapTicker = (time) => {
+    // GSAP time in seconds, Lenis wants ms
+    lenis.raf(time * 1000);
+  };
+  gsap.ticker.add(gsapTicker);
+  gsap.ticker.lagSmoothing(0);
+
+  // 5) Init animations
+  initGsapAnimations(gsap, ScrollTrigger);
+
+  gsapEnabled = true;
+}
+
+function disableGsap() {
+  if (!gsapEnabled) {
+    // даже если gsap уже выключен — убедимся что Lenis в mobile режиме живой
+    if (!lenis || lenis.options?.autoRaf === false) {
+      createLenis({ autoRaf: true });
+    }
+    return;
+  }
+
+  // 1) Kill tweens + triggers
+  gsapTweens.forEach(t => t.kill());
+  gsapTweens = [];
+
+  ScrollTriggerRef?.getAll().forEach(t => t.kill());
+  ScrollTriggerRef?.clearScrollMemory?.();
+
+  // 2) Unhook ticker
+  if (gsapTicker && window.gsap) {
+    window.gsap.ticker.remove(gsapTicker);
+    gsapTicker = null;
+  }
+
+  // 3) Unhook Lenis scroll event
+  if (onLenisScroll && lenis?.off) {
+    lenis.off("scroll", onLenisScroll);
+    onLenisScroll = null;
+  }
+
+  // 4) Clear inline GSAP props
+  clearGsapSectionStyles();
+
+  // 5) 🔥 Главное: пересоздаём Lenis под mobile (autoRaf true)
+  createLenis({ autoRaf: true });
+
+  gsapEnabled = false;
+}
+
+
+/* ===================== BREAKPOINT ===================== */
 const mq = window.matchMedia("(min-width: 30.061em)");
 
 function handleBreakpoint(e) {
@@ -364,8 +659,82 @@ function handleBreakpoint(e) {
 mq.addEventListener("change", handleBreakpoint);
 
 document.addEventListener("DOMContentLoaded", () => {
-  handleBreakpoint(mq);
+  // Создаём стартовый Lenis под текущий режим
+  if (mq.matches) {
+    enableGsap();
+  } else {
+    createLenis({ autoRaf: true });
+  }
 });
+
+
+/* ===================== RESIZE / ORIENTATION (MOBILE SAFETY) ===================== */
+// На iOS rotate иногда даёт серию resize → делаем защитный пересозданный lenis в mobile режиме
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    // если мы на мобилке (gsap выключен) — пересоздаём Lenis, чтобы scrollTo не умирал
+    if (!mq.matches) {
+      createLenis({ autoRaf: true });
+    } else {
+      // на десктопе просто refresh ScrollTrigger (если есть)
+      ScrollTriggerRef?.refresh?.();
+    }
+  }, 250);
+});
+
+
+/* ===================== CLICK SCROLL (Lenis + optional GSAP transform) ===================== */
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-go-link]");
+  if (!link) return;
+
+  e.preventDefault();
+
+  const targetId = link.dataset.goLink;
+  const target = document.querySelector(`[data-go-id="${targetId}"]`);
+  if (!target || !lenis) return;
+
+  const offset = 30;
+
+  // Всегда считаем от реального DOM scrollY — он гарантированно актуален после rotate
+  const rect = target.getBoundingClientRect();
+  let targetY = rect.top + window.scrollY - offset;
+
+  // Если GSAP включён — учтём transform (только тогда!)
+  if (gsapEnabled && window.gsap) {
+    const style = window.getComputedStyle(target);
+    const matrix = style.transform;
+
+    if (matrix && matrix !== "none") {
+      const values = matrix.match(/matrix.*\((.+)\)/);
+      if (values) {
+        const parts = values[1].split(",");
+        const translateY = parseFloat(parts[5]);
+        if (!isNaN(translateY)) {
+          targetY -= translateY;
+        }
+      }
+    }
+  }
+
+  const current = window.scrollY;
+  const distance = Math.abs(targetY - current);
+
+  const duration =
+    distance < 300 ? 1.4 :
+    distance < 900 ? 1.8 :
+    2;
+
+  lenis.scrollTo(targetY, {
+    duration,
+    easing: (t) => 1 - Math.pow(1 - t, 4),
+  });
+});
+
+
+
 
 
 
@@ -640,55 +1009,119 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-	// == animations parallax section .portfolio =================
-	const portfolio = document.querySelector('.portfolio');
-	if (portfolio) {
+	// // == animations parallax section .portfolio =================
+	// const portfolio = document.querySelector('.portfolio');
+	// if (portfolio) {
 
-		let mouseX = 0;
-		let targetX = 0;
+	// 	let mouseX = 0;
+	// 	let targetX = 0;
 
-		const strength = 40;  // максимальное смещение (px)
-		const easing = 0.03;  // плавность
+	// 	const strength = 40;  // максимальное смещение (px)
+	// 	const easing = 0.03;  // плавность
 
-		// центр экрана
-		let centerX = window.innerWidth / 2;
-		window.addEventListener('resize', () => {
-			centerX = window.innerWidth / 2;
-		});
+	// 	// центр экрана
+	// 	let centerX = window.innerWidth / 2;
+	// 	window.addEventListener('resize', () => {
+	// 		centerX = window.innerWidth / 2;
+	// 	});
 
-		// Ловим мышь (лёгкая логика)
-		window.addEventListener('mousemove', (e) => {
-			const offset = (e.clientX - centerX) / centerX; // -1..1
-			targetX = offset * strength;
-		}, { passive: true });
+	// 	// Ловим мышь (лёгкая логика)
+	// 	window.addEventListener('mousemove', (e) => {
+	// 		const offset = (e.clientX - centerX) / centerX; // -1..1
+	// 		targetX = offset * strength;
+	// 	}, { passive: true });
 
-		// === Рендер функция (используется GSAP ticker'ом) ===
-		function render() {
-			mouseX += (targetX - mouseX) * easing;
-			portfolio.style.transform = `translate3d(${mouseX}px,0,0)`;
-		}
+	// 	// === Рендер функция (используется GSAP ticker'ом) ===
+	// 	function render() {
+	// 		mouseX += (targetX - mouseX) * easing;
+	// 		portfolio.style.transform = `translate3d(${mouseX}px,0,0)`;
+	// 	}
 
-		// === Observer включает и выключает GSAP ticker ===
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					// Элемент появился → запускаем рендер
-					gsap.ticker.add(render);
-				} else {
-					// Элемент ушёл → отключаем, чтобы не тратить ресурсы
-					gsap.ticker.remove(render);
-				}
-			});
-		}, { threshold: 0.2 });
+	// 	// === Observer включает и выключает GSAP ticker ===
+	// 	const observer = new IntersectionObserver((entries) => {
+	// 		entries.forEach(entry => {
+	// 			if (entry.isIntersecting) {
+	// 				gsap.ticker.add(render);
+	// 			} else {
+	// 				gsap.ticker.remove(render);
+	// 			}
+	// 		});
+	// 	}, { threshold: 0.2 });
 
-		observer.observe(portfolio);
+	// 	observer.observe(portfolio);
 
-		// браузерные оптимизации
-		try {
-			portfolio.style.willChange = 'transform';
-			portfolio.style.backfaceVisibility = 'hidden';
-		} catch (e) {}
-	}
+	// 	// браузерные оптимизации
+	// 	try {
+	// 		portfolio.style.willChange = 'transform';
+	// 		portfolio.style.backfaceVisibility = 'hidden';
+	// 	} catch (e) {}
+	// }
+
+	// == NATIVE parallax mouse section .portfolio =================
+(function () {
+  const portfolio = document.querySelector('.portfolio');
+  if (!portfolio) return;
+
+  // 👉 Проверяем, есть ли мышь (desktop)
+  const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!hasMouse) return;
+
+  let mouseX = 0;
+  let targetX = 0;
+  let rafId = null;
+  let isActive = false;
+
+  const strength = 40; // max offset (px)
+  const easing = 0.03;
+
+  let centerX = window.innerWidth / 2;
+
+  function onResize() {
+    centerX = window.innerWidth / 2;
+  }
+
+  function onMouseMove(e) {
+    const offset = (e.clientX - centerX) / centerX; // -1..1
+    targetX = offset * strength;
+  }
+
+  function render() {
+    mouseX += (targetX - mouseX) * easing;
+    portfolio.style.transform = `translate3d(${mouseX}px, 0, 0)`;
+    rafId = requestAnimationFrame(render);
+  }
+
+  function start() {
+    if (isActive) return;
+    isActive = true;
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    rafId = requestAnimationFrame(render);
+  }
+
+  function stop() {
+    isActive = false;
+    window.removeEventListener('mousemove', onMouseMove);
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
+  // === IntersectionObserver ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      entry.isIntersecting ? start() : stop();
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(portfolio);
+
+  // === Resize ===
+  window.addEventListener('resize', onResize);
+
+  // === Optimizations ===
+  portfolio.style.willChange = 'transform';
+  portfolio.style.backfaceVisibility = 'hidden';
+})();
+
 
 
 
@@ -943,85 +1376,64 @@ if (heroBlock) {
 
 
 
-	// Плавный скролл к блокам с учётом GSAP и Lenis
-	document.addEventListener("click", (e) => {
-		const link = e.target.closest("[data-go-link]");
-		if (link) {
-					e.preventDefault();
+	// // Плавный скролл к блокам с учётом GSAP и Lenis
+	// document.addEventListener("click", (e) => {
+	// 	const link = e.target.closest("[data-go-link]");
+	// 	if (link) {
+	// 				e.preventDefault();
 			
-					const targetId = link.dataset.goLink;
-					const target = document.querySelector(`[data-go-id="${targetId}"]`);
+	// 				const targetId = link.dataset.goLink;
+	// 				const target = document.querySelector(`[data-go-id="${targetId}"]`);
 			
-					if (!target) return;
+	// 				if (!target) return;
 			
-					const offset = 30;
+	// 				const offset = 30;
 			
-					const rect = target.getBoundingClientRect();
-					let targetY = rect.top + window.scrollY - offset;
+	// 				const rect = target.getBoundingClientRect();
+	// 				let targetY = rect.top + window.scrollY - offset;
 			
-					// 2. Если у блока есть transform → Учесть GSAP-смещение
-					const style = window.getComputedStyle(target);
-					const matrix = style.transform;
+	// 				// 2. Если у блока есть transform → Учесть GSAP-смещение
+	// 				const style = window.getComputedStyle(target);
+	// 				const matrix = style.transform;
 			
-					if (matrix && matrix !== "none") {
-						const values = matrix.match(/matrix.*\((.+)\)/);
-						if (values) {
-							const parts = values[1].split(',');
-							const translateY = parseFloat(parts[5]); // Y-смещение
+	// 				if (matrix && matrix !== "none") {
+	// 					const values = matrix.match(/matrix.*\((.+)\)/);
+	// 					if (values) {
+	// 						const parts = values[1].split(',');
+	// 						const translateY = parseFloat(parts[5]); // Y-смещение
 			
-							if (!isNaN(translateY)) {
-								// translateY например "-113px" → надо вычесть
-								targetY -= translateY;
-							}
-						}
-					}
+	// 						if (!isNaN(translateY)) {
+	// 							// translateY например "-113px" → надо вычесть
+	// 							targetY -= translateY;
+	// 						}
+	// 					}
+	// 				}
 			
-					// 3. Динамическая плавность
-					const currentY = lenis.scroll;
-					const distance = Math.abs(targetY - currentY);
+	// 				// 3. Динамическая плавность
+	// 				const currentY = lenis.scroll;
+	// 				const distance = Math.abs(targetY - currentY);
 			
-					let duration;
-					if (distance < 300) {
-						duration = 1.4;
-					} else if (distance < 900) {
-						duration = 1.8;
-					} else {
-						duration = 2;
-					}
+	// 				let duration;
+	// 				if (distance < 300) {
+	// 					duration = 1.4;
+	// 				} else if (distance < 900) {
+	// 					duration = 1.8;
+	// 				} else {
+	// 					duration = 2;
+	// 				}
 			
-					// 4. Плавный scroll с учетом GSAP transform
-					lenis.scrollTo(targetY, {
-						duration,
-						easing: (t) => 1 - Math.pow(1 - t, 4),
-					});
+	// 				// 4. Плавный scroll с учетом GSAP transform
+	// 				lenis.scrollTo(targetY, {
+	// 					duration,
+	// 					easing: (t) => 1 - Math.pow(1 - t, 4),
+	// 				});
 
-		}
-	});
-
-	// 	// Optimize media: pause/play many small autoplay videos when they are offscreen
-	// const mediaObserver = new IntersectionObserver((entries) => {
-	// 	entries.forEach(entry => {
-	// 		const v = entry.target;
-	// 		if (entry.isIntersecting) {
-	// 			// prefer light preload and try to play when visible
-	// 			try { v.preload = v.preload || 'metadata'; } catch (e) {}
-	// 			v.play && v.play().catch(() => {});
-	// 		} else {
-	// 			if (v && !v.paused) v.pause && v.pause();
-	// 		}
-	// 	});
-	// }, { threshold: 0.5 });
-
-	// const smallVideos = document.querySelectorAll('.list-hero__item video, .portfolio video');
-	// if (smallVideos.length) {
-	// 	smallVideos.forEach(v => {
-	// 		try { v.preload = v.preload || 'metadata'; } catch (e) {}
-	// 		mediaObserver.observe(v);
-	// 	});
-	// }
+	// 	}
+	// });
 
 	
-	
+
+
 	
 });
 

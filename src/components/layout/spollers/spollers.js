@@ -157,9 +157,15 @@ export function spollers() {
 
 
 						// Обновление ScrollTrigger после зміни висоти
+						// setTimeout(() => {
+						// 	ScrollTrigger.refresh();
+						// }, spollerSpeed + 50);
 						setTimeout(() => {
-							ScrollTrigger.refresh();
+						  if (window.ScrollTrigger && typeof ScrollTrigger.refresh === "function") {
+						    ScrollTrigger.refresh();
+						  }
 						}, spollerSpeed + 50);
+
 
 						if (scrollSpoller && spollerTitle.classList.contains('--spoller-active')) {
 							const scrollSpollerValue = spollerBlock.dataset.flsSpollersScroll;
