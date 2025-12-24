@@ -326,9 +326,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const ROTATION_ANGLE = -Math.PI * 2;
 const ROTATION_DURATION = 5000;
 
+const gltfCache = new Map();
+
+
 /* ================= PRESETS ================= */
 
-const HERO_3D_PRESETS = {
+export const HERO_3D_PRESETS = {
   hero: {
     targetSize: 1.2,
     cameraZ: 3,
@@ -365,7 +368,7 @@ function createCanvas(container) {
 
 /* ============== MAIN INIT ==================== */
 
-function initHeroIcon(container, modelSrc, preset) {
+export function initHeroIcon(container, modelSrc, preset) {
   const canvas = createCanvas(container);
 
   const scene = new Scene();
@@ -390,6 +393,7 @@ function initHeroIcon(container, modelSrc, preset) {
   renderer.setClearColor(0x000000, 0);
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.render(scene, camera);
 
   /* ================= RESIZE ================= */
 
@@ -429,17 +433,22 @@ function initHeroIcon(container, modelSrc, preset) {
 
   let model;
   let isAnimating = false;
-  let isRendering = false;
+  // let isRendering = false;
   let rotationStart = 0;
   let rotationFrom = 0;
   let rotationTo = 0;
   let rafId = null;
 
+  let pendingPlay = false;
+
+
   /* ================= MODEL ================= */
 
-  const loader = new GLTFLoader();
-  loader.load(modelSrc, (gltf) => {
-    model = gltf.scene;
+  // const loader = new GLTFLoader();
+  // loader.load(modelSrc, (gltf) => {
+  loadGLTFOnce(modelSrc).then((gltf) => {
+    model = gltf.scene.clone(true);
+    // model = gltf.scene;
 
     const box = new Box3().setFromObject(model);
     const size = new Vector3();
@@ -457,27 +466,20 @@ function initHeroIcon(container, modelSrc, preset) {
         if (!child.isMesh) return;
 	  		child.material.metalness = 0.9;
         child.material.needsUpdate = true;
-      // const m = child.material;
-
-      // console.group('🔍 MATERIAL DEBUG');
-      // console.log('Material type:', m.type);
-      // console.log('Base color (hex):', m.color?.getHexString());
-      // console.log('Metalness:', m.metalness);
-      // console.log('Roughness:', m.roughness);
-      // console.log('Has map:', !!m.map);
-      // console.log('Has normalMap:', !!m.normalMap);
-      // console.log('Final visible color:', m.color?.clone().multiplyScalar(1).getHexString());
-      // console.groupEnd();
-    	// console.log('Environment:', scene.environment);
-
     });
 
 
 
     scene.add(model);
 
-    isRendering = true;
+    // isRendering = true;
     render(performance.now());
+
+    if (pendingPlay) {
+      rotateOnce(true);
+      pendingPlay = false;
+    }
+
 
     if (preset === HERO_3D_PRESETS.hero) {
       rotateOnce(true);
@@ -504,7 +506,7 @@ function initHeroIcon(container, modelSrc, preset) {
   /* ================= RENDER ================= */
 
   function render(time) {
-    if (!isRendering) return;
+    // if (!isRendering) return;
 
     if (isAnimating) {
       const p = Math.min((time - rotationStart) / ROTATION_DURATION, 1);
@@ -516,23 +518,31 @@ function initHeroIcon(container, modelSrc, preset) {
     rafId = requestAnimationFrame(render);
   }
 
+
   return {
     play() {
-      isRendering = true;
+      if (!model) {
+        pendingPlay = true;
+        return;
+      }
+      // isRendering = true;
       rotateOnce(true);
-      render(performance.now());
+      // render(performance.now());
     },
 
+
     reset() {
-      isRendering = false;
-      cancelAnimationFrame(rafId);
+      // isRendering = false;
+      pendingPlay = false;
+     isAnimating = false;
+      // cancelAnimationFrame(rafId);
 
       if (model) model.rotation.y = 0;
-      renderer.render(scene, camera);
+      // renderer.render(scene, camera);
     },
 
     destroy() {
-      isRendering = false;
+      // isRendering = false;
       cancelAnimationFrame(rafId);
 
       resizeObserver.disconnect();
@@ -545,26 +555,42 @@ function initHeroIcon(container, modelSrc, preset) {
   };
 }
 
+function loadGLTFOnce(src) {
+  if (gltfCache.has(src)) {
+    return gltfCache.get(src);
+  }
+
+  const loader = new GLTFLoader();
+  const promise = new Promise((resolve, reject) => {
+    loader.load(src, resolve, undefined, reject);
+  });
+
+  gltfCache.set(src, promise);
+  return promise;
+}
+
+
+
 /* ============== LAZY INIT ================= */
 
-function lazyInit3D(container, preset) {
-  let initialized = false;
+// function lazyInit3D(container, preset) {
+//   let initialized = false;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && !initialized) {
-        initialized = true;
-        observer.disconnect();
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       if (entries[0].isIntersecting && !initialized) {
+//         initialized = true;
+//         observer.disconnect();
 
-        const src = container.dataset['3dSrc'];
-        container._threeController = initHeroIcon(container, src, preset);
-      }
-    },
-    { rootMargin: '1500px', threshold: 0.1 }
-  );
+//         const src = container.dataset['3dSrc'];
+//         container._threeController = initHeroIcon(container, src, preset);
+//       }
+//     },
+//     { rootMargin: '1500px', threshold: 0.1 }
+//   );
 
-  observer.observe(container);
-}
+//   observer.observe(container);
+// }
 
 /* ============== BOOTSTRAP ================= */
 
@@ -573,10 +599,25 @@ document.querySelectorAll('.hero-3d').forEach((el) => {
   if (src) initHeroIcon(el, src, HERO_3D_PRESETS.hero);
 });
 
-document.querySelectorAll('.hero-3d-process').forEach((el) => {
-  lazyInit3D(el, HERO_3D_PRESETS.process);
-});
+// document.querySelectorAll('.hero-3d-process').forEach((el) => {
+//   lazyInit3D(el, HERO_3D_PRESETS.process);
+// });
 
+document.querySelectorAll('.hero-3d-process').forEach((el) => {
+  const src = el.dataset['3dSrc'];
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        loadGLTFOnce(src);
+        observer.disconnect();
+      }
+    },
+    { rootMargin: '1000px' }
+  );
+
+  observer.observe(el);
+});
 
 
 

@@ -1,4 +1,5 @@
 import { FLS, slideUp, slideDown, slideToggle, dataMediaQueries } from "@js/common/functions.js";
+import { initHeroIcon, HERO_3D_PRESETS } from '../../custom/model/model.js';
 // import { ScrollTrigger } from "gsap/all";
 // Підключення базових стилів
 import "./spollers.scss";
@@ -124,14 +125,33 @@ export function spollers() {
 						spollerTitle.classList.toggle('--spoller-active');
 						slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
 
+						// if (isOpening) {
+						//   setTimeout(() => {
+						//     const canvas = spollerBlock.querySelector('.hero-3d-process');
+						//     if (canvas && canvas._threeController) {
+						//       canvas._threeController.play();
+						//     }
+						//   }, spollerSpeed);
+						// }
+
 						if (isOpening) {
 						  setTimeout(() => {
-						    const canvas = spollerBlock.querySelector('.hero-3d-process');
-						    if (canvas && canvas._threeController) {
-						      canvas._threeController.play();
+						    const container = spollerBlock.querySelector('.hero-3d-process');
+						    if (!container) return;
+							
+						    if (!container._threeController) {
+						      const src = container.dataset['3dSrc'];
+						      container._threeController = initHeroIcon(
+						        container,
+						        src,
+						        HERO_3D_PRESETS.process
+						      );
 						    }
+							
+						    container._threeController.play();
 						  }, spollerSpeed);
 						}
+
 
 
 
