@@ -1,27 +1,372 @@
 import { FLS, isMobile } from "@js/common/functions.js";
 import Lenis from 'lenis'
-import { gsap, ScrollTrigger } from "gsap/all";
+// import { gsap, ScrollTrigger } from "gsap/all";
 
 
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
+// const lenis = new Lenis({
+//   autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
+//   lerp: 0.08, // значение для гладкого скролла
+//   wheelMultiplier: 1, // Контроль скорости прокрутки
+//   touchMultiplier: 2,
+// });
+
+
+// lenis.on('scroll', ScrollTrigger.update);
+
+// gsap.ticker.add((time) => {
+//   lenis.raf(time * 1000);
+// });
+
+// // Отключаем лаг-гашение, чтобы всё было отзывчиво
+// gsap.ticker.lagSmoothing(0);
+
+
+
+
+// /* ===================== HELPERS ===================== */
+// function loadScript(src) {
+//   return new Promise((resolve, reject) => {
+//     if (document.querySelector(`script[src="${src}"]`)) {
+//       resolve();
+//       return;
+//     }
+
+//     const s = document.createElement("script");
+//     s.src = src;
+//     s.async = true;
+//     s.onload = resolve;
+//     s.onerror = reject;
+//     document.head.appendChild(s);
+//   });
+// }
+
+// /* ===================== GSAP INIT ===================== */
+// async function initGsapIfDesktop() {
+//   const mq = window.matchMedia("(min-width: 30.061em)");
+//   if (!mq.matches) return; // ⛔ мобилки — GSAP НЕ грузим
+
+//   // 👉 Загружаем GSAP только сейчас
+//   await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js");
+//   await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js");
+
+//   const { gsap, ScrollTrigger } = window;
+
+//   gsap.registerPlugin(ScrollTrigger);
+
+//   /* ===================== LENIS ===================== */
+//   const lenis = new Lenis({
+//     autoRaf: false,
+//     lerp: 0.08,
+//     wheelMultiplier: 1,
+//     touchMultiplier: 2,
+//   });
+
+//   lenis.on("scroll", ScrollTrigger.update);
+
+//   gsap.ticker.add((time) => {
+//     lenis.raf(time * 1000);
+//   });
+
+//   gsap.ticker.lagSmoothing(0);
+
+//   document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img")
+//     .forEach(el => el.style.willChange = "transform");
+
+//   const page = document.querySelector(".page--index");
+//   if (!page) return;
+
+//   const children = Array.from(page.children);
+//   const maxZ = children.length;
+//   children.forEach((child, i) => {
+//     child.style.zIndex = maxZ - i;
+//   });
+
+//   let refreshTimeout;
+//   function safeRefresh() {
+//     clearTimeout(refreshTimeout);
+//     refreshTimeout = setTimeout(() => {
+//       ScrollTrigger.refresh();
+//     }, 150);
+//   }
+
+//   function createGsapAnim() {
+//     ScrollTrigger.getAll().forEach(t => t.kill());
+
+//     document.querySelectorAll("[data-gsap]").forEach(section => {
+//       const prevSection = section.previousElementSibling;
+//       if (!prevSection) return;
+
+//       const endValue = section.dataset.gsapEnd || "35%";
+//       const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
+
+//       gsap.to(section, {
+//         y: 0,
+//         ease: "none",
+//         scrollTrigger: {
+//           trigger: prevSection,
+//           start: `bottom bottom+=${startOffset}`,
+//           end: `bottom ${endValue}`,
+//           scrub: 0.6,
+//           invalidateOnRefresh: true,
+//         }
+//       });
+
+//       const trustImg = section.querySelector(".trust__img img");
+//       if (trustImg) {
+//         gsap.to(trustImg, {
+//           y: 0,
+//           ease: "none",
+//           scrollTrigger: {
+//             trigger: prevSection,
+//             start: `bottom bottom+=${startOffset}`,
+//             end: "bottom top",
+//             scrub: 0.6,
+//             invalidateOnRefresh: true,
+//           }
+//         });
+//       }
+
+//       const fillFormImg = section.querySelector(".fill-form__images img");
+//       if (fillFormImg) {
+//         gsap.to(fillFormImg, {
+//           y: 0,
+//           ease: "none",
+//           scrollTrigger: {
+//             trigger: prevSection,
+//             start: "bottom bottom",
+//             end: "bottom top",
+//             scrub: 0.6,
+//             invalidateOnRefresh: true,
+//           }
+//         });
+//       }
+//     });
+
+//     safeRefresh();
+//   }
+
+//   createGsapAnim();
+
+//   mq.addEventListener("change", e => {
+//     if (e.matches) createGsapAnim();
+//   });
+// }
+
+// /* ===================== START ===================== */
+// document.addEventListener("DOMContentLoaded", initGsapIfDesktop);
+
+
+
+
+
+
+
+
+
+/* ===================== LENIS (GLOBAL) ===================== */
 const lenis = new Lenis({
-  autoRaf: false, // Отключаем autoRaf, чтобы Lenis работал через GSAP ticker
-  lerp: 0.08, // значение для гладкого скролла
-  wheelMultiplier: 1, // Контроль скорости прокрутки
+  autoRaf: true,  
+  lerp: 0.08,
+  wheelMultiplier: 1,
   touchMultiplier: 2,
 });
 
 
-lenis.on('scroll', ScrollTrigger.update);
+let gsapEnabled = false;
+let gsapTicker = null;
+let ScrollTriggerRef = null;
+let gsapTweens = [];
+let onLenisScroll = null;
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
+
+
+
+
+/* ===================== HELPERS ===================== */
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve();
+      return;
+    }
+
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function enableGsap() {
+  if (gsapEnabled) return;
+
+  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js");
+  await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js");
+
+  const { gsap, ScrollTrigger } = window;
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTriggerRef = ScrollTrigger;
+
+  lenis.options.autoRaf = false;
+  lenis.start();
+
+  onLenisScroll = () => ScrollTrigger.update();
+	lenis.on("scroll", onLenisScroll);
+
+
+  gsapTicker = (time) => {
+    lenis.raf(time * 1000);
+  };
+  gsap.ticker.add(gsapTicker);
+  gsap.ticker.lagSmoothing(0);
+
+  initGsapAnimations(gsap, ScrollTrigger);
+
+  gsapEnabled = true;
+}
+
+function disableGsap() {
+  if (!gsapEnabled) return;
+
+  gsapTweens.forEach(t => t.kill());
+  gsapTweens = [];
+
+  ScrollTriggerRef?.getAll().forEach(t => t.kill());
+  ScrollTriggerRef?.clearScrollMemory?.();
+
+  if (gsapTicker && window.gsap) {
+    window.gsap.ticker.remove(gsapTicker);
+    gsapTicker = null;
+  }
+
+  if (onLenisScroll) {
+    lenis.off?.("scroll", onLenisScroll);
+    onLenisScroll = null;
+  }
+
+  // 🔥 ВАЖНО: очистка inline-стилей GSAP
+  clearGsapSectionStyles();
+
+  lenis.options.autoRaf = true;
+  lenis.start();
+
+  gsapEnabled = false;
+}
+
+
+function clearGsapSectionStyles() {
+  const sections = document.querySelectorAll("[data-gsap]");
+  const trustImgs = document.querySelectorAll(".trust__img img");
+  const fillFormImgs = document.querySelectorAll(".fill-form__images img");
+
+  if (!window.gsap) {
+    [...sections, ...trustImgs, ...fillFormImgs].forEach(el => {
+      el.style.transform = "";
+      el.style.willChange = "";
+    });
+    return;
+  }
+
+  gsap.set(
+    [...sections, ...trustImgs, ...fillFormImgs],
+    { clearProps: "all" }
+  );
+}
+
+function initGsapAnimations(gsap, ScrollTrigger) {
+
+  let refreshTimeout;
+  function safeRefresh() {
+    clearTimeout(refreshTimeout);
+    refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+  }
+
+  // kill old tweens
+  gsapTweens.forEach(t => t.kill());
+  gsapTweens = [];
+
+  ScrollTrigger.getAll().forEach(t => t.kill());
+
+  document.querySelectorAll("[data-gsap]").forEach(section => {
+    const prevSection = section.previousElementSibling;
+    if (!prevSection) return;
+
+    const endValue = section.dataset.gsapEnd || "35%";
+    const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
+
+    const twSection = gsap.to(section, {
+      y: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: prevSection,
+        start: `bottom bottom+=${startOffset}`,
+        end: `bottom ${endValue}`,
+        scrub: 0.6,
+        invalidateOnRefresh: true,
+      }
+    });
+    gsapTweens.push(twSection);
+
+    const trustImg = section.querySelector(".trust__img img");
+    if (trustImg) {
+      const twTrust = gsap.to(trustImg, {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: prevSection,
+          start: `bottom bottom+=${startOffset}`,
+          end: "bottom top",
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+        }
+      });
+      gsapTweens.push(twTrust);
+    }
+
+    const fillFormImg = section.querySelector(".fill-form__images img");
+    if (fillFormImg) {
+      const twFill = gsap.to(fillFormImg, {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: prevSection,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+        }
+      });
+      gsapTweens.push(twFill);
+    }
+  });
+
+  safeRefresh();
+}
+
+const mq = window.matchMedia("(min-width: 30.061em)");
+
+function handleBreakpoint(e) {
+  if (e.matches) {
+    enableGsap();
+  } else {
+    disableGsap();
+  }
+}
+
+mq.addEventListener("change", handleBreakpoint);
+
+document.addEventListener("DOMContentLoaded", () => {
+  handleBreakpoint(mq);
 });
 
-// Отключаем лаг-гашение, чтобы всё было отзывчиво
-gsap.ticker.lagSmoothing(0);
 
 
 
@@ -45,99 +390,99 @@ document.addEventListener("DOMContentLoaded", () => {
 		child.style.zIndex = maxZ - i;
 	});
 
-	// == GSAP animations
+	// // == GSAP animations
 
-	let refreshTimeout;
-	function safeRefresh() {
-	  clearTimeout(refreshTimeout);
-	  refreshTimeout = setTimeout(() => {
-	    ScrollTrigger.refresh();
-	  }, 150);
-	}
-	 safeRefresh();
+	// let refreshTimeout;
+	// function safeRefresh() {
+	//   clearTimeout(refreshTimeout);
+	//   refreshTimeout = setTimeout(() => {
+	//     ScrollTrigger.refresh();
+	//   }, 150);
+	// }
+	//  safeRefresh();
 
-	function createGsapAnim() {
+	// function createGsapAnim() {
 
-		// удаляем тригеры после срабатывания фунции (поворота экрана...)
-		ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+	// 	// удаляем тригеры после срабатывания фунции (поворота экрана...)
+	// 	ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-		// GSAP animations only for viewport >= 30.061em
-		const GSAP_MQ = window.matchMedia('(min-width: 30.061em)');
-		if (!GSAP_MQ.matches) {
-			return;
-		}
+	// 	// GSAP animations only for viewport >= 30.061em
+	// 	const GSAP_MQ = window.matchMedia('(min-width: 30.061em)');
+	// 	if (!GSAP_MQ.matches) {
+	// 		return;
+	// 	}
 
-		document.querySelectorAll('[data-gsap]').forEach(section => {
+	// 	document.querySelectorAll('[data-gsap]').forEach(section => {
 
-			const prevSection = section.previousElementSibling;
-			if (!prevSection) return;
+	// 		const prevSection = section.previousElementSibling;
+	// 		if (!prevSection) return;
 
-			// читаем значение из data-gsap-end
-			let endValue = section.dataset.gsapEnd || "35%";
+	// 		// читаем значение из data-gsap-end
+	// 		let endValue = section.dataset.gsapEnd || "35%";
 
-			// небольшой сдвиг старта анимации по скроллу (px) — даёт эффект задержки
-			const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
+	// 		// небольшой сдвиг старта анимации по скроллу (px) — даёт эффект задержки
+	// 		const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
 
-			gsap.to(section, {
-				y: 0,
-				ease: "none",
-				scrollTrigger: {
-					trigger: prevSection,
-					start: `bottom bottom+=${startOffset}`,
-					end: `bottom ${endValue}`,
-					scrub: 0.6, // для более гладкой анимации вместо true
-					invalidateOnRefresh: true,
-				}
-			});
-
-
-			const trustImg = section.querySelector('.trust__img img');
-			if (trustImg) {
-				gsap.to(trustImg, {
-					y: 0,
-					duration: 2,
-					ease: 'none',
-					scrollTrigger: {
-						trigger: prevSection,
-						start: `bottom bottom+=${startOffset}`,
-						end: `bottom top`,
-						scrub: 0.6,
-						invalidateOnRefresh: true,
-					}
-				});
-			}
-			const fillFormImg = section.querySelector('.fill-form__images img');
-			if (fillFormImg) {
-				gsap.to(fillFormImg, {
-					y: 0,
-					// duration: 2,
-					ease: 'none',
-					scrollTrigger: {
-						trigger: prevSection,
-						start: `bottom bottom`,
-						end: `bottom top`,
-						scrub: 0.6,
-						invalidateOnRefresh: true,
-					}
-				});
-			}
+	// 		gsap.to(section, {
+	// 			y: 0,
+	// 			ease: "none",
+	// 			scrollTrigger: {
+	// 				trigger: prevSection,
+	// 				start: `bottom bottom+=${startOffset}`,
+	// 				end: `bottom ${endValue}`,
+	// 				scrub: 0.6, // для более гладкой анимации вместо true
+	// 				invalidateOnRefresh: true,
+	// 			}
+	// 		});
 
 
-		});
+	// 		const trustImg = section.querySelector('.trust__img img');
+	// 		if (trustImg) {
+	// 			gsap.to(trustImg, {
+	// 				y: 0,
+	// 				duration: 2,
+	// 				ease: 'none',
+	// 				scrollTrigger: {
+	// 					trigger: prevSection,
+	// 					start: `bottom bottom+=${startOffset}`,
+	// 					end: `bottom top`,
+	// 					scrub: 0.6,
+	// 					invalidateOnRefresh: true,
+	// 				}
+	// 			});
+	// 		}
+	// 		const fillFormImg = section.querySelector('.fill-form__images img');
+	// 		if (fillFormImg) {
+	// 			gsap.to(fillFormImg, {
+	// 				y: 0,
+	// 				// duration: 2,
+	// 				ease: 'none',
+	// 				scrollTrigger: {
+	// 					trigger: prevSection,
+	// 					start: `bottom bottom`,
+	// 					end: `bottom top`,
+	// 					scrub: 0.6,
+	// 					invalidateOnRefresh: true,
+	// 				}
+	// 			});
+	// 		}
 
-		// ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
-		// let refreshTimeout;
 
-		// function safeRefresh() {
-		//   clearTimeout(refreshTimeout);
-		//   refreshTimeout = setTimeout(() => {
-		//     ScrollTrigger.refresh();
-		//   }, 150);
-		// }
-		// safeRefresh();
+	// 	});
 
-	}
-		createGsapAnim();
+	// 	// ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
+	// 	// let refreshTimeout;
+
+	// 	// function safeRefresh() {
+	// 	//   clearTimeout(refreshTimeout);
+	// 	//   refreshTimeout = setTimeout(() => {
+	// 	//     ScrollTrigger.refresh();
+	// 	//   }, 150);
+	// 	// }
+	// 	// safeRefresh();
+
+	// }
+	// 	createGsapAnim();
 
 		const itemsSol = document.querySelectorAll('.item-solutions__txt');
 		// if (itemsSol.length) {
@@ -192,14 +537,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			const currentWidth = window.innerWidth;
 			if (currentWidth !== lastWidth2) {
 				lastWidth2 = currentWidth;
-				createGsapAnim();
+				// createGsapAnim();
 				
 				if (mqDesktop.matches) {
       	  setMaxMinHeight();
       	} 
 
 			}
-		}, 250); // Debounce 250ms
+		}, 250);
 	});
 	resizeObserver2.observe(document.body);
 

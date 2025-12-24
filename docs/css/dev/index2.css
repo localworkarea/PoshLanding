@@ -399,6 +399,7 @@
   width: 100%;
   max-width: 90vw;
   max-height: 90vh;
+  min-height: 16.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1388,6 +1389,16 @@ html, body {
 .slide-reviews__txt p:not(:last-child) {
   margin-bottom: 1.25rem;
 }
+@media (max-width: 64.06125em) and (min-width: 48.06125em) {
+  .list-hero__item:nth-child(1) {
+    margin-right: 0.625rem;
+    padding-right: 0.625rem;
+  }
+  .list-hero__item:nth-child(2) {
+    margin-right: 0.625rem;
+    padding-right: 0.625rem;
+  }
+}
 @media (max-width: 62.06125em) {
   .hero__top .hero__container::after {
     display: none;
@@ -1663,6 +1674,7 @@ html, body {
   .list-hero {
     padding: 1.4375rem 0 1.5625rem;
     height: auto;
+    justify-content: center;
   }
   .list-hero::before {
     width: calc(100% - 4.375rem);
@@ -1872,20 +1884,15 @@ html, body {
     gap: 0.625rem;
     position: relative;
     justify-content: unset;
-    flex: 1;
     transform: unset;
+    width: auto;
     left: unset;
     opacity: 1;
   }
-  .list-hero__item:nth-child(1) {
-    padding-right: 0.625rem;
-  }
   .list-hero__item:nth-child(2) {
     justify-content: center;
-    padding-inline: 0.625rem;
   }
   .list-hero__item:nth-child(3) {
-    padding-left: 0.625rem;
     justify-content: flex-end;
   }
   .list-hero__item:not(:last-child)::after {
@@ -2076,6 +2083,14 @@ html, body {
 @media (min-width: 64.06125em) {
   .footer__btns {
     justify-content: space-between;
+  }
+  .list-hero__item:nth-child(1) {
+    margin-right: 3.4375rem;
+    padding-right: 4.0625rem;
+  }
+  .list-hero__item:nth-child(2) {
+    margin-right: 3.4375rem;
+    padding-right: 4.0625rem;
   }
   .banner__contacts {
     flex-direction: row;
