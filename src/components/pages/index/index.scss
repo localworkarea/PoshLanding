@@ -457,6 +457,16 @@ html, body {
   &__main {
     position: relative;
     z-index: 1;
+    video {
+      position: relative;
+      z-index: 1;
+    }
+    img {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      @extend %ibg;
+    }
   }
 
   // .video-hero__play
