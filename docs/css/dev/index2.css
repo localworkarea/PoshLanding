@@ -420,6 +420,14 @@
   right: 50%;
   transform: translate(50%, -100%);
   z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.gallery__fullscreen .gallery__close.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 .gallery__fullscreen .gallery__close.btn {
   background-color: var(--primary);

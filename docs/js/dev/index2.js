@@ -459,6 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openFullscreen(src, alt) {
     showLoader();
     fullscreenImage.classList.remove("is-loaded");
+    closeBtn.classList.remove("is-visible");
     fullscreenImage.src = "";
     fullscreen.setAttribute("aria-hidden", "false");
     fullscreen.classList.add("is-active");
@@ -471,10 +472,12 @@ document.addEventListener("DOMContentLoaded", () => {
       fullscreenImage.alt = alt || "";
       fullscreenImage.classList.add("is-loaded");
       hideLoader();
+      closeBtn.classList.add("is-visible");
     };
     img.onerror = () => {
       hideLoader();
       fullscreenImage.src = "";
+      closeBtn.classList.remove("is-visible");
       console.error("Ошибка загрузки изображения:", src);
     };
   }
@@ -483,6 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fullscreen.setAttribute("aria-hidden", "true");
     fullscreenImage.src = "";
     fullscreenImage.classList.remove("is-loaded");
+    closeBtn.classList.remove("is-visible");
     html.classList.remove("lock");
     hideLoader();
   }
@@ -1779,9 +1783,6 @@ document.addEventListener("click", (e) => {
   });
 });
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img").forEach((el) => {
-    el.style.willChange = "transform";
-  });
   const page = document.querySelector(".page--index");
   if (!page) return;
   const children = Array.from(page.children);
@@ -1881,8 +1882,6 @@ document.addEventListener("DOMContentLoaded", () => {
   (function() {
     const portfolio = document.querySelector(".portfolio");
     if (!portfolio) return;
-    const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (!hasMouse) return;
     let mouseX = 0;
     let targetX = 0;
     let rafId = null;

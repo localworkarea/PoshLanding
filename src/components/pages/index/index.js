@@ -325,10 +325,10 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-	document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img")
-  .forEach(el => {
-    el.style.willChange = "transform";
-  });
+	// document.querySelectorAll("[data-gsap], .trust__img img, .fill-form__images img")
+  // .forEach(el => {
+  //   el.style.willChange = "transform";
+  // });
 
 
 	// == index sections ===============
@@ -645,9 +645,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const portfolio = document.querySelector('.portfolio');
   if (!portfolio) return;
 
-  // 👉 Проверяем, есть ли мышь (desktop)
-  const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!hasMouse) return;
+  // // Проверяем, есть ли мышь (desktop)
+  // const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // if (!hasMouse) return;
 
   let mouseX = 0;
   let targetX = 0;
@@ -704,90 +704,6 @@ document.addEventListener("DOMContentLoaded", () => {
   portfolio.style.willChange = 'transform';
   portfolio.style.backfaceVisibility = 'hidden';
 })();
-
-
-
-
-	// == hero video =================================
-	// const heroBlock = document.querySelector("[data-video-hero]");
-	// if (heroBlock) {
-	// 	const playBtn = heroBlock.querySelector(".video-hero__play");
-	// 	const previewWrapper = heroBlock.querySelector(".video-hero__preview");
-	// 	const previewVideo = previewWrapper?.querySelector("video");
-	// 	const mainWrapper = heroBlock.querySelector(".video-hero__main");
-	// 	const mainVideo = mainWrapper?.querySelector("video");
-	
-	// 	if (!playBtn || !previewVideo || !mainVideo) return;
-	
-	// 	// --- Начальные состояния ---
-	// 	mainVideo.pause(); 
-	// 	previewVideo.muted = true; 
-	// 	// previewVideo.play().catch(() => {});
-	// 	let mainWasPlayedOnce = false;
-	
-	// 	// --- Функция запуска основного видео ---
-	// 	function playMainVideo() {
-	// 		mainWasPlayedOnce = true;
-	
-	// 		// 1. Скрываем кнопку
-	// 		playBtn.style.opacity = "0";
-	// 		playBtn.style.pointerEvents = "none";
-	
-	// 		// 2. Скрываем превью
-	// 		previewWrapper.classList.add("--not-active");
-	// 		previewVideo.pause();
-	
-	// 		// 3. Запускаем основное
-	// 		mainVideo.play();
-	// 	}
-	
-	// 	// --- Функция паузы/плея после первого запуска ---
-	// 	function toggleMainPlayback() {
-	// 		if (mainVideo.paused) {
-	// 			mainVideo.play();
-	// 			playBtn.style.opacity = "0";
-	// 			playBtn.style.pointerEvents = "none";
-	// 		} else {
-	// 			mainVideo.pause();
-	// 			playBtn.style.opacity = "1";
-	// 			playBtn.style.pointerEvents = "auto";
-	// 		}
-	// 	}
-	
-	// 	// --- Обработчик клика по всему блоку ---
-	// 	heroBlock.addEventListener("click", () => {
-	// 		// Первый клик — запускаем основное
-	// 		if (!mainWasPlayedOnce) {
-	// 			playMainVideo();
-	// 			return;
-	// 		}
-	
-	// 		// Дальше — только управление основным
-	// 		toggleMainPlayback();
-	// 	});
-	
-	// 	// --- Поведение при выходе блока из вьюпорта ---
-	// 	const observer2 = new IntersectionObserver(
-	// 		(entries) => {
-	// 			entries.forEach(entry => {
-	// 				if (!entry.isIntersecting) {
-	// 					// Останавливаем только основное видео
-	// 					if (!mainVideo.paused) {
-	// 						mainVideo.pause();
-	// 						if (mainWasPlayedOnce) {
-	// 							playBtn.style.opacity = "1";
-	// 							playBtn.style.pointerEvents = "auto";
-	// 						}
-	// 					}
-	// 				}
-	// 			});
-	// 		}, {
-	// 			threshold: 0.2
-	// 		}
-	// 	);
-	
-	// 	observer2.observe(heroBlock);
-	// };
 
 
 const heroBlock = document.querySelector("[data-video-hero]");
@@ -955,66 +871,6 @@ if (heroBlock) {
 
 	observer2.observe(heroBlock);
 }
-
-
-
-
-	// // Плавный скролл к блокам с учётом GSAP и Lenis
-	// document.addEventListener("click", (e) => {
-	// 	const link = e.target.closest("[data-go-link]");
-	// 	if (link) {
-	// 				e.preventDefault();
-			
-	// 				const targetId = link.dataset.goLink;
-	// 				const target = document.querySelector(`[data-go-id="${targetId}"]`);
-			
-	// 				if (!target) return;
-			
-	// 				const offset = 30;
-			
-	// 				const rect = target.getBoundingClientRect();
-	// 				let targetY = rect.top + window.scrollY - offset;
-			
-	// 				// 2. Если у блока есть transform → Учесть GSAP-смещение
-	// 				const style = window.getComputedStyle(target);
-	// 				const matrix = style.transform;
-			
-	// 				if (matrix && matrix !== "none") {
-	// 					const values = matrix.match(/matrix.*\((.+)\)/);
-	// 					if (values) {
-	// 						const parts = values[1].split(',');
-	// 						const translateY = parseFloat(parts[5]); // Y-смещение
-			
-	// 						if (!isNaN(translateY)) {
-	// 							// translateY например "-113px" → надо вычесть
-	// 							targetY -= translateY;
-	// 						}
-	// 					}
-	// 				}
-			
-	// 				// 3. Динамическая плавность
-	// 				const currentY = lenis.scroll;
-	// 				const distance = Math.abs(targetY - currentY);
-			
-	// 				let duration;
-	// 				if (distance < 300) {
-	// 					duration = 1.4;
-	// 				} else if (distance < 900) {
-	// 					duration = 1.8;
-	// 				} else {
-	// 					duration = 2;
-	// 				}
-			
-	// 				// 4. Плавный scroll с учетом GSAP transform
-	// 				lenis.scrollTo(targetY, {
-	// 					duration,
-	// 					easing: (t) => 1 - Math.pow(1 - t, 4),
-	// 				});
-
-	// 	}
-	// });
-
-	
 
 
 	
