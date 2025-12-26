@@ -269,23 +269,59 @@ window.addEventListener("resize", () => {
 
 
 /* ===================== CLICK SCROLL (Lenis + optional GSAP transform) ===================== */
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("[data-go-link]");
-  if (!link) return;
+// document.addEventListener("click", (e) => {
+//   const link = e.target.closest("[data-go-link]");
+//   if (!link) return;
 
-  e.preventDefault();
+//   e.preventDefault();
 
-  const targetId = link.dataset.goLink;
-  const target = document.querySelector(`[data-go-id="${targetId}"]`);
-  if (!target || !lenis) return;
+//   const targetId = link.dataset.goLink;
+//   const target = document.querySelector(`[data-go-id="${targetId}"]`);
+//   if (!target || !lenis) return;
 
-  const offset = 30;
+//   const offset = 30;
 
-  // Всегда считаем от реального DOM scrollY — он гарантированно актуален после rotate
+//   // Всегда считаем от реального DOM scrollY — он гарантированно актуален после rotate
+//   const rect = target.getBoundingClientRect();
+//   let targetY = rect.top + window.scrollY - offset;
+
+//   // Если GSAP включён — учтём transform (только тогда!)
+//   if (gsapEnabled && window.gsap) {
+//     const style = window.getComputedStyle(target);
+//     const matrix = style.transform;
+
+//     if (matrix && matrix !== "none") {
+//       const values = matrix.match(/matrix.*\((.+)\)/);
+//       if (values) {
+//         const parts = values[1].split(",");
+//         const translateY = parseFloat(parts[5]);
+//         if (!isNaN(translateY)) {
+//           targetY -= translateY;
+//         }
+//       }
+//     }
+//   }
+
+//   const current = window.scrollY;
+//   const distance = Math.abs(targetY - current);
+
+//   const duration =
+//     distance < 300 ? 1.4 :
+//     distance < 900 ? 1.8 :
+//     2;
+
+//   lenis.scrollTo(targetY, {
+//     duration,
+//     easing: (t) => 1 - Math.pow(1 - t, 4),
+//   });
+// });
+
+
+function getTargetScrollY(target, offset = 30) {
   const rect = target.getBoundingClientRect();
   let targetY = rect.top + window.scrollY - offset;
 
-  // Если GSAP включён — учтём transform (только тогда!)
+  // учитываем GSAP transform ТОЛЬКО если он реально включён
   if (gsapEnabled && window.gsap) {
     const style = window.getComputedStyle(target);
     const matrix = style.transform;
@@ -302,17 +338,57 @@ document.addEventListener("click", (e) => {
     }
   }
 
+  return targetY;
+}
+
+function scrollToTarget(target, { updateHash = false, duration = null } = {}) {
+  if (!target || !lenis) return;
+
+  const targetId = target.dataset.goId;
+  const targetY = getTargetScrollY(target);
   const current = window.scrollY;
   const distance = Math.abs(targetY - current);
 
-  const duration =
+  const finalDuration = duration ?? (
     distance < 300 ? 1.4 :
     distance < 900 ? 1.8 :
-    2;
+    2
+  );
+
+  if (updateHash && targetId) {
+    history.pushState(null, "", `#${targetId}`);
+  }
 
   lenis.scrollTo(targetY, {
-    duration,
+    duration: finalDuration,
     easing: (t) => 1 - Math.pow(1 - t, 4),
+  });
+}
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-go-link]");
+  if (!link) return;
+
+  e.preventDefault();
+
+  const targetId = link.dataset.goLink;
+  const target = document.querySelector(`[data-go-id="${targetId}"]`);
+  if (!target) return;
+
+  scrollToTarget(target, { updateHash: true });
+});
+
+window.addEventListener("load", () => {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const targetId = hash.slice(1);
+  const target = document.querySelector(`[data-go-id="${targetId}"]`);
+  if (!target) return;
+
+  // даём layout и Lenis стабилизироваться
+  requestAnimationFrame(() => {
+    scrollToTarget(target, { duration: 2 });
   });
 });
 
@@ -342,99 +418,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		child.style.zIndex = maxZ - i;
 	});
 
-	// // == GSAP animations
-
-	// let refreshTimeout;
-	// function safeRefresh() {
-	//   clearTimeout(refreshTimeout);
-	//   refreshTimeout = setTimeout(() => {
-	//     ScrollTrigger.refresh();
-	//   }, 150);
-	// }
-	//  safeRefresh();
-
-	// function createGsapAnim() {
-
-	// 	// удаляем тригеры после срабатывания фунции (поворота экрана...)
-	// 	ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-
-	// 	// GSAP animations only for viewport >= 30.061em
-	// 	const GSAP_MQ = window.matchMedia('(min-width: 30.061em)');
-	// 	if (!GSAP_MQ.matches) {
-	// 		return;
-	// 	}
-
-	// 	document.querySelectorAll('[data-gsap]').forEach(section => {
-
-	// 		const prevSection = section.previousElementSibling;
-	// 		if (!prevSection) return;
-
-	// 		// читаем значение из data-gsap-end
-	// 		let endValue = section.dataset.gsapEnd || "35%";
-
-	// 		// небольшой сдвиг старта анимации по скроллу (px) — даёт эффект задержки
-	// 		const startOffset = parseInt(section.dataset.gsapStartOffset || 30, 10);
-
-	// 		gsap.to(section, {
-	// 			y: 0,
-	// 			ease: "none",
-	// 			scrollTrigger: {
-	// 				trigger: prevSection,
-	// 				start: `bottom bottom+=${startOffset}`,
-	// 				end: `bottom ${endValue}`,
-	// 				scrub: 0.6, // для более гладкой анимации вместо true
-	// 				invalidateOnRefresh: true,
-	// 			}
-	// 		});
-
-
-	// 		const trustImg = section.querySelector('.trust__img img');
-	// 		if (trustImg) {
-	// 			gsap.to(trustImg, {
-	// 				y: 0,
-	// 				duration: 2,
-	// 				ease: 'none',
-	// 				scrollTrigger: {
-	// 					trigger: prevSection,
-	// 					start: `bottom bottom+=${startOffset}`,
-	// 					end: `bottom top`,
-	// 					scrub: 0.6,
-	// 					invalidateOnRefresh: true,
-	// 				}
-	// 			});
-	// 		}
-	// 		const fillFormImg = section.querySelector('.fill-form__images img');
-	// 		if (fillFormImg) {
-	// 			gsap.to(fillFormImg, {
-	// 				y: 0,
-	// 				// duration: 2,
-	// 				ease: 'none',
-	// 				scrollTrigger: {
-	// 					trigger: prevSection,
-	// 					start: `bottom bottom`,
-	// 					end: `bottom top`,
-	// 					scrub: 0.6,
-	// 					invalidateOnRefresh: true,
-	// 				}
-	// 			});
-	// 		}
-
-
-	// 	});
-
-	// 	// ScrollTrigger.refresh(); // Обновляем после создания всех триггеров
-	// 	// let refreshTimeout;
-
-	// 	// function safeRefresh() {
-	// 	//   clearTimeout(refreshTimeout);
-	// 	//   refreshTimeout = setTimeout(() => {
-	// 	//     ScrollTrigger.refresh();
-	// 	//   }, 150);
-	// 	// }
-	// 	// safeRefresh();
-
-	// }
-	// 	createGsapAnim();
 
 		const itemsSol = document.querySelectorAll('.item-solutions__txt');
 		// if (itemsSol.length) {
@@ -559,86 +542,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		MQ.addEventListener("change", checkAnimation);
 	}
 
-
-
-	// // === HERO LIST VIDEO HOVER REPLAY ==================================
-	// const heroVideosList = document.querySelectorAll(".list-hero__item video");
-
-	// if (heroVideosList.length) {
-	// 	heroVideosList.forEach(video => {
-	// 		let firstPlayDone = false;
-	// 		let canReplayOnHover = false;
-
-	// 		video.addEventListener("ended", () => {
-	// 			if (!firstPlayDone) {
-	// 				firstPlayDone = true;
-	// 				canReplayOnHover = true;
-	// 			} else {
-	// 				canReplayOnHover = true;
-	// 			}
-	// 		});
-
-	// 		video.addEventListener("mouseenter", () => {
-	// 			if (!firstPlayDone) return; 
-	// 			if (!canReplayOnHover) return; 
-
-	// 			canReplayOnHover = false; 
-	// 			video.currentTime = 0;
-	// 			video.play();
-	// 		});
-	// 	});
-	// }
-
-
-
-
-	// // == animations parallax section .portfolio =================
-	// const portfolio = document.querySelector('.portfolio');
-	// if (portfolio) {
-
-	// 	let mouseX = 0;
-	// 	let targetX = 0;
-
-	// 	const strength = 40;  // максимальное смещение (px)
-	// 	const easing = 0.03;  // плавность
-
-	// 	// центр экрана
-	// 	let centerX = window.innerWidth / 2;
-	// 	window.addEventListener('resize', () => {
-	// 		centerX = window.innerWidth / 2;
-	// 	});
-
-	// 	// Ловим мышь (лёгкая логика)
-	// 	window.addEventListener('mousemove', (e) => {
-	// 		const offset = (e.clientX - centerX) / centerX; // -1..1
-	// 		targetX = offset * strength;
-	// 	}, { passive: true });
-
-	// 	// === Рендер функция (используется GSAP ticker'ом) ===
-	// 	function render() {
-	// 		mouseX += (targetX - mouseX) * easing;
-	// 		portfolio.style.transform = `translate3d(${mouseX}px,0,0)`;
-	// 	}
-
-	// 	// === Observer включает и выключает GSAP ticker ===
-	// 	const observer = new IntersectionObserver((entries) => {
-	// 		entries.forEach(entry => {
-	// 			if (entry.isIntersecting) {
-	// 				gsap.ticker.add(render);
-	// 			} else {
-	// 				gsap.ticker.remove(render);
-	// 			}
-	// 		});
-	// 	}, { threshold: 0.2 });
-
-	// 	observer.observe(portfolio);
-
-	// 	// браузерные оптимизации
-	// 	try {
-	// 		portfolio.style.willChange = 'transform';
-	// 		portfolio.style.backfaceVisibility = 'hidden';
-	// 	} catch (e) {}
-	// }
 
 	// == NATIVE parallax mouse section .portfolio =================
 (function () {

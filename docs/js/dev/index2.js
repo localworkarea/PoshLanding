@@ -1750,14 +1750,7 @@ window.addEventListener("resize", () => {
     }
   }, 250);
 });
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("[data-go-link]");
-  if (!link) return;
-  e.preventDefault();
-  const targetId = link.dataset.goLink;
-  const target = document.querySelector(`[data-go-id="${targetId}"]`);
-  if (!target || !lenis) return;
-  const offset = 30;
+function getTargetScrollY(target, offset = 30) {
   const rect = target.getBoundingClientRect();
   let targetY = rect.top + window.scrollY - offset;
   if (gsapEnabled && window.gsap) {
@@ -1774,12 +1767,40 @@ document.addEventListener("click", (e) => {
       }
     }
   }
+  return targetY;
+}
+function scrollToTarget(target, { updateHash = false, duration = null } = {}) {
+  if (!target || !lenis) return;
+  const targetId = target.dataset.goId;
+  const targetY = getTargetScrollY(target);
   const current = window.scrollY;
   const distance = Math.abs(targetY - current);
-  const duration = distance < 300 ? 1.4 : distance < 900 ? 1.8 : 2;
+  const finalDuration = duration ?? (distance < 300 ? 1.4 : distance < 900 ? 1.8 : 2);
+  if (updateHash && targetId) {
+    history.pushState(null, "", `#${targetId}`);
+  }
   lenis.scrollTo(targetY, {
-    duration,
+    duration: finalDuration,
     easing: (t) => 1 - Math.pow(1 - t, 4)
+  });
+}
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-go-link]");
+  if (!link) return;
+  e.preventDefault();
+  const targetId = link.dataset.goLink;
+  const target = document.querySelector(`[data-go-id="${targetId}"]`);
+  if (!target) return;
+  scrollToTarget(target, { updateHash: true });
+});
+window.addEventListener("load", () => {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const targetId = hash.slice(1);
+  const target = document.querySelector(`[data-go-id="${targetId}"]`);
+  if (!target) return;
+  requestAnimationFrame(() => {
+    scrollToTarget(target, { duration: 2 });
   });
 });
 document.addEventListener("DOMContentLoaded", () => {
