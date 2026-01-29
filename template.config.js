@@ -62,7 +62,7 @@ export default {
 		optimize: {
 			enable: true,
 			edithtml: true,
-			sizes: [600, 1200],
+			sizes: [500, 1200],
 			dpi: [],
 			attrignore: 'data-img-ignore',
 			modernformat: {
@@ -86,7 +86,7 @@ export default {
 			// Збирає в один JS та один CSS файли
 			// незалежно від налаштування
 			// styles -> codesplit,
-			enable: false,
+			enable: false, // отдельные файлы на каждой странице
 		},
 		react: false,
 		vue: false

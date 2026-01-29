@@ -4742,10 +4742,12 @@ class Popup {
       bodyLock: true,
       // Блокування скролла
       hashSettings: {
-        location: false,
+        location: true,
         // Хеш в адресному рядку
-        goHash: false
+        goHash: true
         // Перехід по наявності в адресному рядку
+        // location: false, // Хеш в адресному рядку
+        // goHash: false, // Перехід по наявності в адресному рядку
       },
       on: {
         // Події
@@ -5020,6 +5022,27 @@ let formValidate = {
   },
   validateInput(formRequiredItem) {
     let error = 0;
+    if (formRequiredItem.type === "radio") {
+      const form = formRequiredItem.closest("form");
+      if (!form) return 0;
+      const groupName = formRequiredItem.name;
+      const safeName = window.CSS && CSS.escape ? CSS.escape(groupName) : groupName.replace(/"/g, '\\"');
+      const group = form.querySelectorAll(`input[type="radio"][name="${safeName}"]`);
+      const checked = form.querySelector(`input[type="radio"][name="${safeName}"]:checked`);
+      if (!checked) {
+        group.forEach((r) => {
+          this.addError(r);
+          this.removeSuccess(r);
+        });
+        error++;
+      } else {
+        group.forEach((r) => {
+          this.removeError(r);
+          this.addSuccess(r);
+        });
+      }
+      return error;
+    }
     if (formRequiredItem.type === "email") {
       formRequiredItem.value = formRequiredItem.value.replace(" ", "");
       if (this.emailTest(formRequiredItem)) {
@@ -5329,25 +5352,35 @@ function formInit() {
         }
       }
     });
-  }
-  const fileBlock = document.querySelector(".form-file");
-  if (fileBlock) {
-    const input = fileBlock.querySelector(".form-file__input");
-    const btn = fileBlock.querySelector(".form-file__btn");
-    fileBlock.querySelector(".form-file__text");
-    const textFile = fileBlock.querySelector(".form-file__file-name");
-    btn.addEventListener("click", () => {
-      input.click();
-    });
-    input.addEventListener("change", () => {
-      if (input.files.length > 0) {
-        const fileName = input.files[0].name;
-        fileBlock.classList.add("--file-added");
-        textFile.textContent = fileName;
-      } else {
-        fileBlock.classList.remove("--file-added");
-        textFile.textContent = "";
+    document.body.addEventListener("change", function(e) {
+      const target = e.target;
+      if (!target || target.tagName !== "INPUT") return;
+      if (target.type === "radio" || target.type === "checkbox") {
+        formValidate.validateInput(target);
       }
+    });
+  }
+  const fileBlocks = document.querySelectorAll(".form-file");
+  if (fileBlocks.length) {
+    fileBlocks.forEach((fileBlock) => {
+      const input = fileBlock.querySelector(".form-file__input");
+      const btn = fileBlock.querySelector(".form-file__btn");
+      fileBlock.querySelector(".form-file__text");
+      const textFile = fileBlock.querySelector(".form-file__file-name");
+      if (!input || !btn || !textFile) return;
+      btn.addEventListener("click", () => {
+        input.click();
+      });
+      input.addEventListener("change", () => {
+        if (input.files && input.files.length > 0) {
+          const fileName = input.files[0].name;
+          fileBlock.classList.add("--file-added");
+          textFile.textContent = fileName;
+        } else {
+          fileBlock.classList.remove("--file-added");
+          textFile.textContent = "";
+        }
+      });
     });
   }
   const uploadBlocks = document.querySelectorAll("[data-brief-upload]");

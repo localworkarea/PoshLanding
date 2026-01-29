@@ -484,63 +484,176 @@ document.addEventListener("DOMContentLoaded", () => {
 	resizeObserver2.observe(document.body);
 
 
-	// == animations list-hero__item ===========
-	const items = document.querySelectorAll(".list-hero__item");
-	if (items.length) {
-		let animationInterval = null;
-		const MQ = window.matchMedia("(max-width: 48.061em)");
-		const DURATION = 700;
-		const DELAY = 1500;
+	// // == animations list-hero__item ===========
+	// const items = document.querySelectorAll(".list-hero__item");
+	// if (items.length) {
+	// 	let animationInterval = null;
+	// 	const MQ = window.matchMedia("(max-width: 48.061em)");
+	// 	const DURATION = 700;
+	// 	const DELAY = 1500;
 	
-		function showSequentially() {
-			let index = 0;
+	// 	function showSequentially() {
+	// 		let index = 0;
 	
-			function animateNext() {
-				// Сбрасываем все
-				items.forEach(item => {
-					item.style.transition = "none";
-					item.style.opacity = "0";
-					item.style.transform = "translate(-50%, 100%)";
-				});
+	// 		function animateNext() {
+	// 			// Сбрасываем все
+	// 			items.forEach(item => {
+	// 				item.style.transition = "none";
+	// 				item.style.opacity = "0";
+	// 				item.style.transform = "translate(-50%, 100%)";
+	// 			});
 	
-				requestAnimationFrame(() => {
-					const item = items[index];
-					item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
-					item.style.opacity = "1";
-					item.style.transform = "translate(-50%, 0)";
-				});
+	// 			requestAnimationFrame(() => {
+	// 				const item = items[index];
+	// 				item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+	// 				item.style.opacity = "1";
+	// 				item.style.transform = "translate(-50%, 0)";
+	// 			});
 	
-				index = (index + 1) % items.length;
+	// 			index = (index + 1) % items.length;
 	
-				// Следующий элемент через 1 сек + время анимации
-				clearTimeout(animationInterval);
-				animationInterval = setTimeout(animateNext, DELAY + DURATION);
-			}
+	// 			// Следующий элемент через 1 сек + время анимации
+	// 			clearTimeout(animationInterval);
+	// 			animationInterval = setTimeout(animateNext, DELAY + DURATION);
+	// 		}
 	
-			animateNext();
-		}
+	// 		animateNext();
+	// 	}
 	
-		function stopAnimation() {
-			clearTimeout(animationInterval);
-			animationInterval = null;
-			items.forEach(item => {
-				item.style.transition = "";
-				item.style.opacity = "";
-				item.style.transform = "";
-			});
-		}
+	// 	function stopAnimation() {
+	// 		clearTimeout(animationInterval);
+	// 		animationInterval = null;
+	// 		items.forEach(item => {
+	// 			item.style.transition = "";
+	// 			item.style.opacity = "";
+	// 			item.style.transform = "";
+	// 		});
+	// 	}
 	
-		function checkAnimation() {
-			if (MQ.matches) {
-				if (!animationInterval) showSequentially();
-			} else {
-				stopAnimation();
-			}
-		}
+	// 	function checkAnimation() {
+	// 		if (MQ.matches) {
+	// 			if (!animationInterval) showSequentially();
+	// 		} else {
+	// 			stopAnimation();
+	// 		}
+	// 	}
 	
-		checkAnimation();
-		MQ.addEventListener("change", checkAnimation);
+	// 	checkAnimation();
+	// 	MQ.addEventListener("change", checkAnimation);
+	// }
+
+  //анимация в Header =========================
+	// const aboutHeader = document.querySelectorAll(".about-header__item");
+	// if (aboutHeader.length) {
+	// 	let animationInterval = null;
+	// 	const DURATION = 700;
+	// 	const DELAY = 1500;
+	
+	// 	function showSequentially() {
+	// 		let index = 0;
+	
+	// 		function animateNext() {
+	// 			// Сбрасываем все
+	// 			aboutHeader.forEach(item => {
+	// 				item.style.transition = "none";
+	// 				item.style.opacity = "0";
+	// 				item.style.transform = "translate(0%, 100%)";
+	// 			});
+	
+	// 			requestAnimationFrame(() => {
+	// 				const item = aboutHeader[index];
+	// 				item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+	// 				item.style.opacity = "1";
+	// 				item.style.transform = "translate(0%, 0%)";
+	// 			});
+	
+	// 			index = (index + 1) % aboutHeader.length;
+	
+	// 			// Следующий элемент через 1 сек + время анимации
+	// 			clearTimeout(animationInterval);
+	// 			animationInterval = setTimeout(animateNext, DELAY + DURATION);
+	// 		}
+	
+	// 		animateNext();
+	// 	}
+	
+  //   showSequentially();
+	// }
+
+  const aboutHeaderItems = Array.from(document.querySelectorAll(".about-header__item"));
+
+if (aboutHeaderItems.length) {
+	let animationTimer = null;
+	const DURATION = 700;
+	const DELAY = 1500;
+
+	const mq = window.matchMedia("(max-width: 46.936em)");
+
+	let itemsForAnim = [];
+	let index = 0;
+
+	function stopAnimation() {
+		clearTimeout(animationTimer);
+		animationTimer = null;
 	}
+
+	function resetStyles(items) {
+		items.forEach(item => {
+			item.style.transition = "none";
+			item.style.opacity = "0";
+			item.style.transform = "translate(0%, 100%)";
+		});
+	}
+
+	function setHiddenState(isMobile) {
+		aboutHeaderItems.forEach(item => {
+			if (item.classList.contains("item-pc-hidden")) {
+				item.style.display = isMobile ? "" : "none";
+			}
+		});
+	}
+
+	function buildItemsList(isMobile) {
+		return isMobile ? aboutHeaderItems : aboutHeaderItems.filter(item => !item.classList.contains("item-pc-hidden"));
+	}
+
+	function animateNext() {
+		if (!itemsForAnim.length) return;
+
+		resetStyles(itemsForAnim);
+
+		requestAnimationFrame(() => {
+			const item = itemsForAnim[index];
+			item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+			item.style.opacity = "1";
+			item.style.transform = "translate(0%, 0%)";
+		});
+
+		index = (index + 1) % itemsForAnim.length;
+
+		stopAnimation();
+		animationTimer = setTimeout(animateNext, DELAY + DURATION);
+	}
+
+	function startAnimation(isMobile) {
+		stopAnimation();
+
+		setHiddenState(isMobile);
+
+    itemsForAnim = buildItemsList(isMobile);
+
+		index = 0;
+
+		animateNext();
+	}
+
+	startAnimation(mq.matches);
+
+	mq.addEventListener("change", (e) => {
+		startAnimation(e.matches);
+	});
+}
+
 
 
 	// == NATIVE parallax mouse section .portfolio =================

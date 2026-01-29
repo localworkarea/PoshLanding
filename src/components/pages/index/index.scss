@@ -87,6 +87,14 @@ html, body {
   // .hero__list
   &__list {}
 
+  // .hero__btns
+	&__btns {
+    margin-bottom: 30px;
+    @media (min-width:toEm($mobileSmall)){
+      margin-bottom: 70px;
+    }
+	}
+
   // .hero__portfolio
   &__portfolio {
     position: relative;
@@ -114,201 +122,183 @@ html, body {
   }
 }
 
-.hero-3d {
-  // &.is-visible {
-  //   visibility: visible !important;
-  //   opacity: 1 !important;
-  //     transition: opacity 0.1s, visibility .1s;
-  // }
-}
 
-
-.list-hero {
-  position: relative;
+.btns-hero {
   display: flex;
-  // justify-content: space-between;
-  min-height: 63px;
-  padding: 18px 0 20px;
-  // @media (min-width:toEm($mobile)){
-  //    display: grid;
-  //    grid-template-columns: repeat(3,1fr); 
-  // }
-
-  @media (min-width:toEm($mobileSmall)) {
-    padding: 23px 0 25px;
-    height: auto;
-    justify-content: center;
+  justify-content: center;
+  @media (min-width:toEm(900.98)){
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 40px;
   }
-
-  @media (max-width:toEm(820.98)) and (min-width:toEm($mobileSmall)) {
-    min-height: 80px;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    height: 1px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
-
-    @media (min-width:toEm($mobileSmall)) {
-      width: calc(100% - 70px);
-    }
-  }
-
-  // .list-hero__item
+  // .btns-hero__item
   &__item {
-    // border: 1px solid #fff;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    
-    
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    width: 100%;
-    // justify-content: center;
-    opacity: 0;
-
-    // &.--empty {
-    //   display: none;
-    //    @media (min-width:toEm($mobile)) {
-    //     display: block;
-    //     position: relative;
-    //     flex: auto;
-    //     &::after {
-    //       @media (min-width:toEm($mobile)) {
-    //         content: "";
-    //         position: absolute;
-    //         top: 50%;
-    //         left: 50%;
-    //         transform: translate(-50%, -50%);
-    //         width: 1px;
-    //         height: calc(100% - 14px);
-    //         background-color: rgba(255, 255, 255, 0.1);
-    //       }
-    //     }
-    //  }
-    // }
-    
-    
-    @media (min-width:toEm($mobile)) {
-   
-      gap: 10px;
-      position: relative;
-      justify-content: unset;
-      // flex: 1;
-      transform: unset;
-      width: auto;
-      left: unset;
-      opacity: 1;
-    }
-
-    @media (max-width:toEm($mobile)) {
-      max-width: max-content;
-    }
-
-    &:nth-child(1) {
-      opacity: 1;
-
-      // @media (min-width:toEm($mobile)) {
-      //   // padding-right: 10px;
-      // }
-      @media (min-width:toEm(1024.98)) {
-        margin-right: 55px;
-        padding-right: 65px;
-      }
-      @media (max-width: toEm(1024.98)) and (min-width: toEm($mobile)) {
-        margin-right: 10px;
-        padding-right: 10px;
-      }
-    }
-
-    &:nth-child(2) {
-      @media (min-width:toEm($mobile)) {
-        justify-content: center;
-        // padding-inline: 10px;
-        // padding-right: 10px;
-        // padding-right: 20px;
-
-      }
-       @media (min-width:toEm(1024.98)) {
-        margin-right: 55px;
-        padding-right: 65px;
-      }
-      @media (max-width: toEm(1024.98)) and (min-width: toEm($mobile)) {
-        margin-right: 10px;
-        padding-right: 10px;
-      }
-    }
-
-    &:nth-child(3) {
-      @media (min-width:toEm($mobile)) {
-        // padding-left: 10px;
-        justify-content: flex-end;
-      }
-    }
-
-    &:not(:last-child) {
-      &::after {
-        @media (min-width:toEm($mobile)) {
-          content: "";
-          position: absolute;
-          top: 50%;
-          right: 0;
-          transform: translate(0, -50%);
-          width: 1px;
-          height: calc(100% - 14px);
-          background-color: rgba(255, 255, 255, 0.1);
+      &.item-pc {
+        display: none;
+        @media (min-width:toEm(900.98)){
+          display: block;
         }
       }
-    }
-  }
+		}
 
-  // .list-hero__icon
-  &__icon {
-    height: 25px;
-    aspect-ratio: 44/44;
-  //  border: 1px solid #fff;
-  //  max-width: max-content;
-    &.is-visible {
-      visibility: visible !important;
-      opacity: 1 !important;
-      transition: opacity 0.1s, visibility .1s;
-    }
-   @media (min-width:toEm($mobileSmall)) {
-     height: 44px;
-    }
-    
-    img,
-    video,
-    canvas {
-      position: relative;
-      display: block;
-      height: 100%;
-      width: auto;
-      aspect-ratio: 44/44;
-      // max-width: max-content;
-      // @extend %ibg;
-      // object-fit: contain;
-    }
-  }
-
-  // .list-hero__txt
-  &__txt {
-    color: var(--white);
-    font-weight: 300;
-    font-size: 14px;
-
-    @media (min-width:toEm($mobileSmall)) {
-      font-size: 16px;
-    }
-  }
+		// .btns-hero__btn
+		&__btn {
+      &.btn.btn--2 {
+        @media (max-width:toEm($mobileSmall)) {
+             padding-inline: 30px;
+             min-height: 50px;
+             gap: 11px;
+            font-size: 16px;
+          } 
+      }
+		}
 }
+
+
+
+// .list-hero {
+//   position: relative;
+//   display: flex;
+//   min-height: 63px;
+//   padding: 18px 0 20px;
+
+//   @media (min-width:toEm($mobileSmall)) {
+//     padding: 23px 0 25px;
+//     height: auto;
+//     justify-content: center;
+//   }
+
+//   @media (max-width:toEm(820.98)) and (min-width:toEm($mobileSmall)) {
+//     min-height: 80px;
+//   }
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     transform: translate(-50%, 0);
+//     height: 1px;
+//     width: 100%;
+//     background-color: rgba(255, 255, 255, 0.1);
+
+//     @media (min-width:toEm($mobileSmall)) {
+//       width: calc(100% - 70px);
+//     }
+//   }
+
+//   // .list-hero__item
+//   &__item {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+    
+    
+//     position: absolute;
+//     left: 50%;
+//     transform: translate(-50%, 50%);
+//     width: 100%;
+//     opacity: 0;
+//     @media (min-width:toEm($mobile)) {
+   
+//       gap: 10px;
+//       position: relative;
+//       justify-content: unset;
+//       // flex: 1;
+//       transform: unset;
+//       width: auto;
+//       left: unset;
+//       opacity: 1;
+//     }
+
+//     @media (max-width:toEm($mobile)) {
+//       max-width: max-content;
+//     }
+
+//     &:nth-child(1) {
+//       opacity: 1;
+
+//       @media (min-width:toEm(1024.98)) {
+//         margin-right: 55px;
+//         padding-right: 65px;
+//       }
+//       @media (max-width: toEm(1024.98)) and (min-width: toEm($mobile)) {
+//         margin-right: 10px;
+//         padding-right: 10px;
+//       }
+//     }
+
+//     &:nth-child(2) {
+//       @media (min-width:toEm($mobile)) {
+//         justify-content: center;
+//       }
+//        @media (min-width:toEm(1024.98)) {
+//         margin-right: 55px;
+//         padding-right: 65px;
+//       }
+//       @media (max-width: toEm(1024.98)) and (min-width: toEm($mobile)) {
+//         margin-right: 10px;
+//         padding-right: 10px;
+//       }
+//     }
+
+//     &:nth-child(3) {
+//       @media (min-width:toEm($mobile)) {
+//         justify-content: flex-end;
+//       }
+//     }
+
+//     &:not(:last-child) {
+//       &::after {
+//         @media (min-width:toEm($mobile)) {
+//           content: "";
+//           position: absolute;
+//           top: 50%;
+//           right: 0;
+//           transform: translate(0, -50%);
+//           width: 1px;
+//           height: calc(100% - 14px);
+//           background-color: rgba(255, 255, 255, 0.1);
+//         }
+//       }
+//     }
+//   }
+
+//   // .list-hero__icon
+//   &__icon {
+//     height: 25px;
+//     aspect-ratio: 44/44;
+//     &.is-visible {
+//       visibility: visible !important;
+//       opacity: 1 !important;
+//       transition: opacity 0.1s, visibility .1s;
+//     }
+//    @media (min-width:toEm($mobileSmall)) {
+//      height: 44px;
+//     }
+    
+//     img,
+//     video,
+//     canvas {
+//       position: relative;
+//       display: block;
+//       height: 100%;
+//       width: auto;
+//       aspect-ratio: 44/44;
+//     }
+//   }
+
+//   // .list-hero__txt
+//   &__txt {
+//     color: var(--white);
+//     font-weight: 300;
+//     font-size: 14px;
+
+//     @media (min-width:toEm($mobileSmall)) {
+//       font-size: 16px;
+//     }
+//   }
+// }
 
 .portfolio {
   will-change: transform;

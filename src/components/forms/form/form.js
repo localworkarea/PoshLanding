@@ -262,7 +262,7 @@ function formInit() {
 				targetElement.hasAttribute('data-fls-form-validatenow') ? formValidate.validateInput(targetElement) : null;
 			}
 		});
-			document.body.addEventListener("input", function (e) {
+		document.body.addEventListener("input", function (e) {
 			const target = e.target;
 				
 			if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
@@ -274,110 +274,48 @@ function formInit() {
 						target.parentElement.classList.remove("--input-fill");
 					}
 				}
-			});
-	}
-	
-	const fileBlock = document.querySelector(".form-file");
-	
-	if (fileBlock) {
-		const input = fileBlock.querySelector(".form-file__input");
-		const btn = fileBlock.querySelector(".form-file__btn");
-		const textDefault = fileBlock.querySelector(".form-file__text");
-		const textFile = fileBlock.querySelector(".form-file__file-name");
-	
-		btn.addEventListener("click", () => {
-			input.click();
 		});
-	
-		input.addEventListener("change", () => {
-			if (input.files.length > 0) {
-				const fileName = input.files[0].name;
-			
-				fileBlock.classList.add("--file-added");
-				textFile.textContent = fileName;
-			} else {
-				fileBlock.classList.remove("--file-added");
-				textFile.textContent = "";
+		document.body.addEventListener("change", function (e) {
+			const target = e.target;
+			if (!target || target.tagName !== "INPUT") return;
+			if (target.type === "radio" || target.type === "checkbox") {
+				formValidate.validateInput(target);
 			}
 		});
+
+
+	}
+	
+	// ====== FILE BLOCKS (для всех форм) ======
+	const fileBlocks = document.querySelectorAll(".form-file");
+
+	if (fileBlocks.length) {
+		fileBlocks.forEach((fileBlock) => {
+			const input = fileBlock.querySelector(".form-file__input");
+			const btn = fileBlock.querySelector(".form-file__btn");
+			const textDefault = fileBlock.querySelector(".form-file__text");
+			const textFile = fileBlock.querySelector(".form-file__file-name");
+
+			if (!input || !btn || !textFile) return;
+
+			btn.addEventListener("click", () => {
+				input.click();
+			});
+
+			input.addEventListener("change", () => {
+				if (input.files && input.files.length > 0) {
+					const fileName = input.files[0].name;
+
+					fileBlock.classList.add("--file-added");
+					textFile.textContent = fileName;
+				} else {
+					fileBlock.classList.remove("--file-added");
+					textFile.textContent = "";
+				}
+			});
+		});
 	}
 
-
-
-
- 	// const uploadBlocks = document.querySelectorAll("[data-brief-upload]");
-	// if (uploadBlocks.length) {
-	// 	const MAX_SIZE = 10 * 1024 * 1024; // 10MB
-	
-	// 	uploadBlocks.forEach(block => {
-	//     block._filesArray = [];
-	//     const input = block.querySelector(".brief-upload__input");
-	//     const btn = block.querySelector("[data-upload-btn]");
-	//     const list = block.querySelector("[data-upload-list]");
-	//     const error = block.querySelector("[data-upload-error]");
-
-	//     let filesArray = block._filesArray; // ← ВАЖНО!
-
-	
-	// 		// открыть input
-	// 		btn.addEventListener("click", () => input.click());
-	
-	// 		// выбор файлов
-	// 		input.addEventListener("change", () => {
-	// 			const chosenFiles = Array.from(input.files);
-	
-	// 			const currentSize = filesArray.reduce((t, f) => t + f.size, 0);
-	// 			const chosenSize = chosenFiles.reduce((t, f) => t + f.size, 0);
-	
-	// 			if (currentSize + chosenSize > MAX_SIZE) {
-	// 				error.classList.add("--show");
-	// 				input.value = "";
-	// 				return;
-	// 			} else {
-	// 				error.classList.remove("--show");
-	// 			}
-	
-	// 			filesArray.push(...chosenFiles);
-	// 			input.value = ""; // очистка
-	
-	// 			renderList();
-	// 		});
-	
-	// 		// render
-	// 		function renderList() {
-	// 			list.innerHTML = "";
-	
-	// 			filesArray.forEach((file, index) => {
-	// 				const item = document.createElement("div");
-	// 				item.className = "brief-upload__file";
-	// 				item.innerHTML = `
-	// 					${file.name}
-	// 					<button type="button" data-remove-index="${index}" aria-label="remove">
-	// 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-	// 							<rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#676767"/>
-	// 							<path d="M5 5L8 8L5 11" stroke="#676767"/>
-	// 							<path d="M11 11L8 8L11 5" stroke="#676767"/>
-	// 						</svg>
-	// 					</button>
-	// 				`;
-	// 				list.appendChild(item);
-	// 			});
-	// 		}
-	
-	// 		// удаление
-	// 		list.addEventListener("click", e => {
-	// 			const btn = e.target.closest("[data-remove-index]");
-	// 			if (!btn) return;
-	
-	// 			const index = +btn.dataset.removeIndex;
-	// 			filesArray.splice(index, 1);
-	
-	// 			error.classList.remove("--show");
-	// 			renderList();
-	// 		});
-	
-	// 	});
-	// }
 
 	// ==================== UPLOAD BLOCKS ====================
 	const uploadBlocks = document.querySelectorAll("[data-brief-upload]");

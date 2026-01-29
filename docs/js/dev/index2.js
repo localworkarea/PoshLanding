@@ -1857,48 +1857,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 250);
   });
   resizeObserver2.observe(document.body);
-  const items = document.querySelectorAll(".list-hero__item");
-  if (items.length) {
-    let showSequentially = function() {
-      let index = 0;
-      function animateNext() {
-        items.forEach((item) => {
-          item.style.transition = "none";
-          item.style.opacity = "0";
-          item.style.transform = "translate(-50%, 100%)";
-        });
-        requestAnimationFrame(() => {
-          const item = items[index];
-          item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
-          item.style.opacity = "1";
-          item.style.transform = "translate(-50%, 0)";
-        });
-        index = (index + 1) % items.length;
-        clearTimeout(animationInterval);
-        animationInterval = setTimeout(animateNext, DELAY + DURATION);
-      }
-      animateNext();
-    }, stopAnimation = function() {
-      clearTimeout(animationInterval);
-      animationInterval = null;
+  const aboutHeaderItems = Array.from(document.querySelectorAll(".about-header__item"));
+  if (aboutHeaderItems.length) {
+    let stopAnimation = function() {
+      clearTimeout(animationTimer);
+      animationTimer = null;
+    }, resetStyles = function(items) {
       items.forEach((item) => {
-        item.style.transition = "";
-        item.style.opacity = "";
-        item.style.transform = "";
+        item.style.transition = "none";
+        item.style.opacity = "0";
+        item.style.transform = "translate(0%, 100%)";
       });
-    }, checkAnimation = function() {
-      if (MQ.matches) {
-        if (!animationInterval) showSequentially();
-      } else {
-        stopAnimation();
-      }
+    }, setHiddenState = function(isMobile2) {
+      aboutHeaderItems.forEach((item) => {
+        if (item.classList.contains("item-pc-hidden")) {
+          item.style.display = isMobile2 ? "" : "none";
+        }
+      });
+    }, buildItemsList = function(isMobile2) {
+      return isMobile2 ? aboutHeaderItems : aboutHeaderItems.filter((item) => !item.classList.contains("item-pc-hidden"));
+    }, animateNext = function() {
+      if (!itemsForAnim.length) return;
+      resetStyles(itemsForAnim);
+      requestAnimationFrame(() => {
+        const item = itemsForAnim[index];
+        item.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms ease`;
+        item.style.opacity = "1";
+        item.style.transform = "translate(0%, 0%)";
+      });
+      index = (index + 1) % itemsForAnim.length;
+      stopAnimation();
+      animationTimer = setTimeout(animateNext, DELAY + DURATION);
+    }, startAnimation = function(isMobile2) {
+      stopAnimation();
+      setHiddenState(isMobile2);
+      itemsForAnim = buildItemsList(isMobile2);
+      index = 0;
+      animateNext();
     };
-    let animationInterval = null;
-    const MQ = window.matchMedia("(max-width: 48.061em)");
+    let animationTimer = null;
     const DURATION = 700;
     const DELAY = 1500;
-    checkAnimation();
-    MQ.addEventListener("change", checkAnimation);
+    const mq2 = window.matchMedia("(max-width: 46.936em)");
+    let itemsForAnim = [];
+    let index = 0;
+    startAnimation(mq2.matches);
+    mq2.addEventListener("change", (e) => {
+      startAnimation(e.matches);
+    });
   }
   (function() {
     const portfolio = document.querySelector(".portfolio");

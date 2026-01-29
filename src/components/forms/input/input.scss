@@ -16,13 +16,14 @@ textarea {
 	width: 100%;
 	display: block;
 	padding: 0px;
+	font-size: 16px;
 	border-bottom: 1px solid var(--gray);
 	caret-color: inherit;
 	outline: none;
-	min-height: 25px; 
-	@media (min-width:toEm($mobileSmall)){
-		 min-height: 29px; 
-	}
+	// min-height: 25px; 
+	min-height: 29px; 
+	// @media (min-width:toEm($mobileSmall)){
+	// }
 	&.--form-focus {
 	}
 	&.--form-error {
