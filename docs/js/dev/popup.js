@@ -4742,12 +4742,12 @@ class Popup {
       bodyLock: true,
       // Блокування скролла
       hashSettings: {
-        location: true,
+        // location: true, // Хеш в адресному рядку
+        // goHash: true, // Перехід по наявності в адресному рядку
+        location: false,
         // Хеш в адресному рядку
-        goHash: true
+        goHash: false
         // Перехід по наявності в адресному рядку
-        // location: false, // Хеш в адресному рядку
-        // goHash: false, // Перехід по наявності в адресному рядку
       },
       on: {
         // Події
@@ -5295,7 +5295,7 @@ function formInit() {
           const popup = form.dataset.flsFormPopup;
           popup ? window.flsPopup.open(popup) : null;
         }
-      }, 0);
+      }, 200);
       if (form.dataset.form === "brief") {
         localStorage.removeItem("briefFormState");
         const uploadBlocks2 = document.querySelectorAll("[data-brief-upload]");

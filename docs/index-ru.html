@@ -15,11 +15,11 @@
 		<meta name="msapplication-TileImage" content="assets/img/favicon/mstile-270x270.png">
 		<meta name="msapplication-TileColor" content="#1A1F35">
 		<title>POSH Packaging Design</title>
-		<script type="module" crossorigin="" src="./js/common.min.js?v=1769712312230"></script>
-		<script type="module" crossorigin="" src="./js/popup.min.js?v=1769712312230"></script>
-		<script type="module" crossorigin="" src="./js/index.min2.js?v=1769712312230"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1769712312230">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1769712312230">
+		<script type="module" crossorigin="" src="./js/common.min.js?v=1769773364435"></script>
+		<script type="module" crossorigin="" src="./js/popup.min.js?v=1769773364435"></script>
+		<script type="module" crossorigin="" src="./js/index.min2.js?v=1769773364435"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1769773364435">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1769773364435">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -155,7 +155,7 @@
 									</a>
 								</li>
 								<li class="btns-hero__item">
-									<a href="#" data-fls-popup-link="popup--form" data-fls-btn="" class="btns-hero__btn btn btn--2 font-bold --icon-arrowrightb" aria-label="open popup">
+									<a href="#" data-fls-popup-link="popup--estimate" data-fls-btn="" class="btns-hero__btn btn btn--2 font-bold --icon-arrowrightb" aria-label="open popup">
 										<span class="btn-txt">Получить просчет проекта</span>
 									</a>
 								</li>
@@ -1317,7 +1317,7 @@
 												<p>Передаем концепцию Вам</p>
 											</li>
 										</ul>
-										<a href="#" class="cost-guarantee__link --icon-arrowrightd t-2" aria-label="link">
+										<a href="#" data-fls-popup-link="popup--guide" class="cost-guarantee__link --icon-arrowrightd t-2" aria-label="open popup guide">
 											<span>Как составить идеальное техническое задание?</span>
 										</a>
 									</div>
@@ -1973,6 +1973,123 @@
 				</div>
 			</div>
 		</div>
+		<div data-lenis-prevent="" data-fls-popup="popup--estimate" aria-hidden="true" class="popup-estimate">
+			<div data-fls-popup-wrapper="" class="popup-estimate__wrapper">
+				<div data-fls-popup-body="" class="popup-estimate__body">
+					<div class="popup-estimate__block">
+						<button data-fls-popup-close="" type="button" class="popup-estimate__close">
+							<img src="./assets/img/icons/cross.svg" width="26" height="26" alt="Image">
+						</button>
+						<div data-fls-popup-content="" class="popup-estimate__content">
+							<div class="popup-estimate__title">
+								<p>просчет проекта</p>
+							</div>
+							<form class="popup-estimate__form form-estimate" data-fls-form="dev" data-fls-form-popup="popup--msg" action="#" method="POST">
+								<div class="form-estimate__grid">
+									<div class="form-estimate__group">
+										<div class="form-estimate__title">Что необходимо разработать?</div>
+										<div class="form-estimate__options">
+											<div class="form-estimate__option">
+												<input id="dev-1" type="radio" name="estimate[develop]" value="Design concept" required>
+												<label for="dev-1">Концепцию дизайна</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="dev-2" type="radio" name="estimate[develop]" value="Design for new SKUs">
+												<label for="dev-2">Дизайн для новых SKU</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="dev-3" type="radio" name="estimate[develop]" value="Brand strategy from scratch">
+												<label for="dev-3">Стратегию бренда с нуля</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-estimate__group">
+										<div class="form-estimate__title">У вас есть техническое задание?</div>
+										<div class="form-estimate__options">
+											<div class="form-estimate__option">
+												<input id="brief-1" type="radio" name="estimate[brief]" value="Yes, ready to send" required>
+												<label for="brief-1">Да, готов отправить</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="brief-2" type="radio" name="estimate[brief]" value="No, but ready to prepare one">
+												<label for="brief-2">Нет, но готов составить</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="brief-3" type="radio" name="estimate[brief]" value="No, it’s hard to prepare">
+												<label for="brief-3">Нет, сложно составить</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-estimate__group">
+										<div class="form-estimate__title">Количество SKU в ассортименте?</div>
+										<div class="form-estimate__options">
+											<div class="form-estimate__option">
+												<input id="sku-1" type="radio" name="estimate[skus]" value="1-5">
+												<label for="sku-1">1-5</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="sku-2" type="radio" name="estimate[skus]" value="5-10">
+												<label for="sku-2">5-10</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="sku-3" type="radio" name="estimate[skus]" value="10-20">
+												<label for="sku-3">10-20</label>
+											</div>
+											<div class="form-estimate__option">
+												<input id="sku-4" type="radio" name="estimate[skus]" value="20+">
+												<label for="sku-4">20+</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-popup__items form-estimate__fields">
+										<div class="form-popup__item form-estimate__field t-2">
+											<label for="e-name">Ваше имя:</label>
+											<input id="e-name" data-fls-input="" type="text" name="estimate[name]" class="input-main">
+										</div>
+										<div class="form-popup__item form-estimate__field t-2">
+											<label for="e-company">Название компании:</label>
+											<input id="e-company" data-fls-input="" type="text" name="estimate[company]" class="input-main">
+										</div>
+										<div class="form-popup__item form-estimate__field t-2">
+											<label for="e-email">E-mail:</label>
+											<input id="e-email" data-fls-input="" data-fls-form-validatenow="" required type="email" name="estimate[email]" class="input-main">
+										</div>
+										<div class="form-popup__item form-estimate__field t-2">
+											<label for="e-phone">Телефон:</label>
+											<input id="e-phone" data-fls-input="" type="tel" name="estimate[tel]" class="input-main">
+										</div>
+									</div>
+									<div class="form-estimate__checkbox">
+										<div class="form-popup__checkbox">
+											<input type="checkbox" id="e-policy" name="policy" data-fls-form-validatenow="" required>
+											<label for="e-policy">
+												I have read and accept the
+												<a href="#" target="_blank">privacy policy</a>
+											</label>
+										</div>
+									</div>
+									<div class="form-popup__footer form-estimate__footer">
+										<button type="submit" class="form-popup__send form-estimate__send btn btn--5" aria-label="send">
+											<span class="btn-txt">Отправить</span>
+											<span class="btn-arr --icon-arrowrightb"></span>
+										</button>
+										<div class="form-popup__item form-estimate__file form-file">
+											<div class="form-file__wrap">
+												<input type="file" name="form[file]" accept=".webp,.pdf,.doc,.docx" class="form-file__input">
+												<button type="button" class="form-file__btn">
+													<span class="form-file__text">Загрузить файл</span>
+													<span class="form-file__file-name"></span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div data-lenis-prevent="" data-fls-popup="popup--msg" aria-hidden="true" class="popup-form">
 			<div data-fls-popup-wrapper="" class="popup-form__wrapper">
 				<div data-fls-popup-body="" class="popup-form__body">
@@ -1986,6 +2103,86 @@
 								<br>
 								Наш менеджер скоро свяжется вами.
 							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-lenis-prevent="" data-fls-popup="popup--guide" aria-hidden="true" class="popup-guide">
+			<div data-fls-popup-wrapper="" class="popup-guide__wrapper">
+				<div data-fls-popup-body="" class="popup-guide__body">
+					<div data-fls-popup-content="" class="popup-guide__content">
+						<div class="popup-guide__head">
+							<div class="popup-guide__title">
+								<p>КАК составить идеальное задание?</p>
+							</div>
+							<button data-fls-popup-close="" type="button" class="popup-guide__close">
+								<img src="./assets/img/icons/cross.svg" width="26" height="26" alt="Image">
+							</button>
+						</div>
+						<div class="popup-guide__article">
+							<p>
+								Техническое задание для дизайнера упаковки — это не бюрократия и не «бумажка для галочки», а самый простой способ сэкономить время, деньги и нервы всем участникам процесса.
+							</p>
+							<ul class="popup-guide__list">
+								<li class="popup-guide__item">
+									<p>
+										<b>Начинать стоит с причин проекта:</b>
+										честно ответьте себе, зачем вы вообще в это ввязались — рынок изменился, дизайн устарел, продукт вырос из старой оболочки или вы заходите в новую категорию.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>Дальше — сам продукт:</b>
+										что это, в какой форме, чем он реально отличается от конкурентов и что в нём важно сохранить без компромиссов. Обязательно зафиксируйте, что уже есть у бренда — название, сайт, брендбук, старые упаковки, POS-материалы или наоборот полное «чистое поле», это сразу задаёт дизайнеру стартовую точку.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>Следующий шаг — характер бренда:</b>
+										не абстрактно «красиво», а конкретно — сильный или заботливый, провокационный или спокойный, статусный или домашний; это язык, на котором упаковка будет разговаривать с полкой. Потом — каналы продаж: ритейл, специализированные магазины, Instagram, АЗС, вендинг — упаковка для супермаркета и упаковка для Instagram-продаж решают разные задачи, и дизайнеру важно это знать заранее.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>Отдельно опишите покупателя:</b>
+										кто он, как выбирает, на что смотрит в первую очередь, где сомневается и за что готов переплатить — это напрямую влияет на иерархию информации и визуальные акценты.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>После этого переходите к эмоциям первого взгляда:</b>
+										что упаковка должна вызвать за 2–3 секунды — аппетит, доверие, удивление, ощущение инновации или спокойную уверенность. Чтобы не объяснять всё на пальцах, добавьте стилистические референсы — не как «сделать так же», а как ориентиры по настроению и уровню.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>Не забудьте про форму и тип упаковки:</b>
+										дой-пак, коробка, тубус, ведёрко — конструкция часто диктует дизайн сильнее, чем логотип.
+									</p>
+								</li>
+								<li class="popup-guide__item">
+									<p>
+										<b>И финальный, но критически важный блок — информация на упаковке:</b>
+										что должно быть на лицевой стороне, что вторично, какие обязательные элементы по закону, какие смыслы нельзя потерять ни при каких обстоятельствах.
+									</p>
+								</li>
+							</ul>
+							<p>
+								Если собрать всё это в одном документе, дизайнер начинает работать не вслепую, а как партнёр, который понимает задачу, контекст и цель — а значит, результат получается быстрее, точнее и заметно сильнее.
+							</p>
+							<p>
+								<b>И важный момент напоследок:</b>
+								если на каком-то этапе вы понимаете, что собрать всю эту информацию сложно — это нормально. Не у всех внутри компании есть время, опыт или насмотренность, чтобы сформулировать позиционирование, эмоции и вектор развития бренда. В таких случаях менеджеры агентства POSH спокойно берут эту часть на себя: проводят ресерч рынка и категории, анализируют конкурентов и полку, выявляют тренды и свободные ниши, формируют гипотезы и предлагают понятный курс развития бренда. По сути, мы сначала помогаем ответить на все вопросы брифа, а уже потом переводим эти ответы в сильный, осознанный дизайн упаковки.
+							</p>
+						</div>
+						<div class="popup-guide__footer">
+							<a href="brief" data-fls-btn="" class="popup-guide__link btn btn--2 font-reg --icon-arrowrightb" aria-label="open brief page">
+								<span class="btn-txt">Заполнить простой бриф</span>
+							</a>
+							<button data-fls-btn="" data-fls-popup-close="" type="button" class="popup-guide__footer-close btn btn--2 font-reg --icon-arrowrightb" aria-label="close">
+								<span class="btn-txt">Закрыть</span>
+							</button>
 						</div>
 					</div>
 				</div>

@@ -200,7 +200,7 @@ function formInit() {
 					const popup = form.dataset.flsFormPopup;
 					popup ? window.flsPopup.open(popup) : null;
 				}
-			}, 0);
+			}, 200);
 
 			//  ОЧИСТКА LOCAL + INDEXED DB ПОСЛЕ SUBMIT
 			if (form.dataset.form === "brief") {

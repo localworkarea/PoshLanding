@@ -61,6 +61,136 @@
 	</div>
 </div>
 
+<div data-lenis-prevent data-fls-popup="popup--estimate" aria-hidden="true" class="popup-estimate">
+	<div data-fls-popup-wrapper class="popup-estimate__wrapper">
+		<div data-fls-popup-body class="popup-estimate__body">
+			<div class="popup-estimate__block">
+				<button data-fls-popup-close type="button" class="popup-estimate__close">
+					<img src="@img/icons/cross.svg" width="26" height="26" alt="Image">
+				</button>
+				<div data-fls-popup-content class="popup-estimate__content">
+					<div class="popup-estimate__title">
+						<p>Прорахунок проєкту</p>
+					</div>
+					<form class="popup-estimate__form form-estimate" data-fls-form="dev" data-fls-form-popup="popup--msg" action="#" method="POST">
+						<div class="form-estimate__grid">
+
+							<div class="form-estimate__group">
+								<div class="form-estimate__title">Що потрібно розробити?</div>
+
+								<div class="form-estimate__options">
+									<div class="form-estimate__option">
+										<input id="dev-1" type="radio" name="estimate[develop]" value="Design concept" required>
+										<label for="dev-1">Концепцію дизайну</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="dev-2" type="radio" name="estimate[develop]" value="Design for new SKUs">
+										<label for="dev-2">Дизайн для нових SKU</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="dev-3" type="radio" name="estimate[develop]" value="Brand strategy from scratch">
+										<label for="dev-3">Стратегію бренду з нуля</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-estimate__group">
+								<div class="form-estimate__title">Ви маєте технічне завдання?</div>
+
+								<div class="form-estimate__options">
+									<div class="form-estimate__option">
+										<input id="brief-1" type="radio" name="estimate[brief]" value="Yes, ready to send" required>
+										<label for="brief-1">Так, готовий надіслати</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="brief-2" type="radio" name="estimate[brief]" value="No, but ready to prepare one">
+										<label for="brief-2">Ні, але готовий скласти</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="brief-3" type="radio" name="estimate[brief]" value="No, it’s hard to prepare">
+										<label for="brief-3">Ні, складно скласти</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-estimate__group">
+								<div class="form-estimate__title">Яка кількість SKU в асортименті?</div>
+
+								<div class="form-estimate__options">
+									<div class="form-estimate__option">
+										<input id="sku-1" type="radio" name="estimate[skus]" value="1-5">
+										<label for="sku-1">1-5</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="sku-2" type="radio" name="estimate[skus]" value="5-10">
+										<label for="sku-2">5-10</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="sku-3" type="radio" name="estimate[skus]" value="10-20">
+										<label for="sku-3">10-20</label>
+									</div>
+									<div class="form-estimate__option">
+										<input id="sku-4" type="radio" name="estimate[skus]" value="20+">
+										<label for="sku-4">20+</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-popup__items form-estimate__fields">
+								<div class="form-popup__item form-estimate__field t-2">
+									<label for="e-name">Ваше ім‘я:</label>
+									<input id="e-name" data-fls-input type="text" name="estimate[name]" class="input-main">
+								</div>
+
+								<div class="form-popup__item form-estimate__field t-2">
+									<label for="e-company">Назва компанії:</label>
+									<input id="e-company" data-fls-input type="text" name="estimate[company]" class="input-main">
+								</div>
+
+								<div class="form-popup__item form-estimate__field t-2">
+									<label for="e-email">E-mail:</label>
+									<input id="e-email" data-fls-input data-fls-form-validatenow required type="email" name="estimate[email]" class="input-main">
+								</div>
+
+								<div class="form-popup__item form-estimate__field t-2">
+									<label for="e-phone">Телефон:</label>
+									<input id="e-phone" data-fls-input type="tel" name="estimate[tel]" class="input-main">
+								</div>
+							</div>
+
+							<div class="form-estimate__checkbox">
+								<div class="form-popup__checkbox">
+									<input type="checkbox" id="e-policy" name="policy" data-fls-form-validatenow required>
+									<label for="e-policy">I have read and accept the <a href="#" target="_blank">privacy policy</a></label>
+								</div>
+							</div>
+
+							<div class="form-popup__footer form-estimate__footer">
+								<button type="submit" class="form-popup__send form-estimate__send btn btn--5" aria-label="send">
+									<span class="btn-txt">Надіслати</span>
+									<span class="btn-arr --icon-arrowrightb"></span>
+								</button>
+
+								<div class="form-popup__item form-estimate__file form-file">
+									<div class="form-file__wrap">
+										<input type="file" name="form[file]" accept=".webp,.pdf,.doc,.docx" class="form-file__input">
+										<button type="button" class="form-file__btn">
+											<span class="form-file__text">Завантажити файл</span>
+											<span class="form-file__file-name"></span>
+										</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div data-lenis-prevent data-fls-popup="popup--msg" aria-hidden="true" class="popup-form">
 	<div data-fls-popup-wrapper class="popup-form__wrapper">
 		<div data-fls-popup-body class="popup-form__body">
