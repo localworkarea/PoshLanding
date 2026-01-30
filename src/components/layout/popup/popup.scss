@@ -597,6 +597,7 @@
 		text-transform: uppercase;
 		@include adaptiveValue("font-size", 50, 30);
 		margin-bottom: 32px;
+		padding-right: 50px;
 	}
 
 	// .popup-estimate__form
@@ -635,6 +636,13 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 15px 50px;
+		flex-direction: column;
+		&.row {
+			flex-direction: row;
+		}
+		@media (min-width:toEm($mobileSmall)){
+			 flex-direction: row; 
+		}
 	}
 
 	// .form-estimate__option

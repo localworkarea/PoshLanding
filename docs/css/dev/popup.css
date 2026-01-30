@@ -1002,6 +1002,7 @@ textarea.textarea-brief::placeholder {
 }
 .popup-estimate__title {
   margin-bottom: 2rem;
+  padding-right: 3.125rem;
 }
 .form-estimate.--sending {
   opacity: 0.5;
@@ -1018,6 +1019,10 @@ textarea.textarea-brief::placeholder {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9375rem 3.125rem;
+  flex-direction: column;
+}
+.form-estimate__options.row {
+  flex-direction: row;
 }
 .form-estimate__option {
   position: relative;
@@ -1520,6 +1525,9 @@ textarea.textarea-brief::placeholder {
   }
   .form-estimate__title {
     margin-bottom: 1.5rem;
+  }
+  .form-estimate__options {
+    flex-direction: row;
   }
   .form-estimate__fields {
     margin-top: 3.625rem;
