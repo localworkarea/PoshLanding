@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="@components/layout/popup/popup.scss">
+<div data-lenis-prevent data-fls-popup="popup--presentation" aria-hidden="true" class="popup-presentation">
+	<div data-fls-popup-wrapper class="popup-presentation__wrapper">
+		<div data-fls-popup-body class="popup-presentation__body">
+			<div data-fls-popup-content class="popup-presentation__content">
+				<button data-fls-popup-close type="button" class="popup-presentation__close">
+					<img src="@img/icons/cross.svg" width="26" height="26" alt="Image">
+				</button>
+				<div class="popup-presentation__title">
+					<p>
+						Загрузить<br>презентацию
+					</p>
+				</div>
+				<div class="popup-presentation__text">
+					<p>
+						<b>Почти готово!</b> 🫣 Пожалуйста, подтвердите,
+что вы человек - и мы сразу откроем
+доступ к PDF-презентации 🙏🏻
+					</p>
+				</div>
+				<form class="popup-presentation__form" data-fls-form="dev" action="#" method="POST"></form>
+				<div class="popup-presentation__recaptcha">
+					<img src="@img/popups/reCaptcha.png" width="247" height="67" alt="Image">
+				</div>
+
+				<button type="submit" class="popup-presentation__send  form-estimate__send btn btn--5" aria-label="send">
+					<span class="btn-txt">Загрузить</span>
+					<span class="btn-arr --icon-arrowrightb"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

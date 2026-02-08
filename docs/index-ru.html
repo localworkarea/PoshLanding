@@ -15,11 +15,11 @@
 		<meta name="msapplication-TileImage" content="assets/img/favicon/mstile-270x270.png">
 		<meta name="msapplication-TileColor" content="#1A1F35">
 		<title>POSH Packaging Design</title>
-		<script type="module" crossorigin="" src="./js/common.min.js?v=1769782500531"></script>
-		<script type="module" crossorigin="" src="./js/popup.min.js?v=1769782500531"></script>
-		<script type="module" crossorigin="" src="./js/index.min2.js?v=1769782500531"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1769782500531">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1769782500531">
+		<script type="module" crossorigin="" src="./js/common.min.js?v=1770573178832"></script>
+		<script type="module" crossorigin="" src="./js/popup.min.js?v=1770573178832"></script>
+		<script type="module" crossorigin="" src="./js/index.min2.js?v=1770573178832"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/popup.min.css?v=1770573178832">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min2.css?v=1770573178832">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -160,7 +160,7 @@
 									</a>
 								</li>
 								<li class="btns-hero__item item-pc">
-									<a href="files/Posh_FMCG_Design_presentation_eng.pdf" target="_blank" data-fls-btn="" class="btns-hero__btn btn btn--2 font-reg --icon-arrowrightb" aria-label="download presentation">
+									<a href="#" data-fls-popup-link="popup--presentation" data-fls-btn="" class="btns-hero__btn btn btn--2 font-reg --icon-arrowrightb" aria-label="download presentation">
 										<span class="btn-txt">Скачать PDF-презентацию</span>
 									</a>
 								</li>
@@ -886,7 +886,7 @@
 								<p class="t-8">Скачайте, чтобы не потерять нас</p>
 							</div>
 							<div class="presentation-solutions__pdf">
-								<a href="files/Posh_FMCG_Design_presentation_ru.pdf" target="_blank" data-fls-btn="" class="presentation-solutions__btn btn btn--2 --icon-arrowrightc" aria-label="download">
+								<a href="#" data-fls-popup-link="popup--presentation" data-fls-btn="" class="presentation-solutions__btn btn btn--2 --icon-arrowrightc" aria-label="download">
 									<span class="btn-txt">Скачать PDF</span>
 								</a>
 							</div>
@@ -1786,7 +1786,7 @@
 							<span class="btn-txt">Получить предложение</span>
 							<span class="btn-arr --icon-arrowrightb"></span>
 						</a>
-						<a href="files/Posh_FMCG_Design_presentation_ru.pdf" target="_blank" data-fls-btn="" class="footer__btn--2 btn btn--2 --icon-arrowrightc" aria-label="download">
+						<a href="#" data-fls-popup-link="popup--presentation" data-fls-btn="" class="footer__btn--2 btn btn--2 --icon-arrowrightc" aria-label="download">
 							<span class="btn-txt">Скачать презентацию</span>
 						</a>
 						<a href="brief-ru" data-fls-btn="" class="footer__btn--3 btn btn--2 --icon-arrowrightc" aria-label="link">
@@ -1884,7 +1884,7 @@
 								<span class="btn-txt">Оставить заявку</span>
 								<span class="btn-arr --icon-arrowrightc"></span>
 							</a>
-							<a href="files/Posh_FMCG_Design_presentation_ru.pdf" target="_blank" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="download">
+							<a href="#" data-fls-popup-link="popup--presentation" data-fls-btn="" class="popup-content__btn btn btn--3" aria-label="download">
 								<span class="btn-txt">Загрузить PDF</span>
 								<span class="btn-arr --icon-arrowrightc"></span>
 							</a>
@@ -2184,6 +2184,42 @@
 								<span class="btn-txt">Закрыть</span>
 							</button>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-lenis-prevent="" data-fls-popup="popup--presentation" aria-hidden="true" class="popup-presentation">
+			<div data-fls-popup-wrapper="" class="popup-presentation__wrapper">
+				<div data-fls-popup-body="" class="popup-presentation__body">
+					<div data-fls-popup-content="" class="popup-presentation__content">
+						<button data-fls-popup-close="" type="button" class="popup-presentation__close">
+							<img src="./assets/img/icons/cross.svg" width="26" height="26" alt="Image">
+						</button>
+						<div class="popup-presentation__title">
+							<p>
+								Загрузить
+								<br>
+								презентацию
+							</p>
+						</div>
+						<div class="popup-presentation__text">
+							<p>
+								<b>Почти готово!</b>
+								🫣 Пожалуйста, подтвердите,
+что вы человек - и мы сразу откроем
+доступ к PDF-презентации 🙏🏻
+							</p>
+						</div>
+						<form class="popup-presentation__form" data-fls-form="dev" action="#" method="POST"></form>
+						<div class="popup-presentation__recaptcha">
+							<picture>
+								<img width="247" height="67" alt="Image" src="./assets/img/popups/reCaptcha.webp">
+							</picture>
+						</div>
+						<button type="submit" class="popup-presentation__send form-estimate__send btn btn--5" aria-label="send">
+							<span class="btn-txt">Загрузить</span>
+							<span class="btn-arr --icon-arrowrightb"></span>
+						</button>
 					</div>
 				</div>
 			</div>

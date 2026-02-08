@@ -903,9 +903,10 @@
 	}
 }
 
-[data-fls-popup="popup--guide"] {
+[data-fls-popup="popup--guide"],
+[data-fls-popup="popup--presentation"] {
 	padding: 0;
-
+	
 	transition: visibility 0.8s ease 0s, transform .3s ease 0s;
 	transform: translate(100%,0);
 	background-color: var(--primary);
@@ -913,6 +914,9 @@
 	&[data-fls-popup-active] {
 		transform: translate(0%,0);
 	}
+}
+
+[data-fls-popup="popup--guide"] {
 
 
 	[data-fls-popup-wrapper] {
@@ -1021,5 +1025,93 @@
 		// .popup-guide__footer-close
 		&__footer-close {
 			display: flex;
+		}
+}
+
+
+[data-fls-popup="popup--presentation"] {
+	[data-fls-popup-wrapper] {
+		color: var(--white);
+	}
+	[data-fls-popup-body] {
+		width: 100%;
+		max-width: 450px;
+		padding: 35px 16px;
+	}
+	[data-fls-popup-close] {
+
+	}
+	[data-fls-popup-content] {
+
+	}
+}
+
+.popup-presentation {
+		// .popup-presentation__wrapper
+		&__wrapper {
+		}
+
+		// .popup-presentation__body
+		&__body {
+		}
+		
+		// .popup-presentation__content
+		&__content {
+			position: relative;
+			text-align: center;
+		}
+		
+		// .popup-presentation__close
+		&__close {
+			margin-bottom: toRem(40);
+			margin-inline: auto;
+			@media (min-width:toEm(820)){
+				position: absolute;
+				top: 2%;
+				right: -168px;
+			}
+		}
+		
+		// .popup-presentation__title
+		&__title {
+			text-transform: uppercase;
+			@include adaptiveValue("font-size", 50, 30);
+			margin-bottom: 40px;
+		}
+		
+		// .popup-presentation__text
+		&__text {
+			color: var(--gray-light-2);
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 1.33;
+			margin-bottom: 33px;
+			text-wrap: balance;
+			max-width: 313px;
+			margin-inline: auto;
+		}
+		
+		// .popup-presentation__form
+		&__form {
+		}
+		
+		// .popup-presentation__recaptcha
+		&__recaptcha {
+			margin-bottom: 49px;
+			max-width: 247px;
+			margin-inline: auto;
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		// .popup-presentation__send
+		&__send {
+			min-width: 270px;
+			margin-inline: auto;
+			&.btn.btn--5 {
+				border-color: var(--white);
+			}
 		}
 }
