@@ -4744,7 +4744,7 @@ class Popup {
       hashSettings: {
         // location: true, // Хеш в адресному рядку
         // goHash: true, // Перехід по наявності в адресному рядку
-        location: false,
+        location: true,
         // Хеш в адресному рядку
         goHash: true
         // Перехід по наявності в адресному рядку

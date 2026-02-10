@@ -418,16 +418,13 @@
 .gallery__fullscreen .gallery__figure {
   position: relative;
   z-index: 3;
-  width: 100%;
   max-width: 90vw;
   max-height: 90vh;
   min-height: 16.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 0.9375rem;
 }
 .gallery__fullscreen .gallery__figure img {
+  max-height: inherit;
   border-radius: 0.9375rem;
   box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.5);
   opacity: 0;

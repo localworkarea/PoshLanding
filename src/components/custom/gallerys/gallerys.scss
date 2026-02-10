@@ -86,13 +86,13 @@
     .gallery__figure {
       position: relative;
       z-index: 3;
-      width: 100%;
+      // width: 100%;
       max-width: 90vw;
       max-height: 90vh;
       min-height: 260px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
       border-radius: 15px;
 
       
@@ -104,6 +104,7 @@
 
       img {
         @extend %ibg;
+        max-height: inherit;
         border-radius: 15px;
         box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
         opacity: 0;
